@@ -23,7 +23,7 @@ public abstract class UserAccount {
         try {
             this.birthday = new SimpleDateFormat("dd/MM/yyyy").parse(birthday);
         }
-        catch (ParseException a){}
+        catch (ParseException ignore){}
         if (this.birthday == null)
             this.birthday = new Date();
 

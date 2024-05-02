@@ -3,6 +3,7 @@ package controller.AboutLIstener;
 import model.AboutHumans.Listener;
 import model.AboutMusic.Audio;
 import model.AboutMusic.Playlist;
+import model.Database;
 import model.Types.Premium;
 import model.Types.PremiumType;
 
@@ -64,6 +65,7 @@ public class FreeController extends ListenerController {
             Date end = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
             premiumListener.setEndSubscription(end);
             this.listener = premiumListener;
+            Database.allUsers.remove(freeListener);
             freeListener = null;
 
             return "you are a premium user now :)";

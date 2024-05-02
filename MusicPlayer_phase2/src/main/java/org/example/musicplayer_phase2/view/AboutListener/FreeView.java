@@ -2,7 +2,6 @@ package org.example.musicplayer_phase2.view.AboutListener;
 
 import org.example.musicplayer_phase2.controller.AboutLIstener.FreeController;
 import org.example.musicplayer_phase2.controller.UserAccountController;
-import org.example.musicplayer_phase2.model.*;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Playlist;

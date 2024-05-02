@@ -1,7 +1,6 @@
 package org.example.musicplayer_phase2.view;
 
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
-import org.example.musicplayer_phase2.model.*;
 import org.example.musicplayer_phase2.model.AboutHumans.UserAccount;
 
 import java.util.Scanner;

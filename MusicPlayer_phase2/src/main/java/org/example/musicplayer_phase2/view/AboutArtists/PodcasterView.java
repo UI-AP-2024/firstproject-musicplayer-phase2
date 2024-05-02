@@ -1,7 +1,6 @@
 package org.example.musicplayer_phase2.view.AboutArtists;
 
 import org.example.musicplayer_phase2.controller.AboutArtist.PodcasterContrller;
-import org.example.musicplayer_phase2.model.*;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutMusic.Podcast;
 import org.example.musicplayer_phase2.view.Start;

@@ -6,21 +6,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Start">
    <children>
       <VBox layoutX="14.0" layoutY="50.0" prefHeight="300.0" prefWidth="80.0">
          <children>
             <Separator prefWidth="200.0" />
-            <Label fx:id="homeButton" onMouseClicked="#homeClicked" onMouseEntered="#homeMouseEnter" onMouseExited="#homeMouseExit" prefHeight="60.0" prefWidth="80.0" text="HOME" textFill="#e30202" />
+            <Label fx:id="homeButton" alignment="CENTER" onMouseClicked="#homeClicked" onMouseEntered="#homeMouseEnter" onMouseExited="#homeMouseExit" prefHeight="60.0" prefWidth="80.0" text="HOME" textFill="#e30202" />
             <Separator prefWidth="200.0" />
-            <Label fx:id="searchButton" onMouseClicked="#searchClicked" onMouseEntered="#searchEnter" onMouseExited="#searchExit" prefHeight="60.0" prefWidth="80.0" text="SEARCH" textFill="#e40101" />
+            <Label fx:id="searchButton" alignment="CENTER" onMouseClicked="#searchClicked" onMouseEntered="#searchEnter" onMouseExited="#searchExit" prefHeight="60.0" prefWidth="80.0" text="SEARCH" textFill="#e40101" />
             <Separator prefWidth="200.0" />
-            <Label fx:id="libraryButton" onMouseClicked="#libraryClicked" onMouseEntered="#libraryEnter" onMouseExited="#libraryExit" prefHeight="60.0" prefWidth="80.0" text="LIBRARY" textFill="#e40101" />
+            <Label fx:id="libraryButton" alignment="CENTER" onMouseClicked="#libraryClicked" onMouseEntered="#libraryEnter" onMouseExited="#libraryExit" prefHeight="60.0" prefWidth="80.0" text="LIBRARY" textFill="#e40101" />
             <Separator prefWidth="200.0" />
-            <Label fx:id="allArtistButton" onMouseClicked="#allArtistClicked" onMouseEntered="#allArtistEnter" onMouseExited="#allArtistExit" prefHeight="60.0" prefWidth="80.0" text="ALL ARTIST" textFill="#e40101" />
+            <Label fx:id="allArtistButton" alignment="CENTER" onMouseClicked="#allArtistClicked" onMouseEntered="#allArtistEnter" onMouseExited="#allArtistExit" prefHeight="60.0" prefWidth="80.0" text="ALL ARTIST" textFill="#e40101" />
             <Separator prefWidth="200.0" />
-            <Label fx:id="allAudios" onMouseClicked="#allAudiosClicked" onMouseEntered="#allAudiosEntered" onMouseExited="#allAudiosExite" prefHeight="60.0" prefWidth="80.0" text="ALL AUDIOS" textFill="#e40101" />
+            <Label fx:id="allAudios" alignment="CENTER" onMouseClicked="#allAudiosClicked" onMouseEntered="#allAudiosEntered" onMouseExited="#allAudiosExite" prefHeight="60.0" prefWidth="80.0" text="ALL AUDIOS" textFill="#e40101" />
             <Separator prefWidth="200.0" />
          </children>
       </VBox>

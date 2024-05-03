@@ -1,18 +1,23 @@
 package org.example.musicplayer_phase2.View;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import org.example.musicplayer_phase2.HelloApplication;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Start{
+    Stage stage = HelloApplication.stage;
 
     //home..............................................
     @FXML
@@ -131,7 +136,15 @@ public class Start{
 
     @FXML
     void loginClicked(MouseEvent event) {
-
+        LoginView loginView = new LoginView();
+        try {
+            loginView.start(stage);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText("page not loaded\nhave a good day");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -143,5 +156,5 @@ public class Start{
     void loginExited(MouseEvent event) {
         loginButton.setTextFill(Color.BLACK);
     }
-
+    //............................................................
 }

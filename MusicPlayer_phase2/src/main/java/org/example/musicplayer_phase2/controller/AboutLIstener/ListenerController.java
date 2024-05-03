@@ -17,6 +17,7 @@ public class ListenerController extends UserAccountController {
     public Listener listener;
     public static Free freeListener;
     public static Premium premiumListener;
+    Report report;
 
     public String login(String username, String password) {
         boolean found = false;
@@ -173,8 +174,6 @@ public class ListenerController extends UserAccountController {
 
         return result;
     }
-
-    Report report;
 
     public void reporting(UserAccount reporterPerson, UserAccount reportedArtist, String explanation) {
         report = new Report(reporterPerson, reportedArtist, explanation);

@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public abstract class Audio {
+public abstract class Audio implements Comparable<Audio>{
     private static int audioNumbers = 0;
     private long identifier;
     private final String audioName;
@@ -160,5 +160,45 @@ public abstract class Audio {
         return "artists name: " + artistUsername +"\nidentifier: " + identifier + "\naudio name: "
                 + audioName + "\nlink: " + audioLink + "\ngenre: " + genre + "\ncover: " + cover
                 + "\npublication date: " + getPublicationDateName() + "\n";
+    }
+
+    @Override
+    public int compareTo(Audio audio) {
+        if(audio.audioName.compareTo(this.audioName) == 0){
+            if (audio.likesNum == this.likesNum){
+                if (audio instanceof Music && this instanceof Music){
+                    if (audio.playsNum < this.playsNum)
+                        return 1;
+                    else if (audio.playsNum > this.playsNum)
+                        return -1;
+                }
+
+                else {
+                    if (audio instanceof Podcast && this instanceof Music)
+                        return 1;
+                    else
+                        return -1;
+                }
+            }
+
+            else {
+                if (audio.likesNum < this.likesNum){
+                    return 1;
+                }
+                else {
+                    return -1;
+                }
+            }
+        }
+
+        else {
+            if (audio.audioName.compareTo(this.audioName) < 0)
+                return 1;
+
+            else if (audio.audioName.compareTo(this.audioName) > 0)
+                return -1;
+        }
+
+        return 0;
     }
 }

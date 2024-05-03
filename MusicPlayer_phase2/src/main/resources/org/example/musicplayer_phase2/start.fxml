@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.musicplayer_phase2.View.Start"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Start">
+   <children>
+      <VBox layoutX="14.0" layoutY="50.0" prefHeight="300.0" prefWidth="80.0">
+         <children>
+            <Separator prefWidth="200.0" />
+            <Label fx:id="homeButton" onMouseClicked="#homeClicked" onMouseEntered="#homeMouseEnter" onMouseExited="#homeMouseExit" prefHeight="60.0" prefWidth="80.0" text="HOME" textFill="#e30202" />
+            <Separator prefWidth="200.0" />
+            <Label fx:id="searchButton" onMouseClicked="#searchClicked" onMouseEntered="#searchEnter" onMouseExited="#searchExit" prefHeight="60.0" prefWidth="80.0" text="SEARCH" textFill="#e40101" />
+            <Separator prefWidth="200.0" />
+            <Label fx:id="libraryButton" onMouseClicked="#libraryClicked" onMouseEntered="#libraryEnter" onMouseExited="#libraryExit" prefHeight="60.0" prefWidth="80.0" text="LIBRARY" textFill="#e40101" />
+            <Separator prefWidth="200.0" />
+            <Label fx:id="allArtistButton" onMouseClicked="#allArtistClicked" onMouseEntered="#allArtistEnter" onMouseExited="#allArtistExit" prefHeight="60.0" prefWidth="80.0" text="ALL ARTIST" textFill="#e40101" />
+            <Separator prefWidth="200.0" />
+            <Label fx:id="allAudios" onMouseClicked="#allAudiosClicked" onMouseEntered="#allAudiosEntered" onMouseExited="#allAudiosExite" prefHeight="60.0" prefWidth="80.0" text="ALL AUDIOS" textFill="#e40101" />
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+      <Separator layoutX="91.0" layoutY="50.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="5.0" />
+      <Separator layoutX="11.0" layoutY="50.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="6.0" />
+      <VBox layoutX="157.0" layoutY="125.0" prefHeight="150.0" prefWidth="300.0">
+         <children>
+            <Separator prefWidth="200.0" />
+            <Label fx:id="loginButton" alignment="CENTER" onMouseClicked="#loginClicked" onMouseEntered="#loginEnter" onMouseExited="#loginExited" prefHeight="75.0" prefWidth="300.0" text="Login">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+            <Label fx:id="signupButton" alignment="CENTER" onMouseClicked="#signupClicked" onMouseEntered="#signupEnter" onMouseExited="#signupExited" prefHeight="75.0" prefWidth="300.0" text="Signup">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+      <Separator layoutX="454.0" layoutY="125.0" orientation="VERTICAL" prefHeight="150.0" />
+      <Separator layoutX="154.0" layoutY="125.0" orientation="VERTICAL" prefHeight="150.0" />
+   </children>
 </AnchorPane>

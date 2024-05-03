@@ -5,5 +5,7 @@ module org.example.musicplayer_phase2 {
 
     opens org.example.musicplayer_phase2 to javafx.fxml;
     exports org.example.musicplayer_phase2;
+    exports org.example.musicplayer_phase2.View;
+    opens org.example.musicplayer_phase2.View to javafx.fxml;
 
 }

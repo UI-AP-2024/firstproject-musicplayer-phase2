@@ -1,6 +1,6 @@
-package org.example.musicplayer_phase2.controller;
+package org.example.musicplayerphase2.controller;
 
-import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayerphase2.model.*;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;
 import org.example.musicplayer_phase2.model.AboutMusic.Podcast;

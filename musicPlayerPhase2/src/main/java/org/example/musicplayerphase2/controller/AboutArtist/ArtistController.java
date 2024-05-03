@@ -1,7 +1,7 @@
-package org.example.musicplayer_phase2.controller.AboutArtist;
+package org.example.musicplayerphase2.controller.AboutArtist;
 
 import org.example.musicplayer_phase2.controller.UserAccountController;
-import org.example.musicplayer_phase2.model.*;
+
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
@@ -18,7 +18,7 @@ public class ArtistController extends UserAccountController {
         boolean found = false;
         boolean foundUsername = false;
         boolean foundPassword = false;
-        for (UserAccount a : Database.allUsers)
+        for (UserAccount a : org.example.musicplayer_phase2.model.Database.allUsers)
         {
             if (a.getUsername().equals(username) && a.getPassword().equals(password) && a instanceof Artist)
             {

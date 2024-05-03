@@ -1,6 +1,6 @@
-package org.example.musicplayer_phase2.controller.AboutArtist;
+package org.example.musicplayerphase2.controller.AboutArtist;
 
-import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayerphase2.model.*;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 import org.example.musicplayer_phase2.model.AboutMusic.Album;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;

@@ -1,6 +1,6 @@
-package org.example.musicplayer_phase2.model.AboutHumans;
+package org.example.musicplayerphase2.model.AboutHumans;
 
-public class Admin extends UserAccount {
+public class Admin extends org.example.musicplayer_phase2.model.AboutHumans.UserAccount {
     private static Admin admin;
 
     private Admin(String name, String username, String password, String email, String number, String birthday) {

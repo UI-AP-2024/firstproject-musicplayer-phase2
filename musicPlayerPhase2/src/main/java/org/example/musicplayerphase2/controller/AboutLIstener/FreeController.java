@@ -1,6 +1,6 @@
-package org.example.musicplayer_phase2.controller.AboutLIstener;
+package org.example.musicplayerphase2.controller.AboutLIstener;
 
-import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayerphase2.model.*;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Playlist;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class FreeController extends ListenerController {
+public class FreeController extends org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController {
     Playlist playlist;
     @Override
     public String makePlaylist(String name , Listener listener) throws FreeAccountLimitException {

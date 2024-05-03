@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.controller.AboutLIstener;
+package org.example.musicplayerphase2.controller.AboutLIstener;
 
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.*;

@@ -1,6 +1,7 @@
-package org.example.musicplayer_phase2.model.AboutHumans;
+package org.example.musicplayerphase2.model.AboutHumans;
 
-import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayerphase2.model.*;
+import org.example.musicplayerphase2.model.AboutHumans;
 public class Report {
     private UserAccount reporterPerson;
     private UserAccount reportedArtist;

@@ -1,13 +1,13 @@
-package org.example.musicplayer_phase2.controller;
+package org.example.musicplayerphase2.controller;
 
-import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayerphase2.HelloApplication;
 import org.example.musicplayer_phase2.model.AboutHumans.Admin;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.Exceptions.FailedLoginException;
 import org.example.musicplayer_phase2.model.Exceptions.UserNotFoundException;
 import org.example.musicplayer_phase2.model.Exceptions.WrongPasswordException;
-import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayerphase2.model.*;
 
 import java.util.Comparator;
 

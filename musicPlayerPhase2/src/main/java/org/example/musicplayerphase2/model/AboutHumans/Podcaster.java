@@ -1,6 +1,6 @@
-package org.example.musicplayer_phase2.model.AboutHumans;
+package org.example.musicplayerphase2.model.AboutHumans;
 
-import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayerphase2.model.*;
 import org.example.musicplayer_phase2.model.AboutMusic.Podcast;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Podcaster extends Artist {
     public Podcaster(String name, String username, String password, String email, String number, String birthday, String biography) {
         super(name, username, password, email, number, birthday, biography);
-        Database.setAllPodcaster(this);
+        org.example.musicplayer_phase2.model.Database.setAllPodcaster(this);
     }
 
     private ArrayList<Podcast> allPodcasts = new ArrayList<>();

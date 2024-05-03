@@ -1,18 +1,18 @@
-package org.example.musicplayer_phase2.model.AboutHumans;
+package org.example.musicplayerphase2.model.AboutHumans;
 
-import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayerphase2.model.*;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
 import java.util.ArrayList;
 
-public class Artist extends UserAccount {
+public class Artist extends org.example.musicplayer_phase2.model.AboutHumans.UserAccount {
     public Artist(String name,String username ,String password, String email, String number, String birthday , String biography) {
         super(name,username ,password, email, number, birthday);
         this.biography = biography;
-        Database.setAllArtists(this);
+        org.example.musicplayer_phase2.model.Database.setAllArtists(this);
     }
     private double income = 0;
-    private ArrayList<UserAccount> followers = new ArrayList<>();
+    private ArrayList<org.example.musicplayer_phase2.model.AboutHumans.UserAccount> followers = new ArrayList<>();
     private String biography;
     private ArrayList<Audio> allAudios = new ArrayList<>();
     public double getIncome() {
@@ -21,7 +21,7 @@ public class Artist extends UserAccount {
 
     public StringBuilder getFollowers() {
         StringBuilder followers = new StringBuilder();
-        for (UserAccount a : this.followers)
+        for (org.example.musicplayer_phase2.model.AboutHumans.UserAccount a : this.followers)
             followers.append(a.getName() + "\n");
         return followers;
     }

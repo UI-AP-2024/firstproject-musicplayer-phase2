@@ -13,18 +13,18 @@ import java.util.Comparator;
 
 public class AdminController {
     static Admin admin;
-    public static String login (String username , String password) throws FailedLoginException {
-        if (HelloApplication.admin.getUsername().equals(username) && HelloApplication.admin.getPassword().equals(password)) {
-            admin = Admin.getAdmin();
-            return "welcome :)";
-        }
-        else if (HelloApplication.admin.getUsername().equals(username))
-            throw new UserNotFoundException();
-        else if (HelloApplication.admin.getPassword().equals(password))
-            throw new WrongPasswordException();
-        else
-            throw new FailedLoginException("user not exist");
-    }
+//    public static String login (String username , String password) throws FailedLoginException {
+//        if (HelloApplication.admin.getUsername().equals(username) && HelloApplication.admin.getPassword().equals(password)) {
+//            admin = Admin.getAdmin();
+//            return "welcome :)";
+//        }
+//        else if (HelloApplication.admin.getUsername().equals(username))
+//            throw new UserNotFoundException();
+//        else if (HelloApplication.admin.getPassword().equals(password))
+//            throw new WrongPasswordException();
+//        else
+//            throw new FailedLoginException("user not exist");
+//    }
 
     public StringBuilder watchFavoriteAudios ()
     {

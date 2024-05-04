@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.controller.UserAccountController;
 
 
 public class LoginView extends Application {
@@ -58,6 +59,14 @@ public class LoginView extends Application {
         if (username_textField != null && password_textField != null){
             userName = username_textField.getText();
             password = password_textField.getText();
+            try {
+                UserAccountController.findPerson(userName, password);
+            }catch (Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("not founding user");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 }

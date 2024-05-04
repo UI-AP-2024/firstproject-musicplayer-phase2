@@ -1,10 +1,14 @@
 package org.example.musicplayer_phase2.controller;
 
 import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayer_phase2.model.AboutHumans.UserAccount;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;
 import org.example.musicplayer_phase2.model.AboutMusic.Podcast;
+import org.example.musicplayer_phase2.model.Exceptions.FailedLoginException;
 import org.example.musicplayer_phase2.model.Exceptions.InvalidFormat;
+import org.example.musicplayer_phase2.model.Exceptions.UserNotFoundException;
+import org.example.musicplayer_phase2.model.Exceptions.WrongPasswordException;
 import org.example.musicplayer_phase2.model.Types.Genre;
 
 import java.text.ParseException;
@@ -107,5 +111,26 @@ public class UserAccountController {
             if (a.getIdentifier() == ID)
                 podcast = a;
         return podcast;
+    }
+
+    public static UserAccount findPerson (String username , String password) throws FailedLoginException {
+
+        boolean foundUsername = false;
+        boolean foundPassword = false;
+        for (UserAccount a : Database.allUsers){
+            if (a.getUsername().equals(username) && a.getPassword().equals(password))
+                return a;
+            else if (a.getUsername().equals(username) && !a.getPassword().equals(password))
+                foundUsername = true;
+            else if (!a.getUsername().equals(username) && a.getPassword().equals(password))
+                foundPassword = true;
+        }
+
+        if (foundPassword && !foundUsername)
+            throw new UserNotFoundException();
+        else if (foundUsername && !foundPassword)
+            throw new WrongPasswordException();
+        else
+            throw new FailedLoginException("user not found");
     }
 }

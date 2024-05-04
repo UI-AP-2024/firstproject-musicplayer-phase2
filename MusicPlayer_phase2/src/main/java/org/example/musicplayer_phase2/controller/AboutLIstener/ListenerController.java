@@ -20,33 +20,33 @@ public class ListenerController extends UserAccountController {
     public static Premium premiumListener;
     Report report;
 
-    public String login(String username, String password) throws FailedLoginException {
-        boolean found = false;
-        boolean foundUsername = false;
-        boolean foundPassword = false;
-        for (UserAccount a : Database.allUsers) {
-            if (a.getUsername().equals(username) && a.getPassword().equals(password) && a instanceof Listener) {
-                listener = (Listener) a;
-                found = true;
-                break;
-            } else if (a.getPassword().equals(password) && !a.getUsername().equals(username) && a instanceof Listener) {
-                foundPassword = true;
-            } else if (a.getUsername().equals(username) && !a.getPassword().equals(password) && a instanceof Listener) {
-                foundUsername = true;
-            }
-        }
-
-        if (found)
-            return "Your panel founded ";
-        else {
-            if (foundPassword && !foundUsername)
-                throw new UserNotFoundException();
-            else if (foundUsername && !foundPassword)
-                throw new WrongPasswordException();
-            else
-                throw new FailedLoginException("user not found");
-        }
-    }
+//    public String login(String username, String password) throws FailedLoginException {
+//        boolean found = false;
+//        boolean foundUsername = false;
+//        boolean foundPassword = false;
+//        for (UserAccount a : Database.allUsers) {
+//            if (a.getUsername().equals(username) && a.getPassword().equals(password) && a instanceof Listener) {
+//                listener = (Listener) a;
+//                found = true;
+//                break;
+//            } else if (a.getPassword().equals(password) && !a.getUsername().equals(username) && a instanceof Listener) {
+//                foundPassword = true;
+//            } else if (a.getUsername().equals(username) && !a.getPassword().equals(password) && a instanceof Listener) {
+//                foundUsername = true;
+//            }
+//        }
+//
+//        if (found)
+//            return "Your panel founded ";
+//        else {
+//            if (foundPassword && !foundUsername)
+//                throw new UserNotFoundException();
+//            else if (foundUsername && !foundPassword)
+//                throw new WrongPasswordException();
+//            else
+//                throw new FailedLoginException("user not found");
+//        }
+//    }
 
     public void signup(Listener listener) {
         this.listener = listener;

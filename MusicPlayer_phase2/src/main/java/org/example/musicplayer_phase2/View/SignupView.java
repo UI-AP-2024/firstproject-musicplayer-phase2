@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -13,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
+import org.example.musicplayer_phase2.View.Signingup.PodcasterAndSingerSignup;
 
 public class SignupView extends Application {
     private String userType = null;
@@ -75,20 +78,30 @@ public class SignupView extends Application {
     @FXML
     void registerButtonClicked(MouseEvent event) {
         if (userType != null){
-            anchorPane.getChildren().remove(vbox_register);
 
             if (userType.equals("listener")){
-
+                ListenerSignup listenerSignup = new ListenerSignup();
+                try {
+                    listenerSignup.start(HelloApplication.stage);
+                }catch (Exception e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERROR");
+                    alert.setContentText("page not loaded\nhave a good day");
+                    alert.showAndWait();
+                }
             }
 
-            else if (userType.equals("singer")){
-
+            else if (userType.equals("singer") || userType.equals("podcaster")){
+                PodcasterAndSingerSignup podcasterAndSingerSignup = new PodcasterAndSingerSignup();
+                try {
+                    podcasterAndSingerSignup.start(HelloApplication.stage);
+                }catch (Exception e){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("ERROR");
+                    alert.setContentText("page not loaded\nhave a good day");
+                    alert.showAndWait();
+                }
             }
-
-            else if (userType.equals("podcaster")){
-
-            }
-
         }
     }
 //...............................................

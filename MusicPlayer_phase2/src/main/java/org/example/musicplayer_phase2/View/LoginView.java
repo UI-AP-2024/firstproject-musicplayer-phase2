@@ -11,9 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.controller.UserAccountController;
+import org.example.musicplayer_phase2.model.GeneralOperations;
 
 
-public class LoginView extends Application {
+public class LoginView extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
@@ -39,15 +40,7 @@ public class LoginView extends Application {
 
     @FXML
     void returnButtonClicked(MouseEvent event) {
-        HelloApplication helloApplication = new HelloApplication();
-        try {
-            helloApplication.start(HelloApplication.stage);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("page not loaded\nhave a good day");
-            alert.showAndWait();
-        }
+        Start.backToStartPage();
     }
 
     //login button..........................................

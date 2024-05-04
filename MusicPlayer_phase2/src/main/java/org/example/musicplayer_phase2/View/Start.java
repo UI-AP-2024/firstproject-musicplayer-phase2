@@ -1,8 +1,10 @@
 package org.example.musicplayer_phase2.View;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -118,7 +120,15 @@ public class Start{
 
     @FXML
     void signupClicked(MouseEvent event) {
-
+        SignupView signupView = new SignupView();
+        try {
+            signupView.start(stage);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText("page not loaded\nhave a good day");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -157,4 +167,16 @@ public class Start{
         loginButton.setTextFill(Color.BLACK);
     }
     //............................................................
+
+    public static void backToStartPage (){
+        HelloApplication helloApplication = new HelloApplication();
+        try {
+            helloApplication.start(HelloApplication.stage);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setContentText("page not loaded\nhave a good day");
+            alert.showAndWait();
+        }
+    }
 }

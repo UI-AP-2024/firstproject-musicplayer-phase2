@@ -4,6 +4,7 @@ import org.example.musicplayer_phase2.model.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,14 +16,14 @@ public abstract class UserAccount {
     private final String name;
     private String email;
     private String number;
-    private Date birthday;
-    public UserAccount(String name, String username, String password, String email, String number, String birthday) {
+    private LocalDate birthday;
+    public UserAccount(String name, String username, String password, String email, String number, LocalDate birthday) {
         this.password = password;
         this.name = name;
         this.email = email;
         this.number = number;
         this.username = username;
-        changeStringToDate(birthday);
+        this.birthday = birthday;
         Database.setAllUsers(this);
     }
 
@@ -46,16 +47,8 @@ public abstract class UserAccount {
         return number;
     }
 
-    public StringBuilder getBirthday() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(birthday);
-        StringBuilder str = new StringBuilder();
-        str.append(calendar.get(Calendar.DAY_OF_MONTH));
-        str.append("/");
-        str.append(calendar.get(Calendar.MONTH ) + 1);
-        str.append("/");
-        str.append(calendar.get(Calendar.YEAR));
-        return str;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
     public void setPassword(String password) {

@@ -52,7 +52,7 @@ public class FreeController extends ListenerController {
     public String buySubscription (PremiumType type , Listener listener) throws NotEnoughCredit {
         if (listener.getCredit() >= type.price)
         {
-            premiumListener = new Premium(listener.getName() , listener.getUsername() , listener.getPassword() , listener.getEmail() , listener.getNumber() , listener.getBirthday().toString());
+            premiumListener = new Premium(listener.getName() , listener.getUsername() , listener.getPassword() , listener.getEmail() , listener.getNumber() , listener.getBirthday());
             premiumListener.setCredit(listener.getCredit() - type.price);
             premiumListener.setAllPlaylists(listener.getAllPlaylists());
             premiumListener.setFavoriteGenre(listener.getFavoriteGenre());

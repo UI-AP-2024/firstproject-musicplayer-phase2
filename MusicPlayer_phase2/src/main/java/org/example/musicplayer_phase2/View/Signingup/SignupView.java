@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.View;
+package org.example.musicplayer_phase2.View.Signingup;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,7 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
-import org.example.musicplayer_phase2.View.Signingup.PodcasterAndSingerSignup;
+import org.example.musicplayer_phase2.View.Signingup.podcasterSingerSignup;
+import org.example.musicplayer_phase2.View.Start;
 
 public class SignupView extends Application {
     private String userType = null;
@@ -92,9 +93,15 @@ public class SignupView extends Application {
             }
 
             else if (userType.equals("singer") || userType.equals("podcaster")){
-                PodcasterAndSingerSignup podcasterAndSingerSignup = new PodcasterAndSingerSignup();
+                podcasterSingerSignup podcasterSingerSignup;
+
+                if (userType.equals("singer"))
+                    podcasterSingerSignup = new podcasterSingerSignup("singer");
+                else
+                    podcasterSingerSignup = new podcasterSingerSignup("podcaster");
+
                 try {
-                    podcasterAndSingerSignup.start(HelloApplication.stage);
+                    podcasterSingerSignup.start(HelloApplication.stage);
                 }catch (Exception e){
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("ERROR");

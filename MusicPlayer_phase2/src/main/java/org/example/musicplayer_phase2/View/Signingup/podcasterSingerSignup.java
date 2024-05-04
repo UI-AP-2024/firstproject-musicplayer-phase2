@@ -1,29 +1,40 @@
 package org.example.musicplayer_phase2.View.Signingup;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
-import org.example.musicplayer_phase2.HelloApplication;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
-import org.example.musicplayer_phase2.model.AboutHumans.Listener;
+import javafx.stage.Stage;
+import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
+import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
+import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 
 import java.time.LocalDate;
 
 import static org.example.musicplayer_phase2.controller.UserAccountController.*;
+import static org.example.musicplayer_phase2.controller.UserAccountController.checkPassword;
 
+public class podcasterSingerSignup extends Application {
+    String type;
 
-public class ListenerSignup extends Application {
+    public podcasterSingerSignup() {
+        type = "singer";
+    }
+
+    public podcasterSingerSignup(String type) {
+        this.type = type;
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerSignup.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("podcasterSingerSignup.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 400);
 
 //        scene.getStylesheets().add(getClass().getResource("myCss.css").toExternalForm());
@@ -32,6 +43,12 @@ public class ListenerSignup extends Application {
         stage.setTitle("signup page");
         stage.show();
     }
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private TextField biographyTextField;
 
     @FXML
     private DatePicker birthdayDateicker;
@@ -53,9 +70,6 @@ public class ListenerSignup extends Application {
 
     @FXML
     private TextField usernameTextField;
-
-    @FXML
-    private Button backButton;
 
     @FXML
     void backClicked(MouseEvent event) {
@@ -81,6 +95,7 @@ public class ListenerSignup extends Application {
         String email = emailTextField.getText();
         String number = numberTextField.getText();
         LocalDate birthday = birthdayDateicker.getValue();
+        String biography = biographyTextField.getText();
 
         try{
             checkNumber(number);
@@ -114,11 +129,17 @@ public class ListenerSignup extends Application {
             alert.setContentText(e.getMessage());
         }
 
-        if (name != null && username != null && password != null && email != null && number != null && birthday != null){
-            Listener listener = new Listener(name , username , password , email , number , birthday);
-            ListenerController listenerController = new ListenerController();
-            listenerController.signup(listener);
+
+        if (name != null && username != null && password != null && email != null && number != null && birthday != null && biography != null){
+            ArtistController artistController = new ArtistController();
+            if (type.equals("singer"))
+            {
+                artistController.signup(new Singer(name , username , password , email , number , birthday , biography));
+            }
+            else
+            {
+                artistController.signup(new Podcaster(name , username , password , email , number , birthday , biography));
+            }
         }
     }
-
 }

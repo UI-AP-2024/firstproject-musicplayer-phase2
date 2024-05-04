@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.model.AboutHumans.Admin;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import static org.example.musicplayer_phase2.model.AboutHumans.Admin.getAdmin;
@@ -30,7 +31,7 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static final Admin admin = getAdmin("Fatemeh" , "FtmFahim" , "@fatemeh18" , "fatemefahimpoour1399@gmail.com" , "09131111111" , "06/09/2005");
+    public static final Admin admin = getAdmin("Fatemeh" , "FtmFahim" , "@fatemeh18" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
 
     public static void main(String[] args) throws IOException {
         launch();

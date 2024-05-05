@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.musicplayer_phase2.View.Signingup.FavoriteGenres"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Signingup.FavoriteGenres">
+   <children>
+      <GridPane layoutX="72.0" layoutY="47.0" prefHeight="307.0" prefWidth="456.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="rockLabel" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#rockClicked" prefHeight="145.0" prefWidth="219.0" text="ROCK">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="popLabel" alignment="CENTER" onMouseClicked="#popClicked" prefHeight="158.0" prefWidth="219.0" text="POP" GridPane.columnIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="jazzLabel" alignment="CENTER" onMouseClicked="#jazzClicked" prefHeight="164.0" prefWidth="245.0" text="JAZZ" GridPane.columnIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="hiphopLabel" alignment="CENTER" onMouseClicked="#hiphopClicked" prefHeight="175.0" prefWidth="281.0" text="HIPHOP" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="countryLabel" alignment="CENTER" onMouseClicked="#countryClicked" prefHeight="149.0" prefWidth="258.0" text="COUNTRY" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="trueLabel" alignment="CENTER" onMouseClicked="#trueCLicek" prefHeight="167.0" prefWidth="321.0" text="TRUECRIME" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="societyLabel" alignment="CENTER" onMouseClicked="#societyClicked" prefHeight="203.0" prefWidth="299.0" text="SOCIETY" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="interviewLabel" alignment="CENTER" onMouseClicked="#interviewClicked" prefHeight="195.0" prefWidth="269.0" text="INTERVIEW" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="historyLabel" alignment="CENTER" onMouseClicked="#historyClicked" prefHeight="147.0" prefWidth="281.0" text="HISTORY" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <Separator layoutX="68.0" layoutY="46.0" prefHeight="3.0" prefWidth="465.0" />
+      <Separator layoutX="68.0" layoutY="353.0" prefWidth="465.0" />
+      <Separator layoutX="65.0" layoutY="47.0" orientation="VERTICAL" prefHeight="307.0" />
+      <Separator layoutX="530.0" layoutY="47.0" orientation="VERTICAL" prefHeight="307.0" />
+      <Button fx:id="fnishButton" layoutX="221.0" layoutY="356.0" mnemonicParsing="false" onMouseClicked="#finishClicked" prefHeight="25.0" prefWidth="158.0" text="finish" />
+   </children>
 </AnchorPane>

@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
 import org.example.musicplayer_phase2.View.Signingup.podcasterSingerSignup;
 import org.example.musicplayer_phase2.View.Start;
@@ -85,10 +86,10 @@ public class SignupView extends Application {
                 try {
                     listenerSignup.start(HelloApplication.stage);
                 }catch (Exception e){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERROR");
-                    alert.setContentText("page not loaded\nhave a good day");
-                    alert.showAndWait();
+                    Alerts.errorAlert();
+                }
+                finally {
+                    Alerts.goodDayAlert();
                 }
             }
 
@@ -103,10 +104,10 @@ public class SignupView extends Application {
                 try {
                     podcasterSingerSignup.start(HelloApplication.stage);
                 }catch (Exception e){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("ERROR");
-                    alert.setContentText("page not loaded\nhave a good day");
-                    alert.showAndWait();
+                    Alerts.errorAlert();
+                }
+                finally {
+                    Alerts.goodDayAlert();
                 }
             }
         }

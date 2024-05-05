@@ -14,11 +14,11 @@ import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.GeneralOperations;
 
 
-public class LoginView extends Application{
+public class LoginView extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load() , 600 , 400);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
 //        scene.getStylesheets().add(getClass().getResource("myCss.css").toExternalForm());
 
@@ -26,6 +26,7 @@ public class LoginView extends Application{
         stage.setTitle("login page");
         stage.show();
     }
+
     //..........................................
     @FXML
     private TextField password_textField;
@@ -46,19 +47,20 @@ public class LoginView extends Application{
     //login button..........................................
     @FXML
     private Button loginButton;
+
     @FXML
     void loginClicked(MouseEvent event) {
-        String userName , password;
-        if (username_textField != null && password_textField != null){
+        String userName, password;
+        if (username_textField != null && password_textField != null) {
             userName = username_textField.getText();
             password = password_textField.getText();
             try {
                 UserAccountController.findPerson(userName, password);
-            }catch (Exception e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("not founding user");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
+            } catch (Exception e) {
+                Alerts.errorAlert();
+            }
+            finally {
+                Alerts.goodDayAlert();
             }
         }
     }

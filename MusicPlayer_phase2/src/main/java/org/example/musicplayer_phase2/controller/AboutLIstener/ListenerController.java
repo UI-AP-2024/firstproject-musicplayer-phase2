@@ -10,6 +10,7 @@ import org.example.musicplayer_phase2.model.Types.Genre;
 import org.example.musicplayer_phase2.model.Types.Premium;
 import org.example.musicplayer_phase2.model.Types.PremiumType;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.stream.Stream;
@@ -48,9 +49,9 @@ public class ListenerController extends UserAccountController {
 //        }
 //    }
 
-    public void signup(Listener listener) {
+    public void signup(Free listener) {
         this.listener = listener;
-        freeListener = (Free) listener;
+        freeListener = listener;
         listener.setCredit(50);
     }
 
@@ -80,26 +81,10 @@ public class ListenerController extends UserAccountController {
         return "you liked this audio";
     }
 
-    public void getFavoriteGenre(Genre genre1, Genre genre2, Genre genre3, Genre genre4, Listener listener) {
-        listener.setOneFavoriteGenre(genre1);
-        listener.setOneFavoriteGenre(genre2);
-        listener.setOneFavoriteGenre(genre3);
-        listener.setOneFavoriteGenre(genre4);
-    }
-
-    public void getFavoriteGenre(Genre genre1, Genre genre2, Genre genre3, Listener listener) {
-        listener.setOneFavoriteGenre(genre1);
-        listener.setOneFavoriteGenre(genre2);
-        listener.setOneFavoriteGenre(genre3);
-    }
-
-    public void getFavoriteGenre(Genre genre1, Genre genre2, Listener listener) {
-        listener.setOneFavoriteGenre(genre1);
-        listener.setOneFavoriteGenre(genre2);
-    }
-
-    public void getFavoriteGenre(Genre genre1, Listener listener) {
-        listener.setOneFavoriteGenre(genre1);
+    public void getFavoriteGenre(ArrayList<Genre> favoriteGenre, Listener listener) {
+        for (Genre genre : favoriteGenre){
+            listener.setOneFavoriteGenre(genre);
+        }
     }
 
     public String makePlaylist(String playlistName, Listener listener) throws FreeAccountLimitException {

@@ -115,10 +115,10 @@ public class Start{
         try {
             signupView.start(stage);
         }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("page not loaded\nhave a good day");
-            alert.showAndWait();
+            Alerts.errorAlert();
+        }
+        finally {
+            Alerts.goodDayAlert();
         }
     }
 
@@ -141,10 +141,10 @@ public class Start{
         try {
             loginView.start(stage);
         }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("page not loaded\nhave a good day");
-            alert.showAndWait();
+            Alerts.errorAlert();
+        }
+        finally {
+            Alerts.goodDayAlert();
         }
     }
 
@@ -164,10 +164,10 @@ public class Start{
         try {
             helloApplication.start(HelloApplication.stage);
         }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("page not loaded\nhave a good day");
-            alert.showAndWait();
+           Alerts.errorAlert();
+        }
+        finally {
+            Alerts.goodDayAlert();
         }
     }
 }

@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
@@ -80,10 +81,10 @@ public class podcasterSingerSignup extends Application {
         try {
             signupView.start(stage);
         }catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("page not loaded\nhave a good day");
-            alert.showAndWait();
+            Alerts.errorAlert();
+        }
+        finally {
+            Alerts.goodDayAlert();
         }
     }
 
@@ -103,6 +104,8 @@ public class podcasterSingerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("wrong number");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
         try{
@@ -111,6 +114,8 @@ public class podcasterSingerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("repeated username");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
         try{
@@ -119,6 +124,8 @@ public class podcasterSingerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("invalid email");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
         try{
@@ -127,6 +134,8 @@ public class podcasterSingerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("easy password");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
 

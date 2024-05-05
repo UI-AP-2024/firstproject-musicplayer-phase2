@@ -12,8 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
+import org.example.musicplayer_phase2.model.Types.Free;
 
 import java.time.LocalDate;
 
@@ -66,10 +68,10 @@ public class ListenerSignup extends Application {
         try {
             signupView.start(stage);
         }catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("page not loaded\nhave a good day");
-            alert.showAndWait();
+            Alerts.errorAlert();
+        }
+        finally {
+            Alerts.goodDayAlert();
         }
     }
 
@@ -88,6 +90,8 @@ public class ListenerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("wrong number");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
         try{
@@ -96,6 +100,8 @@ public class ListenerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("repeated username");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
         try{
@@ -104,6 +110,8 @@ public class ListenerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("invalid email");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
         try{
@@ -112,12 +120,27 @@ public class ListenerSignup extends Application {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("easy password");
             alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
         }
 
         if (name != null && username != null && password != null && email != null && number != null && birthday != null){
-            Listener listener = new Listener(name , username , password , email , number , birthday);
+            Free freeUser = new Free(name , username , password , email , number , birthday);
             ListenerController listenerController = new ListenerController();
-            listenerController.signup(listener);
+            listenerController.signup(freeUser);
+
+            FavoriteGenres favoriteGenres = new FavoriteGenres(freeUser);
+
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            try {
+                favoriteGenres.start(stage);
+            }catch (Exception e){
+                Alerts.errorAlert();
+            }
+            finally {
+                Alerts.goodDayAlert();
+            }
         }
     }
 

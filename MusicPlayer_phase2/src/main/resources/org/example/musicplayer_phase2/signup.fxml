@@ -14,9 +14,9 @@
          <children>
             <SplitMenuButton fx:id="userTypeMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="58.0" prefWidth="408.0" text="User type">
               <items>
-                <MenuItem fx:id="listenerItem" mnemonicParsing="false" onAction="#listenerItemAction" text="Listener" />
-                <MenuItem fx:id="singerItem" mnemonicParsing="false" onAction="#singerItemAction" text="Singer" />
-                  <MenuItem fx:id="podcasterItem" mnemonicParsing="false" onAction="#podcasterItemAction" text="Podcaster" />
+                <MenuItem fx:id="listenerItem" mnemonicParsing="false" onAction="#listenerItemAction" text="Listener      " />
+                <MenuItem fx:id="singerItem" mnemonicParsing="false" onAction="#singerItemAction" text="Singer        " />
+                  <MenuItem fx:id="podcasterItem" mnemonicParsing="false" onAction="#podcasterItemAction" text="Podcaster   " />
               </items>
             </SplitMenuButton>
             <Button fx:id="registerButton" mnemonicParsing="false" onMouseClicked="#registerButtonClicked" text="register">

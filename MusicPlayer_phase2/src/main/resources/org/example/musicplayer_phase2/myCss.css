@@ -10,7 +10,7 @@
     -fx-padding: 14px 24px;
     -fx-border: none;
     -fx-transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
-    -fx-background-color: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+    -fx-background-color: linear-gradient(to right, rgb(225, 60, 99) 0%, rgb(239, 65, 124) 50%, rgb(234, 106, 163) 100%);
     -fx-text-fill: #fff;
 }
 
@@ -21,6 +21,46 @@
 }
 
 
-/*..............................................................................................................
+/*.................................................. */
 
- */
+.label {
+    -fx-display: inline-block;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-color: #dc85b3;
+    -fx-padding: 5px;
+    -fx-margin: 5px;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.87);
+}
+/*....................................................*/
+.root {
+    -fx-background-color: rgba(0, 0, 0, 0.94);
+    -fx-text-fill: white;
+}
+/*.....................................................*/
+.menu-bar {
+    -fx-background-color: black;
+}
+
+.menu-bar .menu-button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.menu-bar .menu-button:hover,
+.menu-bar .menu-button:focused,
+.menu-bar .menu-button:showing {
+    -fx-background-color: #333333;
+}
+
+.menu-item {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.menu-item:hover,
+.menu-item:focused {
+    -fx-background-color: #333333;
+}
+/*......................................................*/

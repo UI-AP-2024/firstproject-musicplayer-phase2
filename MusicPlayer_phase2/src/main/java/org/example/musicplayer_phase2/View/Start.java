@@ -28,7 +28,7 @@ public class Start{
 
     @FXML
     void homeMouseExit(MouseEvent event) {
-        homeButton.setTextFill(Color.RED);
+        homeButton.setTextFill(Color.WHITE);
     }
 
     //search.................................................
@@ -47,7 +47,7 @@ public class Start{
 
     @FXML
     void searchExit(MouseEvent event) {
-        searchButton.setTextFill(Color.RED);
+        searchButton.setTextFill(Color.WHITE);
     }
     //library..................................................
     @FXML
@@ -65,7 +65,7 @@ public class Start{
 
     @FXML
     void libraryExit(MouseEvent event) {
-        libraryButton.setTextFill(Color.RED);
+        libraryButton.setTextFill(Color.WHITE);
     }
 
     //all artist................................................
@@ -84,7 +84,7 @@ public class Start{
 
     @FXML
     void allArtistExit(MouseEvent event) {
-        allArtistButton.setTextFill(Color.RED);
+        allArtistButton.setTextFill(Color.WHITE);
     }
 
     //all audios...................................................
@@ -103,7 +103,7 @@ public class Start{
 
     @FXML
     void allAudiosExite(MouseEvent event) {
-        allAudios.setTextFill(Color.RED);
+        allAudios.setTextFill(Color.WHITE);
     }
     //signup........................................................
     @FXML
@@ -127,7 +127,7 @@ public class Start{
 
     @FXML
     void signupExited(MouseEvent event) {
-        signupButton.setTextFill(Color.BLACK);
+        signupButton.setTextFill(Color.WHITE);
     }
     //login.......................................................
     @FXML
@@ -150,7 +150,7 @@ public class Start{
 
     @FXML
     void loginExited(MouseEvent event) {
-        loginButton.setTextFill(Color.BLACK);
+        loginButton.setTextFill(Color.WHITE);
     }
     //............................................................
 

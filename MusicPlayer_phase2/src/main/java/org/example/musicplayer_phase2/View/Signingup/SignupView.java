@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -79,12 +80,16 @@ public class SignupView extends Application {
     private Button registerButton;
     @FXML
     void registerButtonClicked(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+
+
         if (userType != null){
 
             if (userType.equals("listener")){
                 ListenerSignup listenerSignup = new ListenerSignup();
                 try {
-                    listenerSignup.start(HelloApplication.stage);
+                    listenerSignup.start(stage);
                 }catch (Exception e){
                     Alerts.errorAlert();
                 }
@@ -99,7 +104,7 @@ public class SignupView extends Application {
                     podcasterSingerSignup = new podcasterSingerSignup("podcaster");
 
                 try {
-                    podcasterSingerSignup.start(HelloApplication.stage);
+                    podcasterSingerSignup.start(stage);
                 }catch (Exception e){
                     Alerts.errorAlert();
                 }

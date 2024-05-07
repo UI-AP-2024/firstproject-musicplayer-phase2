@@ -3,6 +3,7 @@ package org.example.musicplayer_phase2.View.Signingup;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -11,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.Types.Genre;
@@ -71,7 +74,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.COUNTRY);
         }
         else if (favoriteGenres.contains(Genre.COUNTRY)){
-            countryLabel.setTextFill(Color.BLACK);
+            countryLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.COUNTRY);
         }
 
@@ -89,7 +92,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.HISTORY);
         }
         else if (favoriteGenres.contains(Genre.HISTORY)){
-            historyLabel.setTextFill(Color.BLACK);
+            historyLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.HISTORY);
         }
 
@@ -107,7 +110,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.INTERVIEW);
         }
         else if (favoriteGenres.contains(Genre.INTERVIEW)){
-            interviewLabel.setTextFill(Color.BLACK);
+            interviewLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.INTERVIEW);
         }
 
@@ -125,7 +128,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.JAZZ);
         }
         else if (favoriteGenres.contains(Genre.JAZZ)){
-            jazzLabel.setTextFill(Color.BLACK);
+            jazzLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.JAZZ);
         }
 
@@ -143,7 +146,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.POP);
         }
         else if (favoriteGenres.contains(Genre.POP)){
-            popLabel.setTextFill(Color.BLACK);
+            popLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.POP);
         }
 
@@ -161,7 +164,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.ROCK);
         }
         else if (favoriteGenres.contains(Genre.ROCK)){
-            rockLabel.setTextFill(Color.BLACK);
+            rockLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.ROCK);
         }
 
@@ -179,7 +182,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.SOCIETY);
         }
         else if (favoriteGenres.contains(Genre.SOCIETY)){
-            societyLabel.setTextFill(Color.BLACK);
+            societyLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.SOCIETY);
         }
 
@@ -197,7 +200,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.TRUECRIME);
         }
         else if (favoriteGenres.contains(Genre.TRUECRIME)){
-            trueLabel.setTextFill(Color.BLACK);
+            trueLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.TRUECRIME);
         }
 
@@ -215,7 +218,7 @@ public class FavoriteGenres extends Application {
             favoriteGenres.add(Genre.HIPHOP);
         }
         else if (favoriteGenres.contains(Genre.HIPHOP)){
-            hiphopLabel.setTextFill(Color.BLACK);
+            hiphopLabel.setTextFill(Color.WHITE);
             favoriteGenres.remove(Genre.HIPHOP);
         }
 
@@ -227,9 +230,24 @@ public class FavoriteGenres extends Application {
     }
 
     @FXML
-    void finishClicked(MouseEvent event) {
+    void finishClicked(MouseEvent event) throws Exception {
         ListenerController listenerController = new ListenerController();
         listenerController.getFavoriteGenre(favoriteGenres , ListenerSignup.freeUser);
+
+        ListenerPanel listenerPanel = new ListenerPanel();
+
+        Node source = (Node) event.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+
+//        try {
+//            listenerPanel.start(stage);
+//        }catch (Exception e){
+//            Alerts.errorAlert();
+//        }
+
+        listenerPanel.start(stage);
+
+
     }
 
 }

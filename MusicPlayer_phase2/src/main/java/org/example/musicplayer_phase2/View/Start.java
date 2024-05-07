@@ -117,9 +117,7 @@ public class Start{
         }catch (Exception e){
             Alerts.errorAlert();
         }
-        finally {
-            Alerts.goodDayAlert();
-        }
+
     }
 
     @FXML
@@ -143,9 +141,6 @@ public class Start{
         }catch (Exception e){
             Alerts.errorAlert();
         }
-        finally {
-            Alerts.goodDayAlert();
-        }
     }
 
     @FXML
@@ -166,8 +161,6 @@ public class Start{
         }catch (Exception e){
            Alerts.errorAlert();
         }
-        finally {
-            Alerts.goodDayAlert();
-        }
+
     }
 }

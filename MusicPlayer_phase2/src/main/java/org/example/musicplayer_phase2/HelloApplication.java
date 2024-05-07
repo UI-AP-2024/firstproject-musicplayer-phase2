@@ -22,7 +22,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         this.stage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
-        Scene scene = new Scene(fxmlLoader.load() , 600 , 400);
+        Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
         stage.setScene(scene);
 
         scene.getStylesheets().add(getClass().getResource("myCss.css").toExternalForm());
@@ -31,7 +31,7 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static final Admin admin = getAdmin("Fatemeh" , "FtmFahim" , "@fatemeh18" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
+    public static final Admin admin = getAdmin("Fatemeh" , "fatemeh" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
 
     public static void main(String[] args) throws IOException {
         launch();

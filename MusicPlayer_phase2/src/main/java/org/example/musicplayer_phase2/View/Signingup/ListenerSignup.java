@@ -23,12 +23,14 @@ import static org.example.musicplayer_phase2.controller.UserAccountController.*;
 
 
 public class ListenerSignup extends Application {
+    public static Free freeUser;
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerSignup.fxml"));
-        Scene scene = new Scene(fxmlLoader.load() , 600 , 400);
+        Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
 
-//        scene.getStylesheets().add(getClass().getResource("myCss.css").toExternalForm());
+        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
 
         stage.setScene(scene);
         stage.setTitle("signup page");
@@ -69,9 +71,6 @@ public class ListenerSignup extends Application {
             signupView.start(stage);
         }catch (Exception e) {
             Alerts.errorAlert();
-        }
-        finally {
-            Alerts.goodDayAlert();
         }
     }
 
@@ -128,20 +127,17 @@ public class ListenerSignup extends Application {
             Free freeUser = new Free(name , username , password , email , number , birthday);
             ListenerController listenerController = new ListenerController();
             listenerController.signup(freeUser);
+            this.freeUser = freeUser;
 
-            FavoriteGenres favoriteGenres = new FavoriteGenres(freeUser);
+            FavoriteGenres favoriteGenres = new FavoriteGenres();
 
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             try {
                 favoriteGenres.start(stage);
-            }catch (Exception e){
+            } catch (Exception e) {
                 Alerts.errorAlert();
-            }
-            finally {
-                Alerts.goodDayAlert();
             }
         }
     }
-
 }

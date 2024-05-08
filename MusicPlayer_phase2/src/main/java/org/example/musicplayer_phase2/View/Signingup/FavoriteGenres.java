@@ -234,18 +234,16 @@ public class FavoriteGenres extends Application {
         ListenerController listenerController = new ListenerController();
         listenerController.getFavoriteGenre(favoriteGenres , ListenerSignup.freeUser);
 
-        ListenerPanel listenerPanel = new ListenerPanel();
+        ListenerPanel listenerPanel = new ListenerPanel(ListenerSignup.freeUser);
 
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
 
-//        try {
-//            listenerPanel.start(stage);
-//        }catch (Exception e){
-//            Alerts.errorAlert();
-//        }
-
-        listenerPanel.start(stage);
+        try {
+            listenerPanel.start(stage);
+        }catch (Exception e){
+            Alerts.errorAlert();
+        }
 
 
     }

@@ -29,9 +29,7 @@ public class ListenerSignup extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerSignup.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
-
         stage.setScene(scene);
         stage.setTitle("signup page");
         stage.show();

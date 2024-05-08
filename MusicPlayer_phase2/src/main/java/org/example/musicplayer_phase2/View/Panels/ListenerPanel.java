@@ -5,30 +5,33 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
-import org.example.musicplayer_phase2.View.Sidebar;
+import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ListenerPanel extends Application implements Initializable{
 
-    public ListenerPanel() {
+    Listener listener ;
+    Label nameLabel ;
+    public ListenerPanel(Listener listener) {
+        this.listener = listener;
+        nameLabel = new Label(listener.getName());
+    }
 
+    public ListenerPanel() {
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerPanel.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
-//        putSidebar();
 
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
         stage.setTitle("listener panel");
@@ -38,18 +41,18 @@ public class ListenerPanel extends Application implements Initializable{
 
     @FXML
     private AnchorPane basedAnchorpane;
-    private void putSidebar (){
-        Sidebar sidebar = new Sidebar();
-        try {
-            basedAnchorpane.getChildren().add(sidebar.getSidebar());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        putSidebar();
-        basedAnchorpane.getChildren().add(new Button());
+        SidebarMake sidebarMake = new SidebarMake();
+
+        HBox hBox = sidebarMake.getSidebar();
+
+        basedAnchorpane.getChildren().add(hBox);
+        try{
+        basedAnchorpane.getChildren().add(nameLabel);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

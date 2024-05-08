@@ -1,6 +1,7 @@
 package org.example.musicplayer_phase2.View;
 
 import javafx.scene.control.Alert;
+import javafx.scene.layout.HBox;
 
 public class Alerts {
 

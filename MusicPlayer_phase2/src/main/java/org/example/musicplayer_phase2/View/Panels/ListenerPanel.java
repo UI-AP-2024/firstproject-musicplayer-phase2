@@ -49,10 +49,7 @@ public class ListenerPanel extends Application implements Initializable{
         HBox hBox = sidebarMake.getSidebar();
 
         basedAnchorpane.getChildren().add(hBox);
-        try{
-        basedAnchorpane.getChildren().add(nameLabel);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+
+
     }
 }

@@ -7,11 +7,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.SidebarItems.HomeWithoutLogin;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 
 public class Start{
-    Stage stage = HelloApplication.stage;
-
     //home..............................................
     @FXML
     private Label homeButton;
@@ -19,6 +19,12 @@ public class Start{
     @FXML
     void homeClicked(MouseEvent event) {
 
+        NecessaryMethods.saveLastScene(event);
+        try {
+            new HomeWithoutLogin().start(NecessaryMethods.getStage(event));
+        } catch (Exception e) {
+            Alerts.errorAlert();
+        }
     }
 
     @FXML
@@ -111,9 +117,12 @@ public class Start{
 
     @FXML
     void signupClicked(MouseEvent event) {
+
+        NecessaryMethods.saveLastScene(event);
+
         SignupView signupView = new SignupView();
         try {
-            signupView.start(stage);
+            signupView.start(NecessaryMethods.getStage(event));
         }catch (Exception e){
             Alerts.errorAlert();
         }
@@ -122,7 +131,7 @@ public class Start{
 
     @FXML
     void signupEnter(MouseEvent event) {
-        signupButton.setTextFill(Color.RED);
+        signupButton.setTextFill(Color.BLUE);
     }
 
     @FXML
@@ -135,9 +144,12 @@ public class Start{
 
     @FXML
     void loginClicked(MouseEvent event) {
+
+        NecessaryMethods.saveLastScene(event);
+
         LoginView loginView = new LoginView();
         try {
-            loginView.start(stage);
+            loginView.start(NecessaryMethods.getStage(event));
         }catch (Exception e){
             Alerts.errorAlert();
         }
@@ -145,7 +157,7 @@ public class Start{
 
     @FXML
     void loginEnter(MouseEvent event) {
-        loginButton.setTextFill(Color.RED);
+        loginButton.setTextFill(Color.BLUE);
     }
 
     @FXML
@@ -153,14 +165,4 @@ public class Start{
         loginButton.setTextFill(Color.WHITE);
     }
     //............................................................
-
-    public static void backToStartPage (){
-        HelloApplication helloApplication = new HelloApplication();
-        try {
-            helloApplication.start(HelloApplication.stage);
-        }catch (Exception e){
-           Alerts.errorAlert();
-        }
-
-    }
 }

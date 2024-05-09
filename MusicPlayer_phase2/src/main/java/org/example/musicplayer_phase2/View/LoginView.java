@@ -3,6 +3,7 @@ package org.example.musicplayer_phase2.View;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.GeneralOperations;
 
@@ -19,9 +21,7 @@ public class LoginView extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 450);
-
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
-
         stage.setScene(scene);
         stage.setTitle("login page");
         stage.show();
@@ -41,7 +41,7 @@ public class LoginView extends Application {
 
     @FXML
     void returnButtonClicked(MouseEvent event) {
-        Start.backToStartPage();
+        NecessaryMethods.backToLastPage(event);
     }
 
     //login button..........................................

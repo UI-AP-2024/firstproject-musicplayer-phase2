@@ -16,17 +16,14 @@ import static org.example.musicplayer_phase2.model.AboutHumans.Admin.getAdmin;
 
 public class HelloApplication extends Application {
 
-    public static Stage stage;
-
+    public static Scene lastScene;
+    public static String lastTitle;
     @Override
     public void start(Stage stage) throws IOException {
-        this.stage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
         stage.setScene(scene);
-
         scene.getStylesheets().add(getClass().getResource("myCss.css").toExternalForm());
-
         stage.setTitle("welcome :)");
         stage.show();
     }

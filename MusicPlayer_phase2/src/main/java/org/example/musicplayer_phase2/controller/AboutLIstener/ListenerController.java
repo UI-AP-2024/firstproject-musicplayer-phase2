@@ -11,6 +11,7 @@ import org.example.musicplayer_phase2.model.Types.Premium;
 import org.example.musicplayer_phase2.model.Types.PremiumType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.stream.Stream;
@@ -102,17 +103,46 @@ public class ListenerController extends UserAccountController {
         return results;
     }
 
-    public StringBuilder sortAudiosBasedOnLikes() {
-        StringBuilder result = new StringBuilder();
+    public ArrayList<Audio> sortAudiosBasedOnLikes() {
+        Audio audio1 = new Music("1" , "" , "" , "" , "" , "" , "");
+        Audio audio2 = new Music("2" , "" , "" , "" , "" , "" , "");
+        Audio audio3 = new Music("3" , "" , "" , "" , "" , "" , "");
+        Audio audio4 = new Music("4" , "" , "" , "" , "" , "" , "");
+        Audio audio5 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio6 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio7 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio8 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio9 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio10 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio11 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio12 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio13 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio14 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio15 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio16 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio17 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio18 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio119 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio20 = new Music("5" , "" , "" , "" , "" , "" , "");
+        Audio audio21 = new Music("5" , "" , "" , "" , "" , "" , "");
+        audio1.setLikesNum(100);
+        audio2.setLikesNum(50);
+        audio3.setLikesNum(20);
+        audio4.setLikesNum(200);
+        audio5.setLikesNum(150);
 
-        Comparator<Audio> compare = Comparator
-                .comparingInt((Audio a) -> a.getLikesNum()).reversed();
-
-        Database.allAudios.stream()
-                .sorted(compare)
-                .forEach(n -> result.append(n.toString() + "\n"));
-
-        return result;
+        Collections.sort(Database.allAudios, new Comparator<Audio>() {
+            @Override
+            public int compare(Audio o1, Audio o2) {
+                if (o1.getLikesNum() > o2.getLikesNum())
+                    return -1;
+                else if (o1.getLikesNum() < o2.getLikesNum())
+                    return 1;
+                else
+                    return 0;
+            }
+        });
+        return Database.allAudios;
     }
 
     public StringBuilder sortAudiosBasedOnPlays() {

@@ -19,6 +19,7 @@ import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
 import org.example.musicplayer_phase2.View.Signingup.podcasterSingerSignup;
 import org.example.musicplayer_phase2.View.Start;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 
 public class SignupView extends Application {
     private String userType = null;
@@ -46,7 +47,7 @@ public class SignupView extends Application {
 
     @FXML
     void backButtonClicked(MouseEvent event) {
-        Start.backToStartPage();
+        NecessaryMethods.backToLastPage(event);
     }
 //....................................
     @FXML
@@ -80,15 +81,14 @@ public class SignupView extends Application {
     private Button registerButton;
     @FXML
     void registerButtonClicked(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-
+       Stage stage = NecessaryMethods.getStage(event);
 
         if (userType != null){
 
             if (userType.equals("listener")){
                 ListenerSignup listenerSignup = new ListenerSignup();
                 try {
+                    NecessaryMethods.saveLastScene(event);
                     listenerSignup.start(stage);
                 }catch (Exception e){
                     Alerts.errorAlert();
@@ -104,6 +104,7 @@ public class SignupView extends Application {
                     podcasterSingerSignup = new podcasterSingerSignup("podcaster");
 
                 try {
+                    NecessaryMethods.saveLastScene(event);
                     podcasterSingerSignup.start(stage);
                 }catch (Exception e){
                     Alerts.errorAlert();

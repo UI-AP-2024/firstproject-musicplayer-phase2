@@ -15,6 +15,7 @@ import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.Types.Genre;
 
@@ -26,7 +27,6 @@ public class FavoriteGenres extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("favoriteGenres.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 450);
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
-
         stage.setScene(scene);
         stage.setTitle("favorite genre page");
         stage.show();
@@ -236,11 +236,9 @@ public class FavoriteGenres extends Application {
 
         ListenerPanel listenerPanel = new ListenerPanel(ListenerSignup.freeUser);
 
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-
         try {
-            listenerPanel.start(stage);
+            NecessaryMethods.saveLastScene(event);
+            listenerPanel.start(NecessaryMethods.getStage(event));
         }catch (Exception e){
             Alerts.errorAlert();
         }

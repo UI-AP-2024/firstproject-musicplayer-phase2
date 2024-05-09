@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.Types.Free;
 
@@ -61,15 +62,7 @@ public class ListenerSignup extends Application {
 
     @FXML
     void backClicked(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-
-        SignupView signupView = new SignupView();
-        try {
-            signupView.start(stage);
-        }catch (Exception e) {
-            Alerts.errorAlert();
-        }
+        NecessaryMethods.backToLastPage(event);
     }
 
     @FXML
@@ -129,10 +122,10 @@ public class ListenerSignup extends Application {
 
             FavoriteGenres favoriteGenres = new FavoriteGenres();
 
-            Node source = (Node) event.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
+
             try {
-                favoriteGenres.start(stage);
+                NecessaryMethods.saveLastScene(event);
+                favoriteGenres.start(NecessaryMethods.getStage(event));
             } catch (Exception e) {
                 Alerts.errorAlert();
             }

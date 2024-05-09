@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class SidebarMake extends Application {
     public void start(Stage stage) throws Exception {
         homeLabel.setOnMouseClicked(e -> {
             try {
+                NecessaryMethods.saveLastScene(e);
                 new Home().start(stage);
             } catch (Exception ex) {
                 Alerts.errorAlert();

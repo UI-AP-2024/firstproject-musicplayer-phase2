@@ -11,12 +11,27 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
+import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
+import org.example.musicplayer_phase2.controller.AboutArtist.PodcasterContrller;
+import org.example.musicplayer_phase2.controller.AboutArtist.SingerController;
+import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
+import org.example.musicplayer_phase2.model.AboutHumans.Listener;
+import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
+import org.example.musicplayer_phase2.model.AboutHumans.Singer;
+import org.example.musicplayer_phase2.model.AboutHumans.UserAccount;
 import org.example.musicplayer_phase2.model.GeneralOperations;
+
+import java.io.LineNumberInputStream;
 
 
 public class LoginView extends Application {
+    private static Listener listener = null;
+    private static Singer singer = null;
+    private static Podcaster podcaster = null;
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
@@ -55,7 +70,24 @@ public class LoginView extends Application {
             userName = username_textField.getText();
             password = password_textField.getText();
             try {
-                UserAccountController.findPerson(userName, password);
+                UserAccount user = UserAccountController.findPerson(userName, password);
+                if (user instanceof Listener){
+                    listener = ListenerController.listenerLogin(userName , password);
+                    ListenerPanel listenerPanel = new ListenerPanel();
+                    listenerPanel.start(NecessaryMethods.getStage(event));
+                }
+                else if (user instanceof Singer) {
+                    singer = SingerController.singerLogin(userName , password);
+                    //singer panel...........................
+                }
+                else if (user instanceof Podcaster){
+                    podcaster = PodcasterContrller.podcasterLogin(userName , password);
+                    //podcaster panel........................
+                }
+                else {
+                    //admin panel...........................
+                }
+
             }catch (Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("not founding user");
@@ -63,5 +95,30 @@ public class LoginView extends Application {
                 alert.showAndWait();
             }
         }
+    }
+
+
+    public static Listener getListener() {
+        return listener;
+    }
+
+    public static Singer getSinger() {
+        return singer;
+    }
+
+    public static Podcaster getPodcaster() {
+        return podcaster;
+    }
+
+    public static void setListener(Listener listener) {
+        LoginView.listener = listener;
+    }
+
+    public static void setSinger(Singer singer) {
+        LoginView.singer = singer;
+    }
+
+    public static void setPodcaster(Podcaster podcaster) {
+        LoginView.podcaster = podcaster;
     }
 }

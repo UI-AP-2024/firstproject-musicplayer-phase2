@@ -232,12 +232,11 @@ public class FavoriteGenres extends Application {
     @FXML
     void finishClicked(MouseEvent event) throws Exception {
         ListenerController listenerController = new ListenerController();
-        listenerController.getFavoriteGenre(favoriteGenres , ListenerSignup.freeUser);
-
-        ListenerPanel listenerPanel = new ListenerPanel(ListenerSignup.freeUser);
+        listenerController.getFavoriteGenre(favoriteGenres , ListenerSignup.getFreeUser());
+        ListenerPanel listenerPanel = new ListenerPanel();
 
         try {
-            NecessaryMethods.saveLastScene(event);
+            listenerPanel.setListener(ListenerSignup.getFreeUser());
             listenerPanel.start(NecessaryMethods.getStage(event));
         }catch (Exception e){
             Alerts.errorAlert();

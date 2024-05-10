@@ -10,10 +10,7 @@ import org.example.musicplayer_phase2.model.Types.Genre;
 import org.example.musicplayer_phase2.model.Types.Premium;
 import org.example.musicplayer_phase2.model.Types.PremiumType;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class ListenerController extends UserAccountController {
@@ -22,33 +19,15 @@ public class ListenerController extends UserAccountController {
     public static Premium premiumListener;
     Report report;
 
-//    public String login(String username, String password) throws FailedLoginException {
-//        boolean found = false;
-//        boolean foundUsername = false;
-//        boolean foundPassword = false;
-//        for (UserAccount a : Database.allUsers) {
-//            if (a.getUsername().equals(username) && a.getPassword().equals(password) && a instanceof Listener) {
-//                listener = (Listener) a;
-//                found = true;
-//                break;
-//            } else if (a.getPassword().equals(password) && !a.getUsername().equals(username) && a instanceof Listener) {
-//                foundPassword = true;
-//            } else if (a.getUsername().equals(username) && !a.getPassword().equals(password) && a instanceof Listener) {
-//                foundUsername = true;
-//            }
-//        }
-//
-//        if (found)
-//            return "Your panel founded ";
-//        else {
-//            if (foundPassword && !foundUsername)
-//                throw new UserNotFoundException();
-//            else if (foundUsername && !foundPassword)
-//                throw new WrongPasswordException();
-//            else
-//                throw new FailedLoginException("user not found");
-//        }
-//    }
+    public static Listener listenerLogin(String username , String password){
+        Listener listener1 = null;
+        for (Listener a : Database.allListener){
+            if (a.getUsername().equals(username) && a.getPassword().equals(password)){
+                listener1 = a;
+            }
+        }
+        return listener1;
+    }
 
     public void signup(Free listener) {
         this.listener = listener;
@@ -104,33 +83,6 @@ public class ListenerController extends UserAccountController {
     }
 
     public ArrayList<Audio> sortAudiosBasedOnLikes() {
-        Audio audio1 = new Music("1" , "" , "" , "" , "" , "" , "");
-        Audio audio2 = new Music("2" , "" , "" , "" , "" , "" , "");
-        Audio audio3 = new Music("3" , "" , "" , "" , "" , "" , "");
-        Audio audio4 = new Music("4" , "" , "" , "" , "" , "" , "");
-        Audio audio5 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio6 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio7 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio8 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio9 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio10 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio11 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio12 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio13 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio14 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio15 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio16 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio17 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio18 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio119 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio20 = new Music("5" , "" , "" , "" , "" , "" , "");
-        Audio audio21 = new Music("5" , "" , "" , "" , "" , "" , "");
-        audio1.setLikesNum(100);
-        audio2.setLikesNum(50);
-        audio3.setLikesNum(20);
-        audio4.setLikesNum(200);
-        audio5.setLikesNum(150);
-
         Collections.sort(Database.allAudios, new Comparator<Audio>() {
             @Override
             public int compare(Audio o1, Audio o2) {

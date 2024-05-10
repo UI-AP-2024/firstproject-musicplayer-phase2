@@ -18,12 +18,7 @@ import java.util.ResourceBundle;
 
 public class ListenerPanel extends Application implements Initializable{
 
-    Listener listener ;
-    Label nameLabel ;
-    public ListenerPanel(Listener listener) {
-        this.listener = listener;
-        nameLabel = new Label(listener.getName());
-    }
+    private Listener listener ;
 
     public ListenerPanel() {
     }
@@ -32,7 +27,6 @@ public class ListenerPanel extends Application implements Initializable{
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerPanel.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
         stage.setTitle("listener panel");
         stage.setScene(scene);
@@ -45,11 +39,13 @@ public class ListenerPanel extends Application implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
-
         HBox hBox = sidebarMake.getSidebar();
-
+        sidebarMake.makeActionsForLabels(sidebarMake);
         basedAnchorpane.getChildren().add(hBox);
+        AnchorPane.setBottomAnchor(hBox, 0.0);
+    }
 
-
+    public void setListener(Listener listener) {
+        this.listener = listener;
     }
 }

@@ -17,6 +17,15 @@ public class SingerController extends ArtistController {
         album.setAllMusics(music);
     }
 
+    public static Singer singerLogin(String username , String password){
+        Singer singer1 = null;
+        for (Singer a : Database.allSingers){
+            if (a.getUsername().equals(username) && a.getPassword().equals(password))
+                singer1 = a;
+        }
+        return singer1;
+    }
+
     public String watchIncome (Singer singer)
     {
         double income = 0;

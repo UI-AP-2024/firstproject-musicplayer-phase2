@@ -1,6 +1,9 @@
 package org.example.musicplayer_phase2.View;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -11,7 +14,18 @@ import org.example.musicplayer_phase2.View.SidebarItems.HomeWithoutLogin;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 
-public class Start{
+public class Start extends Application {
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
+        Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
+        stage.setScene(scene);
+        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
+        stage.setTitle("welcome :)");
+        stage.show();
+    }
+
     //home..............................................
     @FXML
     private Label homeButton;
@@ -164,5 +178,7 @@ public class Start{
     void loginExited(MouseEvent event) {
         loginButton.setTextFill(Color.WHITE);
     }
+
+
     //............................................................
 }

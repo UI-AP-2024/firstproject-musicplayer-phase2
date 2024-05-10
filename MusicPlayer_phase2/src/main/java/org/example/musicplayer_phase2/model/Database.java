@@ -24,6 +24,7 @@ public class Database {
     public static ArrayList<Singer> allSingers = new ArrayList<>();
     public static ArrayList<Podcaster> allPodcaster = new ArrayList<>();
     public static ArrayList<Artist> allArtists = new ArrayList<>();
+    public static ArrayList<Listener> allListener = new ArrayList<>();
     public static ArrayList<Music> allMusics = new ArrayList<>();
     public static ArrayList<Podcast> allPodcasts = new ArrayList<>();
 

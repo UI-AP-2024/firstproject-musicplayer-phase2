@@ -24,7 +24,7 @@ import static org.example.musicplayer_phase2.controller.UserAccountController.*;
 
 
 public class ListenerSignup extends Application {
-    public static Free freeUser;
+    private static Free freeUser = null;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -124,11 +124,19 @@ public class ListenerSignup extends Application {
 
 
             try {
-                NecessaryMethods.saveLastScene(event);
+//                NecessaryMethods.saveLastScene(event);
                 favoriteGenres.start(NecessaryMethods.getStage(event));
             } catch (Exception e) {
                 Alerts.errorAlert();
             }
         }
+    }
+
+    public static Free getFreeUser() {
+        return freeUser;
+    }
+
+    public static void setFreeUser(Free freeUser) {
+        ListenerSignup.freeUser = freeUser;
     }
 }

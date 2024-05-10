@@ -2,6 +2,7 @@ package org.example.musicplayer_phase2.model.AboutHumans;
 
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Playlist;
+import org.example.musicplayer_phase2.model.Database;
 import org.example.musicplayer_phase2.model.Types.Genre;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.util.*;
 public class Listener extends UserAccount {
     public Listener(String name, String username, String password, String email, String number, LocalDate birthday) {
         super(name, username, password, email, number, birthday);
+        Database.allListener.add(this);
     }
 
     private double credit = 0;

@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.SidebarItems.AllArtists;
 import org.example.musicplayer_phase2.View.SidebarItems.HomeWithoutLogin;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
@@ -75,7 +76,10 @@ public class Start extends Application {
 
     @FXML
     void libraryClicked(MouseEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("invalid person");
+        alert.setContentText("for this part you have to login or signup");
+        alert.showAndWait();
     }
 
     @FXML
@@ -94,7 +98,13 @@ public class Start extends Application {
 
     @FXML
     void allArtistClicked(MouseEvent event) {
-
+        AllArtists allArtists = new AllArtists();
+        NecessaryMethods.saveLastScene(event);
+        try {
+            allArtists.start(NecessaryMethods.getStage(event));
+        } catch (Exception e) {
+            Alerts.errorAlert();
+        }
     }
 
     @FXML

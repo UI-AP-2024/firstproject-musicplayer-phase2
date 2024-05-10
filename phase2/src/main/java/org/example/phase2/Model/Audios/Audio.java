@@ -4,8 +4,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
-abstract public class Audio{
+abstract public class Audio implements Comparable{
     private long id;
     private static long audioCounter=0;
     private String name;
@@ -112,5 +113,22 @@ abstract public class Audio{
         info.append("Link: "+linkOfAudioFile+"\t");
         info.append("Cover: "+cover+"\n");
         return info.toString();
+    }
+    @Override
+    public int compareTo(Object o){
+        Audio audio=(Audio) o;
+        if(this.name.compareTo(audio.name)<0)
+            return 1;
+        if(this.name.compareTo(audio.name)>0)
+            return -1;
+        if(this.likes>audio.likes)
+            return 1;
+        if(this.likes<audio.likes)
+            return -1;
+        if(this instanceof Music && audio instanceof Podcast)
+            return 1;
+        if(this instanceof Podcast && audio instanceof Music)
+            return -1;
+        return Long.compare(this.numberOfListening, audio.numberOfListening);
     }
 }

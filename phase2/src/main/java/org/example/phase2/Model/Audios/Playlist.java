@@ -1,8 +1,9 @@
 package org.example.phase2.Model.Audios;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Playlist{
+public class Playlist implements Iterable{
     private long id;
     private static long playlistCounter=0;
     private String nameOfPlaylist;
@@ -55,6 +56,22 @@ public class Playlist{
         info.append("Name: "+nameOfPlaylist+"\t");
         info.append("ID: "+id+"\n");
         return info.toString();
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator(){
+            private int index=0;
+            @Override
+            public boolean hasNext() {
+                return index<audioList.size();
+            }
+
+            @Override
+            public Object next() {
+                return audioList.get(index++);
+            }
+        };
     }
 }
 

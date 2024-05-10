@@ -104,7 +104,7 @@ public class Listener extends UserAccount{
     {
         StringBuilder info=new StringBuilder();
         info.append(super.toString());
-        info.append("Credit: "+credit+"\n");
+        info.append("Credit: "+credit+"\t");
         info.append("Interested genres: "+interestedGenres+"\n");
         return info.toString();
     }

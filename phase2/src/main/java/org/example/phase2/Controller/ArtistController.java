@@ -66,10 +66,12 @@ public class ArtistController{
             if(audio.getArtist().equals(artist.getFirstAndLastName()) && artist instanceof Podcaster)
             {
                 income+=0.5;
+                artist.setIncome(income);
             }
             if(audio.getArtist().equals(artist.getFirstAndLastName()) && artist instanceof Singer)
             {
                 income+=0.4;
+                artist.setIncome(income);
             }
         }
         return income;

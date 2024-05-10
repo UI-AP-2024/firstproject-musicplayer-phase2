@@ -197,10 +197,11 @@ public class ListenerController{
             {
                 Artist artist = (Artist) user;
                 info.append("Artist's information: \n");
-                info.append("Name: "+ artist.getFirstAndLastName()+"\n");
-                info.append("Birth date: "+ artist.getBirthDate()+"\n");
-                info.append("Biography: "+ artist.getBiography()+"\n");
-                info.append("Username: "+artist.getUsername()+"\n");
+//                info.append("Name: "+ artist.getFirstAndLastName()+"\n");
+//                info.append("Birth date: "+ artist.getBirthDate()+"\n");
+//                info.append("Biography: "+ artist.getBiography()+"\n");
+//                info.append("Username: "+artist.getUsername()+"\n");
+                info.append(artist.toString());
             }
         }
         ArrayList<Audio> audios = Database.getDatabase().getAudios();
@@ -209,35 +210,72 @@ public class ListenerController{
             if(audio.getName().equals(word))
             {
                 info.append("Audio's information: \n");
-                info.append("Name: "+audio.getName()+"\n");
-                info.append("Artist: "+audio.getArtist()+"\n");
-                info.append("Genre: "+audio.getGenre()+"\n");
-                info.append("Likes: "+audio.getLikes()+"\n");
-                info.append("ID: "+audio.getId()+"\n");
+//                info.append("Name: "+audio.getName()+"\n");
+//                info.append("Artist: "+audio.getArtist()+"\n");
+//                info.append("Genre: "+audio.getGenre()+"\n");
+//                info.append("Likes: "+audio.getLikes()+"\n");
+//                info.append("ID: "+audio.getId()+"\n");
+                info.append(audio.toString());
             }
         }
         if(info.toString().equals(""))
             return "Couldn't find the word";
         return info.toString();
     }
-    public String sort(String sortType)
-    {
+    public ArrayList<Audio> sortBasedOnLike(){
         ArrayList<Audio> audios = Database.getDatabase().getAudios();
-        if(sortType.equals("L"))
+        Audio temp;
+        for(int i=0;i< audios.size()-1;i++)
         {
-            Audio temp;
-            for(int i=0;i< audios.size()-1;i++)
+            for(int j=i+1;j<audios.size();j++)
             {
-                for(int j=i+1;j<audios.size();j++)
+                if(audios.get(i).getLikes()<audios.get(j).getLikes())
                 {
-                    if(audios.get(i).getLikes()<audios.get(j).getLikes())
-                    {
-                        temp=audios.get(i);
-                        audios.set(i,audios.get(j));
-                        audios.set(j,temp);
-                    }
+                    temp=audios.get(i);
+                    audios.set(i,audios.get(j));
+                    audios.set(j,temp);
                 }
             }
+        }
+        return audios;
+    }
+    public ArrayList<Audio> sortBasedOnPlay(){
+        ArrayList<Audio> audios = Database.getDatabase().getAudios();
+        Audio temp;
+        for(int i=0;i< audios.size()-1;i++)
+        {
+            for(int j=i+1;j<audios.size();j++)
+            {
+                if(audios.get(i).getNumberOfListening()<audios.get(j).getNumberOfListening())
+                {
+                    temp=audios.get(i);
+                    audios.set(i,audios.get(j));
+                    audios.set(j,temp);
+                }
+            }
+        }
+        return audios;
+    }
+    public String sort(String sortType)
+    {
+        //ArrayList<Audio> audios = Database.getDatabase().getAudios();
+        ArrayList<Audio> audios;
+        if(sortType.equals("L"))
+        {
+//            Audio temp;
+//            for(int i=0;i< audios.size()-1;i++)
+//            {
+//                for(int j=i+1;j<audios.size();j++)
+//                {
+//                    if(audios.get(i).getLikes()<audios.get(j).getLikes())
+//                    {
+//                        temp=audios.get(i);
+//                        audios.set(i,audios.get(j));
+//                        audios.set(j,temp);
+//                    }
+//                }
+//            }
+            audios=sortBasedOnLike();
             StringBuilder info = new StringBuilder();
             info.append("Audios: \n");
             for(Audio audio : audios)
@@ -250,19 +288,20 @@ public class ListenerController{
         }
         if(sortType.equals("P"))
         {
-            Audio temp;
-            for(int i=0;i< audios.size()-1;i++)
-            {
-                for(int j=i+1;j<audios.size();j++)
-                {
-                    if(audios.get(i).getNumberOfListening()<audios.get(j).getNumberOfListening())
-                    {
-                        temp=audios.get(i);
-                        audios.set(i,audios.get(j));
-                        audios.set(j,temp);
-                    }
-                }
-            }
+//            Audio temp;
+//            for(int i=0;i< audios.size()-1;i++)
+//            {
+//                for(int j=i+1;j<audios.size();j++)
+//                {
+//                    if(audios.get(i).getNumberOfListening()<audios.get(j).getNumberOfListening())
+//                    {
+//                        temp=audios.get(i);
+//                        audios.set(i,audios.get(j));
+//                        audios.set(j,temp);
+//                    }
+//                }
+//            }
+            audios=sortBasedOnPlay();
             StringBuilder info = new StringBuilder();
             info.append("Audios: \n");
             for(Audio audio : audios)
@@ -416,18 +455,20 @@ public class ListenerController{
             return "Something is wrong. Make sure that username is correct.";
         }
         info.append("Artist's information: \n");
-        info.append("Name: "+artist.getFirstAndLastName()+"\n");
-        info.append("Birth date: "+artist.getBirthDate()+"\n");
-        info.append("Email address: "+artist.getEmailAddress()+"\n");
-        info.append("Biography: "+artist.getBiography()+"\n");
+//        info.append("Name: "+artist.getFirstAndLastName()+"\n");
+//        info.append("Birth date: "+artist.getBirthDate()+"\n");
+//        info.append("Email address: "+artist.getEmailAddress()+"\n");
+//        info.append("Biography: "+artist.getBiography()+"\n");
+        info.append(artist.toString());
         info.append("Audios published by the artist: \n");
         for(Audio audio : audios)
         {
             if(audio.getArtist().equals(artist.getFirstAndLastName()))
             {
-                info.append("Audio's name: "+audio.getName()+"\t");
-                info.append("Audio's ID: "+audio.getId()+"\t");
-                info.append("Likes: "+audio.getLikes()+"\n");
+//                info.append("Audio's name: "+audio.getName()+"\t");
+//                info.append("Audio's ID: "+audio.getId()+"\t");
+//                info.append("Likes: "+audio.getLikes()+"\n");
+                info.append(audio.toString());
             }
         }
         return info.toString();
@@ -437,8 +478,9 @@ public class ListenerController{
         StringBuilder info = new StringBuilder("Your playlists: \n");
         for(Playlist playlist : listener.getPlaylists())
         {
-            info.append("Name: "+playlist.getNameOfPlayList()+"\t");
-            info.append("ID: "+playlist.getId()+"\n");
+//            info.append("Name: "+playlist.getNameOfPlayList()+"\t");
+//            info.append("ID: "+playlist.getId()+"\n");
+            info.append(playlist.toString());
         }
         return info.toString();
     }
@@ -456,9 +498,10 @@ public class ListenerController{
         StringBuilder info=new StringBuilder("The playlist includes below audios: \n");
         for(Audio audio : selectedPlaylist.getAudioList())
         {
-            info.append("Audio's name: "+audio.getName()+"\t");
-            info.append("Audio's ID: "+audio.getId()+"\t");
-            info.append("Likes: "+audio.getLikes()+"\n");
+//            info.append("Audio's name: "+audio.getName()+"\t");
+//            info.append("Audio's ID: "+audio.getId()+"\t");
+//            info.append("Likes: "+audio.getLikes()+"\n");
+            info.append(audio.toString());
         }
         return info.toString();
     }
@@ -533,10 +576,11 @@ public class ListenerController{
         {
             if(count<number)
             {
-                info.append("Name: "+audio.getName()+"\t\t");
-                info.append("Artist: "+audio.getArtist()+"\t\t");
-                info.append("Genre: "+audio.getGenre()+"\t\t");
-                info.append("ID: "+audio.getId()+"\n");
+//                info.append("Name: "+audio.getName()+"\t\t");
+//                info.append("Artist: "+audio.getArtist()+"\t\t");
+//                info.append("Genre: "+audio.getGenre()+"\t\t");
+//                info.append("ID: "+audio.getId()+"\n");
+                info.append(audio.toString());
                 count++;
             }
         }
@@ -557,10 +601,11 @@ public class ListenerController{
             }
             for(Audio popularAudio : audios)
             {
-                info.append("Name: "+popularAudio.getName()+"\t\t");
-                info.append("Artist: "+popularAudio.getArtist()+"\t\t");
-                info.append("Genre: "+popularAudio.getGenre()+"\t\t");
-                info.append("ID: "+popularAudio.getId()+"\n");
+//                info.append("Name: "+popularAudio.getName()+"\t\t");
+//                info.append("Artist: "+popularAudio.getArtist()+"\t\t");
+//                info.append("Genre: "+popularAudio.getGenre()+"\t\t");
+//                info.append("ID: "+popularAudio.getId()+"\n");
+                info.append(popularAudio.toString());
                 count++;
                 if(count==number)
                 {
@@ -572,11 +617,12 @@ public class ListenerController{
     }
     public String showListenerInformation() throws ParseException {
         StringBuilder info = new StringBuilder();
-        info.append("Name: "+listener.getFirstAndLastName()+"\n");
-        info.append("Birth date: "+listener.getBirthDate()+"\n");
-        info.append("Email address: "+listener.getEmailAddress()+"\n");
-        info.append("Phone number: "+listener.getPhoneNumber()+"\n");
-        info.append("Your credit: "+listener.getCredit()+"\n");
+//        info.append("Name: "+listener.getFirstAndLastName()+"\n");
+//        info.append("Birth date: "+listener.getBirthDate()+"\n");
+//        info.append("Email address: "+listener.getEmailAddress()+"\n");
+//        info.append("Phone number: "+listener.getPhoneNumber()+"\n");
+//        info.append("Your credit: "+listener.getCredit()+"\n");
+        info.append(listener.toString());
         if(listener instanceof PremiumListener)
         {
             PremiumListener premiumListener=(PremiumListener)listener;

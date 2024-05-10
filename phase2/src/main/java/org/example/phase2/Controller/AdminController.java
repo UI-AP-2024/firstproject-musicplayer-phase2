@@ -45,11 +45,12 @@ public class AdminController{
         StringBuilder info=new StringBuilder("Popular audios: \n");
         for(int i=0;i< audios.size();i++)
         {
-            info.append("Name: "+audios.get(i).getName()+"\t");
-            info.append("Artist: "+audios.get(i).getArtist()+"\t");
-            info.append("Genre: "+audios.get(i).getGenre()+"\t");
-            info.append("Likes: "+audios.get(i).getLikes()+"\t");
-            info.append("ID: "+audios.get(i).getId()+"\n");
+//            info.append("Name: "+audios.get(i).getName()+"\t");
+//            info.append("Artist: "+audios.get(i).getArtist()+"\t");
+//            info.append("Genre: "+audios.get(i).getGenre()+"\t");
+//            info.append("Likes: "+audios.get(i).getLikes()+"\t");
+//            info.append("ID: "+audios.get(i).getId()+"\n");
+            info.append(audios.get(i).toString());
         }
         return info.toString();
     }
@@ -74,12 +75,12 @@ public class AdminController{
             if(username.equals(user.getUsername()) && user instanceof Artist)
             {
                 Artist artist=(Artist)user;
-                info.append("Name: "+artist.getFirstAndLastName()+"\n");
-                info.append("Birth date: "+artist.getBirthDate()+"\n");
-                info.append("Phone number: "+artist.getPhoneNumber()+"\n");
-                info.append("Email address: "+artist.getEmailAddress()+"\n");
-                info.append("Username: "+artist.getUsername()+"\n");
-                info.append("Password: "+artist.getPassword()+"\n");
+//                info.append("Name: "+artist.getFirstAndLastName()+"\n");
+//                info.append("Birth date: "+artist.getBirthDate()+"\n");
+//                info.append("Phone number: "+artist.getPhoneNumber()+"\n");
+//                info.append("Email address: "+artist.getEmailAddress()+"\n");
+//                info.append("Username: "+artist.getUsername()+"\n");
+//                info.append("Password: "+artist.getPassword()+"\n");
                 ArrayList<Audio> audios = Database.getDatabase().getAudios();
                 double income=0;
                 for(Audio audio:audios)
@@ -87,14 +88,17 @@ public class AdminController{
                     if(audio.getArtist().equals(artist.getFirstAndLastName()) && artist instanceof Podcaster)
                     {
                         income+=0.5;
+                        artist.setIncome(income);
                     }
                     if(audio.getArtist().equals(artist.getFirstAndLastName()) && artist instanceof Singer)
                     {
                         income+=0.4;
+                        artist.setIncome(income);
                     }
                 }
-                info.append("Income: "+income+"\n");
-                info.append("Biography: "+artist.getBiography()+"\n");
+//                info.append("Income: "+income+"\n");
+//                info.append("Biography: "+artist.getBiography()+"\n");
+                info.append(artist.toString());
                 break;
             }
         }
@@ -118,15 +122,16 @@ public class AdminController{
         {
             if(audio.getId()==audioId)
             {
-                info.append("Name: "+audio.getName()+"\n");
-                info.append("ID: "+audio.getId()+"\n");
-                info.append("Genre: "+audio.getGenre().name()+"\n");
-                info.append("Artist: "+audio.getArtist()+"\n");
-                info.append("Published on: "+audio.getLaunchDate()+"\n");
-                info.append("Likes: "+audio.getLikes()+"\n");
-                info.append("Plays: "+audio.getNumberOfListening()+"\n");
-                info.append("Link: "+audio.getLinkOfAudioFile()+"\n");
-                info.append("Cover: "+audio.getCover()+"\n");
+//                info.append("Name: "+audio.getName()+"\n");
+//                info.append("ID: "+audio.getId()+"\n");
+//                info.append("Genre: "+audio.getGenre().name()+"\n");
+//                info.append("Artist: "+audio.getArtist()+"\n");
+//                info.append("Published on: "+audio.getLaunchDate()+"\n");
+//                info.append("Likes: "+audio.getLikes()+"\n");
+//                info.append("Plays: "+audio.getNumberOfListening()+"\n");
+//                info.append("Link: "+audio.getLinkOfAudioFile()+"\n");
+//                info.append("Cover: "+audio.getCover()+"\n");
+                info.append(audio.toString());
                 break;
             }
         }
@@ -138,9 +143,10 @@ public class AdminController{
         StringBuilder info = new StringBuilder("Reports:\n");
         for(Report report : reports)
         {
-            info.append("Reporter: "+report.getReporter().getFirstAndLastName()+"\n");
-            info.append("Reported artist: "+report.getReportedArtist().getFirstAndLastName()+"\n");
-            info.append("Description: "+report.getDescription()+"\n\n");
+//            info.append("Reporter: "+report.getReporter().getFirstAndLastName()+"\n");
+//            info.append("Reported artist: "+report.getReportedArtist().getFirstAndLastName()+"\n");
+//            info.append("Description: "+report.getDescription()+"\n\n");
+            info.append(report.toString());
         }
         return info.toString();
     }
@@ -152,10 +158,11 @@ public class AdminController{
         {
             if(user.getUsername().equals(admin.getUsername()))
             {
-                info.append("Name: "+user.getFirstAndLastName()+"\n");
-                info.append("Birth date: "+user.getBirthDate()+"\n");
-                info.append("Email address: "+user.getEmailAddress()+"\n");
-                info.append("Phone number: "+user.getPhoneNumber()+"\n");
+//                info.append("Name: "+user.getFirstAndLastName()+"\n");
+//                info.append("Birth date: "+user.getBirthDate()+"\n");
+//                info.append("Email address: "+user.getEmailAddress()+"\n");
+//                info.append("Phone number: "+user.getPhoneNumber()+"\n");
+                info.append(user.toString());
                 break;
             }
         }

@@ -42,7 +42,7 @@ public class Report{
         StringBuilder info=new StringBuilder();
         info.append("Reporter: "+reporter+"\n");
         info.append("Reported artist: "+reportedArtist+"\n");
-        info.append("Description: "+description+"\n");
+        info.append("Description: "+description+"\n\n");
         return info.toString();
     }
 }

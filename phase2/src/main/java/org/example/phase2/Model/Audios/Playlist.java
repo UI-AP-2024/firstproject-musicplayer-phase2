@@ -50,8 +50,9 @@ public class Playlist{
     @Override
     public String toString()
     {
-        StringBuilder info=new StringBuilder("Playlist's information: \n");
-        info.append("Name: "+nameOfPlaylist+"\n");
+//        StringBuilder info=new StringBuilder("Playlist's information: \n");
+        StringBuilder info=new StringBuilder();
+        info.append("Name: "+nameOfPlaylist+"\t");
         info.append("ID: "+id+"\n");
         return info.toString();
     }

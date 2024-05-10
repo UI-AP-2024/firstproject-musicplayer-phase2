@@ -101,14 +101,15 @@ abstract public class Audio{
     @Override
     public String toString()
     {
-        StringBuilder info=new StringBuilder("Audio's information: \n");
-        info.append("Name: "+name+"\n");
-        info.append("Artist: "+artist+"\n");
-        info.append("Genre: "+genre.name()+"\n");
-        info.append("ID: "+id+"\n");
-        info.append("Plays: "+numberOfListening+"\n");
-        info.append("Likes: "+likes+"\n");
-        info.append("Link: "+linkOfAudioFile+"\n");
+//        StringBuilder info=new StringBuilder("Audio's information: \n");
+        StringBuilder info=new StringBuilder();
+        info.append("Name: "+name+"\t");
+        info.append("Artist: "+artist+"\t");
+        info.append("Genre: "+genre.name()+"\t");
+        info.append("ID: "+id+"\t");
+        info.append("Plays: "+numberOfListening+"\t");
+        info.append("Likes: "+likes+"\t");
+        info.append("Link: "+linkOfAudioFile+"\t");
         info.append("Cover: "+cover+"\n");
         return info.toString();
     }

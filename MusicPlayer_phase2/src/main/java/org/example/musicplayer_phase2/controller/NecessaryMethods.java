@@ -11,7 +11,7 @@ public class NecessaryMethods {
     public static void saveLastScene (MouseEvent event){
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
-        HelloApplication.lastScene = source.getScene();
+        HelloApplication.lastScenes.add(source.getScene());
         HelloApplication.lastTitle = stage.getTitle();
     }
 
@@ -22,7 +22,7 @@ public class NecessaryMethods {
     }
 
     public static void backToLastPage (MouseEvent event){
-        Scene scene = HelloApplication.lastScene;
+        Scene scene = HelloApplication.lastScenes.pop();
         Node source = (Node) event.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(scene);

@@ -1,39 +1,15 @@
 package org.example.musicplayer_phase2.View.SidebarItems;
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 
 import java.io.IOException;
 
 
-public class SidebarMake extends Application {
-    @Override
-    public void start(Stage stage) throws Exception {
-        homeLabel.setOnMouseClicked(e -> {
-            try {
-                NecessaryMethods.saveLastScene(e);
-                new Home().start(stage);
-            } catch (Exception ex) {
-                Alerts.errorAlert();
-            }
-        });
-
-        homeLabel.setOnMouseEntered(e -> {
-            homeLabel.setTextFill(Color.BLUE);
-        });
-    }
+public class SidebarMake {
     Label homeLabel = new Label("HOME");
     Label artistsLabel = new Label("ARTISTS");
     Label audiossLabel = new Label("AUDIOS");
@@ -50,5 +26,94 @@ public class SidebarMake extends Application {
         libraryLabel.setPrefSize(120 , 50);
         hbox.getChildren().addAll(artistsLabel , audiossLabel , homeLabel , libraryLabel , searchLabel );
         return hbox;
+    }
+
+    public void makeActionsForLabels(SidebarMake sidebarMake){
+        homeActions(sidebarMake);
+        artistsActions(sidebarMake);
+        audiosAction(sidebarMake);
+        libraryAction(sidebarMake);
+        searchAction(sidebarMake);
+    }
+
+    public void homeActions (SidebarMake sidebarMake){
+        homeLabel.setOnMouseEntered(e -> {
+            homeLabel.setTextFill(Color.BLUE);
+        });
+        homeLabel.setOnMouseExited(e -> {
+            homeLabel.setTextFill(Color.WHITE);
+        });
+    }
+
+    public void artistsActions (SidebarMake sidebarMake){
+        sidebarMake.artistsLabel.setOnMouseClicked(e -> {
+            try {
+                NecessaryMethods.saveLastScene(e);
+                //پر بشه......................................................
+            } catch (Exception ex) {
+                Alerts.errorAlert();
+            }
+        });
+
+        artistsLabel.setOnMouseEntered(e -> {
+            artistsLabel.setTextFill(Color.BLUE);
+        });
+        artistsLabel.setOnMouseExited(e -> {
+            artistsLabel.setTextFill(Color.WHITE);
+        });
+    }
+
+    public void audiosAction (SidebarMake sidebarMake){
+        sidebarMake.audiossLabel.setOnMouseClicked(e -> {
+            try {
+                NecessaryMethods.saveLastScene(e);
+                //پر بشه......................................................
+            } catch (Exception ex) {
+                Alerts.errorAlert();
+            }
+        });
+
+        audiossLabel.setOnMouseEntered(e -> {
+            audiossLabel.setTextFill(Color.BLUE);
+        });
+        audiossLabel.setOnMouseExited(e -> {
+            audiossLabel.setTextFill(Color.WHITE);
+        });
+    }
+
+    public void libraryAction (SidebarMake sidebarMake){
+        sidebarMake.libraryLabel.setOnMouseClicked(e -> {
+            try {
+                NecessaryMethods.saveLastScene(e);
+                //پر بشه......................................................
+            } catch (Exception ex) {
+                Alerts.errorAlert();
+            }
+        });
+
+        libraryLabel.setOnMouseEntered(e -> {
+            libraryLabel.setTextFill(Color.BLUE);
+        });
+        libraryLabel.setOnMouseExited(e -> {
+            libraryLabel.setTextFill(Color.WHITE);
+        });
+    }
+
+    public void searchAction (SidebarMake sidebarMake){
+        sidebarMake.searchLabel.setOnMouseClicked(e -> {
+            try {
+                NecessaryMethods.saveLastScene(e);
+                //پر بشه......................................................
+            } catch (Exception ex) {
+                Alerts.errorAlert();
+            }
+        });
+
+        searchLabel.setOnMouseEntered(e -> {
+            searchLabel.setTextFill(Color.BLUE);
+        });
+        searchLabel.setOnMouseExited(e -> {
+            searchLabel.setTextFill(Color.WHITE);
+        });
     }
 }

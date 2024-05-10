@@ -9,14 +9,16 @@ import org.example.musicplayer_phase2.model.AboutHumans.Admin;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 import static org.example.musicplayer_phase2.model.AboutHumans.Admin.getAdmin;
 
 
 public class HelloApplication extends Application {
 
-    public static Scene lastScene;
+    public static Stack<Scene> lastScenes = new Stack<>();
     public static String lastTitle;
     @Override
     public void start(Stage stage) throws IOException {

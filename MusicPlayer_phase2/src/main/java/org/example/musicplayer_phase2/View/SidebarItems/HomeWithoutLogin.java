@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class HomeWithoutLogin extends Application implements GeneralOperations {
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(making() , 600 , 400);
+        Scene scene = new Scene(making() , 600 , 450);
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
         stage.setTitle("HOME");
         stage.setScene(scene );
@@ -65,6 +65,9 @@ public class HomeWithoutLogin extends Application implements GeneralOperations {
         VBox vBox = new VBox(scrollPane);
 
         putButtons(vBox);
+        SidebarMake sidebarMake = new SidebarMake();
+        sidebarMake.makeActionsForLabels(sidebarMake);
+        vBox.getChildren().add(sidebarMake.getSidebar());
 
         return vBox;
     }
@@ -72,11 +75,15 @@ public class HomeWithoutLogin extends Application implements GeneralOperations {
     public void putButtons (VBox vBox){
 
         Button loginButton = new Button("Login");
-        Button logoutButton = new Button("Logout");
+        loginButton.setOnMouseClicked(e -> {
+            NecessaryMethods.saveLastScene(e);
+            Stage stage = NecessaryMethods.getStage(e);
+            login(stage);
+        });
 
         Button signupButton = new Button("Signup");
         signupButton.setOnMouseClicked(e -> {
-
+            NecessaryMethods.saveLastScene(e);
             Stage stage = NecessaryMethods.getStage(e);
             signup(stage);
         });
@@ -86,7 +93,7 @@ public class HomeWithoutLogin extends Application implements GeneralOperations {
             NecessaryMethods.backToLastPage(e);
         });
 
-        HBox buttonsHbox = new HBox(logoutButton , loginButton , signupButton , bakeButton);
+        HBox buttonsHbox = new HBox( loginButton , signupButton , bakeButton);
 
         buttonsHbox.setSpacing(10);
 

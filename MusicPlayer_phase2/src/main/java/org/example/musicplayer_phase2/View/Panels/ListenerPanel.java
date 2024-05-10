@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
@@ -39,10 +40,9 @@ public class ListenerPanel extends Application implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
-        HBox hBox = sidebarMake.getSidebar();
-        sidebarMake.makeActionsForLabels(sidebarMake);
-        basedAnchorpane.getChildren().add(hBox);
-        AnchorPane.setBottomAnchor(hBox, 0.0);
+        sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
+        basedAnchorpane.getChildren().add(sidebarMake.getSidebar());
+        AnchorPane.setBottomAnchor(sidebarMake.getSidebar(), 0.0);
     }
 
     public void setListener(Listener listener) {

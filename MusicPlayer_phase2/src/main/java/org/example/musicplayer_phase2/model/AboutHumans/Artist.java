@@ -20,6 +20,10 @@ public class Artist extends UserAccount {
         return income;
     }
 
+    public ArrayList<UserAccount> getArraylistOfFollowers (){
+        return followers;
+    }
+
     public StringBuilder getFollowers() {
         StringBuilder followers = new StringBuilder();
         for (UserAccount a : this.followers)

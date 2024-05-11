@@ -149,7 +149,7 @@ public class SidebarMake implements GeneralOperations {
 
     private void loginAction(SidebarMake sidebarMake){
         sidebarMake.loginButton.setOnMouseClicked(e -> {
-            saveBackTo(e);
+            backTo(e);
             Stage stage = NecessaryMethods.getStage(e);
             login(stage);
         });
@@ -157,7 +157,7 @@ public class SidebarMake implements GeneralOperations {
 
     private void signupAction(SidebarMake sidebarMake){
         sidebarMake.signupButton.setOnMouseClicked(e -> {
-            saveBackTo(e);
+            backTo(e);
             Stage stage = NecessaryMethods.getStage(e);
             signup(stage);
         });
@@ -172,13 +172,13 @@ public class SidebarMake implements GeneralOperations {
 
     private void logoutAction (SidebarMake sidebarMake){
         sidebarMake.logoutButton.setOnMouseClicked(e ->{
-            saveBackTo(e);
+            backTo(e);
             logout(NecessaryMethods.getStage(e));
         });
     }
 
     @Override
-    public void saveBackTo(MouseEvent event) {
+    public void backTo(MouseEvent event) {
         NecessaryMethods.saveLastScene(event);
     }
 

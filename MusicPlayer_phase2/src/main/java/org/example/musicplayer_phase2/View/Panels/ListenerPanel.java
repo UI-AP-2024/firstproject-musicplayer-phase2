@@ -42,7 +42,7 @@ public class ListenerPanel extends Application implements Initializable{
         SidebarMake sidebarMake = new SidebarMake();
         sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
         basedAnchorpane.getChildren().add(sidebarMake.getSidebar());
-        AnchorPane.setBottomAnchor(sidebarMake.getSidebar(), 0.0);
+//        AnchorPane.setBottomAnchor(sidebarMake.getSidebar(), 0.0);
     }
 
     public void setListener(Listener listener) {

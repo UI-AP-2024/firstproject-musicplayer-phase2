@@ -12,8 +12,8 @@
             <Label fx:id="homeButton" alignment="CENTER" onMouseClicked="#homeClicked" onMouseEntered="#homeMouseEnter" onMouseExited="#homeMouseExit" prefHeight="60.0" prefWidth="80.0" text="HOME" textFill="#e30202" />
             <Label fx:id="searchButton" alignment="CENTER" onMouseClicked="#searchClicked" onMouseEntered="#searchEnter" onMouseExited="#searchExit" prefHeight="60.0" prefWidth="80.0" text="SEARCH" textFill="#e40101" />
             <Label fx:id="libraryButton" alignment="CENTER" onMouseClicked="#libraryClicked" onMouseEntered="#libraryEnter" onMouseExited="#libraryExit" prefHeight="60.0" prefWidth="80.0" text="LIBRARY" textFill="#e40101" />
-            <Label fx:id="allArtistButton" alignment="CENTER" onMouseClicked="#allArtistClicked" onMouseEntered="#allArtistEnter" onMouseExited="#allArtistExit" prefHeight="60.0" prefWidth="80.0" text="ALL ARTIST" textFill="#e40101" />
-            <Label fx:id="allAudios" alignment="CENTER" onMouseClicked="#allAudiosClicked" onMouseEntered="#allAudiosEntered" onMouseExited="#allAudiosExite" prefHeight="60.0" prefWidth="80.0" text="ALL AUDIOS" textFill="#e40101" />
+            <Label fx:id="allArtistButton" alignment="CENTER" onMouseClicked="#allArtistClicked" onMouseEntered="#allArtistEnter" onMouseExited="#allArtistExit" prefHeight="60.0" prefWidth="80.0" text="ARTISTS" textFill="#e40101" />
+            <Label fx:id="allAudios" alignment="CENTER" onMouseClicked="#allAudiosClicked" onMouseEntered="#allAudiosEntered" onMouseExited="#allAudiosExite" prefHeight="60.0" prefWidth="80.0" text="AUDIOS" textFill="#e40101" />
          </children>
       </VBox>
       <VBox layoutX="157.0" layoutY="125.0" prefHeight="150.0" prefWidth="300.0">

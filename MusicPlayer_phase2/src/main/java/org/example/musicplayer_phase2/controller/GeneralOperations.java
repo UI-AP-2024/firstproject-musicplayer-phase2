@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.model;
+package org.example.musicplayer_phase2.controller;
 
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;

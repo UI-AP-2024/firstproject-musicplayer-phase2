@@ -3,7 +3,6 @@ package org.example.musicplayer_phase2.View;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -12,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
-import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
 import org.example.musicplayer_phase2.controller.AboutArtist.PodcasterContrller;
 import org.example.musicplayer_phase2.controller.AboutArtist.SingerController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
@@ -22,9 +20,6 @@ import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 import org.example.musicplayer_phase2.model.AboutHumans.UserAccount;
-import org.example.musicplayer_phase2.model.GeneralOperations;
-
-import java.io.LineNumberInputStream;
 
 
 public class LoginView extends Application {

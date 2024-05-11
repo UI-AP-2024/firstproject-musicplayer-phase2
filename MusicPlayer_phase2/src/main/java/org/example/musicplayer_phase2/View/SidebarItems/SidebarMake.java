@@ -11,9 +11,7 @@ import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.LoginView;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
-import org.example.musicplayer_phase2.model.GeneralOperations;
-
-import java.io.IOException;
+import org.example.musicplayer_phase2.controller.GeneralOperations;
 
 
 public class SidebarMake implements GeneralOperations {

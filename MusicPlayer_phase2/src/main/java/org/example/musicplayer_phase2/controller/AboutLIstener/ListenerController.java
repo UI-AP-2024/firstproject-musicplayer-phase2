@@ -75,12 +75,12 @@ public class ListenerController extends UserAccountController {
         return "";
     }
 
-    public StringBuilder searchInAudios(String searchBasedOn) {
-        Stream<Audio> audioStream = Database.allAudios.stream().filter(n -> n.getArtistUsername().equals(searchBasedOn) || n.getAudioName().equals(searchBasedOn));
-        StringBuilder results = new StringBuilder();
-        audioStream.forEach(n -> results.append(n.toString() + "\n"));
-        return results;
-    }
+//    public StringBuilder searchInAudios(String searchBasedOn) {
+//        Stream<Audio> audioStream = Database.allAudios.stream().filter(n -> n.getArtistUsername().equals(searchBasedOn) || n.getAudioName().equals(searchBasedOn));
+//        StringBuilder results = new StringBuilder();
+//        audioStream.forEach(n -> results.append(n.toString() + "\n"));
+//        return results;
+//    }
 
     public ArrayList<Audio> sortAudiosBasedOnLikes() {
         Collections.sort(Database.allAudios, new Comparator<Audio>() {

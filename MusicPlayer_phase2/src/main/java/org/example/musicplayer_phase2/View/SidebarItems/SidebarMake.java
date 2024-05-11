@@ -12,6 +12,7 @@ import org.example.musicplayer_phase2.View.LoginView;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.GeneralOperations;
+import org.example.musicplayer_phase2.controller.UserAccountController;
 
 
 public class SidebarMake implements GeneralOperations {
@@ -27,7 +28,7 @@ public class SidebarMake implements GeneralOperations {
     HBox hbox = new HBox();
 
     public HBox makeSidebar(){
-        hbox.setPrefSize(600 , 50);
+        hbox.setPrefSize(570 , 50);
         homeLabel.setPrefSize(120 , 50);
         artistsLabel.setPrefSize(120 , 50);
         audiossLabel.setPrefSize(120 , 50);
@@ -63,10 +64,30 @@ public class SidebarMake implements GeneralOperations {
     }
 
     public void homeActions (SidebarMake sidebarMake){
-        homeLabel.setOnMouseEntered(e -> {
+        sidebarMake.homeLabel.setOnMouseClicked(e -> {
+            if (UserAccountController.listener != null){
+                try{
+                    Home home = new Home();
+                    home.start(NecessaryMethods.getStage(e));
+                }catch (Exception exception){
+                    Alerts.errorAlert();
+                }
+            }
+
+            else{
+                try{
+                    HomeWithoutLogin homeWithoutLogin = new HomeWithoutLogin();
+                    homeWithoutLogin.start(NecessaryMethods.getStage(e));
+                }catch (Exception exception){
+                    Alerts.errorAlert();
+                }
+            }
+
+        });
+        sidebarMake.homeLabel.setOnMouseEntered(e -> {
             homeLabel.setTextFill(Color.BLUE);
         });
-        homeLabel.setOnMouseExited(e -> {
+        sidebarMake.homeLabel.setOnMouseExited(e -> {
             homeLabel.setTextFill(Color.WHITE);
         });
     }
@@ -74,8 +95,7 @@ public class SidebarMake implements GeneralOperations {
     private void artistsActions (SidebarMake sidebarMake){
         sidebarMake.artistsLabel.setOnMouseClicked(e -> {
             try {
-                NecessaryMethods.saveLastScene(e);
-                //پر بشه......................................................
+                backTo(e);
                 AllArtists allArtists = new AllArtists();
                 allArtists.start(NecessaryMethods.getStage(e));
             } catch (Exception ex) {
@@ -94,7 +114,7 @@ public class SidebarMake implements GeneralOperations {
     private void audiosAction (SidebarMake sidebarMake){
         sidebarMake.audiossLabel.setOnMouseClicked(e -> {
             try {
-                NecessaryMethods.saveLastScene(e);
+                backTo(e);
                 //پر بشه......................................................
             } catch (Exception ex) {
                 Alerts.errorAlert();
@@ -112,7 +132,7 @@ public class SidebarMake implements GeneralOperations {
     private void libraryAction (SidebarMake sidebarMake){
         sidebarMake.libraryLabel.setOnMouseClicked(e -> {
             try {
-                NecessaryMethods.saveLastScene(e);
+                backTo(e);
                 //پر بشه......................................................
             } catch (Exception ex) {
                 Alerts.errorAlert();
@@ -130,8 +150,8 @@ public class SidebarMake implements GeneralOperations {
     private void searchAction (SidebarMake sidebarMake){
         sidebarMake.searchLabel.setOnMouseClicked(e -> {
             try {
-                NecessaryMethods.saveLastScene(e);
-                //پر بشه......................................................
+                backTo(e);
+                new Search().start(NecessaryMethods.getStage(e));
             } catch (Exception ex) {
                 Alerts.errorAlert();
             }

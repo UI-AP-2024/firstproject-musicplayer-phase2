@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import javafx.fxml.FXML;
@@ -11,8 +14,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.musicplayer_phase2.controller.UserAccountController;
+import org.example.musicplayer_phase2.model.AboutHumans.Artist;
+import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -20,7 +29,7 @@ public class Search extends Application implements Initializable {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
         stage.setTitle("SEARCHING");
         stage.setScene(scene);
@@ -28,7 +37,7 @@ public class Search extends Application implements Initializable {
     }
 
     @FXML
-    private AnchorPane baseAnchorPane;
+    private AnchorPane sidebarAnchorPane;
 
     @FXML
     private Button searchButton;
@@ -37,8 +46,35 @@ public class Search extends Application implements Initializable {
     private TextField serchTextField;
 
     @FXML
-    void searchClicked(MouseEvent event) {
+    private ScrollPane resultScrollPane;
 
+    private GridPane resultGridPane = new GridPane();
+
+    @FXML
+    void searchClicked(MouseEvent event) {
+        ArrayList<Audio> audioResult = new ArrayList<>();
+        ArrayList<Artist> artistResult = new ArrayList<>();
+
+        if (serchTextField != null) {
+            audioResult = UserAccountController.searchInAudios(serchTextField.getText());
+            artistResult = UserAccountController.searchInArtists(serchTextField.getText());
+
+            int index = 0;
+
+            for (Audio a : audioResult){
+                Label audioLabel = new Label("audio name: "+ a.getAudioName() + "\nlikes: " + a.getLikesNum());
+                audioLabel.setPrefSize(440 , 80);
+                resultGridPane.add(audioLabel ,0 , index );
+                index++;
+            }
+
+            for (Artist a : artistResult){
+                Label audioLabel = new Label("artist name: "+ a.getUsername() + "\n" + a.getBiography());
+                audioLabel.setPrefSize(440 , 80);
+                resultGridPane.add(audioLabel ,0 , index );
+                index++;
+            }
+        }
     }
 
 
@@ -46,6 +82,8 @@ public class Search extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
         sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
-        baseAnchorPane.getChildren().add(sidebarMake.getSidebar());
+        sidebarAnchorPane.getChildren().add(sidebarMake.getSidebar());
+
+        resultScrollPane.setContent(resultGridPane);
     }
 }

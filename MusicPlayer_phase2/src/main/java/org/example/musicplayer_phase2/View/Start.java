@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.SidebarItems.AllArtists;
 import org.example.musicplayer_phase2.View.SidebarItems.HomeWithoutLogin;
+import org.example.musicplayer_phase2.View.SidebarItems.Search;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 
@@ -58,7 +59,12 @@ public class Start extends Application {
 
     @FXML
     void searchClicked(MouseEvent event) {
-
+        NecessaryMethods.saveLastScene(event);
+        try {
+            new Search().start(NecessaryMethods.getStage(event));
+        } catch (Exception e) {
+            Alerts.errorAlert();
+        }
     }
 
     @FXML
@@ -123,7 +129,8 @@ public class Start extends Application {
 
     @FXML
     void allAudiosClicked(MouseEvent event) {
-
+        NecessaryMethods.saveLastScene(event);
+        //......
     }
 
     @FXML

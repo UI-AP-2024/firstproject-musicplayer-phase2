@@ -1,8 +1,7 @@
 package org.example.musicplayer_phase2.controller;
 
 import org.example.musicplayer_phase2.model.*;
-import org.example.musicplayer_phase2.model.AboutHumans.Listener;
-import org.example.musicplayer_phase2.model.AboutHumans.UserAccount;
+import org.example.musicplayer_phase2.model.AboutHumans.*;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;
 import org.example.musicplayer_phase2.model.AboutMusic.Podcast;
@@ -10,15 +9,19 @@ import org.example.musicplayer_phase2.model.Exceptions.FailedLoginException;
 import org.example.musicplayer_phase2.model.Exceptions.InvalidFormat;
 import org.example.musicplayer_phase2.model.Exceptions.UserNotFoundException;
 import org.example.musicplayer_phase2.model.Exceptions.WrongPasswordException;
+import org.example.musicplayer_phase2.model.Types.Free;
 import org.example.musicplayer_phase2.model.Types.Genre;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserAccountController {
+    public static Listener listener = null;
+    public static Singer singer = null;
+    public static Podcaster podcaster = null;
     public static boolean checkEmail(String email) throws InvalidFormat {
         String regex = "^(.+)@(gmail|yahoo|outlook|zoho)\\.com$";
         Pattern pattern = Pattern.compile(regex);
@@ -134,5 +137,26 @@ public class UserAccountController {
         else
             throw new FailedLoginException("user not found");
     }
+
+    public static ArrayList<Audio> searchInAudios (String name){
+        ArrayList<Audio> results  = new ArrayList<>();
+        for (Audio a : Database.allAudios){
+            if (a.getAudioName().equals(name)){
+                results.add(a);
+            }
+        }
+        return results;
+    }
+
+    public static ArrayList<Artist> searchInArtists (String username){
+        ArrayList<Artist> results  = new ArrayList<>();
+        for (Artist a : Database.allArtists){
+            if (a.getUsername().equals(username)){
+                results.add(a);
+            }
+        }
+        return results;
+    }
+
 
 }

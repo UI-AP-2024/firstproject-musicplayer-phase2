@@ -1,0 +1,71 @@
+#top-container {
+    -fx-background-color: linear-gradient(to bottom, #8B0000, #4B0000);
+}
+
+#top-container Label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+#left-container {
+    -fx-background-color: linear-gradient(to bottom, #000000, #1A1A1A);
+}
+#left-container Label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+Button {
+    -fx-background-color: linear-gradient(to bottom, #000000, #4B0000);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+Label {
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+}
+
+Button:hover {
+    -fx-background-color: linear-gradient(to bottom, #6B0000, #2B0000);
+}
+
+Label:hover {
+    -fx-background-color: linear-gradient(to bottom, #6B0000, #2B0000);
+}
+
+AnchorPane {
+    -fx-background-color: linear-gradient(to bottom, #8B0000, #4B0000);
+}
+
+#timeSlider {
+    -fx-background-color: transparent;
+}
+#timeSlider .track {
+    -fx-background-color: #1e0000;
+}
+#timeSlider .thumb {
+    -fx-background-color: #8b0000;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 0.5px;
+}
+
+#timeSlider .thumb:hover .track {
+    -fx-background-color: #8b0000;
+}
+
+#timeSlider .thumb:focused {
+    -fx-border-color: #8b0000;
+}
+
+#timeSlider .thumb:pressed {
+    -fx-background-color: #660000;
+}
+
+#timeSlider .thumb:disabled {
+    -fx-background-color: #595959;
+}
+
+#timeSlider .thumb:disabled .track {
+    -fx-background-color: #6b6b6b;
+}

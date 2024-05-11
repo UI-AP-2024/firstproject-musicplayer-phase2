@@ -14,8 +14,10 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
+import org.example.musicplayer_phase2.View.SidebarItems.Home;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.Types.Genre;
 
@@ -230,14 +232,14 @@ public class FavoriteGenres extends Application {
     }
 
     @FXML
-    void finishClicked(MouseEvent event) throws Exception {
+    void finishClicked(MouseEvent event){
         ListenerController listenerController = new ListenerController();
-        listenerController.getFavoriteGenre(favoriteGenres , ListenerSignup.getFreeUser());
-        ListenerPanel listenerPanel = new ListenerPanel();
+        listenerController.getFavoriteGenre(favoriteGenres , UserAccountController.listener);
 
         try {
-            listenerPanel.setListener(ListenerSignup.getFreeUser());
-            listenerPanel.start(NecessaryMethods.getStage(event));
+            Home home = new Home();
+            HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
+            home.start(NecessaryMethods.getStage(event));
         }catch (Exception e){
             Alerts.errorAlert();
         }

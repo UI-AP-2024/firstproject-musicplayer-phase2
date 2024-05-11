@@ -2,6 +2,7 @@ package org.example.musicplayer_phase2.View.SidebarItems;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,6 +26,7 @@ public class SidebarMake implements GeneralOperations {
     private  Button signupButton = new Button("Signup");
     private  Button bakeButton = new Button("back");
     private Button logoutButton = new Button("Logout");
+    private Slider slider = new Slider();
     HBox hbox = new HBox();
 
     public HBox makeSidebar(){
@@ -45,7 +47,8 @@ public class SidebarMake implements GeneralOperations {
     }
 
     public VBox getSidebar(){
-        VBox vBox = new VBox( makeSidebar() ,makeButtons());
+        VBox vBox = new VBox(slider , makeSidebar() ,makeButtons());
+        vBox.setPrefSize(600 , 70);
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(10));
         return vBox;
@@ -115,7 +118,8 @@ public class SidebarMake implements GeneralOperations {
         sidebarMake.audiossLabel.setOnMouseClicked(e -> {
             try {
                 backTo(e);
-                //پر بشه......................................................
+                Audios audios = new Audios();
+                audios.start(NecessaryMethods.getStage(e));
             } catch (Exception ex) {
                 Alerts.errorAlert();
             }
@@ -133,7 +137,7 @@ public class SidebarMake implements GeneralOperations {
         sidebarMake.libraryLabel.setOnMouseClicked(e -> {
             try {
                 backTo(e);
-                //پر بشه......................................................
+                new Library().start(NecessaryMethods.getStage(e));
             } catch (Exception ex) {
                 Alerts.errorAlert();
             }

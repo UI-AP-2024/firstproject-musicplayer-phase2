@@ -19,15 +19,13 @@ import java.util.ResourceBundle;
 
 public class ListenerPanel extends Application implements Initializable{
 
-    private Listener listener ;
-
     public ListenerPanel() {
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerPanel.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
         scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
         stage.setTitle("listener panel");
         stage.setScene(scene);
@@ -42,10 +40,6 @@ public class ListenerPanel extends Application implements Initializable{
         SidebarMake sidebarMake = new SidebarMake();
         sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
         basedAnchorpane.getChildren().add(sidebarMake.getSidebar());
-//        AnchorPane.setBottomAnchor(sidebarMake.getSidebar(), 0.0);
     }
 
-    public void setListener(Listener listener) {
-        this.listener = listener;
-    }
 }

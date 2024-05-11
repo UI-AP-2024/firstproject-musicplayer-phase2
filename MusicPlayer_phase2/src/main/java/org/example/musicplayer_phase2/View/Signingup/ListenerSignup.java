@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.Types.Free;
 
@@ -24,7 +25,7 @@ import static org.example.musicplayer_phase2.controller.UserAccountController.*;
 
 
 public class ListenerSignup extends Application {
-    private static Free freeUser = null;
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -118,13 +119,9 @@ public class ListenerSignup extends Application {
             Free freeUser = new Free(name , username , password , email , number , birthday);
             ListenerController listenerController = new ListenerController();
             listenerController.signup(freeUser);
-            this.freeUser = freeUser;
-
+            UserAccountController.listener = freeUser;
             FavoriteGenres favoriteGenres = new FavoriteGenres();
-
-
             try {
-//                NecessaryMethods.saveLastScene(event);
                 favoriteGenres.start(NecessaryMethods.getStage(event));
             } catch (Exception e) {
                 Alerts.errorAlert();
@@ -132,11 +129,4 @@ public class ListenerSignup extends Application {
         }
     }
 
-    public static Free getFreeUser() {
-        return freeUser;
-    }
-
-    public static void setFreeUser(Free freeUser) {
-        ListenerSignup.freeUser = freeUser;
-    }
 }

@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
+import org.example.musicplayer_phase2.View.SidebarItems.Home;
 import org.example.musicplayer_phase2.controller.AboutArtist.PodcasterContrller;
 import org.example.musicplayer_phase2.controller.AboutArtist.SingerController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
@@ -21,11 +22,10 @@ import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 import org.example.musicplayer_phase2.model.AboutHumans.UserAccount;
 
+import java.util.Collections;
+
 
 public class LoginView extends Application {
-    private static Listener listener = null;
-    private static Singer singer = null;
-    private static Podcaster podcaster = null;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -67,16 +67,17 @@ public class LoginView extends Application {
             try {
                 UserAccount user = UserAccountController.findPerson(userName, password);
                 if (user instanceof Listener){
-                    listener = ListenerController.listenerLogin(userName , password);
-                    ListenerPanel listenerPanel = new ListenerPanel();
-                    listenerPanel.start(NecessaryMethods.getStage(event));
+                    UserAccountController.listener = ListenerController.listenerLogin(userName , password);
+                    Home home = new Home();
+                    HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
+                    home.start(NecessaryMethods.getStage(event));
                 }
                 else if (user instanceof Singer) {
-                    singer = SingerController.singerLogin(userName , password);
+                    UserAccountController.singer = SingerController.singerLogin(userName , password);
                     //singer panel...........................
                 }
                 else if (user instanceof Podcaster){
-                    podcaster = PodcasterContrller.podcasterLogin(userName , password);
+                    UserAccountController.podcaster = PodcasterContrller.podcasterLogin(userName , password);
                     //podcaster panel........................
                 }
                 else {
@@ -92,28 +93,4 @@ public class LoginView extends Application {
         }
     }
 
-
-    public static Listener getListener() {
-        return listener;
-    }
-
-    public static Singer getSinger() {
-        return singer;
-    }
-
-    public static Podcaster getPodcaster() {
-        return podcaster;
-    }
-
-    public static void setListener(Listener listener) {
-        LoginView.listener = listener;
-    }
-
-    public static void setSinger(Singer singer) {
-        LoginView.singer = singer;
-    }
-
-    public static void setPodcaster(Podcaster podcaster) {
-        LoginView.podcaster = podcaster;
-    }
 }

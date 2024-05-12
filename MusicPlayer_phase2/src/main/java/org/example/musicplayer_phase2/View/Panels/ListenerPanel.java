@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 
 import java.net.URL;
@@ -26,7 +27,7 @@ public class ListenerPanel extends Application implements Initializable{
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerPanel.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
+        NecessaryMethods.putStyleSheet(scene);
         stage.setTitle("listener panel");
         stage.setScene(scene);
         stage.show();

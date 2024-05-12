@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
@@ -18,7 +19,7 @@ public class Audios extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(making() , 600 , 450);
-        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
+        NecessaryMethods.putStyleSheet(scene);;
         stage.setTitle("AUDIOS");
         stage.setScene(scene );
         stage.show();

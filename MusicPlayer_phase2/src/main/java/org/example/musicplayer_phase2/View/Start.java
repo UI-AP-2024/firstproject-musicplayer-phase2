@@ -21,7 +21,7 @@ public class Start extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
         stage.setScene(scene);
-        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
+        NecessaryMethods.putStyleSheet(scene);
         stage.setTitle("welcome :)");
         stage.show();
     }
@@ -35,7 +35,7 @@ public class Start extends Application {
 
         NecessaryMethods.saveLastScene(event);
         try {
-            new HomeWithoutLogin().start(NecessaryMethods.getStage(event));
+            new Home().start(NecessaryMethods.getStage(event));
         } catch (Exception e) {
             Alerts.errorAlert();
         }

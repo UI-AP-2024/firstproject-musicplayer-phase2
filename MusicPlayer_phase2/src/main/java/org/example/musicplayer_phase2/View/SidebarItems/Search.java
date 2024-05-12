@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
@@ -30,14 +32,17 @@ public class Search extends Application implements Initializable {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
+        NecessaryMethods.putStyleSheet(scene);
         stage.setTitle("SEARCHING");
         stage.setScene(scene);
         stage.show();
     }
 
+//    @FXML
+//    private AnchorPane sidebarAnchorPane;
+
     @FXML
-    private AnchorPane sidebarAnchorPane;
+    private VBox sidebarVBox;
 
     @FXML
     private Button searchButton;
@@ -82,7 +87,7 @@ public class Search extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
         sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
-        sidebarAnchorPane.getChildren().add(sidebarMake.getSidebar());
+        sidebarVBox.getChildren().add(sidebarMake.getSidebar());
 
         resultScrollPane.setContent(resultGridPane);
     }

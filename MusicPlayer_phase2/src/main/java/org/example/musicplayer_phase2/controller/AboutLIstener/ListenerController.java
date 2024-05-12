@@ -75,13 +75,6 @@ public class ListenerController extends UserAccountController {
         return "";
     }
 
-//    public StringBuilder searchInAudios(String searchBasedOn) {
-//        Stream<Audio> audioStream = Database.allAudios.stream().filter(n -> n.getArtistUsername().equals(searchBasedOn) || n.getAudioName().equals(searchBasedOn));
-//        StringBuilder results = new StringBuilder();
-//        audioStream.forEach(n -> results.append(n.toString() + "\n"));
-//        return results;
-//    }
-
     public ArrayList<Audio> sortAudiosBasedOnLikes() {
         Collections.sort(Database.allAudios, new Comparator<Audio>() {
             @Override
@@ -94,6 +87,11 @@ public class ListenerController extends UserAccountController {
                     return 0;
             }
         });
+        return Database.allAudios;
+    }
+
+    public ArrayList<Audio> sortAudios (){
+        Collections.sort(Database.allAudios);
         return Database.allAudios;
     }
 
@@ -219,9 +217,9 @@ public class ListenerController extends UserAccountController {
         return watchPlaylist;
     }
 
-    public StringBuilder suggestMusic(int n, Listener listener) {
-        StringBuilder musics = new StringBuilder();
-        int numberOfMusics = 0;
+    public ArrayList<Audio> suggestMusic(int n, Listener listener) {
+        ArrayList<Audio> suggestedAudios = new ArrayList<>();
+
 
         if (n > Database.allAudios.size()) {
             n = Database.allAudios.size();
@@ -230,15 +228,14 @@ public class ListenerController extends UserAccountController {
         for (Genre a : listener.getFavoriteGenre()) {
             for (Audio b : Database.allAudios) {
                 if (b.getGenre() == a) {
-                    musics.append(b + "\n");
-                    numberOfMusics++;
-                    if (numberOfMusics >= n)
+                    suggestedAudios.add(b);
+                    if (suggestedAudios.size() >= n)
                         break;
                 }
             }
         }
 
-        if (numberOfMusics < n) {
+        if (suggestedAudios.size() < n) {
             for (Artist a : listener.getFollowingArtists()) {
                 if (a instanceof Singer) {
                     for (Album b : ((Singer) a).getAllAlbums()) {
@@ -248,11 +245,10 @@ public class ListenerController extends UserAccountController {
                                 if (c.getGenre() == d)
                                     repeated = true;
                             }
-                            if (numberOfMusics >= n)
+                            if (suggestedAudios.size() >= n)
                                 break;
                             if (!repeated) {
-                                musics.append(c + "\n");
-                                numberOfMusics++;
+                                suggestedAudios.add(c);
                             }
                         }
                     }
@@ -263,12 +259,11 @@ public class ListenerController extends UserAccountController {
                             if (b.getGenre() == c)
                                 repeated = true;
                         }
-                        if (numberOfMusics >= n)
+                        if (suggestedAudios.size() >= n)
                             break;
                         if (!repeated) {
-                            musics.append(b + "\n");
-                            numberOfMusics++;
-                            if (numberOfMusics >= n)
+                            suggestedAudios.add(b);
+                            if (suggestedAudios.size() >= n)
                                 break;
 
                         }
@@ -277,7 +272,7 @@ public class ListenerController extends UserAccountController {
             }
         }
 
-        if (numberOfMusics < n) {
+        if (suggestedAudios.size() < n) {
             for (Audio a : Database.allAudios) {
                 boolean repeated = false;
                 for (Genre b : listener.getFavoriteGenre()) {
@@ -296,14 +291,13 @@ public class ListenerController extends UserAccountController {
                 }
 
                 if (!repeated) {
-                    musics.append(a + "\n");
-                    numberOfMusics++;
-                    if (numberOfMusics >= n)
+                    suggestedAudios.add(a);
+                    if (suggestedAudios.size() >= n)
                         break;
                 }
             }
         }
-        return musics;
+        return suggestedAudios;
     }
 
     public String watchAccountInformation(Listener listener) {

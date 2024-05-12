@@ -22,11 +22,17 @@ public class NecessaryMethods {
     }
 
     public static void backToLastPage (MouseEvent event){
-        Scene scene = HelloApplication.lastScenes.pop();
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle(HelloApplication.lastTitle);
-        stage.show();
+        if (!HelloApplication.lastScenes.isEmpty()) {
+            Scene scene = HelloApplication.lastScenes.pop();
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(HelloApplication.lastTitle);
+            stage.show();
+        }
+    }
+
+    public static void putStyleSheet (Scene scene){
+        scene.getStylesheets().add(HelloApplication.class.getResource("darkStyle.css").toExternalForm());
     }
 }

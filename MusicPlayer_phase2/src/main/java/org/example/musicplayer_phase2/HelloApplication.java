@@ -40,12 +40,14 @@ public class HelloApplication extends Application {
 
     public static final Admin admin = getAdmin("Fatemeh" , "fatemeh" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
     public static void main(String[] args) throws IOException {
-        Audio audio1 = new Music("first" , "" , "" , "" , "" , "" , "");
-        Audio audio2 = new Music("first" , "" , "" , "" , "" , "" , "");
-        Audio audio3 = new Music("first" , "" , "" , "" , "" , "" , "");
-        Audio audio4 = new Music("first" , "" , "" , "" , "" , "" , "");
-        Audio audio5 = new Music("first" , "" , "" , "" , "" , "" , "");
-        Audio audio6 = new Music("first" , "" , "" , "" , "" , "" , "");
+        Audio audio1 = new Music("first" , "" , "" , "POP" , "" , "" , "");
+        Audio audio2 = new Music("abc" , "" , "" , "POP" , "" , "" , "");
+        Audio audio3 = new Music("first" , "" , "" , "HIPHOP" , "" , "" , "");
+        Audio audio4 = new Music("mmm" , "" , "" , "COUNTRY" , "" , "" , "");
+        Audio audio5 = new Music("g" , "" , "" , "POP" , "" , "" , "");
+        Audio audio6 = new Music("eeee" , "" , "" , "ROCK" , "" , "" , "");
+        audio3.setLikesNum(100);
+        audio5.setLikesNum(500);
 
         Artist artist1 = new Artist("fatemeh" , "first" , "" , " " , "" , LocalDate.now() , "");
         Artist artist12 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
@@ -54,7 +56,6 @@ public class HelloApplication extends Application {
         Artist artist5 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
         Artist artist6 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
         Artist artist7 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
-
 
         launch();
     }

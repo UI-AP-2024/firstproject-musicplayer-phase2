@@ -1,5 +1,6 @@
 package org.example.musicplayer_phase2.View.SidebarItems;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -10,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.LoginView;
+import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.GeneralOperations;
@@ -68,22 +70,11 @@ public class SidebarMake implements GeneralOperations {
 
     public void homeActions (SidebarMake sidebarMake){
         sidebarMake.homeLabel.setOnMouseClicked(e -> {
-            if (UserAccountController.listener != null){
-                try{
-                    Home home = new Home();
-                    home.start(NecessaryMethods.getStage(e));
-                }catch (Exception exception){
-                    Alerts.errorAlert();
-                }
-            }
-
-            else{
-                try{
-                    HomeWithoutLogin homeWithoutLogin = new HomeWithoutLogin();
-                    homeWithoutLogin.start(NecessaryMethods.getStage(e));
-                }catch (Exception exception){
-                    Alerts.errorAlert();
-                }
+            try{
+                Home home = new Home();
+                home.start(NecessaryMethods.getStage(e));
+            }catch (Exception exception){
+                Alerts.errorAlert();
             }
 
         });
@@ -135,11 +126,19 @@ public class SidebarMake implements GeneralOperations {
 
     private void libraryAction (SidebarMake sidebarMake){
         sidebarMake.libraryLabel.setOnMouseClicked(e -> {
-            try {
-                backTo(e);
-                new Library().start(NecessaryMethods.getStage(e));
-            } catch (Exception ex) {
-                Alerts.errorAlert();
+            if (UserAccountController.listener == null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("invalid person");
+                alert.setContentText("for this part you have to login or signup");
+                alert.showAndWait();
+            }
+            else {
+                try {
+                    backTo(e);
+                    new ListenerPanel().start(NecessaryMethods.getStage(e));
+                } catch (Exception ex) {
+                    Alerts.errorAlert();
+                }
             }
         });
 
@@ -169,9 +168,11 @@ public class SidebarMake implements GeneralOperations {
         });
     }
 
+    //buttons.........................................
     private void loginAction(SidebarMake sidebarMake){
         sidebarMake.loginButton.setOnMouseClicked(e -> {
             backTo(e);
+            Logout.makeEverybodyNull();
             Stage stage = NecessaryMethods.getStage(e);
             login(stage);
         });
@@ -180,6 +181,7 @@ public class SidebarMake implements GeneralOperations {
     private void signupAction(SidebarMake sidebarMake){
         sidebarMake.signupButton.setOnMouseClicked(e -> {
             backTo(e);
+            Logout.makeEverybodyNull();
             Stage stage = NecessaryMethods.getStage(e);
             signup(stage);
         });

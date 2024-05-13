@@ -28,7 +28,7 @@ public class FavoriteGenres extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("favoriteGenres.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 450);
-        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
+        NecessaryMethods.putStyleSheet(scene);
         stage.setScene(scene);
         stage.setTitle("favorite genre page");
         stage.show();

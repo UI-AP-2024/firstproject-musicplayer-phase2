@@ -3,6 +3,7 @@ package org.example.musicplayer_phase2.View;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -10,9 +11,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
 import org.example.musicplayer_phase2.View.SidebarItems.*;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.UserAccountController;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class Start extends Application {
 
@@ -80,10 +86,16 @@ public class Start extends Application {
 
     @FXML
     void libraryClicked(MouseEvent event) {
-        try {
-            new Library().start(NecessaryMethods.getStage(event));
-        } catch (Exception e) {
-            Alerts.errorAlert();
+        if (UserAccountController.listener == null){
+            Alerts.nullListener();
+        }
+        else {
+            try {
+                NecessaryMethods.saveLastScene(event);
+                new ListenerPanel().start(NecessaryMethods.getStage(event));
+            } catch (Exception ex) {
+                Alerts.errorAlert();
+            }
         }
     }
 
@@ -199,7 +211,6 @@ public class Start extends Application {
     void loginExited(MouseEvent event) {
         loginButton.setTextFill(Color.WHITE);
     }
-
 
     //............................................................
 }

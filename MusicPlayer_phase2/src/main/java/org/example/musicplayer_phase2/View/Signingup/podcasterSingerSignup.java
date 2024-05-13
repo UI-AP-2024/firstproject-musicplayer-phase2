@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
+import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 
@@ -37,9 +38,7 @@ public class podcasterSingerSignup extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("podcasterSingerSignup.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-
-        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
-
+        NecessaryMethods.putStyleSheet(scene);
         stage.setScene(scene);
         stage.setTitle("signup page");
         stage.show();
@@ -95,21 +94,22 @@ public class podcasterSingerSignup extends Application {
         LocalDate birthday = birthdayDateicker.getValue();
         String biography = biographyTextField.getText();
 
-        try{
-            checkNumber(number);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("wrong number");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
 
         try{
             checkUsername(username);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("repeated username");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            return;
+        }
+
+        try{
+            checkPassword(password);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("easy password");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
             return;
@@ -126,15 +126,14 @@ public class podcasterSingerSignup extends Application {
         }
 
         try{
-            checkPassword(password);
+            checkNumber(number);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("easy password");
+            alert.setTitle("wrong number");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
             return;
         }
-
 
         if (name != null && username != null && password != null && email != null && number != null && birthday != null && biography != null){
             ArtistController artistController = new ArtistController();

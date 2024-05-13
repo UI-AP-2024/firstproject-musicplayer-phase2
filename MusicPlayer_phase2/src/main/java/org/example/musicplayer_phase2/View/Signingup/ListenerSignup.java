@@ -31,7 +31,7 @@ public class ListenerSignup extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerSignup.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-        scene.getStylesheets().add(HelloApplication.class.getResource("myCss.css").toExternalForm());
+        NecessaryMethods.putStyleSheet(scene);
         stage.setScene(scene);
         stage.setTitle("signup page");
         stage.show();
@@ -74,22 +74,21 @@ public class ListenerSignup extends Application {
         String email = emailTextField.getText();
         String number = numberTextField.getText();
         LocalDate birthday = birthdayDateicker.getValue();
-
         try{
-            checkNumber(number);
+            checkUsername(username);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("wrong number");
+            alert.setTitle("repeated username");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
             return;
         }
 
         try{
-            checkUsername(username);
+            checkPassword(password);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("repeated username");
+            alert.setTitle("easy password");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
             return;
@@ -106,10 +105,10 @@ public class ListenerSignup extends Application {
         }
 
         try{
-            checkPassword(password);
+            checkNumber(number);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("easy password");
+            alert.setTitle("wrong number");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
             return;

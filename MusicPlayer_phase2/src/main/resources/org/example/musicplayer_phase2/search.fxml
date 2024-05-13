@@ -16,6 +16,6 @@
       </TextField>
       <Button fx:id="searchButton" layoutX="242.0" layoutY="77.0" mnemonicParsing="false" onMouseClicked="#searchClicked" prefHeight="40.0" prefWidth="116.0" text="Search" />
       <ScrollPane fx:id="resultScrollPane" layoutX="80.0" layoutY="123.0" prefHeight="181.0" prefWidth="440.0" />
-      <VBox fx:id="sidebarVBox" layoutX="18.0" layoutY="304.0" prefHeight="70.0" prefWidth="565.0" spacing="10.0" />
+      <VBox fx:id="sidebarVBox" layoutX="20.0" layoutY="300.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
    </children>
 </AnchorPane>

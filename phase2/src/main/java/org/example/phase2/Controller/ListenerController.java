@@ -1,5 +1,7 @@
 package org.example.phase2.Controller;
 
+import org.example.phase2.Exceptions.FreeAccountLimitException;
+import org.example.phase2.Exceptions.NotEnoughMoney;
 import org.example.phase2.Model.Audios.*;
 import org.example.phase2.Model.Users.*;
 import org.example.phase2.Model.Database.*;
@@ -24,6 +26,9 @@ public class ListenerController{
             listenerController=new ListenerController();
         }
         return listenerController;
+    }
+    public void logout(){
+        listener=null;
     }
     public void findListener(String username)
     {
@@ -53,8 +58,7 @@ public class ListenerController{
             }
         }
     }
-    public String addMusicToPlaylist(String playlistName,String audioId2)
-    {
+    public String addMusicToPlaylist(String playlistName,String audioId2) throws FreeAccountLimitException {
         long audioId=Long.parseLong(audioId2);
         ArrayList<Audio> audios = Database.getDatabase().getAudios();
         Audio selectedAudio = null;
@@ -91,7 +95,8 @@ public class ListenerController{
                         count++;
                         return "Audio is added to the playlist successfully.";
                     }
-                    return "To add music to the playlist make your account Premium and try again.";
+                    throw new FreeAccountLimitException();
+                    //`return "To add music to the playlist make your account Premium and try again.";
                 }
             }
             if(count==0){
@@ -107,8 +112,7 @@ public class ListenerController{
         }
         return "There was a problem in creating or finding the playlist. Please try again.";
     }
-    public String createPlaylist(String playlistName)
-    {
+    public String createPlaylist(String playlistName) throws FreeAccountLimitException {
         if(listener instanceof PremiumListener)
         {
             Playlist newPlaylist = new Playlist(playlistName, listener.getFirstAndLastName());
@@ -124,7 +128,8 @@ public class ListenerController{
                 listener.getPlaylists().add(newPlaylist);
                 return "New playlist is created successfully.";
             }
-            return "To create a new playlist make your account Premium and try again.";
+            throw new FreeAccountLimitException();
+            //return "To create a new playlist make your account Premium and try again.";
         }
         return "There was a problem in creating or finding the playlist. Please try again.";
     }
@@ -656,7 +661,7 @@ public class ListenerController{
         listener.setCredit(listener.getCredit()+value);
         return "Your credit increased successfully.";
     }
-    public String getPremium(String pickedPackage) throws ParseException {
+    public String getPremium(String pickedPackage) throws ParseException, NotEnoughMoney {
         PremiumTypes pickedType=PremiumTypes.valueOf(pickedPackage);
         ArrayList<UserAccount> users = Database.getDatabase().getUsers();
         if(pickedType.getPrice()<=listener.getCredit())
@@ -665,7 +670,8 @@ public class ListenerController{
         }
         else
         {
-            return "Your credit is not enough.";
+            throw new NotEnoughMoney();
+            //return "Your credit is not enough.";
         }
         if(listener instanceof FreeListener) {
 //            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);

@@ -18,7 +18,7 @@ public class Listener extends UserAccount{
     private ArrayList<Audio> likedAudios;
     private ArrayList<Artist> followings;
     private ArrayList<Audio> playedAudios;
-    public Listener(String username, String password, String firstAndLastName, String emailAddress, String phoneNumber, Date birthDate) throws ParseException {
+    public Listener(String username, String password, String firstAndLastName, String emailAddress, String phoneNumber, Date birthDate)  {
         super(username, password, firstAndLastName, emailAddress, phoneNumber, birthDate);
         numberOfPlayingEachAudio=new HashMap<>();
         interestedGenres=new ArrayList<Genre>();

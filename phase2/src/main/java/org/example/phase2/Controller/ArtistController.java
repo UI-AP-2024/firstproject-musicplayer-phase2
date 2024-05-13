@@ -20,6 +20,9 @@ public class ArtistController{
         }
         return artistController;
     }
+    public void logout(){
+        artist=null;
+    }
     public void findArtist(String username)
     {
         ArrayList<UserAccount> users= Database.getDatabase().getUsers();

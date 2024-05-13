@@ -1,5 +1,6 @@
 package org.example.phase2.Controller;
 
+import org.example.phase2.Exceptions.*;
 import org.example.phase2.Model.Audios.*;
 import org.example.phase2.Model.Users.*;
 import org.example.phase2.Model.Database.*;
@@ -26,7 +27,7 @@ public class UserController {
         return userController;
     }
 
-    public int registerUser(String userType,String username,String password,String firstAndLastname,String emailAddress,String phoneNumber,String birthDate) throws ParseException {
+    public int registerUser(String userType,String username,String password,String firstAndLastname,String emailAddress,String phoneNumber,String birthDate) throws ParseException, InvalidFormatException, EasyPassword, UsernameExist {
         ArrayList<UserAccount> users = Database.getDatabase().getUsers();
         if(!users.contains(Admin.getAdmin()))
         {
@@ -36,24 +37,32 @@ public class UserController {
         {
             if(Objects.equals(user.getUsername(), username))
             {
-                return -1;
+                //return -1;
+                throw new UsernameExist();
             }
         }
         String emailRegex="(\\w|[0-9]){1,25}@(gmail|yahoo|email).com";
         Pattern pattern1=Pattern.compile(emailRegex);
         Matcher matcher1=pattern1.matcher(emailAddress);
-        if(!matcher1.matches())
-            return -2;
+        if(!matcher1.matches()) {
+            //return -2;
+            throw new InvalidFormatException();
+        }
         String phoneNumberRegex="^09[01239][0-9]{8}";
         Pattern pattern2=Pattern.compile(phoneNumberRegex);
         Matcher matcher2=pattern2.matcher(phoneNumber);
-        if(!matcher2.matches())
-            return-3;
+        if(!matcher2.matches()) {
+            //return -3;
+            throw new InvalidFormatException();
+        }
         String passwordRegex="(?=.*[#@&*!])(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]){1}.{8,}";
         Pattern pattern3=Pattern.compile(passwordRegex);
         Matcher matcher3=pattern3.matcher(password);
         if(!matcher3.matches())
-            return -4;
+        {
+            //return -4;
+            throw new EasyPassword();
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date birthDate2=sdf.parse(birthDate);
         FreeListener newListener=new FreeListener(username,password,firstAndLastname,emailAddress,phoneNumber,birthDate2);
@@ -61,7 +70,7 @@ public class UserController {
         newListener.setCredit(newListener.getCredit()+50);
         return 1;
     }
-    public int registerUser(String userType,String username,String password,String firstAndLastname,String emailAddress,String phoneNumber,String birthDate,String biography) throws ParseException {
+    public int registerUser(String userType,String username,String password,String firstAndLastname,String emailAddress,String phoneNumber,String birthDate,String biography) throws ParseException, InvalidFormatException, EasyPassword, UsernameExist {
         ArrayList<UserAccount> users= Database.getDatabase().getUsers();
         if(!users.contains(Admin.getAdmin()))
         {
@@ -71,24 +80,32 @@ public class UserController {
         {
             if(Objects.equals(user.getUsername(), username))
             {
-                return -1;
+                //return -1;
+                throw new UsernameExist();
             }
         }
         String emailRegex="(\\w|[0-9]){1,25}@(gmail|yahoo|email).com";
         Pattern pattern1=Pattern.compile(emailRegex);
         Matcher matcher1=pattern1.matcher(emailAddress);
-        if(!matcher1.matches())
-            return -2;
+        if(!matcher1.matches()) {
+            //return -2;
+            throw new InvalidFormatException();
+        }
         String phoneNumberRegex="^09[01239][0-9]{8}";
         Pattern pattern2=Pattern.compile(phoneNumberRegex);
         Matcher matcher2=pattern2.matcher(phoneNumber);
-        if(!matcher2.matches())
-            return-3;
+        if(!matcher2.matches()) {
+            //return -3;
+            throw new InvalidFormatException();
+        }
         String passwordRegex="(?=.*[#@&*!])(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z]){1}.{8,}";
         Pattern pattern3=Pattern.compile(passwordRegex);
         Matcher matcher3=pattern3.matcher(password);
         if(!matcher3.matches())
-            return -4;
+        {
+            //return -4;
+            throw new EasyPassword();
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date birthDate2=sdf.parse(birthDate);
         if(Objects.equals(userType, "S"))
@@ -131,8 +148,9 @@ public class UserController {
             return "You are registered successfully.";
         return "Invalid check number";
     }
-    public int loginUser(String username,String password)
-    {
+    public int loginUser(String username,String password) throws UserNotFoundException, WrongPasswordException {
+        boolean usernameFound=false;
+        boolean passwordFound=false;
         ArrayList<UserAccount> users = Database.getDatabase().getUsers();
         if(!users.contains(Admin.getAdmin()))
         {
@@ -158,6 +176,18 @@ public class UserController {
                     return 3;
                 }
             }
+            if(Objects.equals(username, user.getUsername())){
+                usernameFound=true;
+            }
+            if(Objects.equals(password, user.getPassword())){
+                passwordFound=true;
+            }
+        }
+        if(!usernameFound){
+            throw new UserNotFoundException();
+        }
+        if(!passwordFound){
+            throw new WrongPasswordException();
         }
         return -1;
     }

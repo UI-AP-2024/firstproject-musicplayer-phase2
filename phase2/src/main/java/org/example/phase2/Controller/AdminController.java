@@ -26,6 +26,9 @@ public class AdminController{
     {
         admin=Admin.getAdmin();
     }
+    public void logout(){
+        admin=null;
+    }
     public String showPopularAudios()
     {
         Audio temp;

@@ -21,9 +21,19 @@
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
-
-
 /*.................................................. */
+
+.myLabel {
+    -fx-display: inline-block;
+    -fx-border-width: 0px;
+    /*-fx-border-style: solid;*/
+    /*-fx-border-color: rgba(232, 167, 202, 0.78);*/
+    /*-fx-padding: 5px;*/
+    -fx-margin: 5px;
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.87);
+}
+/*....................................................*/
 
 .label {
     -fx-display: inline-block;
@@ -35,7 +45,9 @@
     -fx-text-fill: white;
     -fx-background-color: rgba(0, 0, 0, 0.87);
 }
-/*....................................................*/
+
+
+/*...................................................*/
 .root {
     -fx-background-color: rgba(0, 0, 0, 0.94);
     -fx-text-fill: white;

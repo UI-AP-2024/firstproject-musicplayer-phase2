@@ -127,10 +127,7 @@ public class SidebarMake implements GeneralOperations {
     private void libraryAction (SidebarMake sidebarMake){
         sidebarMake.libraryLabel.setOnMouseClicked(e -> {
             if (UserAccountController.listener == null){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("invalid person");
-                alert.setContentText("for this part you have to login or signup");
-                alert.showAndWait();
+                Alerts.nullListener();
             }
             else {
                 try {

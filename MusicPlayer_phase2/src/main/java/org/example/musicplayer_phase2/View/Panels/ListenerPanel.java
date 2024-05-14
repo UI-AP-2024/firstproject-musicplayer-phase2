@@ -5,18 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
+import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.PremiumController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
@@ -58,6 +57,50 @@ public class ListenerPanel extends Application implements Initializable {
     private TextField subscriptionTextField;
     @FXML
     private TextField creditTextfield;
+    @FXML
+    private Label buyLabel;
+    @FXML
+    private Label makePlaylistLabel;
+    @FXML
+    private TextField newPlaylistTextField;
+
+    @FXML
+    void buyClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void buyEnter(MouseEvent event) {
+
+    }
+
+    @FXML
+    void buyExit(MouseEvent event) {
+
+    }
+
+    @FXML
+    void makePlaylistLabelClicked(MouseEvent event) {
+        if (newPlaylistTextField != null){
+            try {
+                new ListenerController().makePlaylist(newPlaylistTextField.getText() , UserAccountController.listener);
+                new ListenerPanel().start(NecessaryMethods.getStage(event));
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    void makePlaylistLabelEnter(MouseEvent event) {
+        makePlaylistLabel.setTextFill(Color.BLUE);
+    }
+
+    @FXML
+    void makePlaylistLabelExit(MouseEvent event) {
+        makePlaylistLabel.setTextFill(Color.WHITE);
+    }
 
 
     @Override

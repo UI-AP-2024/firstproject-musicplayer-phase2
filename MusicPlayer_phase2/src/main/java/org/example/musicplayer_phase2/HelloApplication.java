@@ -8,11 +8,18 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.SidebarItems.AllArtists;
 import org.example.musicplayer_phase2.View.SidebarItems.Audios;
+import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
 import org.example.musicplayer_phase2.View.Start;
+import org.example.musicplayer_phase2.controller.AboutLIstener.FreeController;
+import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
+import org.example.musicplayer_phase2.controller.AboutLIstener.PremiumController;
 import org.example.musicplayer_phase2.model.AboutHumans.Admin;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
+import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;
+import org.example.musicplayer_phase2.model.Exceptions.FreeAccountLimitException;
+import org.example.musicplayer_phase2.model.Types.Free;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,7 +46,7 @@ public class HelloApplication extends Application {
     }
 
     public static final Admin admin = getAdmin("Fatemeh" , "fatemeh" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         Audio audio1 = new Music("first" , "" , "" , "POP" , "" , "" , "");
         Audio audio2 = new Music("abc" , "" , "" , "POP" , "" , "" , "");
         Audio audio3 = new Music("first" , "" , "" , "HIPHOP" , "" , "" , "");
@@ -51,11 +58,15 @@ public class HelloApplication extends Application {
 
         Artist artist1 = new Artist("fatemeh" , "first" , "" , " " , "" , LocalDate.now() , "");
         Artist artist12 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
-        Artist artist3 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
-        Artist artist4 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
-        Artist artist5 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
-        Artist artist6 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
-        Artist artist7 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
+
+        Free listener = new Free("" , "fff" , "123" , "" , "" , LocalDate.now());
+        PremiumController listenerController = new PremiumController();
+        listenerController.makePlaylist("1" , listener);
+        listenerController.makePlaylist("2" , listener);
+        listenerController.makePlaylist("3" , listener);
+
+        listenerController.followingArtist("ftm" , listener);
+        listenerController.followingArtist("first" , listener);
 
         launch();
     }

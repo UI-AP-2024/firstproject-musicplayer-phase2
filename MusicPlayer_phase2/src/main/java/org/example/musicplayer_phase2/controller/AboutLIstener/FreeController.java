@@ -15,19 +15,17 @@ import java.util.Date;
 
 public class FreeController extends ListenerController {
     Playlist playlist;
-    @Override
-    public String makePlaylist(String name , Listener listener) throws FreeAccountLimitException {
+    public void makeFreePlaylist(String name , Listener listener) throws Exception {
         for (Playlist a : listener.getAllPlaylists())
         {
             if (a.getPlaylistName().equals(name))
-                return "playlist's name is repeated";
+                throw new Exception("playlist's name is repeated");
         }
         if (listener.getAllPlaylists().size() == 3)
             throw new FreeAccountLimitException("You have already 3 playlists for more playlist buy premium version. ");
         else {
             playlist = new Playlist(name, listener.getName());
             listener.setOnePlaylists(playlist);
-            return "Playlist add successfully. ";
         }
     }
     @Override

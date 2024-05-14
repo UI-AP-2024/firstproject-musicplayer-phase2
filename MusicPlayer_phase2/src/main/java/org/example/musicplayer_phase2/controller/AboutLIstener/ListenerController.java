@@ -67,8 +67,13 @@ public class ListenerController extends UserAccountController {
         }
     }
 
-    public String makePlaylist(String playlistName, Listener listener) throws FreeAccountLimitException {
-        return "";
+    public void makePlaylist(String playlistName, Listener listener) throws Exception {
+        if (listener instanceof Free){
+            new FreeController().makeFreePlaylist(playlistName , listener);
+        }
+        else if (listener instanceof Premium) {
+            new PremiumController().makePremiumPlaylist(playlistName , listener);
+        }
     }
 
     public String addMusicToPlaylist(Playlist playlist, Audio audio, Listener listener) throws FreeAccountLimitException {

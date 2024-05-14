@@ -25,11 +25,11 @@
             <TextField fx:id="subscriptionTextField" />
             <VBox prefHeight="50.0" prefWidth="100.0" spacing="10.0">
                <children>
-                  <TextField promptText="new playlist'sname" />
-                  <Label text="make play list" />
+                  <TextField fx:id="newPlaylistTextField" promptText="new playlist'sname" />
+                  <Label fx:id="makePlaylistLabel" onMouseClicked="#makePlaylistLabelClicked" onMouseEntered="#makePlaylistLabelEnter" onMouseExited="#makePlaylistLabelExit" text="make play list" />
                </children>
             </VBox>
-            <Label prefHeight="25.0" prefWidth="170.0" text="buy subscription" />
+            <Label fx:id="buyLabel" onMouseClicked="#buyClicked" onMouseEntered="#buyEnter" onMouseExited="#buyExit" prefHeight="25.0" prefWidth="170.0" text="buy subscription" />
          </children>
       </VBox>
       <Label layoutX="225.0" layoutY="14.0" prefWidth="170.0" text="your followings:">

@@ -13,12 +13,12 @@ import java.util.Date;
 
 public class PremiumController extends ListenerController {
     Playlist playlist;
-    @Override
-    public String makePlaylist(String name , Listener listener) {
+
+    public String makePremiumPlaylist(String name , Listener listener) throws Exception {
         for (Playlist a : listener.getAllPlaylists())
         {
             if (a.getPlaylistName().equals(name))
-                return "playlist's name is repeated";
+                throw new Exception("playlist's name is repeated");
         }
         playlist = new Playlist(name, listener.getName());
         listener.setOnePlaylists(playlist);

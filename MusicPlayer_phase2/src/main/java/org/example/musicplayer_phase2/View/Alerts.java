@@ -18,4 +18,11 @@ public class Alerts {
 //        alert.setContentText("have a good day");
 ////        alert.showAndWait();
 //    }
+
+    public static void nullListener(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("invalid person");
+        alert.setContentText("for this part you have to login or signup");
+        alert.showAndWait();
+    }
 }

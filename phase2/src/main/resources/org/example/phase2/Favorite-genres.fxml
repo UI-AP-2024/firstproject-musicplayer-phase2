@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="initialAnchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.favoriteGenresController">
+   <children>
+      <HBox fx:id="hbox" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <VBox fx:id="vbox" prefHeight="400.0" prefWidth="525.0">
+               <children>
+                  <AnchorPane fx:id="secondaryAnchor" prefHeight="280.0" prefWidth="525.0">
+                     <children>
+                        <Label fx:id="genreLabel" alignment="CENTER" layoutX="-1.0" prefHeight="49.0" prefWidth="138.0" text="Genres: ">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="rockCheck" layoutX="39.0" layoutY="111.0" mnemonicParsing="false" onAction="#rockAction" text="Rock" />
+                        <CheckBox fx:id="popCheck" layoutX="41.0" layoutY="66.0" mnemonicParsing="false" onAction="#popAction" text="Pop" />
+                        <CheckBox fx:id="hipHopCheck" layoutX="176.0" layoutY="111.0" mnemonicParsing="false" onAction="#hipHopAction" text="HipHop" />
+                        <CheckBox fx:id="countryCheck" layoutX="176.0" layoutY="66.0" mnemonicParsing="false" onAction="#countryAction" text="Country" />
+                        <CheckBox fx:id="trueCrimeCheck" layoutX="320.0" layoutY="59.0" mnemonicParsing="false" onAction="#trueCrimeAction" prefHeight="30.0" prefWidth="81.0" text="True Crime" />
+                        <CheckBox fx:id="societyCheck" layoutX="320.0" layoutY="111.0" mnemonicParsing="false" onAction="#societyAction" text="Sosiety" />
+                        <CheckBox fx:id="interviewCheck" layoutX="176.0" layoutY="164.0" mnemonicParsing="false" onAction="#interviewAction" text="Interview" />
+                        <CheckBox fx:id="historyCheck" layoutX="41.0" layoutY="164.0" mnemonicParsing="false" onAction="#historyAction" text="History" />
+                        <Label fx:id="noticeLabel" layoutX="41.0" layoutY="221.0" prefHeight="30.0" prefWidth="294.0" text="*You can only choose 4 genres." textFill="#e70e0e">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

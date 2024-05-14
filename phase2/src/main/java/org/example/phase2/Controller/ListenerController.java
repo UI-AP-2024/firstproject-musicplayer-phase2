@@ -1,6 +1,7 @@
 package org.example.phase2.Controller;
 
 import org.example.phase2.Exceptions.FreeAccountLimitException;
+import org.example.phase2.Exceptions.InterestedGenreLimit;
 import org.example.phase2.Exceptions.NotEnoughMoney;
 import org.example.phase2.Model.Audios.*;
 import org.example.phase2.Model.Users.*;
@@ -46,8 +47,7 @@ public class ListenerController{
         this.listener=listener;
     }
 
-    public void chooseFavouriteGenres(String interestedGenres)
-    {
+    public void chooseFavouriteGenres(String interestedGenres) throws InterestedGenreLimit {
         String[] genres=interestedGenres.split(",");
         for(String genre : genres)
         {
@@ -55,6 +55,9 @@ public class ListenerController{
             {
                 listener.getInterestedGenres().add(Genre.valueOf(genre));
                 listener.setNumberOfInterestedGenres(listener.getNumberOfInterestedGenres() + 1);
+            }
+            else{
+                throw new InterestedGenreLimit();
             }
         }
     }

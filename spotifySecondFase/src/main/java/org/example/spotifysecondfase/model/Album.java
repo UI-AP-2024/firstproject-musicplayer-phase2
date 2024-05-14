@@ -1,6 +1,6 @@
 package org.example.spotifysecondfase.model;
 
-import model.Audio.Music;
+import org.example.spotifysecondfase.model.Audio.Music;
 
 import java.util.ArrayList;
 

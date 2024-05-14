@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.PremiumController;
@@ -66,17 +67,22 @@ public class ListenerPanel extends Application implements Initializable {
 
     @FXML
     void buyClicked(MouseEvent event) {
-
+        NecessaryMethods.saveLastScene(event);
+        try {
+            new BuySubscription().start(NecessaryMethods.getStage(event));
+        } catch (Exception e) {
+            Alerts.errorAlert();
+        }
     }
 
     @FXML
     void buyEnter(MouseEvent event) {
-
+        buyLabel.setTextFill(Color.BLUE);
     }
 
     @FXML
     void buyExit(MouseEvent event) {
-
+        buyLabel.setTextFill(Color.WHITE);
     }
 
     @FXML
@@ -88,6 +94,7 @@ public class ListenerPanel extends Application implements Initializable {
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
         }
     }

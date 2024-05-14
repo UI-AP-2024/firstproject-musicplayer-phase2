@@ -134,7 +134,8 @@ public class SidebarMake implements GeneralOperations {
                     backTo(e);
                     new ListenerPanel().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
-                    Alerts.errorAlert();
+//                    Alerts.errorAlert();
+                    ex.printStackTrace();
                 }
             }
         });

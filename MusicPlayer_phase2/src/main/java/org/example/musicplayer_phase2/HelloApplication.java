@@ -20,6 +20,7 @@ import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;
 import org.example.musicplayer_phase2.model.Exceptions.FreeAccountLimitException;
 import org.example.musicplayer_phase2.model.Types.Free;
+import org.example.musicplayer_phase2.model.Types.Premium;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,11 +60,9 @@ public class HelloApplication extends Application {
         Artist artist1 = new Artist("fatemeh" , "first" , "" , " " , "" , LocalDate.now() , "");
         Artist artist12 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
 
-        Free listener = new Free("" , "fff" , "123" , "" , "" , LocalDate.now());
-        PremiumController listenerController = new PremiumController();
-        listenerController.makePlaylist("1" , listener);
-        listenerController.makePlaylist("2" , listener);
-        listenerController.makePlaylist("3" , listener);
+        Premium listener = new Premium("" , "fff" , "123" , "" , "" , LocalDate.now());
+//        Free listener = new Free("" , "fff" , "123" , "" , "" , LocalDate.now());
+        ListenerController listenerController = new ListenerController();
 
         listenerController.followingArtist("ftm" , listener);
         listenerController.followingArtist("first" , listener);

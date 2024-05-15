@@ -8,10 +8,7 @@ import org.example.spotifysecondfase.model.UserAccount.Listener.Free;
 import org.example.spotifysecondfase.model.UserAccount.Listener.Listener;
 import org.example.spotifysecondfase.model.UserAccount.UserAccount;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -215,39 +212,62 @@ public abstract class ListenerController extends UserAccountController
     }
     public void ordering(String str)
     {
-        if (str.equals("like"))
-        {
-            int j;
+//        if (str.equals("like"))
+//        {
            for (int i=0; i<Database.getDatabase().getAudio().size()-1; i++)
            {
-               for (j=1; j<Database.getDatabase().getAudio().size(); j++)
+               for (int j=0; j<Database.getDatabase().getAudio().size()-1; j++)
                {
-                   if(Database.getDatabase().getAudio().get(i).getLikesCount() < Database.getDatabase().getAudio().get(j).getLikesCount())
+                   if(Database.getDatabase().getAudio().get(j).getLikesCount() < Database.getDatabase().getAudio().get(j+1).getLikesCount())
                    {
-                       Audio temp = Database.getDatabase().getAudio().get(i);
-                       Database.getDatabase().getAudio().set(i,Database.getDatabase().getAudio().get(j));
-                       Database.getDatabase().getAudio().set(j,temp);
+                       Audio temp = Database.getDatabase().getAudio().get(j);
+                       Database.getDatabase().getAudio().set(j,Database.getDatabase().getAudio().get(j+1));
+                       Database.getDatabase().getAudio().set(j+1,temp);
                    }
                }
-               j = 1;
            }
-        }
-        if (str.equals("play"))
+//        }
+//        if (str.equals("play"))
+//        {
+//            int j;
+//            for (int i=0; i<Database.getDatabase().getAudio().size()-1; i++)
+//            {
+//                for (j=1; j<Database.getDatabase().getAudio().size(); j++)
+//                {
+//                    if(Database.getDatabase().getAudio().get(i).getPlaysCount() < Database.getDatabase().getAudio().get(j).getPlaysCount())
+//                    {
+//                        Audio temp = Database.getDatabase().getAudio().get(i);
+//                        Database.getDatabase().getAudio().set(i,Database.getDatabase().getAudio().get(j));
+//                        Database.getDatabase().getAudio().set(j,temp);
+//                    }
+//                }
+//                j = 1;
+//            }
+//        }
+    }
+    public String filter(String filteringMethod,Object obj)
+    {
+        ArrayList<Audio> audios = new ArrayList<>();
+        if (Objects.equals(filteringMethod,"artist"))
         {
-            int j;
-            for (int i=0; i<Database.getDatabase().getAudio().size()-1; i++)
+            for (Audio a : Database.getDatabase().getAudio())
             {
-                for (j=1; j<Database.getDatabase().getAudio().size(); j++)
+                if (a.getArtistName().equals(obj))
                 {
-                    if(Database.getDatabase().getAudio().get(i).getPlaysCount() < Database.getDatabase().getAudio().get(j).getPlaysCount())
-                    {
-                        Audio temp = Database.getDatabase().getAudio().get(i);
-                        Database.getDatabase().getAudio().set(i,Database.getDatabase().getAudio().get(j));
-                        Database.getDatabase().getAudio().set(j,temp);
-                    }
+                    audios.add(a);
                 }
-                j = 1;
             }
         }
+        else if (Objects.equals(filteringMethod,"genre"))
+        {
+            for (Audio a : Database.getDatabase().getAudio())
+            {
+                if (a.getGenre().name().equals(obj))
+                {
+                    audios.add(a);
+                }
+            }
+        }
+        return String.valueOf(audios);
     }
 }

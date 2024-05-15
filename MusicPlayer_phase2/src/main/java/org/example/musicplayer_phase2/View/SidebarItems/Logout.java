@@ -34,5 +34,8 @@ public class Logout extends Application {
         } catch (IOException e) {
             Alerts.errorAlert();
         }
+        finally {
+            Alerts.goodDayAlert();
+        }
     }
 }

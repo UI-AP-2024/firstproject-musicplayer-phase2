@@ -21,6 +21,7 @@ public class Listener extends UserAccount {
     private ArrayList<Artist> followingArtists = new ArrayList<>();
     private ArrayList<Audio> likedAudios = new ArrayList<>();
     private Map<Audio , Integer> filesNumber = new HashMap<>();
+    private int remainDays = 0;
     //GETTERS.....................................................
     public double getCredit() {
         return credit;
@@ -28,6 +29,9 @@ public class Listener extends UserAccount {
 
     public LocalDate getEndSubscription() {
         return endSubscription;
+    }
+    public int getRemainDays() {
+        return remainDays;
     }
 
     public StringBuilder getAllPlaylistsName() {
@@ -120,5 +124,9 @@ public class Listener extends UserAccount {
 
     public void setEndSubscription(LocalDate endSubscription) {
         this.endSubscription = endSubscription;
+    }
+
+    public void setRemainDays(int remainDays) {
+        this.remainDays = remainDays;
     }
 }

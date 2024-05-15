@@ -14,24 +14,18 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class ListenerController extends UserAccountController {
-    public Listener listener;
-    public static Free freeListener;
-    public static Premium premiumListener;
-    Report report;
-
     public static Listener listenerLogin(String username , String password){
         Listener listener1 = null;
         for (Listener a : Database.allListener){
             if (a.getUsername().equals(username) && a.getPassword().equals(password)){
-                listener1 = new PremiumController().checkIfFinish(a);
+                listener1 = a;
+                break;
             }
         }
-        return listener1;
+        return new PremiumController().checkIfFinish(listener1);
     }
 
     public void signup(Free listener) {
-        this.listener = listener;
-        freeListener = listener;
         listener.setCredit(50);
     }
 
@@ -152,7 +146,7 @@ public class ListenerController extends UserAccountController {
     }
 
     public void reporting(UserAccount reporterPerson, UserAccount reportedArtist, String explanation) {
-        report = new Report(reporterPerson, reportedArtist, explanation);
+        new Report(reporterPerson, reportedArtist, explanation);
     }
 
     public String followingArtist(String username, Listener listener) {
@@ -318,13 +312,17 @@ public class ListenerController extends UserAccountController {
         listener.setCredit(listener.getCredit() + money);
     }
 
-    public void buySubscription(PremiumType type, Listener listener) throws NotEnoughCredit {
+    public Listener buySubscription(PremiumType type, Listener listener) throws NotEnoughCredit {
         if(listener instanceof Premium){
             new PremiumController().buySubscriptionPremium(type , listener);
+            UserAccountController.listener = listener;
+            return listener;
         }
 
         else{
-            new FreeController().buySubscriptionFree(type , listener);
+            Listener listener1 = new FreeController().buySubscriptionFree(type , listener);
+            UserAccountController.listener = listener1;
+            return listener1;
         }
     }
 }

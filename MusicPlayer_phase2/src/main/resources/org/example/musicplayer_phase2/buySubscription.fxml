@@ -14,8 +14,8 @@
       <Button fx:id="increaseButton" layoutX="326.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#increaseClicked" text="increase" />
       <SplitMenuButton fx:id="premiumType" layoutX="50.0" layoutY="73.0" mnemonicParsing="false" prefWidth="250.0" text="premium types">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#click30" text="30 days" />
-          <MenuItem mnemonicParsing="false" onAction="#click60" text="60 days" />
+          <MenuItem mnemonicParsing="false" onAction="#click30" text="30 days  " />
+          <MenuItem mnemonicParsing="false" onAction="#click60" text="60 days  " />
             <MenuItem mnemonicParsing="false" onAction="#click180" text="180 days" />
         </items>
       </SplitMenuButton>

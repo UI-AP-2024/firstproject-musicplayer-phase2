@@ -12,12 +12,12 @@ public class Alerts {
         alert.showAndWait();
     }
 
-//    public static void goodDayAlert (){
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("");
-//        alert.setContentText("have a good day");
-////        alert.showAndWait();
-//    }
+    public static void goodDayAlert (){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("");
+        alert.setContentText("have a good day");
+        alert.showAndWait();
+    }
 
     public static void nullListener(){
         Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -40,10 +40,11 @@ public class PremiumController extends ListenerController {
         return "Music added successfully";
     }
     public void buySubscriptionPremium (PremiumType type , Listener listener) throws NotEnoughCredit {
-        if (premiumListener.getCredit() >= type.price)
+        if (listener.getCredit() >= type.price)
         {
-            premiumListener.setRemainDays(premiumListener.getRemainDays() + type.value);
-            listener.setEndSubscription(LocalDate.now().plusDays(premiumListener.getRemainDays()));
+            listener.setRemainDays(listener.getRemainDays() + type.value);
+            listener.setEndSubscription(LocalDate.now().plusDays(listener.getRemainDays()));
+            listener.setCredit(listener.getCredit() - type.price);
         }
 
         else
@@ -52,7 +53,7 @@ public class PremiumController extends ListenerController {
 
     public Listener checkIfFinish(Listener listener){
         if (listener instanceof Premium){
-            if (listener.getEndSubscription().compareTo(LocalDate.now()) < 0){
+            if (listener.getEndSubscription().compareTo(LocalDate.now()) <= 0){
                 Free free = new Free(listener.getName() , listener.getUsername() , listener.getPassword() , listener.getEmail() , listener.getNumber() , listener.getBirthday());
                 free.setAllPlaylists(listener.getAllPlaylists());
                 free.setFavoriteGenre(listener.getFavoriteGenre());

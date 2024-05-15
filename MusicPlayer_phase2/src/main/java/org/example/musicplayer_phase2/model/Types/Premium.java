@@ -10,19 +10,10 @@ public class Premium extends Listener {
         super(name, username, password, email, number, birthday);
     }
 
-    private int remainDays = 0;
-
-    public int getRemainDays() {
-        return remainDays;
-    }
-
-    public void setRemainDays(int remainDays) {
-        this.remainDays = remainDays;
-    }
 
     @Override
     public String toString()
     {
-        return "remain days: " + remainDays + "\n";
+        return "remain days: " + this.getRemainDays() + "\n";
     }
 }

@@ -5,9 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
@@ -16,7 +14,6 @@ import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import javafx.event.ActionEvent;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.input.MouseEvent;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.Exceptions.NotEnoughCredit;
@@ -92,6 +89,9 @@ public class BuySubscription extends Application implements Initializable {
         try {
             Double increase = Double.parseDouble(increasCreditTextField.getText());
             UserAccountController.listener.setCredit(UserAccountController.listener.getCredit() + increase);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("successful work");
+            alert.setContentText("your credit: " + UserAccountController.listener.getCredit());
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("invalid amount");

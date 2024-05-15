@@ -158,7 +158,7 @@ public class ListenerPanel extends Application implements Initializable {
             passwordTextFild.setText("password: " + UserAccountController.listener.getPassword());
             creditTextfield.setText("your credit: "+ UserAccountController.listener.getCredit());
             if (UserAccountController.listener instanceof Premium)
-                subscriptionTextField.setText("end of subscription: " + UserAccountController.listener.getEndSubscription());
+                subscriptionTextField.setText("end subscription: " + UserAccountController.listener.getEndSubscription());
             else if (UserAccountController.listener instanceof Free)
                 subscriptionTextField.setText("you didn't get premium");
 

@@ -1,5 +1,8 @@
 package org.example.spotifysecondfase.model.Audio;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import org.example.spotifysecondfase.HelloApplication;
 import org.example.spotifysecondfase.model.Genre;
 
 import java.time.LocalDate;
@@ -61,6 +64,12 @@ public abstract class Audio
         this.cover = cover;
     }
     String id;
+    private Image image;
+    public Image getImage() {return image;}
+    public void setImage(Image image) {this.image = image;}
+    private ImageView coverImageView;
+    public  ImageView getCoverImageView() {return coverImageView;}
+    public  void setCoverImageView(ImageView coverImageView) {this.coverImageView = coverImageView;}
     public Audio(String name,Genre genre,String artistName, Date date, String audioLink, String cover) {
         this.artistName = artistName;
         this.date = date;
@@ -69,6 +78,9 @@ public abstract class Audio
         this.audioLink = audioLink;
         this.cover = cover;
         this.id = this.name + i++;
+        String path = HelloApplication.class.getResource(cover).toExternalForm();
+        image = new Image(path);
+        coverImageView = new ImageView(image);
     }
     public int getI() {
         return i;

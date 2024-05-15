@@ -5,6 +5,8 @@ import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Playlist;
 import org.example.musicplayer_phase2.model.Exceptions.NotEnoughCredit;
+import org.example.musicplayer_phase2.model.Types.Free;
+import org.example.musicplayer_phase2.model.Types.Premium;
 import org.example.musicplayer_phase2.model.Types.PremiumType;
 
 import java.time.LocalDate;
@@ -25,8 +27,8 @@ public class PremiumController extends ListenerController {
         playlist.setNumberOfMusics(playlist.getNumberOfMusics() + 1);
         return "Playlist add successfully. ";
     }
-    @Override
-    public String addMusicToPlaylist(Playlist playlist , Audio audio , Listener listener) {
+
+    public String addMusicToPlaylistForPremium(Playlist playlist , Audio audio , Listener listener) {
         Playlist playlist1 = null;
         for (Playlist a : listener.getAllPlaylists())
         {
@@ -37,26 +39,30 @@ public class PremiumController extends ListenerController {
         playlist1.setNumberOfMusics(playlist.getNumberOfMusics() + 1);
         return "Music added successfully";
     }
-    @Override
-    public String buySubscription (PremiumType type , Listener listener) throws NotEnoughCredit {
+    public void buySubscriptionPremium (PremiumType type , Listener listener) throws NotEnoughCredit {
         if (premiumListener.getCredit() >= type.price)
         {
             premiumListener.setRemainDays(premiumListener.getRemainDays() + type.value);
-            LocalDate date =  LocalDate.now().plusDays(premiumListener.getRemainDays());
-            Date end = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            premiumListener.setEndSubscription(end);
-            return "days added successfully";
+            listener.setEndSubscription(LocalDate.now().plusDays(premiumListener.getRemainDays()));
         }
 
         else
             throw new NotEnoughCredit();
     }
-    public StringBuilder watchEndOfSubscription ()
-    {
-        premiumListener.setRemainDays(premiumListener.getRemainDays() - 1);
-        LocalDate date =  LocalDate.now().plusDays(premiumListener.getRemainDays());
-        Date end = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        premiumListener.setEndSubscription(end);
-        return premiumListener.getEndSubscription();
+
+    public Listener checkIfFinish(Listener listener){
+        if (listener instanceof Premium){
+            if (listener.getEndSubscription().compareTo(LocalDate.now()) < 0){
+                Free free = new Free(listener.getName() , listener.getUsername() , listener.getPassword() , listener.getEmail() , listener.getNumber() , listener.getBirthday());
+                free.setAllPlaylists(listener.getAllPlaylists());
+                free.setFavoriteGenre(listener.getFavoriteGenre());
+                free.setLikedAudios(listener.getLikedAudios());
+                free.setFilesNumber(listener.getFilesNumber());
+                free.setEndSubscription(LocalDate.now());
+                Database.allUsers.remove(listener);
+                return free;
+            }
+        }
+        return listener;
     }
 }

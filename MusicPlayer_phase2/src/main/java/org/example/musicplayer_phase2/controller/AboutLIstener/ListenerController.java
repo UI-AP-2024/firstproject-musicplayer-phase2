@@ -23,7 +23,7 @@ public class ListenerController extends UserAccountController {
         Listener listener1 = null;
         for (Listener a : Database.allListener){
             if (a.getUsername().equals(username) && a.getPassword().equals(password)){
-                listener1 = a;
+                listener1 = new PremiumController().checkIfFinish(a);
             }
         }
         return listener1;
@@ -76,8 +76,13 @@ public class ListenerController extends UserAccountController {
         }
     }
 
-    public String addMusicToPlaylist(Playlist playlist, Audio audio, Listener listener) throws FreeAccountLimitException {
-        return "";
+    public void addMusicToPlaylist(Playlist playlist, Audio audio, Listener listener) throws FreeAccountLimitException {
+        if (listener instanceof Free){
+            new FreeController().addMusicToPlaylistForFree(playlist , audio , listener);
+        }
+        else if (listener instanceof Premium) {
+            new PremiumController().addMusicToPlaylistForPremium(playlist , audio , listener);
+        }
     }
 
     public ArrayList<Audio> sortAudiosBasedOnLikes() {
@@ -313,7 +318,13 @@ public class ListenerController extends UserAccountController {
         listener.setCredit(listener.getCredit() + money);
     }
 
-    public String buySubscription(PremiumType type, Listener listener) throws NotEnoughCredit {
-        return "";
+    public void buySubscription(PremiumType type, Listener listener) throws NotEnoughCredit {
+        if(listener instanceof Premium){
+            new PremiumController().buySubscriptionPremium(type , listener);
+        }
+
+        else{
+            new FreeController().buySubscriptionFree(type , listener);
+        }
     }
 }

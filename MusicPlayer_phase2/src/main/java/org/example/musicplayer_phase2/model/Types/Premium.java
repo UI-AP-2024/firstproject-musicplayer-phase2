@@ -10,7 +10,7 @@ public class Premium extends Listener {
         super(name, username, password, email, number, birthday);
     }
 
-    private int remainDays;
+    private int remainDays = 0;
 
     public int getRemainDays() {
         return remainDays;

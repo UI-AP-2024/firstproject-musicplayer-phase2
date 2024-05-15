@@ -15,7 +15,7 @@ public class Listener extends UserAccount {
     }
 
     private double credit = 0;
-    private Date endSubscription;
+    private LocalDate endSubscription = LocalDate.now();
     private ArrayList<Playlist> allPlaylists = new ArrayList<>();
     private ArrayList<Genre> favoriteGenre = new ArrayList<>();
     private ArrayList<Artist> followingArtists = new ArrayList<>();
@@ -26,16 +26,8 @@ public class Listener extends UserAccount {
         return credit;
     }
 
-    public StringBuilder getEndSubscription() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(endSubscription);
-        StringBuilder str = new StringBuilder();
-        str.append(calendar.get(Calendar.DAY_OF_MONTH));
-        str.append("/");
-        str.append(calendar.get(Calendar.MONTH ) + 1);
-        str.append("/");
-        str.append(calendar.get(Calendar.YEAR));
-        return str;
+    public LocalDate getEndSubscription() {
+        return endSubscription;
     }
 
     public StringBuilder getAllPlaylistsName() {
@@ -126,7 +118,7 @@ public class Listener extends UserAccount {
         this.filesNumber = filesNumber;
     }
 
-    public void setEndSubscription(Date endSubscription) {
+    public void setEndSubscription(LocalDate endSubscription) {
         this.endSubscription = endSubscription;
     }
 }

@@ -28,8 +28,8 @@ public class FreeController extends ListenerController {
             listener.setOnePlaylists(playlist);
         }
     }
-    @Override
-    public String addMusicToPlaylist(Playlist playlist , Audio audio , Listener listener) throws FreeAccountLimitException {
+
+    public String addMusicToPlaylistForFree(Playlist playlist , Audio audio , Listener listener) throws FreeAccountLimitException {
 
         Playlist playlist1 = null;
         for (Playlist a : listener.getAllPlaylists())
@@ -46,8 +46,8 @@ public class FreeController extends ListenerController {
             return "Music added successfully";
         }
     }
-    @Override
-    public String buySubscription (PremiumType type , Listener listener) throws NotEnoughCredit {
+
+    public void buySubscriptionFree (PremiumType type , Listener listener) throws NotEnoughCredit {
         if (listener.getCredit() >= type.price)
         {
             premiumListener = new Premium(listener.getName() , listener.getUsername() , listener.getPassword() , listener.getEmail() , listener.getNumber() , listener.getBirthday());
@@ -58,14 +58,11 @@ public class FreeController extends ListenerController {
             premiumListener.setLikedAudios(listener.getLikedAudios());
             premiumListener.setFilesNumber(listener.getFilesNumber());
             premiumListener.setRemainDays(type.value);
-            LocalDate date =  LocalDate.now().plusDays(premiumListener.getRemainDays());
-            Date end = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            premiumListener.setEndSubscription(end);
+            premiumListener.setEndSubscription(LocalDate.now().plusDays(premiumListener.getRemainDays()));
             this.listener = premiumListener;
             Database.allUsers.remove(freeListener);
             freeListener = null;
 
-            return "you are a premium user now :)";
         }
 
         else

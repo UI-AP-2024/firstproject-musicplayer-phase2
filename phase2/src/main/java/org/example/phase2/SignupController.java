@@ -11,10 +11,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Controller.UserController;
 import org.example.phase2.Exceptions.EasyPassword;
 import org.example.phase2.Exceptions.InvalidFormatException;
 import org.example.phase2.Exceptions.UsernameExist;
+import org.example.phase2.Model.Database.Database;
 
 import java.io.IOException;
 import java.net.URL;
@@ -83,7 +85,7 @@ public class SignupController implements Initializable {
     private Label passwordLabel;
 
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passField;
 
     @FXML
     private Label phoneLabel;
@@ -122,6 +124,8 @@ public class SignupController implements Initializable {
 
     @FXML
     void homeAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Signup.fxml")));
+        Database.getDatabase().getTitles().add("Signup");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Hello!");
@@ -131,12 +135,22 @@ public class SignupController implements Initializable {
 
     @FXML
     void libraryAction(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("INFORMATION");
+        alert.setHeaderText(null);
+        alert.setContentText("You should first login.");
+        alert.showAndWait();
     }
 
     @FXML
-    void loginAction(ActionEvent event) {
-
+    void loginAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Signup.fxml")));
+        Database.getDatabase().getTitles().add("Signup");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -144,16 +158,22 @@ public class SignupController implements Initializable {
 
     }
     @FXML
-    void backAction(ActionEvent event) {
-
+    void backAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader=Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void signUpAction(ActionEvent event) {
+    void signUpAction(ActionEvent event) throws IOException {
         String str=combo.getSelectionModel().getSelectedItem();
+        boolean successfulSignup=false;
         if(str.equals("Listener")){
             try {
-                UserController.getUserController().registerUser("L",usernameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),birthTextField.getText());
+                UserController.getUserController().registerUser("L",usernameTextField.getText(),passField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),birthTextField.getText());
+                successfulSignup=true;
             } catch (ParseException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
@@ -177,14 +197,21 @@ public class SignupController implements Initializable {
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
                 alert.setContentText("this username already exists, please change your username.");
+                alert.showAndWait();
             }
-            //Going to listener's panel.
+            if(successfulSignup){
+                //favoriteGenresController.setUsername(usernameTextField.getText());
+                ListenerController.getListenerController().findListener(usernameTextField.getText());
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Favorite-genres.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+                stage.setTitle("Hello!");
+                stage.setScene(scene);
+                stage.show();
+            }
         }
-        bioLabel.setVisible(true);
-        bioTextField.setVisible(true);
         if(str.equals("Podcaster")){
             try {
-                UserController.getUserController().registerUser("P",usernameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),birthTextField.getText(),bioTextField.getText());
+                UserController.getUserController().registerUser("P",usernameTextField.getText(),passField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),birthTextField.getText(),bioTextField.getText());
             } catch (ParseException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
@@ -208,12 +235,13 @@ public class SignupController implements Initializable {
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
                 alert.setContentText("this username already exists, please change your username.");
+                alert.showAndWait();
             }
             //Going to Artist's panel.
         }
         if(str.equals("Singer")){
             try {
-                UserController.getUserController().registerUser("S",usernameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),birthTextField.getText(),bioTextField.getText());
+                UserController.getUserController().registerUser("S",usernameTextField.getText(),passField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),birthTextField.getText(),bioTextField.getText());
             } catch (ParseException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR");
@@ -237,6 +265,7 @@ public class SignupController implements Initializable {
                 alert.setTitle("Warning");
                 alert.setHeaderText(null);
                 alert.setContentText("this username already exists, please change your username.");
+                alert.showAndWait();
             }
             //Going to Artist's panel.
         }
@@ -247,6 +276,17 @@ public class SignupController implements Initializable {
         combo.setItems(FXCollections.observableArrayList("Listener","Podcaster","Singer"));
         bioTextField.setVisible(false);
         bioLabel.setVisible(false);
-
+        combo.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if(newValue != null && (newValue.equals("Singer") || newValue.equals("Podcaster"))){
+                bioTextField.setVisible(true);
+                bioLabel.setVisible(true);
+            }
+        }));
+        combo.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            if(newValue != null && (newValue.equals("Listener"))){
+                bioTextField.setVisible(false);
+                bioLabel.setVisible(false);
+            }
+        }));
     }
 }

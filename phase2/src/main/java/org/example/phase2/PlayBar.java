@@ -30,7 +30,7 @@ public class PlayBar {
 
     @FXML
     void playAction(MouseEvent event) {
-
+        System.out.println("play action");
     }
 
     @FXML

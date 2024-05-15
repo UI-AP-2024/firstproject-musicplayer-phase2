@@ -12,7 +12,8 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         HomeLoggedOut.getStage(stage);
         SignupController.getStage(stage);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        LoginController.getStage(stage);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Play-bar.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Hello!");
         stage.setScene(scene);

@@ -22,6 +22,7 @@
                         <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#allAudiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios" />
                         <Button fx:id="login_btn" mnemonicParsing="false" onAction="#loginAction" prefHeight="60.0" prefWidth="75.0" text="`Login" />
                         <Button fx:id="signUp_btn" mnemonicParsing="false" onAction="#signUpAction" prefHeight="60.0" prefWidth="75.0" text="Sign up" />
+                        <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="back" />
                      </children>
                   </VBox>
                </children>

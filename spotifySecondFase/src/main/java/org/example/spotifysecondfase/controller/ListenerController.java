@@ -210,7 +210,7 @@ public abstract class ListenerController extends UserAccountController
         }
         return search;
     }
-    public void ordering(String str)
+    public void ordering()
     {
 //        if (str.equals("like"))
 //        {

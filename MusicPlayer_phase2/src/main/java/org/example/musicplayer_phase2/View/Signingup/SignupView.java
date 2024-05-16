@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
@@ -16,10 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
-import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
-import org.example.musicplayer_phase2.View.Signingup.podcasterSingerSignup;
-import org.example.musicplayer_phase2.View.Start;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 
 public class SignupView extends Application {
     private String userType = null;
@@ -33,7 +29,7 @@ public class SignupView extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("signup.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-        NecessaryMethods.putStyleSheet(scene);
+        AboutStyleSheet.putStyleSheet(scene);
         stage.setScene(scene);
         stage.setTitle("signup page");
         stage.show();

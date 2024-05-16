@@ -7,7 +7,8 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Start;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class Logout extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
             Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-            NecessaryMethods.putStyleSheet(scene);
+            AboutStyleSheet.putStyleSheet(scene);
             HelloApplication.lastScenes.add(scene);
             HelloApplication.lastTitle = "welcome :)";
         } catch (IOException e) {

@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.controller;
+package org.example.musicplayer_phase2.controller.AboutView;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -32,7 +32,7 @@ public class NecessaryMethods {
         }
     }
 
-    public static void putStyleSheet (Scene scene){
-        scene.getStylesheets().add(HelloApplication.class.getResource("darkStyle.css").toExternalForm());
-    }
+//    public static void putStyleSheet (Scene scene){
+//        scene.getStylesheets().add(HelloApplication.class.getResource("darkStyle.css").toExternalForm());
+//    }
 }

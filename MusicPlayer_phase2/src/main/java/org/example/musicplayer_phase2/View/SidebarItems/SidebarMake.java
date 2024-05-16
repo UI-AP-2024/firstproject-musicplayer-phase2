@@ -17,7 +17,8 @@ import org.example.musicplayer_phase2.View.SidebarItems.Labels.Audios;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Home;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Search;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.GeneralOperations;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 
@@ -86,10 +87,10 @@ public class SidebarMake implements GeneralOperations {
 
         });
         sidebarMake.homeLabel.setOnMouseEntered(e -> {
-            homeLabel.setTextFill(Color.BLUE);
+            homeLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
         });
         sidebarMake.homeLabel.setOnMouseExited(e -> {
-            homeLabel.setTextFill(Color.WHITE);
+            homeLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
         });
     }
 
@@ -105,10 +106,10 @@ public class SidebarMake implements GeneralOperations {
         });
 
         artistsLabel.setOnMouseEntered(e -> {
-            artistsLabel.setTextFill(Color.BLUE);
+            artistsLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
         });
         artistsLabel.setOnMouseExited(e -> {
-            artistsLabel.setTextFill(Color.WHITE);
+            artistsLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
         });
     }
 
@@ -124,10 +125,10 @@ public class SidebarMake implements GeneralOperations {
         });
 
         audiossLabel.setOnMouseEntered(e -> {
-            audiossLabel.setTextFill(Color.BLUE);
+            audiossLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
         });
         audiossLabel.setOnMouseExited(e -> {
-            audiossLabel.setTextFill(Color.WHITE);
+            audiossLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
         });
     }
 
@@ -147,10 +148,10 @@ public class SidebarMake implements GeneralOperations {
         });
 
         libraryLabel.setOnMouseEntered(e -> {
-            libraryLabel.setTextFill(Color.BLUE);
+            libraryLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
         });
         libraryLabel.setOnMouseExited(e -> {
-            libraryLabel.setTextFill(Color.WHITE);
+            libraryLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
         });
     }
 
@@ -165,10 +166,10 @@ public class SidebarMake implements GeneralOperations {
         });
 
         searchLabel.setOnMouseEntered(e -> {
-            searchLabel.setTextFill(Color.BLUE);
+            searchLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
         });
         searchLabel.setOnMouseExited(e -> {
-            searchLabel.setTextFill(Color.WHITE);
+            searchLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
         });
     }
 

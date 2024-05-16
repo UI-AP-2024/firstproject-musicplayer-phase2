@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 
@@ -38,7 +39,7 @@ public class podcasterSingerSignup extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("podcasterSingerSignup.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-        NecessaryMethods.putStyleSheet(scene);
+        AboutStyleSheet.putStyleSheet(scene);
         stage.setScene(scene);
         stage.setTitle("signup page");
         stage.show();

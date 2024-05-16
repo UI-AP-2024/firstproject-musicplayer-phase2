@@ -14,17 +14,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -33,7 +31,7 @@ public class Search extends Application implements Initializable {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-        NecessaryMethods.putStyleSheet(scene);
+        AboutStyleSheet.putStyleSheet(scene);
         stage.setTitle("SEARCHING");
         stage.setScene(scene);
         stage.show();

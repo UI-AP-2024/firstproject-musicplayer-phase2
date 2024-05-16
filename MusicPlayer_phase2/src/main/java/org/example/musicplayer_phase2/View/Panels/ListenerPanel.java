@@ -7,9 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -17,11 +16,10 @@ import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
-import org.example.musicplayer_phase2.controller.AboutLIstener.PremiumController;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
-import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.AboutMusic.Playlist;
 import org.example.musicplayer_phase2.model.Types.Free;
 import org.example.musicplayer_phase2.model.Types.Premium;
@@ -34,7 +32,7 @@ public class ListenerPanel extends Application implements Initializable {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listenerPanel.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 450);
-        NecessaryMethods.putStyleSheet(scene);
+        AboutStyleSheet.putStyleSheet(scene);
         stage.setTitle("listener panel");
         stage.setScene(scene);
         stage.show();
@@ -77,12 +75,12 @@ public class ListenerPanel extends Application implements Initializable {
 
     @FXML
     void buyEnter(MouseEvent event) {
-        buyLabel.setTextFill(Color.BLUE);
+        buyLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void buyExit(MouseEvent event) {
-        buyLabel.setTextFill(Color.WHITE);
+        buyLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
 
     @FXML
@@ -101,12 +99,12 @@ public class ListenerPanel extends Application implements Initializable {
 
     @FXML
     void makePlaylistLabelEnter(MouseEvent event) {
-        makePlaylistLabel.setTextFill(Color.BLUE);
+        makePlaylistLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void makePlaylistLabelExit(MouseEvent event) {
-        makePlaylistLabel.setTextFill(Color.WHITE);
+        makePlaylistLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
 
 

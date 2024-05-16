@@ -12,7 +12,8 @@ import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.musicplayer_phase2.controller.UserAccountController;
@@ -27,7 +28,7 @@ public class BuySubscription extends Application implements Initializable {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("buySubscription.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
-        NecessaryMethods.putStyleSheet(scene);
+        AboutStyleSheet.putStyleSheet(scene);
         stage.setTitle("buy subscription");
         stage.setScene(scene);
         stage.show();

@@ -16,7 +16,8 @@ import org.example.musicplayer_phase2.View.SidebarItems.Labels.AllArtists;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Audios;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Search;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 
 public class Start extends Application {
@@ -26,7 +27,7 @@ public class Start extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
         Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
         stage.setScene(scene);
-        NecessaryMethods.putStyleSheet(scene);
+        AboutStyleSheet.putStyleSheet(scene);
         stage.setTitle("welcome :)");
         stage.show();
     }
@@ -48,12 +49,12 @@ public class Start extends Application {
 
     @FXML
     void homeMouseEnter(MouseEvent event) {
-        homeButton.setTextFill(Color.BLUE);
+        homeButton.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void homeMouseExit(MouseEvent event) {
-        homeButton.setTextFill(Color.WHITE);
+        homeButton.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
 
     //search.................................................
@@ -72,12 +73,12 @@ public class Start extends Application {
 
     @FXML
     void searchEnter(MouseEvent event) {
-        searchButton.setTextFill(Color.BLUE);
+        searchButton.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void searchExit(MouseEvent event) {
-        searchButton.setTextFill(Color.WHITE);
+        searchButton.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
     //library..................................................
     @FXML
@@ -100,12 +101,12 @@ public class Start extends Application {
 
     @FXML
     void libraryEnter(MouseEvent event) {
-        libraryButton.setTextFill(Color.BLUE);
+        libraryButton.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void libraryExit(MouseEvent event) {
-        libraryButton.setTextFill(Color.WHITE);
+        libraryButton.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
 
     //all artist................................................
@@ -125,12 +126,12 @@ public class Start extends Application {
 
     @FXML
     void allArtistEnter(MouseEvent event) {
-        allArtistButton.setTextFill(Color.BLUE);
+        allArtistButton.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void allArtistExit(MouseEvent event) {
-        allArtistButton.setTextFill(Color.WHITE);
+        allArtistButton.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
 
     //all audios...................................................
@@ -150,12 +151,12 @@ public class Start extends Application {
 
     @FXML
     void allAudiosEntered(MouseEvent event) {
-        allAudios.setTextFill(Color.BLUE);
+        allAudios.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void allAudiosExite(MouseEvent event) {
-        allAudios.setTextFill(Color.WHITE);
+        allAudios.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
     //signup........................................................
     @FXML
@@ -177,12 +178,12 @@ public class Start extends Application {
 
     @FXML
     void signupEnter(MouseEvent event) {
-        signupButton.setTextFill(Color.BLUE);
+        signupButton.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void signupExited(MouseEvent event) {
-        signupButton.setTextFill(Color.WHITE);
+        signupButton.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
     //login.......................................................
     @FXML
@@ -203,12 +204,12 @@ public class Start extends Application {
 
     @FXML
     void loginEnter(MouseEvent event) {
-        loginButton.setTextFill(Color.BLUE);
+        loginButton.setTextFill(AboutStyleSheet.getLabelEnterColor());
     }
 
     @FXML
     void loginExited(MouseEvent event) {
-        loginButton.setTextFill(Color.WHITE);
+        loginButton.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
 
     //............................................................

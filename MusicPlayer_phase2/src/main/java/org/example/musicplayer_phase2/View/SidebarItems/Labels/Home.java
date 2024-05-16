@@ -1,36 +1,27 @@
 package org.example.musicplayer_phase2.View.SidebarItems.Labels;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
-import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
-import org.example.musicplayer_phase2.controller.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
-import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.ResourceBundle;
 
 public class Home extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(making(), 600, 450);
-        NecessaryMethods.putStyleSheet(scene);
+        AboutStyleSheet.putStyleSheet(scene);
         stage.setTitle("HOME");
         stage.setScene(scene);
         stage.show();

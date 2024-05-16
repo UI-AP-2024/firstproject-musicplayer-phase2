@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Informations.PlayMusicPage">
+    <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="300.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
+   <ImageView fx:id="coverImageView" fitHeight="200.0" fitWidth="200.0" layoutX="20.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+   <VBox layoutX="229.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+      <children>
+         <TextField fx:id="audioNameTextField" />
+         <TextField fx:id="identifierTextField" />
+         <TextField fx:id="artistNameTextField" />
+         <TextArea fx:id="lyricsTextField" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+   </VBox>
+   <TextField fx:id="playlistNameTextField" layoutX="444.0" layoutY="93.0" promptText="playlist name" />
+   <Label fx:id="addLabel" layoutX="444.0" layoutY="125.0" onMouseClicked="#addClicked" onMouseEntered="#addEnter" onMouseExited="#addExit" text="add" />
+   <Label fx:id="likeLabel" alignment="CENTER" layoutX="484.0" layoutY="192.0" onMouseClicked="#likeClicked" onMouseEntered="#likeEnter" onMouseExited="#likeExit" prefHeight="17.0" prefWidth="69.0" text="like" />
+</AnchorPane>

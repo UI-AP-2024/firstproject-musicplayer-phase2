@@ -108,7 +108,7 @@ public class SignupController implements Initializable {
     @FXML
     private TextField usernameTextField;
     private static Stage stage;
-    public static void getStage(Stage stage){
+    public static void setStage(Stage stage){
         SignupController.stage =stage;
     }
 

@@ -56,7 +56,7 @@ public class HomeLoggedOut {
     @FXML
     private VBox vBox;
     private static Stage stage;
-    public static void getStage(Stage stage){
+    public static void setStage(Stage stage){
         HomeLoggedOut.stage =stage;
     }
 

@@ -42,6 +42,11 @@ public class ListenerController{
             }
         }
     }
+
+    public Listener getListener() {
+        return listener;
+    }
+
     public void setListener(Listener listener)
     {
         this.listener=listener;
@@ -115,12 +120,13 @@ public class ListenerController{
         }
         return "There was a problem in creating or finding the playlist. Please try again.";
     }
-    public String createPlaylist(String playlistName) throws FreeAccountLimitException {
+    public int createPlaylist(String playlistName) throws FreeAccountLimitException {
         if(listener instanceof PremiumListener)
         {
             Playlist newPlaylist = new Playlist(playlistName, listener.getFirstAndLastName());
             listener.getPlaylists().add(newPlaylist);
-            return "Playlist is created successfully.";
+            //return "Playlist is created successfully.";
+            return 1;
         }
         if(listener instanceof FreeListener)
         {
@@ -129,12 +135,14 @@ public class ListenerController{
             {
                 Playlist newPlaylist = new Playlist(playlistName, listener.getFirstAndLastName());
                 listener.getPlaylists().add(newPlaylist);
-                return "New playlist is created successfully.";
+                //return "New playlist is created successfully.";
+                return 1;
             }
             throw new FreeAccountLimitException();
             //return "To create a new playlist make your account Premium and try again.";
         }
-        return "There was a problem in creating or finding the playlist. Please try again.";
+        //return "There was a problem in creating or finding the playlist. Please try again.";
+        return -1;
     }
     public String playAudio(String audioId2)
     {

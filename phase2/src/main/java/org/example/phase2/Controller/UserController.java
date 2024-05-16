@@ -1,7 +1,6 @@
 package org.example.phase2.Controller;
 
 import org.example.phase2.Exceptions.*;
-import org.example.phase2.Model.Audios.*;
 import org.example.phase2.Model.Users.*;
 import org.example.phase2.Model.Database.*;
 
@@ -148,7 +147,7 @@ public class UserController {
             return "You are registered successfully.";
         return "Invalid check number";
     }
-    public int loginUser(String username,String password) throws UserNotFoundException, WrongPasswordException {
+    public void loginUser(String username, String password) throws UserNotFoundException, WrongPasswordException {
         boolean usernameFound=false;
         boolean passwordFound=false;
         ArrayList<UserAccount> users = Database.getDatabase().getUsers();
@@ -163,17 +162,17 @@ public class UserController {
                 if(user instanceof Admin)
                 {
                     AdminController.getAdminController().setAdmin();
-                    return 1;
+                    //return;
                 }
                 if(user instanceof Listener)
                 {
                     ListenerController.getListenerController().findListener(user.getUsername());
-                    return 2;
+                    //return;
                 }
                 if(user instanceof Artist)
                 {
                     ArtistController.getArtistController().findArtist(user.getUsername());
-                    return 3;
+                    //return;
                 }
             }
             if(Objects.equals(username, user.getUsername())){
@@ -189,7 +188,6 @@ public class UserController {
         if(!passwordFound){
             throw new WrongPasswordException();
         }
-        return -1;
     }
     public String checkLogin(int checkNumber)
     {

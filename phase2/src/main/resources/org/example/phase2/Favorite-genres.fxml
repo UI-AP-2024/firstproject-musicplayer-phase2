@@ -40,6 +40,16 @@
                   </AnchorPane>
                </children>
             </VBox>
+            <VBox fx:id="vbox2" prefHeight="200.0" prefWidth="75.0">
+               <children>
+                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home" />
+                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search" />
+                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library" />
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="All Artists" />
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios" />
+                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back" />
+               </children>
+            </VBox>
          </children>
       </HBox>
    </children>

@@ -71,6 +71,11 @@ public class LoginController {
     private VBox vBox;
     private static Stage stage;
 
+    public static Stage getStage() {
+        return stage;
+    }
+
+
     @FXML
     void artistsAction(ActionEvent event) {
 
@@ -122,7 +127,7 @@ public class LoginController {
             alert.showAndWait();
         } catch (WrongPasswordException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROr");
+            alert.setTitle("ERROR");
             alert.setHeaderText(null);
             alert.setContentText("Password is wrong");
             alert.showAndWait();
@@ -144,7 +149,7 @@ public class LoginController {
     void searchAction(ActionEvent event) {
 
     }
-    public static void getStage(Stage stage){
+    public static void setStage(Stage stage){
         LoginController.stage =stage;
     }
 

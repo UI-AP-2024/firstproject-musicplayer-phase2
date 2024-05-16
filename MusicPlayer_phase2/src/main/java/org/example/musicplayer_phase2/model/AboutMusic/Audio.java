@@ -20,7 +20,7 @@ public abstract class Audio implements Comparable<Audio>{
     private final String audioLink;
     private final String cover;
 
-    public Audio(String audioName, String artistUserName, String publicationDate, String genre, String audioLink, String cover) {
+    public Audio(String audioName, String artistUserName, String publicationDate, Genre genre, String audioLink, String cover) {
         this.audioName = audioName;
         this.artistUsername = artistUserName;
 
@@ -31,54 +31,54 @@ public abstract class Audio implements Comparable<Audio>{
         if (this.publicationDate == null)
             this.publicationDate = new Date();
 
-        this.genre = UserAccountController.changeStringToGenre(genre);
+        this.genre = genre;
         this.audioLink = audioLink;
         this.cover = cover;
 
         String identifier = "";
 
         switch (genre) {
-            case "ROCK": {
+            case ROCK: {
                 identifier = "1";
                 break;
             }
 
-            case "POP": {
+            case POP: {
                 identifier = "2";
                 break;
             }
 
-            case "JAZZ": {
+            case JAZZ: {
                 identifier = "3";
                 break;
             }
 
-            case "HIPHOP": {
+            case HIPHOP: {
                 identifier = "4";
                 break;
             }
 
-            case "COUNTRY": {
+            case COUNTRY: {
                 identifier = "5";
                 break;
             }
 
-            case "TRUECRIME": {
+            case TRUECRIME: {
                 identifier = "6";
                 break;
             }
 
-            case "SOCIETY": {
+            case SOCIETY: {
                 identifier = "7";
                 break;
             }
 
-            case "INTERVIEW": {
+            case INTERVIEW: {
                 identifier = "8";
                 break;
             }
 
-            case "HISTORY": {
+            case HISTORY: {
                 identifier = "9";
                 break;
             }

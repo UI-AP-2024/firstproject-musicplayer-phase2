@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.View.SidebarItems;
+package org.example.musicplayer_phase2.View.SidebarItems.Buttons;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
-import org.example.musicplayer_phase2.View.LoginView;
-import org.example.musicplayer_phase2.View.Signingup.ListenerSignup;
 import org.example.musicplayer_phase2.View.Start;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
@@ -31,6 +29,7 @@ public class Logout extends Application {
             Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
             NecessaryMethods.putStyleSheet(scene);
             HelloApplication.lastScenes.add(scene);
+            HelloApplication.lastTitle = "welcome :)";
         } catch (IOException e) {
             Alerts.errorAlert();
         }

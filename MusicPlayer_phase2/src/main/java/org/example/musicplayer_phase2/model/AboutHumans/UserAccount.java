@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
-import static org.example.musicplayer_phase2.controller.UserAccountController.changeStringToDate;
 
 public abstract class UserAccount {
     private String username;
@@ -67,8 +66,8 @@ public abstract class UserAccount {
         this.username = username;
     }
 
-    public void setBirthday(String birthday) {
-        changeStringToDate(birthday);
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 
     @Override

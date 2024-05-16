@@ -103,7 +103,6 @@ public class BuySubscription extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
-        sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
         sidebareVBox.getChildren().add(sidebarMake.getSidebar());
     }
 }

@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.View.SidebarItems;
+package org.example.musicplayer_phase2.View.SidebarItems.Labels;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
@@ -83,7 +84,6 @@ public class Search extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
-        sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
         sidebarVBox.getChildren().add(sidebarMake.getSidebar());
 
         resultScrollPane.setContent(resultGridPane);

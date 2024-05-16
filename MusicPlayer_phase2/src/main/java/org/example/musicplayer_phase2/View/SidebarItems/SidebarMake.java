@@ -1,6 +1,5 @@
 package org.example.musicplayer_phase2.View.SidebarItems;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -10,8 +9,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
-import org.example.musicplayer_phase2.View.LoginView;
 import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
+import org.example.musicplayer_phase2.View.SidebarItems.Buttons.LoginView;
+import org.example.musicplayer_phase2.View.SidebarItems.Buttons.Logout;
+import org.example.musicplayer_phase2.View.SidebarItems.Labels.AllArtists;
+import org.example.musicplayer_phase2.View.SidebarItems.Labels.Audios;
+import org.example.musicplayer_phase2.View.SidebarItems.Labels.Home;
+import org.example.musicplayer_phase2.View.SidebarItems.Labels.Search;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.GeneralOperations;
@@ -19,6 +23,11 @@ import org.example.musicplayer_phase2.controller.UserAccountController;
 
 
 public class SidebarMake implements GeneralOperations {
+
+    public SidebarMake() {
+        makeActionsForLabelsAndButtons(this);
+    }
+
     private Label homeLabel = new Label("HOME");
     private Label artistsLabel = new Label("ARTISTS");
     private Label audiossLabel = new Label("AUDIOS");
@@ -53,7 +62,7 @@ public class SidebarMake implements GeneralOperations {
         vBox.setPadding(new Insets(10));
         return vBox;
     }
-    public void makeActionsForLabelsAndButtons(SidebarMake sidebarMake){
+    private void makeActionsForLabelsAndButtons(SidebarMake sidebarMake){
         homeActions(sidebarMake);
         artistsActions(sidebarMake);
         audiosAction(sidebarMake);

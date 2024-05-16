@@ -1,4 +1,28 @@
+#myButton {
+    -fx-display: inline-block;
+    -fx-outline: none;
+    -fx-cursor: pointer;
+    -fx-font-size: 10px;
+    -fx-line-height: 20px;
+    -fx-font-weight: 600;
+    -fx-border-radius: 8px;
+    -fx-padding: 14px 24px;
+    -fx-border: none;
+    -fx-transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    -fx-background-color: linear-gradient(to right, rgb(225, 60, 99) 0%, rgb(239, 65, 124) 50%, rgb(234, 106, 163) 100%);
+    -fx-text-fill: #fff;
+    -fx-pref-width: 70;
+    -fx-pref-height: 10;
+}
 
+#myButton :hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 0);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+
+/*....................................................*/
 .button {
     -fx-display: inline-block;
     -fx-outline: none;

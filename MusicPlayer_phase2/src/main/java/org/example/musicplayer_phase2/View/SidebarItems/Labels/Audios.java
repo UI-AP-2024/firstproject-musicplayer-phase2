@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.View.SidebarItems;
+package org.example.musicplayer_phase2.View.SidebarItems.Labels;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
@@ -37,7 +38,6 @@ public class Audios extends Application {
         VBox baseVBox = new VBox(audiosScrollPane);
 
         SidebarMake sidebarMake = new SidebarMake();
-        sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
 
         VBox vBox = new VBox();
         vBox.getChildren().add(baseVBox);

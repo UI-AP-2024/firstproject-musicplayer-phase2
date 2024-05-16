@@ -13,7 +13,11 @@ module org.example.musicplayer_phase2 {
     opens org.example.musicplayer_phase2.View.Panels to javafx.fxml;
     exports org.example.musicplayer_phase2.View.SidebarItems;
     opens org.example.musicplayer_phase2.View.SidebarItems to javafx.fxml;
-
     exports org.example.musicplayer_phase2.View.Informations;
     opens org.example.musicplayer_phase2.View.Informations to javafx.fxml;
+    exports org.example.musicplayer_phase2.View.SidebarItems.Buttons;
+    opens org.example.musicplayer_phase2.View.SidebarItems.Buttons to javafx.fxml;
+    exports org.example.musicplayer_phase2.View.SidebarItems.Labels;
+    opens org.example.musicplayer_phase2.View.SidebarItems.Labels to javafx.fxml;
+
 }

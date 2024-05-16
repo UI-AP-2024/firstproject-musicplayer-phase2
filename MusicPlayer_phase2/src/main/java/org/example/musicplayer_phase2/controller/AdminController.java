@@ -1,5 +1,6 @@
 package org.example.musicplayer_phase2.controller;
 
+import javafx.scene.control.Alert;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.model.AboutHumans.Admin;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
@@ -72,13 +73,14 @@ public class AdminController {
     public StringBuilder audioInformation(long ID)
     {
         StringBuilder audioInfo = new StringBuilder();
-        Audio audio = UserAccountController.findAudio(ID);
-        if (audio == null)
-            audioInfo.append("audio not found");
-        else
-        {
-            audioInfo.append(audio.toString());
+        Audio audio = null;
+        try {
+            audio = UserAccountController.findAudio(ID);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.getMessage());
         }
+        audioInfo.append(audio.toString());
         return audioInfo;
     }
 

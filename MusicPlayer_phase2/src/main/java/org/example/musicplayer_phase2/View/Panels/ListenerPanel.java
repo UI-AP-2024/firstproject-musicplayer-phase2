@@ -113,7 +113,6 @@ public class ListenerPanel extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
-        sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
         sidebareVBox.getChildren().add(sidebarMake.getSidebar());
 
         GridPane playlistGridpane = new GridPane();
@@ -130,8 +129,16 @@ public class ListenerPanel extends Application implements Initializable {
     private void putPlaylists(GridPane gridPane) {
         if (UserAccountController.listener != null) {
             int index = 0;
-            for (Playlist a : UserAccountController.listener.getAllPlaylists()) {
-                Label label = new Label(a.getPlaylistName());
+            for (Playlist p : UserAccountController.listener.getAllPlaylists()) {
+                Label label = new Label(p.getPlaylistName());
+                label.setOnMouseClicked(e -> {
+                    try {
+                        PlaylistInformation.setPlaylist(p);
+                        new PlaylistInformation().start(NecessaryMethods.getStage(e));
+                    } catch (Exception ex) {
+                        Alerts.errorAlert();
+                    }
+                });
                 label.setPrefSize(200, 50);
                 gridPane.add(label, 0, index);
                 ++index;

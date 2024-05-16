@@ -66,35 +66,16 @@ public class UserAccountController {
         return true;
     }
 
-    public static Genre changeStringToGenre(String genre) {
-        if (genre.equals("ROCK") || genre.equals("POP") || genre.equals("JAZZ") || genre.equals("HIPHOP")
-                || genre.equals("COUNTRY") || genre.equals("TRUECRIME") || genre.equals("SOCIETY") || genre.equals("INTERVIEW")
-                || genre.equals("HISTORY"))
-            return Genre.valueOf(genre);
-        else
-            return Genre.valueOf("ROCK");
-    }
-
-    public static Date changeStringToDate(String strDate) {
-        Date date = null;
-        try {
-            date = new SimpleDateFormat("dd/MM/yyyy").parse(strDate);
-        }
-        catch (ParseException ignore) {
-        }
-        if (date == null)
-            date = new Date();
-        return date;
-    }
-
-    public static Audio findAudio(long ID) {
+    public static Audio findAudio(long ID) throws Exception {
         Audio audio = null;
         for (Audio a : Database.allAudios) {
             if (a.getIdentifier() == ID) {
                 audio = a;
             }
         }
-
+        if (audio == null){
+            throw new Exception("audio with this identifier not exist");
+        }
         return audio;
     }
 
@@ -157,6 +138,5 @@ public class UserAccountController {
         }
         return results;
     }
-
 
 }

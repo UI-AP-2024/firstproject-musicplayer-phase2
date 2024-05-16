@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.View.SidebarItems;
+package org.example.musicplayer_phase2.View.SidebarItems.Labels;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Informations.ShowArtistsInformation;
+import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
@@ -37,7 +38,6 @@ public class AllArtists extends Application{
         VBox baseVBox = new VBox(artistsScrollPane);
 
         SidebarMake sidebarMake = new SidebarMake();
-        sidebarMake.makeActionsForLabelsAndButtons(sidebarMake);
 
         VBox vBox = new VBox();
         vBox.getChildren().add(baseVBox);

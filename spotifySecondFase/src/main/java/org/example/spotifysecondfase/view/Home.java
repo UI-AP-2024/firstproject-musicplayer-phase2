@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import org.example.spotifysecondfase.controller.ListenerController;
 import org.example.spotifysecondfase.model.Audio.Audio;
 import org.example.spotifysecondfase.model.Database;
@@ -96,13 +98,22 @@ public class Home implements Initializable
     }
     public VBox vBox(Audio audio)
     {
+        String fontFamily = "Arial";
+        double fontSize = 12;
+        FontWeight fontWeight = FontWeight.SEMI_BOLD;
+        Font font=Font.font(fontFamily, fontWeight, fontSize);
+        Font font2 = Font.font(fontFamily,fontSize);
         VBox vBox = new VBox();
         Label labelVbox = new Label();
+        labelVbox.setFont(font);
+        Label labelVbox2 = new Label();
+        labelVbox2.setFont(font2);
         ImageView imageView = audio.getCoverImageView();
         imageView.setFitWidth(80);
         imageView.setFitHeight(80);
         labelVbox.setText(audio.getName());
-        vBox.getChildren().addAll(imageView,labelVbox);
+        labelVbox2.setText(audio.getArtistName());
+        vBox.getChildren().addAll(imageView,labelVbox,labelVbox2);
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
         return vBox;

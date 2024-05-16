@@ -15,8 +15,13 @@
 
 <AnchorPane fx:id="homeAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.view.Home">
    <children>
-      <VBox fx:id="homeVbox" layoutX="42.0" layoutY="31.0" prefHeight="286.0" prefWidth="155.0" spacing="10.0">
+      <VBox fx:id="homeVbox" layoutX="41.0" layoutY="29.0" prefHeight="354.0" prefWidth="155.0" spacing="10.0">
          <children>
+            <ImageView fx:id="spotify" fitHeight="58.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/spotify.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="homeImage" fitHeight="48.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@image/Home%20(2).png" />
@@ -32,12 +37,12 @@
                   <Image url="@image/your%20library.png" />
                </image>
             </ImageView>
-            <Button fx:id="allArtists" mnemonicParsing="false" prefHeight="48.0" prefWidth="126.0" text="All Artists" textAlignment="CENTER">
+            <Button fx:id="allArtists" mnemonicParsing="false" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20px; -fx-background-color: #1a1a1a;" text="All Artists" textAlignment="CENTER" textFill="#b4b3b3">
                <font>
                   <Font name="Arial" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="allAudios" mnemonicParsing="false" prefHeight="48.0" prefWidth="127.0" text="All Audios" textAlignment="CENTER">
+            <Button fx:id="allAudios" mnemonicParsing="false" prefHeight="48.0" prefWidth="127.0" style="-fx-background-radius: 20px; -fx-background-color: #1a1a1a;" text="All Audios" textAlignment="CENTER" textFill="#b4b3b3">
                <font>
                   <Font name="Arial" size="17.0" />
                </font>
@@ -98,7 +103,7 @@
       </HBox>
       <HBox fx:id="hboxForSingOrLog" layoutX="535.0" layoutY="14.0" prefHeight="54.0" prefWidth="244.0" spacing="30.0">
          <children>
-            <Button fx:id="singUp" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="Sing up ">
+            <Button fx:id="singUp" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" style="-fx-background-radius: 20px; -fx-background-color: black;" text="Sing up " textFill="WHITE">
                <HBox.margin>
                   <Insets top="12.0" />
                </HBox.margin>
@@ -106,7 +111,7 @@
                   <Font name="Arial" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="logInOrLogOut" mnemonicParsing="false" prefHeight="32.0" prefWidth="91.0" text="Log in" textAlignment="CENTER">
+            <Button fx:id="logInOrLogOut" mnemonicParsing="false" prefHeight="32.0" prefWidth="91.0" style="-fx-background-radius: 20px;" text="Log in" textAlignment="CENTER">
                <HBox.margin>
                   <Insets top="12.0" />
                </HBox.margin>

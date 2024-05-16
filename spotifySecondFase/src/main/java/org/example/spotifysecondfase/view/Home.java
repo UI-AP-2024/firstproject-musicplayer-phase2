@@ -14,6 +14,7 @@ import org.example.spotifysecondfase.controller.ListenerController;
 import org.example.spotifysecondfase.model.Audio.Audio;
 import org.example.spotifysecondfase.model.Database;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -90,12 +91,10 @@ public class Home implements Initializable
     private Button singUp;
     public Button getSingUp() {return singUp;}
     public void setSingUp(Button singUp) {this.singUp = singUp;}
-    public void change()
-    {
-        Color c = Color.gray(0.2);
-        allArtists.setBackground(Background.fill(c));
-        allAudios.setBackground(Background.fill(c));
-    }
+    @FXML
+    private ImageView spotify;
+    public ImageView getSpotify() {return spotify;}
+    public void setSpotify(ImageView spotify) {this.spotify = spotify;}
     public VBox vBox(Audio audio)
     {
         String fontFamily = "Arial";
@@ -118,25 +117,44 @@ public class Home implements Initializable
         vBox.setSpacing(10);
         return vBox;
     }
+    Login login;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        change();
-        //gridPane
-        listenerController.ordering();
         int counter = 0;
-        for (int i=0; i<getHomeGridPane().getColumnCount(); i++)
+        if(login.getBool())
         {
-            for (int j=0; j<getHomeGridPane().getRowCount(); j++)
+            logInOrLogOut.setText("Log out");
+            for (int i=0; i<getHomeGridPane().getRowCount(); i++)
             {
-                if (Database.getDatabase().getAudio().size() > counter)
+                for (int j=0; j<getHomeGridPane().getColumnCount(); j++)
                 {
-                    VBox vBox = vBox(Database.getDatabase().getAudio().get(counter));
-                    getHomeGridPane().add(vBox,i,j);
+                    //suggested audios
+                }
+            }
+            lable.setText("Suggested audios");
+        }
+        else {
+            listenerController.ordering();
+            lable.setText("Popular audios");
+            for (int i=0; i<getHomeGridPane().getRowCount(); i++)
+            {
+                for (int j=0; j<getHomeGridPane().getColumnCount(); j++)
+                {
+                    if (Database.getDatabase().getAudio().size() > counter)
+                    {
+                        VBox vBox = vBox(Database.getDatabase().getAudio().get(counter));
+                        getHomeGridPane().add(vBox,i,j);
+                    }
                 }
             }
         }
-        //lable
-        lable.setText("Popular audio");
+        logInOrLogOut.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.logIn();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         singUp.setOnMouseClicked(event -> {
 
         });

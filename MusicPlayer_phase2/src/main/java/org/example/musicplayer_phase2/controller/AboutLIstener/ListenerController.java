@@ -313,4 +313,13 @@ public class ListenerController extends UserAccountController {
             return listener1;
         }
     }
+
+    public Playlist findPlaylist(String playlistName , Listener listener) throws Exception {
+        for (Playlist p : listener.getAllPlaylists()){
+            if (p.getPlaylistName().equals(playlistName))
+                return p;
+        }
+
+        throw new Exception("you don't have a playlist with this name");
+    }
 }

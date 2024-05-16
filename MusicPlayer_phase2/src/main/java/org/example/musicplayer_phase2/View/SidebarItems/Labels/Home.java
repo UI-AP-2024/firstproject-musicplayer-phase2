@@ -8,6 +8,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
@@ -93,7 +95,11 @@ public class Home extends Application {
             }
 
             label.setOnMouseClicked(e -> {
-                //موزیکو پخش کننننننننننننننننن
+                try {
+                    new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                } catch (Exception ex) {
+                    Alerts.errorAlert();
+                }
             });
         }
     }

@@ -145,8 +145,10 @@ public class ShowArtistsInformation extends Application implements Initializable
             followersNumTextField.setEditable(false);
             biographyTextArea.setEditable(false);
 
-            if (UserAccountController.listener.getFollowingArtists().contains(artist)){
-                followLabel.setTextFill(Color.RED);
+            if (UserAccountController.listener != null) {
+                if (UserAccountController.listener.getFollowingArtists().contains(artist)) {
+                    followLabel.setTextFill(Color.RED);
+                }
             }
         }
     }

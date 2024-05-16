@@ -15,6 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
@@ -100,6 +102,16 @@ public class PlaylistInformation extends Application implements Initializable {
         int index = 0;
         for (Audio a: playlist){
             Label audioLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
+            audioLabel.setOnMouseClicked(e -> {
+                try {
+                    NecessaryMethods.saveLastScene(e);
+                    PlayMusicPage.setAudio(a);
+                    new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                } catch (Exception ex) {
+                    Alerts.errorAlert();
+                }
+            });
+
             audioLabel.setPrefSize(350 , 50);
             gridPane.add(audioLabel , 0 , index);
             ++index;

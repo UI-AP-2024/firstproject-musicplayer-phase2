@@ -20,5 +20,5 @@
    </VBox>
    <TextField fx:id="playlistNameTextField" layoutX="444.0" layoutY="93.0" promptText="playlist name" />
    <Label fx:id="addLabel" layoutX="444.0" layoutY="125.0" onMouseClicked="#addClicked" onMouseEntered="#addEnter" onMouseExited="#addExit" text="add" />
-   <Label fx:id="likeLabel" alignment="CENTER" layoutX="484.0" layoutY="192.0" onMouseClicked="#likeClicked" onMouseEntered="#likeEnter" onMouseExited="#likeExit" prefHeight="17.0" prefWidth="69.0" text="like" />
+   <Label fx:id="likeLabel" alignment="CENTER" layoutX="484.0" layoutY="192.0" onMouseClicked="#likeClicked" prefHeight="17.0" prefWidth="69.0" text="like" />
 </AnchorPane>

@@ -61,6 +61,16 @@ public class Home extends Application {
         for (Audio a : listenerController.suggestMusic(100, UserAccountController.listener)) {
             Label nameLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
 
+            nameLabel.setOnMouseClicked(e -> {
+                try {
+                    NecessaryMethods.saveLastScene(e);
+                    PlayMusicPage.setAudio(a);
+                    new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                } catch (Exception ex) {
+                    Alerts.errorAlert();
+                }
+            });
+
             nameLabel.setPrefSize(180, 50);
 
             VBox vBoxForLabel = new VBox(nameLabel);
@@ -96,6 +106,8 @@ public class Home extends Application {
 
             label.setOnMouseClicked(e -> {
                 try {
+                    NecessaryMethods.saveLastScene(e);
+                    PlayMusicPage.setAudio(a);
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

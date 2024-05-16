@@ -88,6 +88,10 @@ public class PlayMusicPage extends Application implements Initializable {
                     ListenerController listenerController = new ListenerController();
                     playlist = listenerController.findPlaylist(playlistNameTextField.getText(), UserAccountController.listener);
                     listenerController.addMusicToPlaylist(playlist, audio, UserAccountController.listener);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("successful adding");
+                    alert.setContentText("music added to your playlist");
+                    alert.showAndWait();
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("fail in adding music");
@@ -95,9 +99,7 @@ public class PlayMusicPage extends Application implements Initializable {
                     alert.showAndWait();
                 }
             }
-        }
-
-        else {
+        } else {
             Alerts.nullListener();
         }
     }
@@ -122,51 +124,43 @@ public class PlayMusicPage extends Application implements Initializable {
                 UserAccountController.listener.getLikedAudios().remove(audio);
                 likeLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
             }
-        }
-
-        else{
+        } else {
             Alerts.nullListener();
         }
     }
 
-    @FXML
-    void likeEnter(MouseEvent event) {
-        likeLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
-    }
-
-    @FXML
-    void likeExit(MouseEvent event) {
-        likeLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SidebarMake sidebarMake = new SidebarMake();
         sidebareVBox.getChildren().add(sidebarMake.getSidebar());
 
-        if (UserAccountController.listener.getLikedAudios().contains(audio) && UserAccountController.listener != null) {
-            likeLabel.setTextFill(Color.RED);
+        if (UserAccountController.listener != null) {
+            if (UserAccountController.listener.getLikedAudios().contains(audio))
+                likeLabel.setTextFill(Color.RED);
         }
 
         if (audio != null) {
-            playlistNameTextField.setText("artist: " + audio.getArtistUsername());
+            artistNameTextField.setText("artist: " + audio.getArtistUsername());
             identifierTextField.setText("identifier: " + audio.getIdentifier());
             audioNameTextField.setText("name: " + audio.getAudioName());
-            if (audio instanceof Music){
+            if (audio instanceof Music) {
                 lyricsTextField.setText("lyrics: " + ((Music) audio).getLyrics());
-            }
-            else if (audio instanceof Podcast){
+            } else if (audio instanceof Podcast) {
                 lyricsTextField.setText("caption: " + ((Podcast) audio).getCaption());
             }
-//            try{
-//                Image image = new Image(audio.getCover());
-//                coverImageView.setImage(image);
-//            }catch (Exception e){
-//                Image image = new Image(HelloApplication.class.getResourceAsStream("photo.jpg"));
-//                coverImageView.setImage(image);
-//            }
-            Image image = new Image(HelloApplication.class.getResourceAsStream("photo.jpg"));
-            coverImageView.setImage(image);
+            artistNameTextField.setEditable(false);
+            identifierTextField.setEditable(false);
+            audioNameTextField.setEditable(false);
+            lyricsTextField.setEditable(false);
+            try{
+                Image image = new Image(audio.getCover());
+                coverImageView.setImage(image);
+            }catch (Exception e){
+                Image image = new Image(HelloApplication.class.getResourceAsStream("photo.jpg"));
+                coverImageView.setImage(image);
+            }
         }
     }
+
 }

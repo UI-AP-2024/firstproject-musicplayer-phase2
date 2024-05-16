@@ -8,6 +8,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
@@ -49,7 +51,15 @@ public class Audios extends Application {
         ListenerController listenerController = new ListenerController();
         for (Audio a : listenerController.sortAudios()){
             Label nameLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
-
+            nameLabel.setOnMouseClicked(e -> {
+                try {
+                    NecessaryMethods.saveLastScene(e);
+                    PlayMusicPage.setAudio(a);
+                    new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                } catch (Exception ex) {
+                    Alerts.errorAlert();
+                }
+            });
             nameLabel.setPrefSize(180 , 50);
 
             VBox vBoxForLabel = new VBox(nameLabel );

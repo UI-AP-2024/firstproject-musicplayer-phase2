@@ -14,6 +14,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
+import org.example.musicplayer_phase2.View.Informations.ShowArtistsInformation;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
@@ -64,15 +67,33 @@ public class Search extends Application implements Initializable {
 
             for (Audio a : audioResult){
                 Label audioLabel = new Label("audio name: "+ a.getAudioName() + "\nlikes: " + a.getLikesNum());
+                audioLabel.setOnMouseClicked(e -> {
+                    try {
+                        NecessaryMethods.saveLastScene(e);
+                        PlayMusicPage.setAudio(a);
+                        new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                    } catch (Exception ex) {
+                        Alerts.errorAlert();
+                    }
+                });
                 audioLabel.setPrefSize(440 , 80);
                 resultGridPane.add(audioLabel ,0 , index );
                 index++;
             }
 
             for (Artist a : artistResult){
-                Label audioLabel = new Label("artist name: "+ a.getUsername() + "\n" + a.getBiography());
-                audioLabel.setPrefSize(440 , 80);
-                resultGridPane.add(audioLabel ,0 , index );
+                Label artistLabel = new Label("artist name: "+ a.getUsername() + "\n" + a.getBiography());
+                artistLabel.setOnMouseClicked(e -> {
+                    try {
+                        NecessaryMethods.saveLastScene(e);
+                        ShowArtistsInformation.setArtist(a);
+                        new ShowArtistsInformation().start(NecessaryMethods.getStage(e));
+                    } catch (Exception ex) {
+                        Alerts.errorAlert();
+                    }
+                });
+                artistLabel.setPrefSize(440 , 80);
+                resultGridPane.add(artistLabel ,0 , index );
                 index++;
             }
         }

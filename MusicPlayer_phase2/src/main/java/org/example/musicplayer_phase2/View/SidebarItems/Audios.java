@@ -50,7 +50,7 @@ public class Audios extends Application {
         int index = 0 , sotonIndex = 0;
         ListenerController listenerController = new ListenerController();
         for (Audio a : listenerController.sortAudios()){
-            Label nameLabel = new Label("name: " + a.getAudioName());
+            Label nameLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
 
             nameLabel.setPrefSize(180 , 50);
 

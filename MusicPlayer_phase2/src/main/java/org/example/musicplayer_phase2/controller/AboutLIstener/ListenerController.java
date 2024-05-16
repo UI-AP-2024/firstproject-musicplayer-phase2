@@ -14,10 +14,10 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class ListenerController extends UserAccountController {
-    public static Listener listenerLogin(String username , String password){
+    public static Listener listenerLogin(String username, String password) {
         Listener listener1 = null;
-        for (Listener a : Database.allListener){
-            if (a.getUsername().equals(username) && a.getPassword().equals(password)){
+        for (Listener a : Database.allListener) {
+            if (a.getUsername().equals(username) && a.getPassword().equals(password)) {
                 listener1 = a;
                 break;
             }
@@ -56,26 +56,24 @@ public class ListenerController extends UserAccountController {
     }
 
     public void getFavoriteGenre(ArrayList<Genre> favoriteGenre, Listener listener) {
-        for (Genre genre : favoriteGenre){
+        for (Genre genre : favoriteGenre) {
             listener.setOneFavoriteGenre(genre);
         }
     }
 
     public void makePlaylist(String playlistName, Listener listener) throws Exception {
-        if (listener instanceof Free){
-            new FreeController().makeFreePlaylist(playlistName , listener);
-        }
-        else if (listener instanceof Premium) {
-            new PremiumController().makePremiumPlaylist(playlistName , listener);
+        if (listener instanceof Free) {
+            new FreeController().makeFreePlaylist(playlistName, listener);
+        } else if (listener instanceof Premium) {
+            new PremiumController().makePremiumPlaylist(playlistName, listener);
         }
     }
 
     public void addMusicToPlaylist(Playlist playlist, Audio audio, Listener listener) throws FreeAccountLimitException {
-        if (listener instanceof Free){
-            new FreeController().addMusicToPlaylistForFree(playlist , audio , listener);
-        }
-        else if (listener instanceof Premium) {
-            new PremiumController().addMusicToPlaylistForPremium(playlist , audio , listener);
+        if (listener instanceof Free) {
+            new FreeController().addMusicToPlaylistForFree(playlist, audio, listener);
+        } else if (listener instanceof Premium) {
+            new PremiumController().addMusicToPlaylistForPremium(playlist, audio, listener);
         }
     }
 
@@ -94,7 +92,7 @@ public class ListenerController extends UserAccountController {
         return Database.allAudios;
     }
 
-    public ArrayList<Audio> sortAudios (){
+    public ArrayList<Audio> sortAudios() {
         Collections.sort(Database.allAudios);
         return Database.allAudios;
     }
@@ -149,23 +147,15 @@ public class ListenerController extends UserAccountController {
         new Report(reporterPerson, reportedArtist, explanation);
     }
 
-    public String followingArtist(String username, Listener listener) {
-        Artist artist = null;
-        for (Artist a : Database.allArtists) {
-            if (a.getUsername().equals(username)) {
-                artist = Database.allArtists.get(Database.allArtists.indexOf(a));
-                for (Artist b : listener.getFollowingArtists()) {
-                    if (b == artist)
-                        return "you have already follow this artist";
-                }
-            }
+    public void followingArtist(Artist artist, Listener listener) throws Exception {
+
+        for (Artist a : listener.getFollowingArtists()) {
+            if (a == artist)
+                throw new Exception("you have already follow this artist");
         }
-        if (artist == null)
-            return "artist not found";
 
         artist.setFollowers(listener);
         listener.setOneFollowingArtists(artist);
-        return "you are following this artist";
     }
 
     public StringBuilder watchFollowings() {
@@ -313,14 +303,12 @@ public class ListenerController extends UserAccountController {
     }
 
     public Listener buySubscription(PremiumType type, Listener listener) throws NotEnoughCredit {
-        if(listener instanceof Premium){
-            new PremiumController().buySubscriptionPremium(type , listener);
+        if (listener instanceof Premium) {
+            new PremiumController().buySubscriptionPremium(type, listener);
             UserAccountController.listener = listener;
             return listener;
-        }
-
-        else{
-            Listener listener1 = new FreeController().buySubscriptionFree(type , listener);
+        } else {
+            Listener listener1 = new FreeController().buySubscriptionFree(type, listener);
             UserAccountController.listener = listener1;
             return listener1;
         }

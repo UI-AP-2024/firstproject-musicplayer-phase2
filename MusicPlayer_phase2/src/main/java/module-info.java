@@ -14,4 +14,6 @@ module org.example.musicplayer_phase2 {
     exports org.example.musicplayer_phase2.View.SidebarItems;
     opens org.example.musicplayer_phase2.View.SidebarItems to javafx.fxml;
 
+    exports org.example.musicplayer_phase2.View.Informations;
+    opens org.example.musicplayer_phase2.View.Informations to javafx.fxml;
 }

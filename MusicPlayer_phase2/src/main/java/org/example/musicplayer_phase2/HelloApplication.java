@@ -13,9 +13,7 @@ import org.example.musicplayer_phase2.View.Start;
 import org.example.musicplayer_phase2.controller.AboutLIstener.FreeController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.PremiumController;
-import org.example.musicplayer_phase2.model.AboutHumans.Admin;
-import org.example.musicplayer_phase2.model.AboutHumans.Artist;
-import org.example.musicplayer_phase2.model.AboutHumans.Listener;
+import org.example.musicplayer_phase2.model.AboutHumans.*;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;
 import org.example.musicplayer_phase2.model.Exceptions.FreeAccountLimitException;
@@ -57,15 +55,16 @@ public class HelloApplication extends Application {
         audio3.setLikesNum(100);
         audio5.setLikesNum(500);
 
-        Artist artist1 = new Artist("fatemeh" , "first" , "" , " " , "" , LocalDate.now() , "");
-        Artist artist12 = new Artist("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
+        Artist artist1 = new Singer("fatemeh" , "first" , "" , " " , "" , LocalDate.now() , "");
+        Artist artist12 = new Podcaster("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
+
 
         Premium listener = new Premium("" , "fff" , "123" , "" , "" , LocalDate.now());
 //        Free listener = new Free("" , "fff" , "123" , "" , "" , LocalDate.now());
         ListenerController listenerController = new ListenerController();
 
-        listenerController.followingArtist("ftm" , listener);
-        listenerController.followingArtist("first" , listener);
+        listenerController.followingArtist(artist1 , listener);
+        listenerController.followingArtist(artist12 , listener);
 
         launch();
     }

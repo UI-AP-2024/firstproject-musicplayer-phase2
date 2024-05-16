@@ -9,6 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Informations.ShowArtistsInformation;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
 import org.example.musicplayer_phase2.controller.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
@@ -48,6 +50,16 @@ public class AllArtists extends Application{
         int index = 0 , sotonIndex = 0;
         for (Artist a : ArtistController.sortArtistsBasedOnFollowers()){
             Label nameLabel = new Label("name: " + a.getName() + "\n" +"username: " + a.getUsername() + "\nfollowers: " + a.getFollowers());
+            nameLabel.setOnMouseClicked(e -> {
+                try {
+                    NecessaryMethods.saveLastScene(e);
+                    ShowArtistsInformation.setArtist(a);
+                    new ShowArtistsInformation().start(NecessaryMethods.getStage(e));
+                } catch (Exception ex) {
+                    Alerts.errorAlert();
+                }
+            });
+
 
             nameLabel.setPrefSize(180 , 50);
 

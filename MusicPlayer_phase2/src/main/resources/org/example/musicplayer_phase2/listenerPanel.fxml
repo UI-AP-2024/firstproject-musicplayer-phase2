@@ -11,7 +11,7 @@
    <children>
       <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="300.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
       <ScrollPane fx:id="scrollPaneForPlaylists" layoutX="28.0" layoutY="62.0" prefHeight="241.0" prefWidth="170.0" />
-      <Label id="myLabel" layoutX="28.0" layoutY="14.0" prefWidth="170.0" text="your playlists:      ">
+      <Label layoutX="28.0" layoutY="14.0" prefWidth="170.0" text="your playlists:      ">
          <font>
             <Font size="15.0" />
          </font>

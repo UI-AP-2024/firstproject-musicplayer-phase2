@@ -23,7 +23,7 @@
 }
 /*.................................................. */
 
-.myLabel {
+#myLabel {
     -fx-display: inline-block;
     -fx-border-width: 0px;
     /*-fx-border-style: solid;*/

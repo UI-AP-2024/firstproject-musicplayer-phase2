@@ -5,8 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,8 +21,6 @@ import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 import org.example.musicplayer_phase2.model.AboutMusic.Album;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -75,9 +72,26 @@ public class ShowArtistsInformation extends Application implements Initializable
     private TextField usernameTextField;
 
     @FXML
+    private TextArea reportTextArea;
+
+    @FXML
     void followClicked(MouseEvent event) {
         if (UserAccountController.listener != null){
+            if (! UserAccountController.listener.getFollowingArtists().contains(artist)){
+                try {
+                    new ListenerController().followingArtist(artist , UserAccountController.listener);
+                    followLabel.setTextFill(Color.RED);
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("fail in following");
+                    alert.setContentText(e.getMessage());
+                }
+            }
 
+            else{
+                UserAccountController.listener.getFollowingArtists().remove(artist);
+                followLabel.setTextFill(Color.WHITE);
+            }
         }
 
         else {
@@ -88,13 +102,30 @@ public class ShowArtistsInformation extends Application implements Initializable
     @FXML
     void reportClicked(MouseEvent event) {
         if (UserAccountController.listener != null){
+            if (reportTextArea != null){
+                new ListenerController().reporting(UserAccountController.listener , artist , reportTextArea.getText());
 
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("successful report");
+                alert.setContentText("your report send to the admin");
+                alert.showAndWait();
+            }
         }
 
         else {
             Alerts.nullListener();
         }
     }
+    @FXML
+    void reportEnter(MouseEvent event) {
+        reportLabel.setTextFill(Color.BLUE);
+    }
+
+    @FXML
+    void reportExit(MouseEvent event) {
+        reportLabel.setTextFill(Color.WHITE);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -105,15 +136,19 @@ public class ShowArtistsInformation extends Application implements Initializable
         putArtistAudios(audiosScrollPane);
 
         if (artist != null){
-            nameTextField.setText(artist.getName());
-            usernameTextField.setText(artist.getUsername());
-            followersNumTextField.setText(String.valueOf(artist.getArraylistOfFollowers().size()));
-            biographyTextArea.setText(artist.getBiography());
+            nameTextField.setText("name: " + artist.getName());
+            usernameTextField.setText("username: " + artist.getUsername());
+            followersNumTextField.setText(String.valueOf("number of followers: " + artist.getArraylistOfFollowers().size()));
+            biographyTextArea.setText("biography: " + artist.getBiography());
 
             nameTextField.setEditable(false);
             usernameTextField.setEditable(false);
             followersNumTextField.setEditable(false);
             biographyTextArea.setEditable(false);
+
+            if (UserAccountController.listener.getFollowingArtists().contains(artist)){
+                followLabel.setTextFill(Color.RED);
+            }
         }
     }
 

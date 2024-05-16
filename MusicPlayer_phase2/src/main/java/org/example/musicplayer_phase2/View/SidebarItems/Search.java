@@ -38,9 +38,6 @@ public class Search extends Application implements Initializable {
         stage.show();
     }
 
-//    @FXML
-//    private AnchorPane sidebarAnchorPane;
-
     @FXML
     private VBox sidebarVBox;
 

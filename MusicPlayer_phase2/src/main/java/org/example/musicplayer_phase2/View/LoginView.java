@@ -85,10 +85,12 @@ public class LoginView extends Application {
                 }
 
             }catch (Exception e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("not founding user");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("not founding user");
+//                alert.setContentText(e.getMessage());
+//                alert.showAndWait();
+
+                e.printStackTrace();
             }
         }
     }

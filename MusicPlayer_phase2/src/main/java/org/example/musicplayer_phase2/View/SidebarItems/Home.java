@@ -66,7 +66,7 @@ public class Home extends Application {
 
         ListenerController listenerController = new ListenerController();
         for (Audio a : listenerController.suggestMusic(100, UserAccountController.listener)) {
-            Label nameLabel = new Label("name: " + a.getAudioName());
+            Label nameLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
 
             nameLabel.setPrefSize(180, 50);
 

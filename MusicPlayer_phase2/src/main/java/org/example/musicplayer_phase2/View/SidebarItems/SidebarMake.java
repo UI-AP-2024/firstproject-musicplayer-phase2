@@ -41,13 +41,11 @@ public class SidebarMake implements GeneralOperations {
         hbox.getChildren().addAll(artistsLabel , audiossLabel , homeLabel , libraryLabel , searchLabel );
         return hbox;
     }
-
     public HBox makeButtons (){
         HBox hBox = new HBox(bakeButton , signupButton , loginButton , logoutButton);
         hBox.setSpacing(10);
         return hBox;
     }
-
     public VBox getSidebar(){
         VBox vBox = new VBox(slider , makeSidebar() ,makeButtons());
         vBox.setPrefSize(600 , 70);
@@ -134,8 +132,7 @@ public class SidebarMake implements GeneralOperations {
                     backTo(e);
                     new ListenerPanel().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
-//                    Alerts.errorAlert();
-                    ex.printStackTrace();
+                    Alerts.errorAlert();
                 }
             }
         });

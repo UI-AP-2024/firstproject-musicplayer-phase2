@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.view.PlayListAudios">
+   <children>
+      <VBox fx:id="homeVbox" layoutX="14.0" layoutY="14.0" prefHeight="354.0" prefWidth="155.0" spacing="10.0">
+         <children>
+            <ImageView fx:id="spotify" fitHeight="58.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/spotify.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="homeImage" fitHeight="48.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Home%20(2).png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="searchImage" fitHeight="48.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/search.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="homeLibrary" fitHeight="48.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/your%20library.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="allArtists" mnemonicParsing="false" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20px; -fx-background-color: #1a1a1a;" text="All Artists" textAlignment="CENTER" textFill="#b4b3b3">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="allAudios" mnemonicParsing="false" prefHeight="48.0" prefWidth="127.0" style="-fx-background-radius: 20px; -fx-background-color: #1a1a1a;" text="All Audios" textAlignment="CENTER" textFill="#b4b3b3">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <ListView fx:id="listView" layoutX="271.0" layoutY="103.0" prefHeight="293.0" prefWidth="390.0" style="-fx-background-color: #2a2a2a; -fx-region-border: white;" />
+   </children>
+</AnchorPane>

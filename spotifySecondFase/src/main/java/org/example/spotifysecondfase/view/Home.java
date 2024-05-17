@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import org.example.spotifysecondfase.controller.ListenerController;
@@ -123,7 +124,14 @@ public class Home implements Initializable
         int counter = 0;
         if(login.getBool())
         {
-            logInOrLogOut.setText("Log out");
+            singUp.setVisible(false);
+            logInOrLogOut.setVisible(false);
+//            logInOrLogOut.setText("Log out");
+            Button button = new Button(String.valueOf(login.getUserNameTextFeild().getText().charAt(0)));
+            button.setFont(Font.font("Arial Bold"));
+            Circle circle = new Circle(750,30,10);
+            circle.setFill(Color.BLUEVIOLET);
+            button.setClip(circle);
             for (int i=0; i<getHomeGridPane().getRowCount(); i++)
             {
                 for (int j=0; j<getHomeGridPane().getColumnCount(); j++)
@@ -132,6 +140,9 @@ public class Home implements Initializable
                 }
             }
             lable.setText("Suggested audios");
+            button.setOnMouseClicked(event -> {
+                //ChangeScene.listenerPane
+            });
         }
         else {
             listenerController.ordering();

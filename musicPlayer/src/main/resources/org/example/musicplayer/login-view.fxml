@@ -2,7 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -19,15 +21,22 @@
          </VBox.margin>
       </Label>
       <TextField fx:id="tf_username" maxWidth="-Infinity" prefHeight="26.0" prefWidth="192.0" promptText="username" />
-      <TextField fx:id="tf_pass" maxWidth="-Infinity" prefHeight="26.0" prefWidth="190.0" promptText="password" />
+      <HBox alignment="CENTER" spacing="10.0">
+         <children>
+            <PasswordField fx:id="pf_pass" maxWidth="-Infinity" prefHeight="26.0" prefWidth="190.0" promptText="password" />
+            <TextField fx:id="tf_pass_visible" managed="false" maxWidth="-Infinity" prefHeight="26.0" prefWidth="190.0" promptText="password" visible="false" />
+         </children>
+      </HBox>
+      <CheckBox fx:id="cb_showPass" onAction="#togglePasswordVisibility" text="Show Password" />
       <Button fx:id="btn_login" mnemonicParsing="false" onAction="#login" text="Login">
          <VBox.margin>
             <Insets top="10.0" />
-         </VBox.margin></Button>
+         </VBox.margin>
+      </Button>
       <HBox alignment="CENTER" spacing="10.0">
          <children>
             <Label text="new to this music player ? " />
-            <Button fx:id="btn_signIn" mnemonicParsing="false" onAction="#signIn" text="Sign in now" />
+            <Button fx:id="btn_signIn" mnemonicParsing="false" text="Sign in now" />
          </children>
          <VBox.margin>
             <Insets top="20.0" />

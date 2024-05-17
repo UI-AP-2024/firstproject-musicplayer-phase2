@@ -2,6 +2,7 @@ package org.example.prj.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -9,8 +10,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.example.prj.controller.ListenerController;
 
-public class AccountInfoController {
+import java.net.URL;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+public class AccountInfoController implements Initializable {
 
     @FXML
     private Text NameArtist_text;
@@ -182,4 +188,15 @@ public class AccountInfoController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        userName_text.setText(ListenerController.getListenerController().getUserNameView());
+        name_text.setText(ListenerController.getListenerController().getNameView());
+        email_text.setText(ListenerController.getListenerController().getEmailView());
+        phone_text.setText(ListenerController.getListenerController().getPhoneView());
+        birth_text.setText(ListenerController.getListenerController().getDateView());
+        daySub_text.setText(ListenerController.getListenerController().getDaySubView());
+        credit_text.setText(ListenerController.getListenerController().getCreditView());
+        genre_text.setText(ListenerController.getListenerController().getFavoriteGenreView());
+    }
 }

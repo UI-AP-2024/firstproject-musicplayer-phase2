@@ -29,6 +29,43 @@ public class ListenerController {
         this.userAccount = userAccount;
     }
 
+    public String getUserNameView(){
+        return getUserAccount().getUserName();
+    }
+
+    public String getNameView(){
+        return getUserAccount().getName();
+    }
+
+    public String getEmailView(){
+        return getUserAccount().getEmail();
+    }
+
+    public String getPhoneView(){
+        return getUserAccount().getPhoneNumber();
+    }
+
+    public String getDateView(){
+        return getUserAccount().getDateOfBirth().toString();
+    }
+
+    public String getDaySubView(){
+        if (getUserAccount() instanceof Free)
+            return "0";
+        else
+            return String.valueOf(((Premium) getUserAccount()).getDaysOfSubs());
+    }
+
+    public String getCreditView(){
+        return String.valueOf(getUserAccount().getAccountCredit());
+    }
+
+    public String getFavoriteGenreView(){
+        String result = "";
+        for (Gener gener : getUserAccount().getFavoriteGener())
+            result+= gener.name() + " ";
+        return result;
+    }
 
     public String registration(String userName, String password, String name, String email, String number/*, Date birth*/,String year,String month,String day) {
         for (UserAccount tmp : Database.getDataBase().getUserAccounts()) {

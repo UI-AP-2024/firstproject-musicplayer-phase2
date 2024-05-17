@@ -115,7 +115,7 @@ public abstract class ListenerController extends UserAccountController
     public ArrayList<Artist> getArtistArrayList() {return artistArrayList;}
     public void setArtistArrayList(ArrayList<Artist> artistArrayList) {this.artistArrayList = artistArrayList;}
     public void artistsList(Artist artist) {getArtistArrayList().add(artist);}
-    public StringBuilder showFollowing(String artistName)
+    public void follow(String artistName)
     {
         for (Artist i:artistArrayList)
         {
@@ -123,9 +123,13 @@ public abstract class ListenerController extends UserAccountController
             {
                 i.getFollowers().add(userAccount);
 //                listener.setFollowing(new StringBuilder(artistName + " ,"));
-                listener.getFollowing().append(artistName).append(" ,");
+//                listener.getFollowing().append(artistName).append(" ,");
+                listener.getFollowing().add(i);
             }
         }
+    }
+    public ArrayList<Artist> showFollowing()
+    {
         return listener.getFollowing();
     }
     public ArrayList<Artist> showArtists()

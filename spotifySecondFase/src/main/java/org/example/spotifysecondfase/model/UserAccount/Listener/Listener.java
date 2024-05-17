@@ -2,6 +2,7 @@ package org.example.spotifysecondfase.model.UserAccount.Listener;
 
 import org.example.spotifysecondfase.model.Genre;
 import org.example.spotifysecondfase.model.Playlist;
+import org.example.spotifysecondfase.model.UserAccount.Artist.Artist;
 import org.example.spotifysecondfase.model.UserAccount.UserAccount;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class Listener extends UserAccount
     private Genre[] genres = new Genre[4];
     private ArrayList<Playlist> playlists = new ArrayList<Playlist>();
     private Map<String,Integer> map = new HashMap<>();
-    private StringBuilder following = new StringBuilder();
+    private ArrayList<Artist> following = new ArrayList<>();
     public Listener(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day,Genre[] genres) {
         super(userName,passWord,name,email,phoneNumber,year,month,day);
         this.genres = genres;
@@ -51,12 +52,8 @@ public class Listener extends UserAccount
     public void setMap(Map<String, Integer> map) {
         this.map = map;
     }
-    public StringBuilder getFollowing() {
-        return following;
-    }
-    public void setFollowing(String following) {
-        this.following = new StringBuilder(following);
-    }
+    public ArrayList<Artist> getFollowing() {return following;}
+    public void setFollowing(ArrayList<Artist> following) {this.following = following;}
     @Override
     public String toString()
     {

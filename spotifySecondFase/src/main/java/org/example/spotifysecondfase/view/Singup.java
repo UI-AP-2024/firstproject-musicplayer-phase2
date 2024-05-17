@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import org.controlsfx.tools.Borders;
 import org.example.spotifysecondfase.controller.ArtistController;
 import org.example.spotifysecondfase.controller.ListenerController;
+import org.example.spotifysecondfase.model.UserAccount.Artist.Artist;
 
 import java.io.IOException;
 import java.net.URL;
@@ -113,22 +114,45 @@ public class Singup implements Initializable
     MenuItem m11= new MenuItem("Bahman");
     MenuItem m12= new MenuItem("Esfand");
 
-//    public void monthMenuButton()
-//    {
-//        MenuItem m1 = new MenuItem("Farvardin");
-//        MenuItem m2 = new MenuItem("Ordibehesht");
-//        MenuItem m3 = new MenuItem("Khordad");
-//        MenuItem m4 = new MenuItem("Tir");
-//        MenuItem m5 = new MenuItem("Mordad");
-//        MenuItem m6 = new MenuItem("Shahrivar");
-//        MenuItem m7 = new MenuItem("Mehr");
-//        MenuItem m8 = new MenuItem("Aban");
-//        MenuItem m9 = new MenuItem("Azar");
-//        MenuItem m10 = new MenuItem("Dey");
-//        MenuItem m11= new MenuItem("Bahman");
-//        MenuItem m12= new MenuItem("Esfand");
-//        getMonth().getItems().addAll(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12);
-//    }
+    public void monthMenuButton()
+    {
+        m1.setOnAction(event -> {
+            month.setText(m1.getText());
+        });
+        m2.setOnAction(event -> {
+            month.setText(m2.getText());
+        });
+        m3.setOnAction(event -> {
+            month.setText(m3.getText());
+        });
+        m4.setOnAction(event -> {
+            month.setText(m4.getText());
+        });
+        m5.setOnAction(event -> {
+            month.setText(m5.getText());
+        });
+        m6.setOnAction(event -> {
+            month.setText(m6.getText());
+        });
+        m7.setOnAction(event -> {
+            month.setText(m7.getText());
+        });
+        m8.setOnAction(event -> {
+            month.setText(m8.getText());
+        });
+        m9.setOnAction(event -> {
+            month.setText(m9.getText());
+        });
+        m10.setOnAction(event -> {
+            month.setText(m10.getText());
+        });
+        m11.setOnAction(event -> {
+            month.setText(m11.getText());
+        });
+        m12.setOnAction(event -> {
+            month.setText(m12.getText());
+        });
+    }
     MenuItem listener = new MenuItem("Listener");
     MenuItem singer = new MenuItem("Singer");
     MenuItem podcaster = new MenuItem("Podcaster");
@@ -152,6 +176,7 @@ public class Singup implements Initializable
         getAccountType().getItems().addAll(listener,singer,podcaster);
         getMonth().getItems().addAll(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12);
         listener.setOnAction(event -> {
+            monthMenuButton();
             listenerController.newListener(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText());
             if(!listenerController.checkEmail(emailTextField.getText()) | !listenerController.checkPhoneNumber(phoneTextField.getText()))
             {
@@ -193,6 +218,7 @@ public class Singup implements Initializable
 
         });
         singer.setOnAction (event -> {
+            monthMenuButton();
             Label label = new Label("Biography");
             TextField biography = new TextField();
             biography.setPromptText("Bio");
@@ -200,7 +226,7 @@ public class Singup implements Initializable
             biography.setBorder(Border.stroke(Color.WHITE));
             biography.setStyle("-fx-border-radius: 5px");
             getVbox().getChildren().addAll(label,biography);
-            artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
+            Artist artist = artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
             if(!artistController.checkEmail(emailTextField.getText()) | !artistController.checkPhoneNumber(phoneTextField.getText()))
             {
                 try {
@@ -223,6 +249,7 @@ public class Singup implements Initializable
             }
             if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
             {
+                listenerController.artistsList(artist);
                 try {
                     throw new Exception("Sign up was successful");
                 } catch (Exception e) {
@@ -240,6 +267,7 @@ public class Singup implements Initializable
             }
         });
         podcaster.setOnAction(event -> {
+            monthMenuButton();
             Label label = new Label("Biography");
             TextField biography = new TextField();
             biography.setPromptText("Bio");
@@ -247,7 +275,7 @@ public class Singup implements Initializable
             biography.setBorder(Border.stroke(Color.WHITE));
             biography.setStyle("-fx-border-radius: 5px");
             getVbox().getChildren().addAll(label,biography);
-            artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
+            Artist artist = artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
             if(!artistController.checkEmail(emailTextField.getText()) | !artistController.checkPhoneNumber(phoneTextField.getText()))
             {
                 try {
@@ -270,6 +298,7 @@ public class Singup implements Initializable
             }
             if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
             {
+                listenerController.artistsList(artist);
                 try {
                     throw new Exception("Sign up was successful");
                 } catch (Exception e) {

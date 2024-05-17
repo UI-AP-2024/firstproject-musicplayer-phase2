@@ -3,7 +3,6 @@ package org.example.prj.view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -34,9 +33,6 @@ public class PlayMusicController {
 
     @FXML
     private Text name_text;
-
-    @FXML
-    private ScrollBar scroll;
 
     @FXML
     void addTo_Action(ActionEvent event) {

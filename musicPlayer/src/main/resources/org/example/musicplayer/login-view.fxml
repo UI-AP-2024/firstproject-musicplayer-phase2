@@ -12,7 +12,7 @@
    <children>
       <Label alignment="CENTER" text="Login">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
          <VBox.margin>
             <Insets bottom="20.0" />

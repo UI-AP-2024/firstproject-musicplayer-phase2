@@ -13,9 +13,9 @@ public class Artist extends UserAccount
     double income;
     String biography;
     ArrayList<UserAccount> followers = new ArrayList<UserAccount>();
-    public Artist(String userName, String passWord, String name, String email, String phoneNumber, Date dateOfBirth, String biography)
+    public Artist(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day, String biography)
     {
-        super(userName,passWord,name,email,phoneNumber,dateOfBirth);
+        super(userName,passWord,name,email,phoneNumber,year,month,day);
         this.biography = biography;
     }
     public double getIncome() {

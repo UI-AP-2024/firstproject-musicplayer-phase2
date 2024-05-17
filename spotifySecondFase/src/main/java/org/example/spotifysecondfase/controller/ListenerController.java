@@ -8,37 +8,35 @@ import org.example.spotifysecondfase.model.UserAccount.Listener.Free;
 import org.example.spotifysecondfase.model.UserAccount.Listener.Listener;
 import org.example.spotifysecondfase.model.UserAccount.UserAccount;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class ListenerController extends UserAccountController
 {
-    static ListenerController listenerController;
+    UserAccountController userAccountController;
     private Listener listener;
     public Listener getListener() {return listener;}
     public void setListener(Listener listener) {this.listener = listener;}
-    public Listener newListener(String email, String name, String phoneNumber, Date dateOfBirth, String userName, String passWord)
+    public Listener newListener(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day)
     {
-        listener = newListener(email,name,phoneNumber,dateOfBirth,userName,passWord);
-        Database.getDatabase().getUserAccounts().add(listener);
-        return listener;
+            listener = newListener(userName,passWord,name,email,phoneNumber,year,month,day);
+            Database.getDatabase().getUserAccounts().add(listener);
+            return listener;
     }
-
-    public boolean checkEmail(String email)
-    {
-        String regexEmail = "[a-zA-Z0-9.-]@(gmail|yahoo)\\.com$";
-        Pattern pattern1 = Pattern.compile(regexEmail);
-        Matcher matcher1 = pattern1.matcher(email);
-        return matcher1.matches();
-    }
-    public boolean checkPhoneNumber(String phoneNumber)
-    {
-        String regexPhoneNumber = "0[0-9]{11,12}";
-        Pattern pattern2 = Pattern.compile(regexPhoneNumber);
-        Matcher matcher2 = pattern2.matcher(phoneNumber);
-        return matcher2.matches();
-    }
+//    public boolean check()
+//    {
+//       return userAccountController.findUser(listener.getUserName(),listener.getPassWord());
+//    }
+//    public boolean checkEmail()
+//    {
+//        return userAccountController.checkEmail(listener.getEmail());
+//    }
+//    public boolean checkPhone()
+//    {
+//        return userAccountController.checkPhoneNumber(listener.getPhoneNumber());
+//    }
     public void listenerType()
     {
         Boolean bool = listener instanceof Free;

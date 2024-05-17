@@ -13,9 +13,9 @@ import java.util.Date;
 public class ArtistController extends UserAccountController
 {
     Artist artist;
-    public Artist artist(String userName, String passWord, String name, String email, String phoneNumber, Date dateOfBirth, String biography)
+    public Artist artist(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day, String biography)
     {
-        artist = new Artist(userName,passWord,name,email,phoneNumber,dateOfBirth,biography);
+        artist = new Artist(userName,passWord,name,email,phoneNumber,year,month,day,biography);
         Database.getDatabase().getUserAccounts().add(artist);
         return artist;
     }

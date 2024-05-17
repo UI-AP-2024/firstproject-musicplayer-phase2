@@ -14,16 +14,18 @@ public abstract class UserAccount
     private String name;
     private String email;
     private String phoneNumber;
-    private Date dateOfBirth;
-    public UserAccount(String userName, String passWord, String name, String email, String phoneNumber, Date date)
+    private LocalDate dateOfBirth;
+    public UserAccount(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day)
     {
         this.email = email;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.dateOfBirth = date;
+        dateOfBirth = LocalDate.of(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
         this.userName = userName;
         this.passWord = passWord;
     }
+
+
     public String getUserName() {return userName;}
     public void setUserName(String userName) {this.userName = userName;}
     public String getPassWord() {return passWord;}
@@ -34,8 +36,8 @@ public abstract class UserAccount
     public void setEmail(String email) {this.email = email;}
     public String getPhoneNumber() {return phoneNumber;}
     public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
-    public Date getDateOfBirth() {return dateOfBirth;}
-    public void setDateOfBirth(Date dateOfBirth) {this.dateOfBirth = dateOfBirth;}
+    public LocalDate getDateOfBirth() {return dateOfBirth;}
+    public void setDateOfBirth(LocalDate dateOfBirth) {this.dateOfBirth = dateOfBirth;}
     @Override
     public String toString()
     {

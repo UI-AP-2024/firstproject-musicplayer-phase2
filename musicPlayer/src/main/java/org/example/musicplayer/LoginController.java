@@ -30,7 +30,10 @@ public class LoginController implements Initializable {
     void login(ActionEvent event) {
         System.out.println(SignInOutController.getUserAccountController().login(tf_username.getText(), tf_pass.getText()));
     }
+    @FXML
+    void signIn(ActionEvent event) {
 
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

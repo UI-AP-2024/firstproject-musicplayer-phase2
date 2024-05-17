@@ -24,6 +24,7 @@ import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 import org.example.musicplayer_phase2.model.AboutMusic.Album;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import javafx.scene.input.MouseEvent;
+import org.example.musicplayer_phase2.model.AboutMusic.Podcast;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -168,6 +169,8 @@ public class ShowArtistsInformation extends Application implements Initializable
                         label.setOnMouseClicked(e -> {
                             try {
                                 NecessaryMethods.saveLastScene(e);
+                                ArrayList<Audio> music = new ArrayList<>();
+                                music.add(audio);
                                 PlayMusicPage.setAudio(audio);
                                 new PlayMusicPage().start(NecessaryMethods.getStage(e));
                             } catch (Exception ex) {
@@ -184,6 +187,19 @@ public class ShowArtistsInformation extends Application implements Initializable
                 int index = 0;
                 for (Audio a : ((Podcaster) artist).getAllPodcasts()){
                     Label label = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
+                    label.setOnMouseClicked(e -> {
+                        try {
+                            ArrayList<Audio> podcasts = new ArrayList<>();
+                            podcasts.add(a);
+                            NecessaryMethods.saveLastScene(e);
+                            PlayMusicPage.setAllMedias(podcasts);
+                            PlayMusicPage.setAudio(a);
+                            new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                        } catch (Exception ex) {
+                            Alerts.errorAlert();
+                        }
+                    });
+
                     gridPaneForAudio.add(label , 0 , index);
                     ++index;
                 }

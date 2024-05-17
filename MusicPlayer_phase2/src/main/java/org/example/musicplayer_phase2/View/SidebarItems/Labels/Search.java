@@ -71,10 +71,10 @@ public class Search extends Application implements Initializable {
                 audioLabel.setOnMouseClicked(e -> {
                     try {
                         NecessaryMethods.saveLastScene(e);
-                        PlayMusicPage.setAudio(a);
                         ArrayList<Audio> hereAudio= new ArrayList<Audio>();
                         hereAudio.add(a);
-                        PutSlider.setAllMedias(hereAudio);
+                        PlayMusicPage.setAllMedias(hereAudio);
+                        PlayMusicPage.setAudio(a);
                         new PlayMusicPage().start(NecessaryMethods.getStage(e));
                     } catch (Exception ex) {
                         Alerts.errorAlert();

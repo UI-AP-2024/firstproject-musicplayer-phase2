@@ -22,12 +22,6 @@ import java.util.ArrayList;
 import static org.example.musicplayer_phase2.View.Informations.PlayMusicPage.*;
 
 public class PutSlider{
-    private static ArrayList<Audio> allMedias = new ArrayList<>();
-
-    public static void setAllMedias(ArrayList<Audio> allMedias) {
-        PutSlider.allMedias = allMedias;
-    }
-
     public static Slider getSlider() {
         return slider;
     }
@@ -37,7 +31,7 @@ public class PutSlider{
     private Label nextLabel = new Label("NEXT");
     private Label lastLabel = new Label("LAST");
     private HBox hBoxForLabels = new HBox(lastLabel , play_pauseMusicLabel , nextLabel);
-    private VBox baseVBox = new VBox(slider , hBoxForLabels);
+    private VBox baseVBox = new VBox();
     public VBox getBaseVBox() {
         makingReady();
         return baseVBox;
@@ -47,6 +41,8 @@ public class PutSlider{
         hBoxForLabels.setSpacing(20);
         hBoxForLabels.setAlignment(Pos.CENTER);
 
+        baseVBox.getChildren().addAll(slider , hBoxForLabels);
+
         nextLabel.setPrefSize(50 , 25);
         lastLabel.setPrefSize(50 , 25);
         play_pauseMusicLabel.setPrefSize(75 , 25);
@@ -54,21 +50,29 @@ public class PutSlider{
         nextLabel.setAlignment(Pos.CENTER);
         lastLabel.setAlignment(Pos.CENTER);
 
+        if (getMediaPlayer() != null){
+            if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+                play_pauseMusicLabel.setText("PAUSE");
+            }
+        }
+
         play_pauseMusicLabelActions();
+        nextLabelActions();
+        lastLabelActions();
     }
 
     private void play_pauseMusicLabelActions(){
-        play_pauseMusicLabel.setOnMouseClicked(e -> {
-            if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
-                play_pauseMusicLabel.setText("PLAY");
-                stopPlaying();
-            }
-
-            else {
-                play_pauseMusicLabel.setText("PAUSE");
-                startPlaying();
-            }
-        });
+        if (getMediaPlayer() != null) {
+            play_pauseMusicLabel.setOnMouseClicked(e -> {
+                if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
+                    play_pauseMusicLabel.setText("PLAY");
+                    stopPlaying();
+                } else {
+                    play_pauseMusicLabel.setText("PAUSE");
+                    startPlaying();
+                }
+            });
+        }
         play_pauseMusicLabel.setOnMouseEntered(e -> {
             play_pauseMusicLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
         });
@@ -78,7 +82,27 @@ public class PutSlider{
     }
 
     private void nextLabelActions(){
+        nextLabel.setOnMouseClicked(e -> {
+            PlayMusicPage.nextMusic();
+        });
+        nextLabel.setOnMouseEntered(e -> {
+            nextLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
+        });
+        nextLabel.setOnMouseExited(e -> {
+            nextLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
+        });
+    }
 
+    private void lastLabelActions(){
+        lastLabel.setOnMouseClicked(e -> {
+            PlayMusicPage.lastMusic();
+        });
+        lastLabel.setOnMouseEntered(e -> {
+            lastLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
+        });
+        lastLabel.setOnMouseExited(e -> {
+            lastLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
+        });
     }
 
 }

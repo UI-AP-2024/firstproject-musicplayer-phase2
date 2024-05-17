@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
+import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.UserAccountController;
@@ -29,19 +30,26 @@ import org.example.musicplayer_phase2.model.AboutMusic.Playlist;
 import org.example.musicplayer_phase2.model.AboutMusic.Podcast;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
-import static org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider.getSlider;
 
 public class PlayMusicPage extends Application implements Initializable {
-    private static Audio audio;
+    public static Audio audio;
     private static Media media;
 
     public static MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
 
+    private static ArrayList<Audio> allMedias = new ArrayList<>();
+
+    public static void setAllMedias(ArrayList<Audio> allMedias1) {
+        allMedias = allMedias1;
+    }
+
+    private static int musicNumber;
     private static MediaPlayer mediaPlayer;
 
     public static Audio getAudio() {
@@ -49,8 +57,15 @@ public class PlayMusicPage extends Application implements Initializable {
     }
 
     public static void setAudio(Audio audio) {
+        if (mediaPlayer != null){
+            if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+                mediaPlayer.stop();
+            }
+        }
+
         PlayMusicPage.audio = audio;
         media = new Media(audio.getAudioLink());
+        musicNumber = allMedias.indexOf(audio);
         mediaPlayer = new MediaPlayer(media);
     }
 
@@ -175,22 +190,55 @@ public class PlayMusicPage extends Application implements Initializable {
     }
 
     public static void startPlaying(){
-        try{
-            mediaPlayer.play();
-            mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-                getSlider().setValue(newValue.toSeconds());
-            });
+        if (media != null) {
+            try {
+                mediaPlayer.play();
+                mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                    PutSlider.getSlider().setValue(newValue.toSeconds());
+                });
 
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("fail in playing");
-            alert.setContentText("audio not found");
-            alert.showAndWait();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("fail in playing");
+                alert.setContentText("audio not found");
+                alert.showAndWait();
+            }
         }
+
+        mediaPlayer.setOnEndOfMedia( () -> {
+            nextMusic();
+        });
     }
 
     public static void stopPlaying(){
         mediaPlayer.pause();
     }
 
+    public static void nextMusic(){
+        musicNumber++;
+        if (allMedias.size() <= musicNumber){
+            musicNumber %= allMedias.size();
+        }
+
+        else if (musicNumber < 0){
+            musicNumber = allMedias.size() + musicNumber % allMedias.size();
+        }
+
+        setAudio(allMedias.get(musicNumber));
+        startPlaying();
+    }
+
+    public static void lastMusic (){
+        musicNumber--;
+        if (allMedias.size() <= musicNumber){
+            musicNumber %= allMedias.size();
+        }
+
+        else if (musicNumber < 0){
+            musicNumber = allMedias.size() + musicNumber % allMedias.size();
+        }
+
+        setAudio(allMedias.get(musicNumber));
+        startPlaying();
+    }
 }

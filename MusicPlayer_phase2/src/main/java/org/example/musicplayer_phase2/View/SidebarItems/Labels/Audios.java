@@ -55,8 +55,8 @@ public class Audios extends Application {
             nameLabel.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
+                    PlayMusicPage.setAllMedias(listenerController.sortAudios());
                     PlayMusicPage.setAudio(a);
-                    PutSlider.setAllMedias(listenerController.sortAudios());
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

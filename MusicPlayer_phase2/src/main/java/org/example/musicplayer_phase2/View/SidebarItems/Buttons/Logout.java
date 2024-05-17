@@ -3,9 +3,11 @@ package org.example.musicplayer_phase2.View.SidebarItems.Buttons;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.Start;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
@@ -25,6 +27,11 @@ public class Logout extends Application {
         UserAccountController.singer = null;
         UserAccountController.podcaster = null;
         HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
+        if (PlayMusicPage.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+            PlayMusicPage.stopPlaying();
+            PlayMusicPage.audio = null;
+        }
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("start.fxml"));
             Scene scene = new Scene(fxmlLoader.load() , 600 , 450);

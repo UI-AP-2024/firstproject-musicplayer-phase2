@@ -107,8 +107,8 @@ public class PlaylistInformation extends Application implements Initializable {
             audioLabel.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
+                    PlayMusicPage.setAllMedias(playlist.getAudioFiles());
                     PlayMusicPage.setAudio(a);
-                    PutSlider.setAllMedias(playlist.getAudioFiles());
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

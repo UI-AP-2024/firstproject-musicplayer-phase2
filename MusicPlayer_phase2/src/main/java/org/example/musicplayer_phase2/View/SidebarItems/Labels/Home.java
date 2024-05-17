@@ -68,7 +68,7 @@ public class Home extends Application {
                 try {
                     NecessaryMethods.saveLastScene(e);
                     PlayMusicPage.setAudio(a);
-                    PutSlider.setAllMedias(listenerController.suggestMusic(100, UserAccountController.listener));
+                    PlayMusicPage.setAllMedias(listenerController.suggestMusic(100, UserAccountController.listener));
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();
@@ -111,8 +111,8 @@ public class Home extends Application {
             label.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
+                    PlayMusicPage.setAllMedias(favoriteAudios);
                     PlayMusicPage.setAudio(a);
-                    PutSlider.setAllMedias(favoriteAudios);
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

@@ -35,7 +35,7 @@ public class HelloApplication extends Application {
     public static final Admin admin = getAdmin("Fatemeh" , "fatemeh" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
     public static void main(String[] args) throws Exception {
         Audio audio1 = new Music("first" , "" , "" , Genre.POP , "https://ts1.tarafdari.com/contents/user141862/content-sound/richard_clayderman_-_mariage_d_amour.mp3" , "" , "");
-//        Audio audio2 = new Music("abc" , "" , "" , Genre.POP , "" , "" , "");
+        Audio audio2 = new Music("abc" , "" , "" , Genre.POP , "https://dl.musicdel.ir/Music/1400/12/andy_williams_love_story.mp3" , "" , "");
 //        Audio audio3 = new Music("first" , "" , "" , Genre.HIPHOP , "" , "" , "");
 //        Audio audio4 = new Music("mmm" , "" , "" , Genre.COUNTRY, "" , "" , "");
 //        Audio audio5 = new Music("g" , "" , "" , Genre.POP , "" , "" , "");
@@ -47,8 +47,7 @@ public class HelloApplication extends Application {
         Artist artist12 = new Podcaster("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");
 
 
-        Premium listener = new Premium("" , "fff" , "123" , "" , "" , LocalDate.now());
-//        Free listener = new Free("" , "fff" , "123" , "" , "" , LocalDate.now());
+        Premium listener = new Premium("fatemeh" , "fahim" , "1234!@#$" , "" , "" , LocalDate.now());
         ListenerController listenerController = new ListenerController();
 
         listenerController.followingArtist(artist1 , listener);

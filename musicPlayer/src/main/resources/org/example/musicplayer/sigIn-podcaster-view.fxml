@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.SignInPodcasterController">
+<GridPane alignment="center" hgap="10" prefHeight="500.0" prefWidth="700.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.SignInPodcasterController">
     <padding>
         <Insets bottom="25" left="25" right="25" top="25" />
     </padding>

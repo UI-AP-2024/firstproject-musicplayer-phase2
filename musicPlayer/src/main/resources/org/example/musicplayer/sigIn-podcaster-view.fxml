@@ -47,6 +47,9 @@
     <Label text="Birth Date:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
     <DatePicker fx:id="birthDatePicker" prefHeight="26.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
+    <Label text="Bio:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+    <TextField fx:id="bioField" prefHeight="58.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
     <HBox alignment="center" prefHeight="35.0" prefWidth="306.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="8">
         <Button fx:id="registerButton" text="Register" />
     </HBox>
@@ -56,12 +59,16 @@
         <Label style="-fx-alignment: center;" text="Already on music player?" />
         <Button fx:id="loginButton" text="Login" />
     </VBox>
-   <Label text="Bio:" GridPane.rowIndex="7" />
-   <TextField fx:id="usernameField1" prefHeight="58.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+    <HBox alignment="center" prefHeight="35.0" prefWidth="306.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="12">
+        <Button fx:id="btn_back" text="Back" />
+    </HBox>
+
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
     </columnConstraints>
+
     <rowConstraints>
         <RowConstraints />
         <RowConstraints />
@@ -70,10 +77,11 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" />
         <RowConstraints />
         <RowConstraints />
         <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
         <RowConstraints maxHeight="67.19999999999999" minHeight="67.19999999999999" prefHeight="67.19999999999999" />
+        <RowConstraints />
     </rowConstraints>
 </GridPane>

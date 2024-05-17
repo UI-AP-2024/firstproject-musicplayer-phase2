@@ -18,6 +18,7 @@ import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
+import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
@@ -42,7 +43,7 @@ public class PlaylistInformation extends Application implements Initializable {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("playlistInformation.fxml"));
-        Scene scene = new Scene(fxmlLoader.load() , 600 , 450);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 450);
         AboutStyleSheet.putStyleSheet(scene);
         stage.setTitle("your playlist");
         stage.setScene(scene);
@@ -63,11 +64,11 @@ public class PlaylistInformation extends Application implements Initializable {
 
     @FXML
     void addLabelClicked(MouseEvent event) {
-        if (addMusicTextField != null){
+        if (addMusicTextField != null) {
             Audio audio;
             try {
                 audio = UserAccountController.findAudio(Integer.parseInt(addMusicTextField.getText()));
-                new ListenerController().addMusicToPlaylist(playlist , audio , UserAccountController.listener);
+                new ListenerController().addMusicToPlaylist(playlist, audio, UserAccountController.listener);
                 new PlaylistInformation().start(NecessaryMethods.getStage(event));
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -93,27 +94,29 @@ public class PlaylistInformation extends Application implements Initializable {
         SidebarMake sidebarMake = new SidebarMake();
         sidebareVBox.getChildren().add(sidebarMake.getSidebar());
 
-        putAudio(audiosScrollPane);
+        if (playlist != null)
+            putAudio(audiosScrollPane);
     }
 
-    private void putAudio(ScrollPane scrollPane){
+    private void putAudio(ScrollPane scrollPane) {
         GridPane gridPane = new GridPane();
 
         int index = 0;
-        for (Audio a: playlist){
+        for (Audio a : playlist) {
             Label audioLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
             audioLabel.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
                     PlayMusicPage.setAudio(a);
+                    PutSlider.setAllMedias(playlist.getAudioFiles());
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();
                 }
             });
 
-            audioLabel.setPrefSize(350 , 50);
-            gridPane.add(audioLabel , 0 , index);
+            audioLabel.setPrefSize(350, 50);
+            gridPane.add(audioLabel, 0, index);
             ++index;
         }
         scrollPane.setContent(gridPane);

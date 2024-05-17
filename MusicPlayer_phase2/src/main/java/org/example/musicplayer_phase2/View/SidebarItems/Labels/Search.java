@@ -18,6 +18,7 @@ import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.Informations.ShowArtistsInformation;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
+import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
@@ -71,6 +72,9 @@ public class Search extends Application implements Initializable {
                     try {
                         NecessaryMethods.saveLastScene(e);
                         PlayMusicPage.setAudio(a);
+                        ArrayList<Audio> hereAudio= new ArrayList<Audio>();
+                        hereAudio.add(a);
+                        PutSlider.setAllMedias(hereAudio);
                         new PlayMusicPage().start(NecessaryMethods.getStage(e));
                     } catch (Exception ex) {
                         Alerts.errorAlert();

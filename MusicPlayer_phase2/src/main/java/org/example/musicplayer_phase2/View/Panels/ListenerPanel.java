@@ -47,8 +47,6 @@ public class ListenerPanel extends Application implements Initializable {
     @FXML
     private ScrollPane followingScrollPane;
     @FXML
-    private TextField nameTextField;
-    @FXML
     private TextField passwordTextFild;
     @FXML
     private TextField usernameTextField;
@@ -158,7 +156,6 @@ public class ListenerPanel extends Application implements Initializable {
 
     private void fillLabelsAndTextFields() {
         if (UserAccountController.listener != null) {
-            nameTextField.setText("name: " + UserAccountController.listener.getName());
             usernameTextField.setText("username: " + UserAccountController.listener.getUsername());
             passwordTextFild.setText("password: " + UserAccountController.listener.getPassword());
             creditTextfield.setText("your credit: "+ UserAccountController.listener.getCredit());
@@ -167,7 +164,6 @@ public class ListenerPanel extends Application implements Initializable {
             else if (UserAccountController.listener instanceof Free)
                 subscriptionTextField.setText("you didn't get premium");
 
-            nameTextField.setEditable(false);
             usernameTextField.setEditable(false);
             passwordTextFild.setEditable(false);
             creditTextfield.setEditable(false);

@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Panels.BuySubscription">
     <children>
-        <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="300.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
+        <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="267.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
       <TextField fx:id="increasCreditTextField" layoutX="326.0" layoutY="73.0" prefHeight="25.0" prefWidth="250.0" promptText="increase credit" />
       <Button fx:id="increaseButton" layoutX="326.0" layoutY="123.0" mnemonicParsing="false" onMouseClicked="#increaseClicked" text="increase" />
       <SplitMenuButton fx:id="premiumType" layoutX="50.0" layoutY="73.0" mnemonicParsing="false" prefWidth="250.0" text="premium types">

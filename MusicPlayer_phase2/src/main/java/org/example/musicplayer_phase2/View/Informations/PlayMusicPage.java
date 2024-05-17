@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
@@ -30,8 +32,17 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
+import static org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider.getSlider;
+
 public class PlayMusicPage extends Application implements Initializable {
     private static Audio audio;
+    private static Media media;
+
+    public static MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
+    private static MediaPlayer mediaPlayer;
 
     public static Audio getAudio() {
         return audio;
@@ -39,6 +50,8 @@ public class PlayMusicPage extends Application implements Initializable {
 
     public static void setAudio(Audio audio) {
         PlayMusicPage.audio = audio;
+        media = new Media(audio.getAudioLink());
+        mediaPlayer = new MediaPlayer(media);
     }
 
     @Override
@@ -159,6 +172,25 @@ public class PlayMusicPage extends Application implements Initializable {
                 coverImageView.setImage(image);
             }
         }
+    }
+
+    public static void startPlaying(){
+        try{
+            mediaPlayer.play();
+            mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                getSlider().setValue(newValue.toSeconds());
+            });
+
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("fail in playing");
+            alert.setContentText("audio not found");
+            alert.showAndWait();
+        }
+    }
+
+    public static void stopPlaying(){
+        mediaPlayer.pause();
     }
 
 }

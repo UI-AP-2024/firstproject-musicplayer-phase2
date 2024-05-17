@@ -3,15 +3,35 @@ package org.example.musicplayer_phase2.View.SidebarItems.Slider;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
+import org.example.musicplayer_phase2.model.AboutMusic.Audio;
+import org.example.musicplayer_phase2.model.Database;
 
-public class PutSlider extends Application{
+import java.util.ArrayList;
+
+import static org.example.musicplayer_phase2.View.Informations.PlayMusicPage.*;
+
+public class PutSlider{
+    private static ArrayList<Audio> allMedias = new ArrayList<>();
+
+    public static void setAllMedias(ArrayList<Audio> allMedias) {
+        PutSlider.allMedias = allMedias;
+    }
+
+    public static Slider getSlider() {
+        return slider;
+    }
+
     private static Slider slider = new Slider();
     private Label play_pauseMusicLabel = new Label("PLAY");
     private Label nextLabel = new Label("NEXT");
@@ -30,14 +50,35 @@ public class PutSlider extends Application{
         nextLabel.setPrefSize(50 , 25);
         lastLabel.setPrefSize(50 , 25);
         play_pauseMusicLabel.setPrefSize(75 , 25);
+        play_pauseMusicLabel.setAlignment(Pos.CENTER);
+        nextLabel.setAlignment(Pos.CENTER);
+        lastLabel.setAlignment(Pos.CENTER);
+
+        play_pauseMusicLabelActions();
+    }
+
+    private void play_pauseMusicLabelActions(){
+        play_pauseMusicLabel.setOnMouseClicked(e -> {
+            if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+                play_pauseMusicLabel.setText("PLAY");
+                stopPlaying();
+            }
+
+            else {
+                play_pauseMusicLabel.setText("PAUSE");
+                startPlaying();
+            }
+        });
+        play_pauseMusicLabel.setOnMouseEntered(e -> {
+            play_pauseMusicLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
+        });
+        play_pauseMusicLabel.setOnMouseExited(e -> {
+            play_pauseMusicLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
+        });
+    }
+
+    private void nextLabelActions(){
 
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(getBaseVBox() , 600 , 450);
-        AboutStyleSheet.putStyleSheet(scene);
-        stage.setScene(scene);
-        stage.show();
-    }
 }

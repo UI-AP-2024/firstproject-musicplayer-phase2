@@ -5,12 +5,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
+import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
@@ -49,6 +51,7 @@ public class Home extends Application {
 
         VBox vBox = new VBox();
         vBox.getChildren().add(baseVBox);
+
         vBox.getChildren().add(sidebarMake.getSidebar());
         vBox.setPadding(new Insets(20));
         return vBox;
@@ -65,6 +68,7 @@ public class Home extends Application {
                 try {
                     NecessaryMethods.saveLastScene(e);
                     PlayMusicPage.setAudio(a);
+                    PutSlider.setAllMedias(listenerController.suggestMusic(100, UserAccountController.listener));
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();
@@ -108,6 +112,7 @@ public class Home extends Application {
                 try {
                     NecessaryMethods.saveLastScene(e);
                     PlayMusicPage.setAudio(a);
+                    PutSlider.setAllMedias(favoriteAudios);
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

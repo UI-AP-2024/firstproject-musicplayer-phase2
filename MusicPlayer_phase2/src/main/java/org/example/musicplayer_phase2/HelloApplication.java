@@ -34,14 +34,14 @@ public class HelloApplication extends Application {
 
     public static final Admin admin = getAdmin("Fatemeh" , "fatemeh" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
     public static void main(String[] args) throws Exception {
-        Audio audio1 = new Music("first" , "" , "" , Genre.POP , "" , "" , "");
-        Audio audio2 = new Music("abc" , "" , "" , Genre.POP , "" , "" , "");
-        Audio audio3 = new Music("first" , "" , "" , Genre.HIPHOP , "" , "" , "");
-        Audio audio4 = new Music("mmm" , "" , "" , Genre.COUNTRY, "" , "" , "");
-        Audio audio5 = new Music("g" , "" , "" , Genre.POP , "" , "" , "");
-        Audio audio6 = new Music("eeee" , "" , "" , Genre.ROCK , "" , "" , "");
-        audio3.setLikesNum(100);
-        audio5.setLikesNum(500);
+        Audio audio1 = new Music("first" , "" , "" , Genre.POP , "https://ts1.tarafdari.com/contents/user141862/content-sound/richard_clayderman_-_mariage_d_amour.mp3" , "" , "");
+//        Audio audio2 = new Music("abc" , "" , "" , Genre.POP , "" , "" , "");
+//        Audio audio3 = new Music("first" , "" , "" , Genre.HIPHOP , "" , "" , "");
+//        Audio audio4 = new Music("mmm" , "" , "" , Genre.COUNTRY, "" , "" , "");
+//        Audio audio5 = new Music("g" , "" , "" , Genre.POP , "" , "" , "");
+//        Audio audio6 = new Music("eeee" , "" , "" , Genre.ROCK , "" , "" , "");
+//        audio3.setLikesNum(100);
+//        audio5.setLikesNum(500);
 
         Artist artist1 = new Singer("fatemeh" , "first" , "" , " " , "" , LocalDate.now() , "");
         Artist artist12 = new Podcaster("fatemeh" , "ftm" , "" , " " , "" , LocalDate.now() , "");

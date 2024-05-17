@@ -33,10 +33,7 @@ public class Playlist implements Iterable<Audio>{
         return personName;
     }
 
-    public String getAudioFiles() {
-        String audioFiles = "";
-        for (Audio audio : this.audioFiles)
-            audioFiles += audio.getAudioName() + "\n";
+    public ArrayList<Audio> getAudioFiles() {
         return audioFiles;
     }
 

@@ -20,4 +20,6 @@ module org.example.musicplayer_phase2 {
     exports org.example.musicplayer_phase2.View.SidebarItems.Labels;
     opens org.example.musicplayer_phase2.View.SidebarItems.Labels to javafx.fxml;
 
+    exports org.example.musicplayer_phase2.View.SidebarItems.Slider;
+    opens org.example.musicplayer_phase2.View.SidebarItems.Slider to javafx.fxml;
 }

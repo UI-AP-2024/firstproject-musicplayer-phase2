@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Informations.ShowArtistsInformation">
-    <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="300.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
-   <ScrollPane fx:id="audiosScrollPane" layoutX="29.0" layoutY="48.0" prefHeight="237.0" prefWidth="240.0" />
+    <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="267.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
+   <ScrollPane fx:id="audiosScrollPane" layoutX="29.0" layoutY="43.0" prefHeight="219.0" prefWidth="240.0" />
    <Label layoutX="29.0" layoutY="6.0" prefHeight="17.0" prefWidth="240.0" text="audios list: " />
-   <VBox layoutX="333.0" layoutY="14.0" prefHeight="271.0" prefWidth="200.0" spacing="10.0">
+   <VBox layoutX="334.0" layoutY="6.0" prefHeight="241.0" prefWidth="200.0" spacing="10.0">
       <children>
          <TextField fx:id="nameTextField" />
          <TextField fx:id="usernameTextField" />
          <TextField fx:id="followersNumTextField" />
          <TextArea fx:id="biographyTextArea" prefHeight="65.0" prefWidth="200.0" />
-         <TextArea fx:id="reportTextArea" prefHeight="200.0" prefWidth="200.0" promptText="your report:" />
+         <TextField fx:id="reportTextArea" promptText="your report" />
          <Label fx:id="reportLabel" onMouseClicked="#reportClicked" onMouseEntered="#reportEnter" onMouseExited="#reportExit" prefHeight="25.0" prefWidth="100.0" text="report" />
          <Label fx:id="followLabel" onMouseClicked="#followClicked" prefHeight="25.0" prefWidth="100.0" text="follow" />
       </children>

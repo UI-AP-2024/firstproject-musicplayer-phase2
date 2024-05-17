@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
+import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
@@ -25,6 +26,7 @@ import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ShowArtistsInformation extends Application implements Initializable {
@@ -72,7 +74,7 @@ public class ShowArtistsInformation extends Application implements Initializable
     private TextField usernameTextField;
 
     @FXML
-    private TextArea reportTextArea;
+    private TextField reportTextArea;
 
     @FXML
     void followClicked(MouseEvent event) {
@@ -163,6 +165,15 @@ public class ShowArtistsInformation extends Application implements Initializable
                 for (Album a : ((Singer) artist).getAllAlbums()){
                     for (Audio audio : a.getAllMusics()){
                         Label label = new Label("name: " + audio.getAudioName() + "\nidentifier: " + audio.getIdentifier());
+                        label.setOnMouseClicked(e -> {
+                            try {
+                                NecessaryMethods.saveLastScene(e);
+                                PlayMusicPage.setAudio(audio);
+                                new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                            } catch (Exception ex) {
+                                Alerts.errorAlert();
+                            }
+                        });
                         gridPaneForAudio.add(label , 0 , index);
                         ++index;
                     }

@@ -2,6 +2,7 @@ package org.example.prj.controller;
 
 import org.example.prj.model.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -213,7 +214,7 @@ public class ListenerController {
         return result;
     }
 
-    public String sortAudioFile(String type){
+    public ArrayList<Audio> sortAudioFile(String type){
         if (type.equals("L")){
             for (int i = 0; i < Database.getDataBase().getAudio().size()-1 ; i++) {
                 for (int j = 0; j < Database.getDataBase().getAudio().size()-i-1 ; j++) {
@@ -222,12 +223,9 @@ public class ListenerController {
                     }
                 }
             }
-            String result = "";
-            for ( Audio audio : Database.getDataBase().getAudio())
-                result += "\n"+audio;
-            return result;
+            return new ArrayList<>(Database.getDataBase().getAudio());
         }
-        else if (type.equals("P")){
+        else{ //if (type.equals("P")){
             for (int i = 0; i < Database.getDataBase().getAudio().size()-1 ; i++) {
                 for (int j = 0; j < Database.getDataBase().getAudio().size()-i-1 ; j++) {
                     if ( Database.getDataBase().getAudio().get(j).getNumberOfPlays() < Database.getDataBase().getAudio().get(j+1).getNumberOfPlays() ){
@@ -235,12 +233,8 @@ public class ListenerController {
                     }
                 }
             }
-            String result = "";
-            for ( Audio audio : Database.getDataBase().getAudio())
-                result += "\n"+audio;
-            return result;
+            return new ArrayList<>(Database.getDataBase().getAudio());
         }
-        return "The requested sort is not valid";
     }
 
     public String filterAudioFile(String type,String detail){
@@ -373,9 +367,9 @@ public class ListenerController {
         return "The desired playlist was not found";
     }
 
-    public String suggestions(){
-        String result = "";
-        String tmp = sortAudioFile("L");
+    public ArrayList<Audio> suggestions(){
+        ArrayList<Audio> audios = new ArrayList<>();
+        sortAudioFile("L");
         int count = 0;
         for ( Audio audio : Database.getDataBase().getAudio()){
             labale1:
@@ -383,20 +377,17 @@ public class ListenerController {
                 for (UserAccount userAccount1 : getUserAccount().getFollowings()){
                     if ( audio.getNameArtist().equals(   userAccount1.getName()   ) || audio.getGener()==gener ){
                         if ( count<10){
-                            result += audio+"\n";
+                            audios.add(audio);
                             count++;
                             break labale1;
                         }
                         else
-                            return result;
+                            return audios;
                     }
                 }
             }
         }
-        if ( result.equals(""))
-            return  "Empty";
-        else
-            return result;
+            return audios;
 //        Audio[] audioArr = new Audio[10];
 //        int i=0;
 //        int num=0;

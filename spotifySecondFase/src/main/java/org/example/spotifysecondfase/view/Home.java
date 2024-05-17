@@ -156,7 +156,18 @@ public class Home implements Initializable
             }
         });
         singUp.setOnMouseClicked(event -> {
-
+            try {
+                ChangeScene.signup();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        homeImage.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.home();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }

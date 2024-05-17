@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import org.example.spotifysecondfase.model.Genre;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -36,6 +37,35 @@ public class ChooseGenres implements Initializable
     private Button btn;
     public Button getBtn() {return btn;}
     public void setBtn(Button btn) {this.btn = btn;}
+    @FXML
+    private Button allArtists;
+    public Button getAllArtists() {return allArtists;}
+    public void setAllArtists(Button allArtists) {this.allArtists = allArtists;}
+    @FXML
+    private Button allAudios;
+    public Button getAllAudios() {return allAudios;}
+    public void setAllAudios(Button allAudios) {this.allAudios = allAudios;}
+    @FXML
+    private ImageView home;
+    public ImageView getHome() {return home;}
+    public void setHome(ImageView home) {this.home = home;}
+    @FXML
+    private ImageView library;
+    public ImageView getLibrary() {return library;}
+    public void setLibrary(ImageView library) {this.library = library;}
+    @FXML
+    private ImageView search;
+    public ImageView getSearch() {return search;}
+    public void setSearch(ImageView search) {this.search = search;}
+    @FXML
+    private ImageView spotify;
+    public ImageView getSpotify() {return spotify;}
+    public void setSpotify(ImageView spotify) {this.spotify = spotify;}
+    @FXML
+    private VBox vbox;
+    public VBox getVbox() {return vbox;}
+    public void setVbox(VBox vbox) {this.vbox = vbox;}
+
     public static VBox vBox(Genre genre)
     {
         VBox vBox = new VBox();
@@ -58,8 +88,6 @@ public class ChooseGenres implements Initializable
         {
             for (int j=0; j<gridPane.getColumnCount(); j++)
             {
-//                ImageView imageView = Genre.genresArray().get(counter).getImageView();
-//                Label label = new Label(Genre.genresArray().get(counter).name());
                 Genre genre = Genre.genresArray().get(counter);
                 VBox vBox = vBox(genre);
                 gridPane.add(vBox,i,j);
@@ -93,6 +121,13 @@ public class ChooseGenres implements Initializable
                 counter++;
             }
         }
+        getHome().setOnMouseClicked(event -> {
+            try {
+                ChangeScene.home();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
 
     }

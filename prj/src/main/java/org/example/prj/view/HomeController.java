@@ -3,9 +3,10 @@ package org.example.prj.view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 public class HomeController {
 
@@ -19,7 +20,10 @@ public class HomeController {
     private Button back_button;
 
     @FXML
-    private GridPane gridPane;
+    private Text error_text;
+
+    @FXML
+    private GridPane gridPain;
 
     @FXML
     private Button home_button;
@@ -37,7 +41,7 @@ public class HomeController {
     private Button register_button;
 
     @FXML
-    private ScrollBar scroll;
+    private ScrollPane scroll;
 
     @FXML
     private TextField search_Text;

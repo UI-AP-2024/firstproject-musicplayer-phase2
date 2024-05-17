@@ -2,6 +2,7 @@ package org.example.prj.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -9,8 +10,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.example.prj.controller.ArtistController;
 
-public class ArtistInfoController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ArtistInfoController implements Initializable {
 
     @FXML
     private Text Email_text;
@@ -173,4 +178,12 @@ public class ArtistInfoController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        userName_text.setText(ArtistController.getArtistController().getUserNameView());
+        name_text.setText(ArtistController.getArtistController().getNameView());
+        bio_text.setText(ArtistController.getArtistController().getBioView());
+        birth_text.setText(ArtistController.getArtistController().getdateView());
+        Email_text.setText(ArtistController.getArtistController().getEmailView());
+    }
 }

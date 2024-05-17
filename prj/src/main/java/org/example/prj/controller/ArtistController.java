@@ -28,6 +28,27 @@ public class ArtistController {
         this.userAccount = userAccount;
     }
 
+    public String getUserNameView(){
+        return getUserAccount().getUserName();
+    }
+
+    public String getNameView(){
+        return getUserAccount().getName();
+    }
+
+    public String getEmailView(){
+        return getUserAccount().getEmail();
+    }
+
+    public String getdateView(){
+        return getUserAccount().getDateOfBirth().toString();
+    }
+
+    public String getBioView(){
+        return getUserAccount().getBio();
+    }
+
+
     public String viewFollowers(){
         String result = "";
         if ( getUserAccount() instanceof Artist){

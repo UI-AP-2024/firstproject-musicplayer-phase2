@@ -141,7 +141,11 @@ public class Home implements Initializable
             }
             lable.setText("Suggested audios");
             button.setOnMouseClicked(event -> {
-                //ChangeScene.listenerPane
+                try {
+                    ChangeScene.listenerPanel();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
         }
         else {

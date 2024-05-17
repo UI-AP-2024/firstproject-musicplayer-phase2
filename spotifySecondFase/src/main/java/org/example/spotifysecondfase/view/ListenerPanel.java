@@ -119,16 +119,26 @@ public class ListenerPanel implements Initializable
     public void setDateTxt(Text dateTxt) {this.dateTxt = dateTxt;}
     ListenerController listenerController;
     Singup singup;
+    private Button button;
+    public Button getButton() {return button;}
+    public void setButton(Button button) {this.button = button;}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         for (Playlist p : listenerController.showPlaylist())
         {
-            Button button = new Button(p.getPlayListName());
-            button.setBackground(Background.fill(Color.BLACK));
-            button.textFillProperty().setValue(Color.WHITE);
-            playListVbox.getChildren().add(button);
+            button = new Button(p.getPlayListName());
+            getButton().setBackground(Background.fill(Color.BLACK));
+            getButton().textFillProperty().setValue(Color.WHITE);
+            getPlayListVbox().getChildren().add(getButton());
         }
+        button.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.playListAudios();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         newPlayListBtn.setOnMouseClicked(event -> {
             //make playlist
         });

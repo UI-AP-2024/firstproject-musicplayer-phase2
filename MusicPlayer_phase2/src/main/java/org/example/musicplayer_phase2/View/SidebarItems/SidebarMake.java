@@ -16,6 +16,7 @@ import org.example.musicplayer_phase2.View.SidebarItems.Labels.AllArtists;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Audios;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Home;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Search;
+import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
 import org.example.musicplayer_phase2.View.Signingup.SignupView;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
@@ -27,6 +28,7 @@ public class SidebarMake implements GeneralOperations {
 
     public SidebarMake() {
         makeActionsForLabelsAndButtons(this);
+        sidebarVBox.getChildren().add(new PutSlider().getBaseVBox());
     }
 
     private Label homeLabel = new Label("HOME");
@@ -34,22 +36,23 @@ public class SidebarMake implements GeneralOperations {
     private Label audiossLabel = new Label("AUDIOS");
     private Label searchLabel = new Label("SEARCH");
     private Label libraryLabel = new Label("LIBRARY");
+    //...................................................
     private Button loginButton = new Button("Login");
     private  Button signupButton = new Button("Signup");
     private  Button bakeButton = new Button("back");
     private Button logoutButton = new Button("Logout");
-    private Slider slider = new Slider();
-    HBox hbox = new HBox();
-
+    //....................................................
+    private HBox labelHBox = new HBox();
+    private VBox sidebarVBox = new VBox();
     public HBox makeSidebar(){
-        hbox.setPrefSize(570 , 50);
+        labelHBox.setPrefSize(570 , 50);
         homeLabel.setPrefSize(120 , 50);
         artistsLabel.setPrefSize(120 , 50);
         audiossLabel.setPrefSize(120 , 50);
         searchLabel.setPrefSize(120 , 50);
         libraryLabel.setPrefSize(120 , 50);
-        hbox.getChildren().addAll(artistsLabel , audiossLabel , homeLabel , libraryLabel , searchLabel );
-        return hbox;
+        labelHBox.getChildren().addAll(artistsLabel , audiossLabel , homeLabel , libraryLabel , searchLabel );
+        return labelHBox;
     }
     public HBox makeButtons (){
         HBox hBox = new HBox(bakeButton , signupButton , loginButton , logoutButton);
@@ -57,11 +60,11 @@ public class SidebarMake implements GeneralOperations {
         return hBox;
     }
     public VBox getSidebar(){
-        VBox vBox = new VBox(slider , makeSidebar() ,makeButtons());
-        vBox.setPrefSize(600 , 70);
-        vBox.setSpacing(10);
-        vBox.setPadding(new Insets(10));
-        return vBox;
+        sidebarVBox.getChildren().addAll(makeSidebar() , makeButtons());
+        sidebarVBox.setPrefSize(600 , 70);
+        sidebarVBox.setSpacing(10);
+        sidebarVBox.setPadding(new Insets(10));
+        return sidebarVBox;
     }
     private void makeActionsForLabelsAndButtons(SidebarMake sidebarMake){
         homeActions(sidebarMake);
@@ -75,7 +78,7 @@ public class SidebarMake implements GeneralOperations {
         backAction(sidebarMake);
         logoutAction(sidebarMake);
     }
-
+    //labels.............................................
     public void homeActions (SidebarMake sidebarMake){
         sidebarMake.homeLabel.setOnMouseClicked(e -> {
             try{
@@ -97,7 +100,7 @@ public class SidebarMake implements GeneralOperations {
     private void artistsActions (SidebarMake sidebarMake){
         sidebarMake.artistsLabel.setOnMouseClicked(e -> {
             try {
-                backTo(e);
+                saveToBackTo(e);
                 AllArtists allArtists = new AllArtists();
                 allArtists.start(NecessaryMethods.getStage(e));
             } catch (Exception ex) {
@@ -116,7 +119,7 @@ public class SidebarMake implements GeneralOperations {
     private void audiosAction (SidebarMake sidebarMake){
         sidebarMake.audiossLabel.setOnMouseClicked(e -> {
             try {
-                backTo(e);
+                saveToBackTo(e);
                 Audios audios = new Audios();
                 audios.start(NecessaryMethods.getStage(e));
             } catch (Exception ex) {
@@ -139,7 +142,7 @@ public class SidebarMake implements GeneralOperations {
             }
             else {
                 try {
-                    backTo(e);
+                    saveToBackTo(e);
                     new ListenerPanel().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();
@@ -157,12 +160,7 @@ public class SidebarMake implements GeneralOperations {
 
     private void searchAction (SidebarMake sidebarMake){
         sidebarMake.searchLabel.setOnMouseClicked(e -> {
-            try {
-                backTo(e);
-                new Search().start(NecessaryMethods.getStage(e));
-            } catch (Exception ex) {
-                Alerts.errorAlert();
-            }
+            search(e);
         });
 
         searchLabel.setOnMouseEntered(e -> {
@@ -176,7 +174,7 @@ public class SidebarMake implements GeneralOperations {
     //buttons.........................................
     private void loginAction(SidebarMake sidebarMake){
         sidebarMake.loginButton.setOnMouseClicked(e -> {
-            backTo(e);
+            saveToBackTo(e);
             Logout.makeEverybodyNull();
             Stage stage = NecessaryMethods.getStage(e);
             login(stage);
@@ -185,7 +183,7 @@ public class SidebarMake implements GeneralOperations {
 
     private void signupAction(SidebarMake sidebarMake){
         sidebarMake.signupButton.setOnMouseClicked(e -> {
-            backTo(e);
+            saveToBackTo(e);
             Logout.makeEverybodyNull();
             Stage stage = NecessaryMethods.getStage(e);
             signup(stage);
@@ -201,13 +199,13 @@ public class SidebarMake implements GeneralOperations {
 
     private void logoutAction (SidebarMake sidebarMake){
         sidebarMake.logoutButton.setOnMouseClicked(e ->{
-            backTo(e);
+            saveToBackTo(e);
             logout(NecessaryMethods.getStage(e));
         });
     }
-
+    //general operations ..................................
     @Override
-    public void backTo(MouseEvent event) {
+    public void saveToBackTo(MouseEvent event) {
         NecessaryMethods.saveLastScene(event);
     }
 
@@ -239,7 +237,12 @@ public class SidebarMake implements GeneralOperations {
     }
 
     @Override
-    public void search(Stage stage) {
-
+    public void search(MouseEvent event) {
+        try {
+            saveToBackTo(event);
+            new Search().start(NecessaryMethods.getStage(event));
+        } catch (Exception ex) {
+            Alerts.errorAlert();
+        }
     }
 }

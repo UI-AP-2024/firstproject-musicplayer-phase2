@@ -31,8 +31,4 @@ public class NecessaryMethods {
             stage.show();
         }
     }
-
-//    public static void putStyleSheet (Scene scene){
-//        scene.getStylesheets().add(HelloApplication.class.getResource("darkStyle.css").toExternalForm());
-//    }
 }

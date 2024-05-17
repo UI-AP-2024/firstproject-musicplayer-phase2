@@ -16,7 +16,6 @@ import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.UserAccountController;
-import org.example.musicplayer_phase2.model.AboutHumans.Listener;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -128,7 +127,6 @@ public class PlayMusicPage extends Application implements Initializable {
             Alerts.nullListener();
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

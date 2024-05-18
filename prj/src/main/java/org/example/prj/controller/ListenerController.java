@@ -598,10 +598,14 @@ public class ListenerController {
         return "The entered ID is not valid";
     }
 
-    public String showPremium(){
-        String result = "";
-        result += "You can choose one of the following packages to have a premium account:\n";
-        result += "1)ONE_MONTH("+PremiumPkg.ONE_MONTH.getCount()+")\t2)TWO_MONTH("+PremiumPkg.TWO_MONTH.getCount()+")\t3)SIX_MONTH("+PremiumPkg.SIX_MONTH.getCount()+")";
-        return result;
+    public ArrayList<String> showPremium(){
+        ArrayList<String> al = new ArrayList<>();
+        al.add("ONE MONTH");
+        al.add(String.valueOf(PremiumPkg.ONE_MONTH.getCount()));
+        al.add("TWO MONTH");
+        al.add(String.valueOf(PremiumPkg.TWO_MONTH.getCount()));
+        al.add("SIX MONTH");
+        al.add(String.valueOf(PremiumPkg.SIX_MONTH.getCount()));
+        return al;
     }
 }

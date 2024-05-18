@@ -2,6 +2,7 @@ package org.example.prj.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -9,8 +10,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.example.prj.controller.ListenerController;
 
-public class BuyPremiumController {
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class BuyPremiumController implements Initializable {
 
     @FXML
     private Text NameArtist_text;
@@ -176,4 +182,14 @@ public class BuyPremiumController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ArrayList<String> al = ListenerController.getListenerController().showPremium();
+        pkgOneName_text.setText(al.get(0));
+        priceOne_text.setText(al.get(1));
+        pkgTwoName_text.setText(al.get(2));
+        priceTwo_text.setText(al.get(3));
+        pkgThreeName_text.setText(al.get(4));
+        priceThree_text.setText(al.get(5));
+    }
 }

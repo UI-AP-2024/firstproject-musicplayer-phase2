@@ -35,9 +35,9 @@ public class HelloApplication extends Application {
 
     public static final Admin admin = getAdmin("Fatemeh" , "fatemeh" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
     public static void main(String[] args) throws Exception {
-        Audio audio1 = new Music("1" , "" , LocalDate.now() , Genre.POP , "https://ts1.tarafdari.com/contents/user141862/content-sound/richard_clayderman_-_mariage_d_amour.mp3" , "" , "");
-        Audio audio2 = new Music("2" , "" , LocalDate.now() , Genre.POP , "https://dl.musicdel.ir/Music/1400/12/andy_williams_love_story.mp3" , "" , "");
-        Audio audio3 = new Music("3" , "" , LocalDate.now() , Genre.HIPHOP , "http://www.coca.ir/wp-content/uploads/2013/06/pirate-of-caribbean.mp3" , "" , "");
+        Audio audio1 = new Music("1" , "" , LocalDate.now() , Genre.POP , "https://ts7.tarafdari.com/contents/user676439/content-sound/souvenir.mp3" , "" , "");
+        Audio audio2 = new Music("2" , "" , LocalDate.now() , Genre.POP , "https://ts2.tarafdari.com/contents/user6984/content-sound/03_cheri_cheri_lady.mp3" , "" , "");
+        Audio audio3 = new Music("3" , "" , LocalDate.now() , Genre.HIPHOP , "https://www.slac.ir/docs/slacir/fa/music/Cecilia_Krull_My_Life_Is_Going_On_320.mp3" , "" , "");
 
         Artist artist1 = new Singer("fatemeh" , "fahim" , "1234!@#$" , "f@gmail.com" , "09131111111" , LocalDate.now() , "I don't have biography");
         Artist artist12 = new Podcaster("maryam" , "mary" , "1234!@#$" , "m@gmail.com" , "09131111111" , LocalDate.now() , "");

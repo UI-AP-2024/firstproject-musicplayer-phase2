@@ -175,7 +175,7 @@ public class ShowArtistsInformation extends Application implements Initializable
                             try {
                                 NecessaryMethods.saveLastScene(e);
                                 ArrayList<Audio> music = new ArrayList<>(a.getAllMusics());
-                                music.add(audio);
+                                setAllMedias(music);
                                 setAudio(audio);
                                 new PlayMusicPage().start(NecessaryMethods.getStage(e));
                             } catch (Exception ex) {
@@ -195,7 +195,6 @@ public class ShowArtistsInformation extends Application implements Initializable
                     label.setOnMouseClicked(e -> {
                         try {
                             ArrayList<Audio> podcasts = new ArrayList<>(((Podcaster) artist).getAllPodcasts());
-                            podcasts.add(a);
                             NecessaryMethods.saveLastScene(e);
                             setAllMedias(podcasts);
                             setAudio(a);

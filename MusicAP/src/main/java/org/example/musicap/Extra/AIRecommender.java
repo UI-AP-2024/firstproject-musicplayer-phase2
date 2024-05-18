@@ -104,15 +104,14 @@ public class AIRecommender {
                 //if(!otherListener.equals(listener))
                 //{
                     double similarity = computeSimilarity(listener, otherListener);
-
                     Map<Audio, Double> otherListenerRatings = usersRatings.get(otherListener);
 
-                    for (Audio tmpAudio : otherListenerRatings.keySet()) {
-                        if (!recommendedScores.containsKey(tmpAudio)) {
-                            recommendedScores.put(tmpAudio, 0.0);
+                    if (otherListenerRatings != null) {
+                        for (Audio tmpAudio : otherListenerRatings.keySet()) {
+                            recommendedScores.putIfAbsent(tmpAudio, 0.0);
+                            recommendedScores.put(tmpAudio, recommendedScores.get(tmpAudio) +
+                                    otherListenerRatings.get(tmpAudio) * similarity);
                         }
-                        recommendedScores.put(tmpAudio, recommendedScores.get(tmpAudio) +
-                                otherListenerRatings.get(tmpAudio) * similarity);
                     }
                 //}
             }

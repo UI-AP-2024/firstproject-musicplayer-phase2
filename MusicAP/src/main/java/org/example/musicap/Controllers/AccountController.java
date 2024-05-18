@@ -81,7 +81,7 @@ public class AccountController {
         return switchResult;
     }
 
-    public String login(String userName, String password, Scanner jin)
+    public String login(String userName, String password)
     {
         boolean flg = false;
         for(User tmpUser : database.getUsers())
@@ -92,12 +92,7 @@ public class AccountController {
                 {
                     flg = true;
                     database.setLogedInUser(tmpUser);
-                    if(tmpUser instanceof NormalListener) new NormalListenerView().getInput(jin);
-                    else if(tmpUser instanceof PremiumListener) new PremiumListenerView().getInput(jin);
-                    else if(tmpUser instanceof Singer) new SingerView().getInput(jin);
-                    else if(tmpUser instanceof Podcaster) new PodcasterView().getInput(jin);
-                    else if(tmpUser instanceof Admin) new AdminView().getInput(jin);
-                    break;
+                    return  "Welcome to your account";
                 }
                 else return "Wrong password";
             }

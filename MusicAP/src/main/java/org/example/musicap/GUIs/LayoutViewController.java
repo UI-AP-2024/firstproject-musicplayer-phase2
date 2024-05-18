@@ -253,8 +253,11 @@ public class LayoutViewController implements GeneralOperation {
     }
 
     @Override
-    public void login() {
-
+    public void login() throws IOException {
+        mainBody.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+        AnchorPane newPane = loader.load();
+        mainBody.getChildren().add(newPane);
     }
 
     @Override
@@ -273,6 +276,7 @@ public class LayoutViewController implements GeneralOperation {
     }
 
     public void homeLabelClick() throws IOException {
+        mainBody.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
         AnchorPane newPane = loader.load();
         mainBody.getChildren().add(newPane);

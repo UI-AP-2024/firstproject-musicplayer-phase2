@@ -41,7 +41,7 @@ public class AccountView {
                 }
                 break;
             case "Login":
-                System.out.println(accountController.login(inputArray[1], inputArray[2], jin));
+                System.out.println(accountController.login(inputArray[1], inputArray[2]));
                 break;
             default:
                 System.out.println("Invalid command");

@@ -9,10 +9,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import org.example.musicap.Controllers.AdminController;
 import org.example.musicap.Controllers.ListenerController;
+import org.example.musicap.Controllers.NormalListenerController;
+import org.example.musicap.Controllers.PremiumListenerController;
 import org.example.musicap.HelloApplication;
 import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Data.Database;
+import org.example.musicap.Models.PremiumPlan;
 import org.example.musicap.Models.User.Listener;
+import org.example.musicap.Models.User.NormalListener;
+import org.example.musicap.Models.User.PremiumListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,21 +32,29 @@ public class HomeViewController {
     @FXML
     private ListView listViewPane;
     private AdminController adminController;
-    private ListenerController listenerController;
-    private Database dbInstance;
+    private NormalListenerController normalListenerController;
+    private PremiumListenerController premiumListenerController;
+    private Database database;
     ArrayList<Audio> audiosToShow;
     public void initialize() throws IOException {
-        
-        if(dbInstance.getLogedInUser() == null)
+        database = Database.getInstance();
+        adminController = AdminController.getAdminController();
+        normalListenerController = new NormalListenerController();
+        premiumListenerController = new PremiumListenerController();
+
+        if(database.getLogedInUser() == null)
         {
             audiosToShow = adminController.showMostLiked(2,1);
         }
-        else if(dbInstance.getLogedInUser() instanceof Listener)
+        else if(database.getLogedInUser() instanceof NormalListener)
         {
-            audiosToShow = listenerController.suggestedAudios(5);
+            audiosToShow = normalListenerController.suggestedAudios(5);
+        }
+        else if(database.getLogedInUser() instanceof PremiumListener)
+        {
+            audiosToShow = premiumListenerController.suggestedAudios(5);
         }
         else audiosToShow = new ArrayList<>();
-        adminController = AdminController.getAdminController();
 
         for (int i = 0; i < audiosToShow.size(); i++) {
 

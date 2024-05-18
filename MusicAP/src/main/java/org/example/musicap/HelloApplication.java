@@ -8,18 +8,23 @@ import org.example.musicap.Controllers.AdminController;
 import org.example.musicap.Models.Audio.Song;
 import org.example.musicap.Models.Data.Database;
 import org.example.musicap.Models.Genre;
+import org.example.musicap.Models.User.Listener;
+import org.example.musicap.Models.User.NormalListener;
 import org.example.musicap.Models.User.Singer;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Database dbInstance = Database.getInstance();
+        Database database = Database.getInstance();
         Singer singer = new Singer("s", "SFDG#45XFfdfg2", "s", "si@si.cim", "09131063421", LocalDate.now(), 234.24, "sdfg");
-        dbInstance.getUsers().add(singer);
+        Listener listener = new NormalListener("dry", "sdf", "sdf", "sdf", "0098765", LocalDate.now(), 12, LocalDate.now(), new ArrayList<>());
+        database.getUsers().add(singer);
+        database.getUsers().add(listener);
         Song song1 = new Song("hi 2", "hub", 23, 21, LocalDate.now(), Genre.COUNTRY, "11111", "svs", "sdfdsgfb");
         Song song2 = new Song("Melody Maker", "Jingle Jams", 195, 42, LocalDate.of(2022, 3, 15), Genre.POP, "22222", "Tune Town", "xyzabc123");
         Song song3 = new Song("Rhythmic Rhapsody", "Beat Street", 211, 31, LocalDate.of(2021, 9, 28), Genre.ROCK, "33333", "Groove Grooves", "qwerty456");
@@ -31,17 +36,17 @@ public class HelloApplication extends Application {
         Song song9 = new Song("Harmonic Hymn", "Chord Cove", 205, 29, LocalDate.of(2020, 4, 30), Genre.ROCK, "99999", "Rhythm Ridge", "234567890");
         Song song10 = new Song("Lyrical Lullaby", "Verse Valley", 179, 22, LocalDate.of(2022, 12, 25), Genre.COUNTRY, "00000", "Rhyme River", "abcdefghi");
         Song song11 = new Song("Lyrical Lullaby", "Verse Valley", 179, 22, LocalDate.of(2022, 12, 25), Genre.COUNTRY, "00000", "Rhyme River", "abcdefghi");
-        dbInstance.getAudios().add(song1);
-        dbInstance.getAudios().add(song2);
-        dbInstance.getAudios().add(song3);
-        dbInstance.getAudios().add(song4);
-        dbInstance.getAudios().add(song5);
-        dbInstance.getAudios().add(song6);
-        dbInstance.getAudios().add(song7);
-        dbInstance.getAudios().add(song8);
-        dbInstance.getAudios().add(song9);
-        dbInstance.getAudios().add(song10);
-        dbInstance.getAudios().add(song11);
+        database.getAudios().add(song1);
+        database.getAudios().add(song2);
+        database.getAudios().add(song3);
+        database.getAudios().add(song4);
+        database.getAudios().add(song5);
+        database.getAudios().add(song6);
+        database.getAudios().add(song7);
+        database.getAudios().add(song8);
+        database.getAudios().add(song9);
+        database.getAudios().add(song10);
+        database.getAudios().add(song11);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("layout-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 750, 600);
         stage.setTitle("MusicAP");

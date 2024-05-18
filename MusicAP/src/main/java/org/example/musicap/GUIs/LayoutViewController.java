@@ -11,11 +11,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.example.musicap.HelloApplication;
+import org.example.musicap.Models.Data.Database;
 
 import java.io.IOException;
 
 public class LayoutViewController implements GeneralOperation {
 
+    Database database = Database.getInstance();
     @FXML
     private Label loginButton;
 
@@ -224,9 +226,10 @@ public class LayoutViewController implements GeneralOperation {
         this.audioImage = audioImage;
     }
 
-    public void initialize()
-    {
-
+    public void initialize() throws IOException {
+        backToButton.setVisible(false);
+        if(database.getLogedInUser() == null) logoutButton.setVisible(false);
+        homeLabelClick();
     }
     public void playMusic()
     {
@@ -249,11 +252,15 @@ public class LayoutViewController implements GeneralOperation {
 
     @Override
     public void logout() {
-
+        database.setLogedInUser(null);
+        logoutButton.setVisible(false);
+        signUpButton.setVisible(true);
+        loginButton.setVisible(true);
     }
 
     @Override
     public void login() throws IOException {
+        backToButton.setVisible(true);
         mainBody.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         AnchorPane newPane = loader.load();
@@ -276,6 +283,19 @@ public class LayoutViewController implements GeneralOperation {
     }
 
     public void homeLabelClick() throws IOException {
+        backToButton.setVisible(false);
+        if(database.getLogedInUser() == null)
+        {
+            logoutButton.setVisible(false);
+            loginButton.setVisible(true);
+            signUpButton.setVisible(true);
+        }
+        else
+        {
+            logoutButton.setVisible(true);
+            loginButton.setVisible(false);
+            signUpButton.setVisible(false);
+        }
         mainBody.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
         AnchorPane newPane = loader.load();

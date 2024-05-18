@@ -14,8 +14,8 @@
         <HBox id="top-container" prefHeight="33.0" prefWidth="675.0" spacing="10">
             <Label fx:id="loginButton" alignment="CENTER" onMouseClicked="#login" prefHeight="31.0" prefWidth="63.0" text="Login" />
             <Label fx:id="signUpButton" alignment="CENTER" onMouseClicked="#signup" prefHeight="31.0" prefWidth="72.0" text="Sign Up" />
-            <Label fx:id="backToButton" alignment="CENTER" onMouseClicked="#backTo" prefHeight="31.0" prefWidth="72.0" text="Back" />
             <Label fx:id="logoutButton" alignment="CENTER" onMouseClicked="#logout" prefHeight="31.0" prefWidth="72.0" text="Logout" />
+            <Label fx:id="backToButton" alignment="CENTER" onMouseClicked="#backTo" prefHeight="31.0" prefWidth="72.0" text="Back" />
         </HBox>
     </top>
 
@@ -27,8 +27,8 @@
             <Label fx:id="artistsLabel" alignment="CENTER" onMouseClicked="#artistsLabelClick" prefHeight="50.0" prefWidth="105.0" text="Artists" />
             <Label fx:id="audiosLabel" alignment="CENTER" onMouseClicked="#audiosLabelClick" prefHeight="50.0" prefWidth="105.0" text="Audios" />
             <HBox>
-                <TextField fx:id="searchField" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" promptText="Search..." />
-                <Button fx:id="searchButton" alignment="CENTER" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" onAction="#search">
+                <TextField fx:id="searchField" alignment="CENTER" prefHeight="35.0" prefWidth="72.0" promptText="Search..." />
+                <Button fx:id="searchButton" alignment="CENTER" maxHeight="41.0" maxWidth="33.0" minHeight="33.0" minWidth="32.0" onAction="#search" prefHeight="41.0" prefWidth="32.0">
                     <graphic>
                         <SVGPath content="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" fill="white" scaleX="0.4" scaleY="0.4" />
                     </graphic>

@@ -83,7 +83,9 @@ public class AccountController {
 
     public String login(String userName, String password)
     {
+        if(database.getLogedInUser() != null) return "You are already in your account!";
         boolean flg = false;
+
         for(User tmpUser : database.getUsers())
         {
             if(tmpUser.getUsername().equals(userName))

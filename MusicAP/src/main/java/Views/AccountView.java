@@ -31,13 +31,13 @@ public class AccountView {
                 {
                     System.out.println(accountController.signUp(inputArray[1],
                             inputArray[2], inputArray[3], inputArray[4], inputArray[5],
-                            inputArray[6], LocalDate.parse(inputArray[7]), null, jin));
+                            inputArray[6], LocalDate.parse(inputArray[7]), null));
                 }
                 else if(inputArray[1].equals("S") || inputArray[1].equals("P"))
                 {
                     System.out.println(accountController.signUp(inputArray[1],
                             inputArray[2], inputArray[3], inputArray[4], inputArray[5],
-                            inputArray[6], LocalDate.parse(inputArray[7]), inputArray[8], jin));
+                            inputArray[6], LocalDate.parse(inputArray[7]), inputArray[8]));
                 }
                 break;
             case "Login":

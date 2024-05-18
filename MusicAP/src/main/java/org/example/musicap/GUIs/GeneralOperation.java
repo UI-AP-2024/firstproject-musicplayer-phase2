@@ -6,7 +6,7 @@ public interface GeneralOperation {
     void backTo ();
     void logout ();
     void login () throws IOException;
-    void signup();
+    void signup() throws IOException;
     void search();
     void navigateToSongPage();
 }

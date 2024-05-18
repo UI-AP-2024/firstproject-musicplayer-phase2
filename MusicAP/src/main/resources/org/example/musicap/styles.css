@@ -150,3 +150,71 @@ TextField, PasswordField {
 .submit-button:hover {
     -fx-background-color: #5b0000;
 }
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+GridPane {
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #fff;
+}
+
+Label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555;
+}
+
+TextField, PasswordField, TextArea {
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+ComboBox {
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.genres-grid {
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #fff;
+}
+
+.genre-label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #555;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #e0e0e0;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+
+.genre-label:hover {
+    -fx-background-color: #d0d0d0;
+}
+
+.genre-label.selected {
+    -fx-background-color: #bc0000;
+    -fx-text-fill: #fff;
+    -fx-border-color: #5c0000;
+}

@@ -268,8 +268,12 @@ public class LayoutViewController implements GeneralOperation {
     }
 
     @Override
-    public void signup() {
-
+    public void signup() throws IOException {
+        backToButton.setVisible(true);
+        mainBody.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("signup-view.fxml"));
+        AnchorPane newPane = loader.load();
+        mainBody.getChildren().add(newPane);
     }
 
     @Override

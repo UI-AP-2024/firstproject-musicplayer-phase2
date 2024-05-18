@@ -37,8 +37,9 @@ public class AccountController {
         return false;
     }
 
-    public String signUp(String userType, String userName, String password, String name, String email, String phoneNumber, LocalDate dateOfBirth, String bio, Scanner jin)
+    public String signUp(String userType, String userName, String password, String name, String email, String phoneNumber, LocalDate dateOfBirth, String bio)
     {
+        if(database.getLogedInUser() != null) return "You are already in your account!";
         for(User tmpUser : database.getUsers())
         {
             if(tmpUser.getUsername().equals(userName))
@@ -52,11 +53,12 @@ public class AccountController {
         String switchResult = "User added successfully";
         switch (userType)
         {
-            case "L":
-                ArrayList<Genre> genres = AccountView.getUserView().getGenres(jin);
-                database.addUser(new NormalListener(userName, password, name, email, phoneNumber, dateOfBirth, 50, null, genres));
+            case "Listener":
+                //ArrayList<Genre> genres = AccountView.getUserView().getGenres();
+                database.addUser(new NormalListener(userName, password, name, email, phoneNumber, dateOfBirth, 50, null, null));
+
                 break;
-            case "S":
+            case "Singer":
                 // since each Audio has an artistName property, artistNames must be unique
                 if(checkName(name))
                 {
@@ -65,7 +67,7 @@ public class AccountController {
                 }
                 database.addUser(new Singer(userName, password, name, email, phoneNumber, dateOfBirth, 0, bio));
                 break;
-            case "P":
+            case "Podcaster":
                 // since each Audio has an artistName property, artistNames must be unique
                 if(checkName(name))
                 {

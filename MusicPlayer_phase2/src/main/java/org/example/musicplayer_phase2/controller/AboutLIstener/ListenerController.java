@@ -134,15 +134,6 @@ public class ListenerController extends UserAccountController {
         return result;
     }
 
-    public StringBuilder filterAudios(Date fromDate, Date toDate) {
-        StringBuilder result = new StringBuilder();
-        Database.allAudios.stream()
-                .filter(n -> n.getPublicationDate().compareTo(fromDate) >= 0 && n.getPublicationDate().compareTo(toDate) <= 0)
-                .forEach(n -> result.append(n.toString() + "\n"));
-
-        return result;
-    }
-
     public void reporting(UserAccount reporterPerson, UserAccount reportedArtist, String explanation) {
         new Report(reporterPerson, reportedArtist, explanation);
     }

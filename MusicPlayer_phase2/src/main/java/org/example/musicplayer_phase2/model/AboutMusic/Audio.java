@@ -5,6 +5,7 @@ import org.example.musicplayer_phase2.model.Types.Genre;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,22 +16,15 @@ public abstract class Audio implements Comparable<Audio>{
     private final String artistUsername;
     private int playsNum;
     private int likesNum;
-    private Date publicationDate;
+    private LocalDate publicationDate;
     private final Genre genre;
     private final String audioLink;
     private final String cover;
 
-    public Audio(String audioName, String artistUserName, String publicationDate, Genre genre, String audioLink, String cover) {
+    public Audio(String audioName, String artistUserName, LocalDate publicationDate, Genre genre, String audioLink, String cover) {
         this.audioName = audioName;
         this.artistUsername = artistUserName;
-
-        try {
-            this.publicationDate = new SimpleDateFormat("dd/MM/yyyy").parse(publicationDate);
-        } catch (ParseException a) {
-        }
-        if (this.publicationDate == null)
-            this.publicationDate = new Date();
-
+        this.publicationDate = publicationDate;
         this.genre = genre;
         this.audioLink = audioLink;
         this.cover = cover;
@@ -114,20 +108,7 @@ public abstract class Audio implements Comparable<Audio>{
         return likesNum;
     }
 
-    public StringBuilder getPublicationDateName() {
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(publicationDate);
-        StringBuilder str = new StringBuilder();
-        str.append(calendar.get(Calendar.DAY_OF_MONTH));
-        str.append("/");
-        str.append(calendar.get(Calendar.MONTH) + 1);
-        str.append("/");
-        str.append(calendar.get(Calendar.YEAR));
-        return str;
-    }
-
-    public Date getPublicationDate() {
+    public LocalDate getPublicationDateName() {
         return publicationDate;
     }
 

@@ -1,9 +1,13 @@
 package org.example.musicplayer_phase2.controller.AboutArtist;
 
 import org.example.musicplayer_phase2.model.*;
+import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 import org.example.musicplayer_phase2.model.AboutMusic.Album;
 import org.example.musicplayer_phase2.model.AboutMusic.Music;
+import org.example.musicplayer_phase2.model.Types.Genre;
+
+import java.time.LocalDate;
 
 public class SingerController extends ArtistController {
 
@@ -12,8 +16,18 @@ public class SingerController extends ArtistController {
         singer.setAllAlbums(album);
     }
 
-    public void musicPublication(Music music , Album album , Singer singer)
-    {
+    public void musicPublication(Singer singer , String name , LocalDate publicationDate , Genre genre , String link , String cover , String lyrics , String albumName){
+        Music music = new Music(name , singer.getName() , publicationDate , genre , link , cover , lyrics);
+        Album album = null;
+        for (Album a : singer.getAllAlbums()){
+            if (a.getName().equals(albumName)){
+                album = a;
+            }
+        }
+        if (album == null){
+            album = new Album(albumName , singer.getName());
+            makeNewAlbum(album , singer);
+        }
         album.setAllMusics(music);
     }
 

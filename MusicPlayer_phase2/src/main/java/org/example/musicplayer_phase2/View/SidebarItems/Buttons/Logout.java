@@ -27,9 +27,11 @@ public class Logout extends Application {
         UserAccountController.singer = null;
         UserAccountController.podcaster = null;
         HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
-        if (PlayMusicPage.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
-            PlayMusicPage.stopPlaying();
-            PlayMusicPage.audio = null;
+        if (PlayMusicPage.getMediaPlayer() != null) {
+            if (PlayMusicPage.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
+                PlayMusicPage.stopPlaying();
+                PlayMusicPage.audio = null;
+            }
         }
 
         try {

@@ -1,4 +1,4 @@
-package org.example.musicplayer_phase2.View.Panels;
+package org.example.musicplayer_phase2.View.Panels.PanelForListener;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;

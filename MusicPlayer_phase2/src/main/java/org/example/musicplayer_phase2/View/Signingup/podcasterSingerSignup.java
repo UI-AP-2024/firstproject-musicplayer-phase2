@@ -13,9 +13,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
 import org.example.musicplayer_phase2.View.Alerts;
+import org.example.musicplayer_phase2.View.Panels.PnaelForSinger.SingerPanel;
 import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
+import org.example.musicplayer_phase2.controller.AboutArtist.SingerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
 import org.example.musicplayer_phase2.model.AboutHumans.Singer;
 
@@ -94,53 +97,18 @@ public class podcasterSingerSignup extends Application {
         String number = numberTextField.getText();
         LocalDate birthday = birthdayDateicker.getValue();
         String biography = biographyTextField.getText();
-
-
-        try{
-            checkUsername(username);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("repeated username");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
-
-        try{
-            checkPassword(password);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("easy password");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
-
-        try{
-            checkEmail(email);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("invalid email");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
-
-        try{
-            checkNumber(number);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("wrong number");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
-
+        UserAccountController.checkingSignup(username , password , email , number);
         if (name != null && username != null && password != null && email != null && number != null && birthday != null && biography != null){
             ArtistController artistController = new ArtistController();
             if (type.equals("singer"))
             {
-                artistController.signup(new Singer(name , username , password , email , number , birthday , biography));
+                singer = new Singer(name , username , password , email , number , birthday , biography);
+                try {
+                    HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
+                    new SingerPanel().start(NecessaryMethods.getStage(event));
+                } catch (Exception e) {
+                    Alerts.errorAlert();
+                }
             }
             else
             {

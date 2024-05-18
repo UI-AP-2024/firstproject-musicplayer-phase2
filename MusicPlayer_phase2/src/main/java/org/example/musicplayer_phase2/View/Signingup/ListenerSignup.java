@@ -73,58 +73,21 @@ public class ListenerSignup extends Application {
         String email = emailTextField.getText();
         String number = numberTextField.getText();
         LocalDate birthday = birthdayDateicker.getValue();
-        try{
-            checkUsername(username);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("repeated username");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
 
-        try{
-            checkPassword(password);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("easy password");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
+        if (UserAccountController.checkingSignup(username, password, email, number)) {
+            if (name != null && username != null && password != null && email != null && number != null && birthday != null) {
 
-        try{
-            checkEmail(email);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("invalid email");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
-
-        try{
-            checkNumber(number);
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("wrong number");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
-            return;
-        }
-
-        if (name != null && username != null && password != null && email != null && number != null && birthday != null){
-            Free freeUser = new Free(name , username , password , email , number , birthday);
-            ListenerController listenerController = new ListenerController();
-            listenerController.signup(freeUser);
-            UserAccountController.listener = freeUser;
-            FavoriteGenres favoriteGenres = new FavoriteGenres();
-            try {
-                favoriteGenres.start(NecessaryMethods.getStage(event));
-            } catch (Exception e) {
-                Alerts.errorAlert();
+                Free freeUser = new Free(name, username, password, email, number, birthday);
+                ListenerController listenerController = new ListenerController();
+                listenerController.signup(freeUser);
+                UserAccountController.listener = freeUser;
+                FavoriteGenres favoriteGenres = new FavoriteGenres();
+                try {
+                    favoriteGenres.start(NecessaryMethods.getStage(event));
+                } catch (Exception e) {
+                    Alerts.errorAlert();
+                }
             }
         }
     }
-
 }

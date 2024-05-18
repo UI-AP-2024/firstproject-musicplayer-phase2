@@ -1,16 +1,13 @@
 package org.example.musicplayer_phase2.View.SidebarItems;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
-import org.example.musicplayer_phase2.View.Panels.ListenerPanel;
+import org.example.musicplayer_phase2.View.Panels.PanelForListener.ListenerPanel;
 import org.example.musicplayer_phase2.View.SidebarItems.Buttons.LoginView;
 import org.example.musicplayer_phase2.View.SidebarItems.Buttons.Logout;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.AllArtists;
@@ -23,9 +20,6 @@ import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.GeneralOperations;
 import org.example.musicplayer_phase2.controller.UserAccountController;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class SidebarMake implements GeneralOperations {

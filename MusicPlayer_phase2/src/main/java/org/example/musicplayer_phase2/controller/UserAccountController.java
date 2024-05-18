@@ -1,5 +1,6 @@
 package org.example.musicplayer_phase2.controller;
 
+import javafx.scene.control.Alert;
 import org.example.musicplayer_phase2.model.*;
 import org.example.musicplayer_phase2.model.AboutHumans.*;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
@@ -137,6 +138,50 @@ public class UserAccountController {
             }
         }
         return results;
+    }
+
+    public static boolean checkingSignup(String username, String password, String email, String number){
+        boolean checked = true;
+        try{
+            checkUsername(username);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("repeated username");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            checked = false;
+        }
+
+        try{
+            checkPassword(password);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("easy password");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            checked = false;
+        }
+
+        try{
+            checkEmail(email);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("invalid email");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            checked = false;
+        }
+
+        try{
+            checkNumber(number);
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("wrong number");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+            checked = false;
+        }
+        return checked;
     }
 
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Panels.PnaelForSinger.SingerPanel;
 import org.example.musicplayer_phase2.View.SidebarItems.Labels.Home;
 import org.example.musicplayer_phase2.controller.AboutArtist.PodcasterContrller;
 import org.example.musicplayer_phase2.controller.AboutArtist.SingerController;
@@ -72,7 +73,8 @@ public class LoginView extends Application {
                 }
                 else if (user instanceof Singer) {
                     UserAccountController.singer = SingerController.singerLogin(userName , password);
-                    //singer panel...........................
+                    UserAccountController.singer = SingerController.singerLogin(userName , password);
+                    new SingerPanel().start(NecessaryMethods.getStage(event));
                 }
                 else if (user instanceof Podcaster){
                     UserAccountController.podcaster = PodcasterContrller.podcasterLogin(userName , password);

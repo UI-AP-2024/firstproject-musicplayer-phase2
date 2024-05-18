@@ -2,9 +2,12 @@ package org.example.musicplayer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +36,9 @@ public class BasePageController implements Initializable {
 
     @FXML
     private Button btn_signIn;
+
+    @FXML
+    private BorderPane mian_pane;
 
     @FXML
     void btn_artists_action(ActionEvent event) {
@@ -76,6 +82,10 @@ public class BasePageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        try {
+            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("pick-genres-view.fxml")).load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

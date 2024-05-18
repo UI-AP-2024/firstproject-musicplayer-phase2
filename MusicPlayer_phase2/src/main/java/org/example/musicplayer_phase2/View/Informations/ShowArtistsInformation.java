@@ -17,6 +17,7 @@ import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutHumans.Artist;
 import org.example.musicplayer_phase2.model.AboutHumans.Podcaster;
@@ -29,6 +30,9 @@ import org.example.musicplayer_phase2.model.AboutMusic.Podcast;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAllMedias;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAudio;
 
 public class ShowArtistsInformation extends Application implements Initializable {
     private static Artist artist = null;
@@ -53,6 +57,7 @@ public class ShowArtistsInformation extends Application implements Initializable
 
     @FXML
     private VBox sidebareVBox;
+
     @FXML
     private ScrollPane audiosScrollPane;
 
@@ -119,6 +124,7 @@ public class ShowArtistsInformation extends Application implements Initializable
             Alerts.nullListener();
         }
     }
+
     @FXML
     void reportEnter(MouseEvent event) {
         reportLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
@@ -128,7 +134,6 @@ public class ShowArtistsInformation extends Application implements Initializable
     void reportExit(MouseEvent event) {
         reportLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -171,7 +176,7 @@ public class ShowArtistsInformation extends Application implements Initializable
                                 NecessaryMethods.saveLastScene(e);
                                 ArrayList<Audio> music = new ArrayList<>();
                                 music.add(audio);
-                                PlayMusicPage.setAudio(audio);
+                                setAudio(audio);
                                 new PlayMusicPage().start(NecessaryMethods.getStage(e));
                             } catch (Exception ex) {
                                 Alerts.errorAlert();
@@ -192,8 +197,8 @@ public class ShowArtistsInformation extends Application implements Initializable
                             ArrayList<Audio> podcasts = new ArrayList<>();
                             podcasts.add(a);
                             NecessaryMethods.saveLastScene(e);
-                            PlayMusicPage.setAllMedias(podcasts);
-                            PlayMusicPage.setAudio(a);
+                            setAllMedias(podcasts);
+                            setAudio(a);
                             new PlayMusicPage().start(NecessaryMethods.getStage(e));
                         } catch (Exception ex) {
                             Alerts.errorAlert();

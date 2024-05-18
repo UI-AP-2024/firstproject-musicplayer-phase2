@@ -97,22 +97,20 @@ public class podcasterSingerSignup extends Application {
         String number = numberTextField.getText();
         LocalDate birthday = birthdayDateicker.getValue();
         String biography = biographyTextField.getText();
-        UserAccountController.checkingSignup(username , password , email , number);
-        if (name != null && username != null && password != null && email != null && number != null && birthday != null && biography != null){
-            ArtistController artistController = new ArtistController();
-            if (type.equals("singer"))
-            {
-                singer = new Singer(name , username , password , email , number , birthday , biography);
-                try {
-                    HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
-                    new SingerPanel().start(NecessaryMethods.getStage(event));
-                } catch (Exception e) {
-                    Alerts.errorAlert();
+        if (UserAccountController.checkingSignup(username , password , email , number)) {
+            if (name != null && username != null && password != null && email != null && number != null && birthday != null && biography != null) {
+                ArtistController artistController = new ArtistController();
+                if (type.equals("singer")) {
+                    singer = new Singer(name, username, password, email, number, birthday, biography);
+                    try {
+                        HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
+                        new SingerPanel().start(NecessaryMethods.getStage(event));
+                    } catch (Exception e) {
+                        Alerts.errorAlert();
+                    }
+                } else {
+                    artistController.signup(new Podcaster(name, username, password, email, number, birthday, biography));
                 }
-            }
-            else
-            {
-                artistController.signup(new Podcaster(name , username , password , email , number , birthday , biography));
             }
         }
     }

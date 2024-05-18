@@ -39,20 +39,15 @@ public class ListenerController extends UserAccountController {
         return "Audio not found ";
     }
 
-    public String likeAudio(Audio audio, Listener listener) {
-        for (Audio b : listener.getLikedAudios()) {
-            if (b == audio)
-                return "you hava already liked this audio";
+    public boolean likeAudio(Audio audio, Listener listener) {
+        if (!listener.getLikedAudios().contains(audio)){
+            UserAccountController.listener.setOneLikedAudios(audio);
+            return true;
         }
-
-        for (Audio a : Database.allAudios) {
-            if (a.equals(audio)) {
-                audio.setLikesNum(audio.getLikesNum() + 1);
-                listener.setOneLikedAudios(audio);
-            }
+        else {
+            UserAccountController.listener.getLikedAudios().remove(audio);
+            return false;
         }
-
-        return "you liked this audio";
     }
 
     public void getFavoriteGenre(ArrayList<Genre> favoriteGenre, Listener listener) {

@@ -93,13 +93,14 @@ public class BuySubscription extends Application implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("successful work");
             alert.setContentText("your credit: " + UserAccountController.listener.getCredit());
+            alert.showAndWait();
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("invalid amount");
             alert.setContentText("you hava to enter a number");
+            alert.showAndWait();
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -61,7 +61,7 @@ public class FreeController extends ListenerController {
             premiumListener.setRemainDays(type.value);
             premiumListener.setEndSubscription(LocalDate.now().plusDays(premiumListener.getRemainDays()));
             Database.allUsers.remove(listener);
-
+            Database.allListener.remove(listener);
             return premiumListener;
         }
 

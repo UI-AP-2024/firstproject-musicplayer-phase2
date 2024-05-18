@@ -5,17 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.HelloApplication;
+import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutArtist.SingerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import javafx.event.ActionEvent;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.Types.Genre;
@@ -117,6 +115,10 @@ public class SingerPanel extends Application implements Initializable {
             genre = Genre.ROCK;
         }
         new SingerController().musicPublication(UserAccountController.singer , nameTextField.getText() , datePicker.getValue() ,genre , linkTextField.getText() , coverTextField.getText() , lyricsTextField.getText() , albumTextField.getText() );
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("successful publishing");
+        alert.setContentText("your music published");
+        alert.showAndWait();
     }
 
     @FXML

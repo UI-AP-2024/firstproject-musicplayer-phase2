@@ -61,6 +61,7 @@ public class PremiumController extends ListenerController {
                 free.setFilesNumber(listener.getFilesNumber());
                 free.setEndSubscription(LocalDate.now());
                 Database.allUsers.remove(listener);
+                Database.allListener.remove(listener);
                 return free;
             }
         }

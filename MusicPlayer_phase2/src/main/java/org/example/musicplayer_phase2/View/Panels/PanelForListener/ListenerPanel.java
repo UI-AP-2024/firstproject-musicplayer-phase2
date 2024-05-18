@@ -38,10 +38,8 @@ public class ListenerPanel extends Application implements Initializable {
 
     @FXML
     private ScrollPane scrollPaneForPlaylists;
-
     @FXML
     private VBox sidebareVBox;
-
     @FXML
     private ScrollPane followingScrollPane;
     @FXML
@@ -58,7 +56,6 @@ public class ListenerPanel extends Application implements Initializable {
     private Label makePlaylistLabel;
     @FXML
     private TextField newPlaylistTextField;
-
     @FXML
     void buyClicked(MouseEvent event) {
         NecessaryMethods.saveLastScene(event);

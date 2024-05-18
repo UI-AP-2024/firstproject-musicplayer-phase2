@@ -16,28 +16,36 @@
          <children>
             <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="85.0" text="mohsenify" textFill="#a4a4a4">
                <padding>
-                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                  <Insets bottom="3.0" left="3.0" right="5.0" top="3.0" />
                </padding>
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
             </Label>
+            <Button fx:id="btn_search" mnemonicParsing="false" onAction="#btn_search_action" prefHeight="29.0" prefWidth="38.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="search">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
             <TextField prefHeight="26.0" prefWidth="211.0" promptText="search for artists or audios..." style="-fx-background-color: #E5E4E2;">
                <font>
                   <Font name="System Bold Italic" size="11.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="SignIn">
+            <Button fx:id="btn_signIn" mnemonicParsing="false" onAction="#btn_signIn_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="SignIn">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Login">
+            <Button fx:id="btn_login" mnemonicParsing="false" onAction="#btn_login_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Login">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Logut">
+            <Button fx:id="btn_logout" mnemonicParsing="false" onAction="#btn_logout_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Logut">
                <font>
                   <Font size="11.0" />
                </font>
@@ -54,22 +62,22 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="434.0" prefWidth="82.0" spacing="20.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Home">
+            <Button fx:id="btn_home" mnemonicParsing="false" onAction="#btn_home_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Home">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Library">
+            <Button fx:id="btn_lib" mnemonicParsing="false" onAction="#btn_lib_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Library">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Artists">
+            <Button fx:id="btn_artists" mnemonicParsing="false" onAction="#btn_artists_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Artists">
                <font>
                   <Font size="11.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Audios">
+            <Button fx:id="btn_audios" mnemonicParsing="false" onAction="#btn_audios_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Audios">
                <font>
                   <Font size="11.0" />
                </font>

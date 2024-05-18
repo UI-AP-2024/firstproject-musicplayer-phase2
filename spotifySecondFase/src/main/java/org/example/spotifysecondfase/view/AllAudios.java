@@ -107,5 +107,19 @@ public class AllAudios implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+        searchImage.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.search();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        homeImage.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.home();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

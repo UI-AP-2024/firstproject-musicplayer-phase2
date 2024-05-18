@@ -135,7 +135,13 @@ public class ChooseGenres implements Initializable
                 throw new RuntimeException(e);
             }
         });
-
+        getSearch().setOnMouseClicked(event -> {
+            try {
+                ChangeScene.search();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 }

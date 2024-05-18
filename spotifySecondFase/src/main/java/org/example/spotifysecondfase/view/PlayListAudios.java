@@ -71,5 +71,12 @@ public class PlayListAudios implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+        searchImage.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.search();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

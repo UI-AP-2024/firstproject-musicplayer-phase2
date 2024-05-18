@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -117,12 +118,15 @@ public class ListenerPanel implements Initializable
     private Text dateTxt;
     public Text getDateTxt() {return dateTxt;}
     public void setDateTxt(Text dateTxt) {this.dateTxt = dateTxt;}
-    ListenerController listenerController;
-    Singup singup;
     private Button button;
     public Button getButton() {return button;}
     public void setButton(Button button) {this.button = button;}
-
+    @FXML
+    private TextField newPlayList;
+    public TextField getNewPlayList() {return newPlayList;}
+    public void setNewPlayList(TextField newPlayList) {this.newPlayList = newPlayList;}
+    ListenerController listenerController;
+    Singup singup;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         for (Playlist p : listenerController.showPlaylist())
@@ -140,7 +144,7 @@ public class ListenerPanel implements Initializable
             }
         });
         newPlayListBtn.setOnMouseClicked(event -> {
-            //make playlist
+            listenerController.makePlaylist(newPlayList.getText());
         });
         for (Artist a : listenerController.showFollowing())
         {
@@ -174,6 +178,5 @@ public class ListenerPanel implements Initializable
                 throw new RuntimeException(e);
             }
         });
-
     }
 }

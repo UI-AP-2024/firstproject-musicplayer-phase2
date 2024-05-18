@@ -31,6 +31,8 @@ public class HomeViewController {
     private VBox rightVBox;
     @FXML
     private ListView listViewPane;
+    @FXML
+    private Label titleLabel;
     private AdminController adminController;
     private NormalListenerController normalListenerController;
     private PremiumListenerController premiumListenerController;
@@ -44,10 +46,12 @@ public class HomeViewController {
 
         if(database.getLogedInUser() == null)
         {
+            titleLabel.setText("Trending");
             audiosToShow = adminController.showMostLiked(2,1);
         }
         else if(database.getLogedInUser() instanceof NormalListener)
         {
+            titleLabel.setText("For You");
             audiosToShow = normalListenerController.suggestedAudios(5);
         }
         else if(database.getLogedInUser() instanceof PremiumListener)
@@ -58,12 +62,6 @@ public class HomeViewController {
 
         for (int i = 0; i < audiosToShow.size(); i++) {
 
-            Audio audio = audiosToShow.get(i);
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("audio-view.fxml"));
-            AnchorPane audioPane = loader.load();
-            AudioViewController audioController = loader.getController();
-            Image audioImage = new Image(HelloApplication.class.getResource("example.jpg").toString());
-            audioController.setAudioDetails(audio.getFileName(), audio.getArtistName(), audioImage);
             //rootPane.getChildren().add(audioPane);
             listViewPane.getItems().add(audiosToShow.get(i).getFileName() + " | " + audiosToShow.get(i).getArtistName());
 

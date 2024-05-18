@@ -309,12 +309,16 @@ public class LayoutViewController implements GeneralOperation {
     {
 
     }
-    public void artistsLabelClick()
-    {
-
+    public void artistsLabelClick() throws IOException {
+        mainBody.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("artists-view.fxml"));
+        AnchorPane newPane = loader.load();
+        mainBody.getChildren().add(newPane);
     }
-    public void audiosLabelClick()
-    {
-
+    public void audiosLabelClick() throws IOException {
+        mainBody.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("audios-view.fxml"));
+        AnchorPane newPane = loader.load();
+        mainBody.getChildren().add(newPane);
     }
 }

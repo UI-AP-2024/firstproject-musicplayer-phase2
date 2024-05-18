@@ -77,7 +77,9 @@ public class AdminController extends UserController{
 
     private ArrayList<Audio> paging(int pages, int pageNumber, ArrayList<Audio> audios)
     {
+
         ArrayList<Audio> result = new ArrayList<>();
+        if(audios.size()==0) return result;
         int audiosPerPage = audios.size() / pages;
         for(int tmpIndx = (pageNumber-1)*audiosPerPage ; //start at zero
             audios.get(tmpIndx)!=null && tmpIndx < (pageNumber*audiosPerPage); tmpIndx++)

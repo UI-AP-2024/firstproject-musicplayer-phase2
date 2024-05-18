@@ -12,14 +12,14 @@
 <AnchorPane fx:id="mainBody" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.musicap.GUIs.ListenerViewController">
     <VBox alignment="CENTER" spacing="20.0" styleClass="root-pane">
         <HBox alignment="CENTER" spacing="10">
-            <Label fx:id="userNameLabel" text="User's Name" styleClass="user-name-label" />
+            <Label fx:id="userNameLabel" styleClass="user-name-label" />
             <Button text="Get Premium" styleClass="premium-button" onMouseClicked="#getPremium" />
         </HBox>
         <VBox alignment="TOP_LEFT" spacing="10">
-            <Label fx:id="emailLabel" text="Email: user@example.com" />
-            <Label fx:id="phoneLabel" text="Phone Number: +1234567890" />
-            <Label fx:id="creditLabel" text="Credit: $50.00" />
-            <Label fx:id="dobLabel" text="Date of Birth: 1990-01-01" />
+            <Label fx:id="emailLabel"  />
+            <Label fx:id="phoneLabel"  />
+            <Label fx:id="creditLabel"  />
+            <Label fx:id="dobLabel" />
         </VBox>
         <HBox spacing="20">
             <VBox>

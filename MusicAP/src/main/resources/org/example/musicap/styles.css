@@ -286,3 +286,8 @@ ComboBox {
 .select-button:hover {
     -fx-background-color: #770000;
 }
+
+.title-lable {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}

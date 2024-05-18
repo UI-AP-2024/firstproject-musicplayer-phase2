@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.example.spotifysecondfase.controller.ListenerController;
+import org.example.spotifysecondfase.model.UserAccount.UserAccount;
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,6 +70,7 @@ public class ArtistInfo implements Initializable {
     @FXML
     private ImageView spotify;
     ListenerController listenerController;
+    String artistName;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         homeImage.setOnMouseClicked(event -> {
@@ -103,7 +105,12 @@ public class ArtistInfo implements Initializable {
             listenerController.follow(nameLbl.getText());
         });
         reportButton.setOnMouseClicked(event -> {
-            //ChangeScene.reportScene
+            artistName = getNameLbl().getText();
+            try {
+                ChangeScene.reportScene();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }

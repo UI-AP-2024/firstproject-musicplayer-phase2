@@ -2,15 +2,28 @@ package org.example.prj.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.example.prj.controller.ListenerController;
+import org.example.prj.model.Audio;
 
-public class FavoriteGenreController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class FavoriteGenreController implements Initializable {
 
     @FXML
     private Text NameArtist_text;
@@ -32,6 +45,9 @@ public class FavoriteGenreController {
 
     @FXML
     private Text error_text;
+
+    @FXML
+    private GridPane gridPain;
 
     @FXML
     private Button home_button;
@@ -134,4 +150,19 @@ public class FavoriteGenreController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        ArrayList<String> al = ListenerController.getListenerController().showPremium();
+        int j=0,i=0;
+        gridPain.setAlignment(Pos.CENTER);
+        for (String str : al) {
+            gridPain.add(new Text(str), j, i);
+            if (j==2){
+                i++;
+                j=0;
+            }
+            else
+                j++;
+        }
+    }
 }

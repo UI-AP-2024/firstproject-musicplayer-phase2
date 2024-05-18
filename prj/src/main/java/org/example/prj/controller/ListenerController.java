@@ -92,8 +92,11 @@ public class ListenerController {
         return "Account created successfully";
     }
 
-    public String showGener(){
-        return "Choose up to 4 of your favorite genres: ROCK, POP ,JAZZ ,HIPHOP ,COUNTRY,TRUE_CRIME, SOCIETY,INTERVIEW, HISTORY";
+    public ArrayList<String> showGener(){
+        ArrayList<String> al = new ArrayList<>();
+        for (Gener gener : Gener.values())
+            al.add(gener.name());
+        return al;
     }
 
     public String login(String userName, String password) {

@@ -67,5 +67,4 @@ public class GenresSelectionController implements Initializable {
     private void btn_confirm_action() {
         selectedGenres.forEach(button -> System.out.println(button.getText()));
     }
-
 }

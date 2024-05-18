@@ -40,7 +40,6 @@ public class LoginController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Bind the text of the PasswordField and the visible TextField
         tf_pass_visible.textProperty().bindBidirectional(pf_pass.textProperty());
     }
 

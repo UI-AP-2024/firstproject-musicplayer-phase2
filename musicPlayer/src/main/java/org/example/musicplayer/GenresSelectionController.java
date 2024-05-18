@@ -1,54 +1,71 @@
 package org.example.musicplayer;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
+
+import java.net.URL;
 import java.util.HashSet;
+import java.util.ResourceBundle;
 import java.util.Set;
 
-public class GenresSelectionController {
-    private static final int MAX_SELECTIONS = 4;
+public class GenresSelectionController implements Initializable {
 
     @FXML
-    private GridPane gridPane;
+    private ToggleButton rockButton;
+    @FXML
+    private ToggleButton popButton;
+    @FXML
+    private ToggleButton jazzButton;
+    @FXML
+    private ToggleButton hiphopButton;
+    @FXML
+    private ToggleButton countryButton;
+    @FXML
+    private ToggleButton truecrimeButton;
+    @FXML
+    private ToggleButton societyButton;
+    @FXML
+    private ToggleButton interviewButton;
+    @FXML
+    private ToggleButton historyButton;
+    @FXML
+    private GridPane genreGrid;
 
-    private Set<Button> selectedButtons = new HashSet<>();
+    private final Set<ToggleButton> selectedGenres = new HashSet<>();
+    private static final int MAX_SELECTION = 4;
 
     @FXML
-    private void btns(ActionEvent event) {
-        Button button = (Button) event.getSource();
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        rockButton.setOnAction(event -> btn_genres_action(rockButton));
+        popButton.setOnAction(event -> btn_genres_action(popButton));
+        jazzButton.setOnAction(event -> btn_genres_action(jazzButton));
+        hiphopButton.setOnAction(event -> btn_genres_action(hiphopButton));
+        countryButton.setOnAction(event -> btn_genres_action(countryButton));
+        truecrimeButton.setOnAction(event -> btn_genres_action(truecrimeButton));
+        societyButton.setOnAction(event -> btn_genres_action(societyButton));
+        interviewButton.setOnAction(event -> btn_genres_action(interviewButton));
+        historyButton.setOnAction(event -> btn_genres_action(historyButton));
+    }
 
-        if (selectedButtons.contains(button)) {
-            selectedButtons.remove(button);
-            button.setStyle(""); // Reset style to default
+    private void btn_genres_action(ToggleButton button) {
+        if (selectedGenres.contains(button)) {
+            selectedGenres.remove(button);
+            button.setStyle("-fx-background-color: #2e2e2e; -fx-text-fill: white; -fx-font-size: 16px;");
         } else {
-            if (selectedButtons.size() < MAX_SELECTIONS) {
-                selectedButtons.add(button);
-                button.setStyle("-fx-background-color: #00ff00;"); // Set style for selected button
+            if (selectedGenres.size() < MAX_SELECTION) {
+                selectedGenres.add(button);
+                button.setStyle("-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-size: 16px;");
             } else {
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Selection Limit Reached");
-                alert.setHeaderText(null);
-                alert.setContentText("You can select up to " + MAX_SELECTIONS + " genres.");
-                alert.showAndWait();
+                button.setSelected(false);
             }
         }
     }
 
     @FXML
-    private void btn_confirm(ActionEvent event) {
-        StringBuilder selectedGenres = new StringBuilder("Selected Genres:\n");
-        for (Button button : selectedButtons) {
-            selectedGenres.append(button.getText()).append("\n");
-        }
-
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Genres Selected");
-        alert.setHeaderText(null);
-        alert.setContentText(selectedGenres.toString());
-        alert.showAndWait();
+    private void btn_confirm_action() {
+        selectedGenres.forEach(button -> System.out.println(button.getText()));
     }
+
 }

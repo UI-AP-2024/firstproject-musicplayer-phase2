@@ -7,10 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.example.spotifysecondfase.controller.ListenerController;
+import org.example.spotifysecondfase.model.Audio.Audio;
+import org.example.spotifysecondfase.model.Database;
 import org.example.spotifysecondfase.model.UserAccount.Artist.Artist;
 
 import java.io.IOException;
@@ -52,6 +55,7 @@ public class AllArtists implements Initializable {
     @FXML
     private ImageView spotify;
     ListenerController listenerController;
+    ArtistInfo artistInfo;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         for(Artist a : listenerController.showArtists())
@@ -61,7 +65,26 @@ public class AllArtists implements Initializable {
             label.textFillProperty().setValue(Color.WHITE);
             showArtistVbox.getChildren().add(label);
             label.setOnMouseClicked(event -> {
-                //ChangeScene.artistPanel
+                artistInfo.getNameLbl().setText(a.getName());
+                artistInfo.getBiography().setText(a.getBiography());
+                for (Audio audio : Database.getDatabase().getAudio())
+                {
+                    if(audio.getArtistName().equals(a.getName()))
+                    {
+                        HBox hBox = new HBox();
+                        hBox.setSpacing(10);
+                        Label audioName = new Label(audio.getName());
+                        ImageView imageView = audio.getCoverImageView();
+                        imageView.setFitWidth(50);
+                        imageView.setFitHeight(50);
+                        hBox.getChildren().addAll(imageView,audioName);
+                    }
+                }
+                try {
+                    ChangeScene.artistInfo();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
         }
         homeImage.setOnMouseClicked(event -> {

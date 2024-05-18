@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.GenresSelectionController">
+   <children>
+      <VBox alignment="CENTER" layoutX="50.0" layoutY="50.0" spacing="10.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <GridPane hgap="10.0" vgap="10.0">
+               <children>
+                  <Button onAction="#handleButtonAction" text="ROCK" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  <Button onAction="#handleButtonAction" text="POP" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <Button onAction="#handleButtonAction" text="JAZZ" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  <Button onAction="#handleButtonAction" text="HIPHOP" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                  <Button onAction="#handleButtonAction" text="COUNTRY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button onAction="#handleButtonAction" text="TRUECRIME" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button onAction="#handleButtonAction" text="SOCIETY" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                  <Button onAction="#handleButtonAction" text="INTERVIEW" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button onAction="#handleButtonAction" text="HISTORY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+            <Button onAction="#handleConfirmAction" text="Confirm" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

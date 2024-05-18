@@ -1,7 +1,7 @@
 package Views;
 
-import Controllers.AccountController;
-import Models.Genre;
+import org.example.musicap.Controllers.AccountController;
+import org.example.musicap.Models.Genre;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

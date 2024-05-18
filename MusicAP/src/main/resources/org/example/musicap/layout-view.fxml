@@ -4,44 +4,68 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<BorderPane prefHeight="649.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicap.GUIs.LayoutViewController">
     <stylesheets>
         <URL value="@styles.css" />
     </stylesheets>
     <top>
         <HBox id="top-container" prefHeight="33.0" prefWidth="675.0" spacing="10">
-            <Label alignment="CENTER" prefHeight="31.0" prefWidth="63.0" text="Login" />
-            <Label alignment="CENTER" prefHeight="31.0" prefWidth="72.0" text="Sign Up" />
+            <Label fx:id="loginButton" alignment="CENTER" onMouseClicked="#login" prefHeight="31.0" prefWidth="63.0" text="Login" />
+            <Label fx:id="signUpButton" alignment="CENTER" onMouseClicked="#signup" prefHeight="31.0" prefWidth="72.0" text="Sign Up" />
+            <Label fx:id="backToButton" alignment="CENTER" onMouseClicked="#backTo" prefHeight="31.0" prefWidth="72.0" text="Back" />
+            <Label fx:id="logoutButton" alignment="CENTER" onMouseClicked="#logout" prefHeight="31.0" prefWidth="72.0" text="Logout" />
         </HBox>
     </top>
 
     <left>
-        <VBox id="left-container" prefHeight="336.0" prefWidth="105.0">
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="105.0" text="Home" />
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="105.0" text="Library" />
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="105.0" text="Artists" />
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="105.0" text="Audios" />
+        <VBox id="left-container" prefHeight="434.0" prefWidth="105.0">
+
+            <Label fx:id="homeLabel" alignment="CENTER" onMouseClicked="#homeLabelClick" prefHeight="50.0" prefWidth="105.0" text="Home" />
+            <Label fx:id="libraryLabel" alignment="CENTER" onMouseClicked="#libraryLabelClick" prefHeight="50.0" prefWidth="105.0" text="Library" />
+            <Label fx:id="artistsLabel" alignment="CENTER" onMouseClicked="#artistsLabelClick" prefHeight="50.0" prefWidth="105.0" text="Artists" />
+            <Label fx:id="audiosLabel" alignment="CENTER" onMouseClicked="#audiosLabelClick" prefHeight="50.0" prefWidth="105.0" text="Audios" />
             <HBox>
-                <TextField alignment="CENTER" prefHeight="30.0" prefWidth="75.0" promptText="Search..." />
-                <Button alignment="CENTER" onAction="#playMusic" prefHeight="30.0" prefWidth="28" text="S" />
+                <TextField fx:id="searchField" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" promptText="Search..." />
+                <Button fx:id="searchButton" alignment="CENTER" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" onAction="#search">
+                    <graphic>
+                        <SVGPath content="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z" fill="white" scaleX="0.4" scaleY="0.4" />
+                    </graphic>
+                </Button>
             </HBox>
 
         </VBox>
     </left>
 
     <bottom>
-        <AnchorPane prefHeight="133.0" prefWidth="721.0">
-            <Button fx:id="playButton" layoutX="376.0" layoutY="81.0" onAction="#playMusic" text="Play" />
-            <Button fx:id="previousButton" layoutX="243.0" layoutY="81.0" onAction="#previousMusic" text="Previous" />
-            <Button fx:id="nextButton" layoutX="491.0" layoutY="81.0" onAction="#nextMusic" text="Next" />
+        <AnchorPane fx:id="musicPane" prefHeight="133.0" prefWidth="800.0">
+            <Button fx:id="playButton" layoutX="383.0" layoutY="78.0" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" onAction="#playMusic">
+                <graphic>
+
+                    <SVGPath content="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z" fill="white" scaleX="2" scaleY="2" />
+                </graphic>
+            </Button>
+            <Button fx:id="previousButton" layoutX="340.0" layoutY="78.0" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" onAction="#previousMusic">
+                <graphic>
+                    <SVGPath content="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" fill="white" scaleX="0.04" scaleY="0.04" />
+                </graphic>
+            </Button>
+            <Button fx:id="nextButton" layoutX="424.0" layoutY="78.0" maxHeight="35.0" maxWidth="35.0" minHeight="35.0" minWidth="35.0" onAction="#nextMusic">
+                <graphic>
+                    <SVGPath content="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" fill="white" scaleX="0.04" scaleY="0.04" />
+                </graphic>
+            </Button>
             <Slider fx:id="timeSlider" layoutX="152.0" layoutY="47.0" prefHeight="16.0" prefWidth="496.0" />
-            <Label fx:id="nameLabel" layoutX="24.0" layoutY="86.0" text="Song Name" />
+            <Label fx:id="nameLabel" layoutX="24.0" layoutY="86.0" onMouseClicked="#navigateToSongPage" text="Song Name" />
             <Label fx:id="timeLabel" layoutX="152.0" layoutY="86.0" text="10:10" />
             <Label fx:id="leftTimeLabel" layoutX="604.0" layoutY="86.0" text="10:11" />
 
-            <ImageView fx:id="audioImage" fitHeight="59.0" fitWidth="70.0" layoutX="29.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="audioImage" fitHeight="59.0" fitWidth="70.0" layoutX="29.0" layoutY="18.0" onMouseClicked="#navigateToSongPage" pickOnBounds="true" preserveRatio="true" />
 
         </AnchorPane>
     </bottom>
+   <center>
+      <AnchorPane fx:id="mainBody" prefHeight="352.0" prefWidth="695.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

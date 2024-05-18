@@ -1,11 +1,11 @@
 package Views;
 
-import Controllers.PremiumListenerController;
-import Models.Audio.Audio;
-import Models.Genre;
-import Models.Playlist;
-import Models.PremiumPlan;
-import Models.User.Artist;
+import org.example.musicap.Controllers.PremiumListenerController;
+import org.example.musicap.Models.Audio.Audio;
+import org.example.musicap.Models.Genre;
+import org.example.musicap.Models.Playlist;
+import org.example.musicap.Models.PremiumPlan;
+import org.example.musicap.Models.User.Artist;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

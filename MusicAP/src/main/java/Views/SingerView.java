@@ -1,10 +1,10 @@
 package Views;
 
-import Controllers.SingerController;
-import Models.Album;
-import Models.Audio.Song;
-import Models.Genre;
-import Models.User.User;
+import org.example.musicap.Controllers.SingerController;
+import org.example.musicap.Models.Album;
+import org.example.musicap.Models.Audio.Song;
+import org.example.musicap.Models.Genre;
+import org.example.musicap.Models.User.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -7,4 +7,6 @@ module org.example.musicap {
 
     opens org.example.musicap to javafx.fxml;
     exports org.example.musicap;
+    exports org.example.musicap.GUIs to javafx.fxml;
+    opens org.example.musicap.GUIs to javafx.fxml;
 }

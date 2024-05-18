@@ -1,8 +1,8 @@
 package Views;
 
-import Controllers.PodcasterController;
-import Models.Genre;
-import Models.User.User;
+import org.example.musicap.Controllers.PodcasterController;
+import org.example.musicap.Models.Genre;
+import org.example.musicap.Models.User.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;

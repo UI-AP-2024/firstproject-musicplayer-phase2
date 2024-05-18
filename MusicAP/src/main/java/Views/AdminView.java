@@ -1,9 +1,9 @@
 package Views;
 
-import Controllers.AdminController;
-import Models.Audio.Audio;
-import Models.Report;
-import Models.User.Artist;
+import org.example.musicap.Controllers.AdminController;
+import org.example.musicap.Models.Audio.Audio;
+import org.example.musicap.Models.Report;
+import org.example.musicap.Models.User.Artist;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class AdminView {

@@ -13,15 +13,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.phase2.Controller.ListenerController;
-import org.example.phase2.Model.Audios.Playlist;
 import org.example.phase2.Model.Database.Database;
-import org.example.phase2.Model.Users.Listener;
+import org.example.phase2.Model.Users.Artist;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MyPlaylistsController implements Initializable {
+public class MyFollowingsController implements Initializable {
+
+    @FXML
+    private Label FollowingsLabel;
 
     @FXML
     private Button artists_btn;
@@ -45,7 +47,7 @@ public class MyPlaylistsController implements Initializable {
     private Button library_btn;
 
     @FXML
-    private Label playlist_lbl;
+    private ListView<Label> listView;
 
     @FXML
     private Button search_btn;
@@ -59,9 +61,6 @@ public class MyPlaylistsController implements Initializable {
     @FXML
     private VBox vBox2;
 
-    @FXML
-    private ListView<Label> listView;
-
     private static Stage stage;
 
     public static Stage getStage() {
@@ -69,8 +68,9 @@ public class MyPlaylistsController implements Initializable {
     }
 
     public static void setStage(Stage stage) {
-        MyPlaylistsController.stage = stage;
+        MyFollowingsController.stage = stage;
     }
+
 
     @FXML
     void artistsAction(ActionEvent event) {
@@ -79,8 +79,8 @@ public class MyPlaylistsController implements Initializable {
 
     @FXML
     void audiosAction(ActionEvent event) throws IOException {
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MyPlaylists.fxml")));
-        Database.getDatabase().getTitles().add("My Playlists");
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MyFollowings.fxml")));
+        Database.getDatabase().getTitles().add("My Followings");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Audios");
@@ -104,8 +104,8 @@ public class MyPlaylistsController implements Initializable {
 
     @FXML
     void libraryAction(ActionEvent event) throws IOException {
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MyPlaylists.fxml")));
-        Database.getDatabase().getTitles().add("My Playlists");
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MyFollowings.fxml")));
+        Database.getDatabase().getTitles().add("My Followings");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Listener Panel");
@@ -120,26 +120,9 @@ public class MyPlaylistsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int i=0;
-        for(Playlist playlist : ListenerController.getListenerController().getListener().getPlaylists()){
-            Label label=new Label("Name: "+playlist.getNameOfPlayList()+"\t\t\t"+"ID: "+playlist.getId());
-            //vBox3.getChildren().add(label);
+        for(Artist artist : ListenerController.getListenerController().getListener().getFollowings()){
+            Label label = new Label("Name: "+artist.getFirstAndLastName()+"\t\t\t"+"Biography: "+artist.getBiography());
             listView.getItems().add(label);
-            listView.getItems().get(i++).setOnMouseClicked(mouseEvent -> {
-                MusicsOfPlaylistController.setPlaylist(playlist);
-                Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MyPlaylists.fxml")));
-                Database.getDatabase().getTitles().add("My Playlists");
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("MusicsOfPlaylist.fxml"));
-                Scene scene = null;
-                try {
-                    scene = new Scene(fxmlLoader.load(), 800, 600);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                stage.setTitle("Musics Of Playlist");
-                stage.setScene(scene);
-                stage.show();
-            });
         }
     }
 }

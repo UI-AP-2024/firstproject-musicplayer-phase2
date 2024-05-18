@@ -236,8 +236,14 @@ public class favoriteGenresController implements Initializable {
     }
 
     @FXML
-    void homeAction(ActionEvent event) {
-
+    void homeAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Favorite-genre.fxml")));
+        Database.getDatabase().getTitles().add("Favorite Genre");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.MusicPageController">
+   <children>
+      <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <VBox fx:id="vBox1" prefHeight="600.0" prefWidth="725.0">
+               <children>
+                  <AnchorPane fx:id="secondaryAnchor" prefHeight="480.0" prefWidth="725.0" style="-fx-background-color: #1c1c1c;">
+                     <children>
+                        <ImageView fx:id="musicImage" fitHeight="440.0" fitWidth="440.0" layoutX="272.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField fx:id="text_tF" layoutX="14.0" layoutY="26.0" prefHeight="386.0" prefWidth="250.0" style="-fx-background-color: #696969; -fx-background-radius: 20px;" />
+                        <Label fx:id="text_lbl" alignment="CENTER" layoutX="14.0" layoutY="-8.0" prefHeight="43.0" prefWidth="250.0" text="Text" textFill="#469ec7">
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="likeImage" fitHeight="60.0" fitWidth="60.0" layoutX="40.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../photos/unliked.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="add_btn" layoutX="116.0" layoutY="428.0" mnemonicParsing="false" onAction="#addAction" prefHeight="43.0" prefWidth="133.0" style="-fx-background-color: #696969; -fx-background-radius: 17px;" text="Add To Playlist" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="75.0">
+               <children>
+                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Home">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Search">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Library">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Artists">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Audios">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Back">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

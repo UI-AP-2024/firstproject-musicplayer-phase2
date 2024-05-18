@@ -3,9 +3,11 @@ package org.example.phase2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -14,8 +16,10 @@ import javafx.stage.Stage;
 import org.example.phase2.Model.Database.Database;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class HomeLoggedOut {
+public class HomeLoggedOut implements Initializable {
 
     @FXML
     private AnchorPane anchor;
@@ -55,6 +59,12 @@ public class HomeLoggedOut {
 
     @FXML
     private VBox vBox;
+
+    @FXML
+    private Label popularLabel;
+
+    @FXML
+    private AnchorPane secondaryAnchor;
     private static Stage stage;
     public static void setStage(Stage stage){
         HomeLoggedOut.stage =stage;
@@ -120,4 +130,12 @@ public class HomeLoggedOut {
         stage.show();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            vBox.getChildren().add(new FXMLLoader(HelloApplication.class.getResource("Play-bar.fxml")).load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.LPanelController">
    <children>
       <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
@@ -16,14 +15,29 @@
                <children>
                   <AnchorPane fx:id="secondaryAnchor" prefHeight="480.0" prefWidth="725.0">
                      <children>
-                        <Button fx:id="account_btn" layoutX="98.0" layoutY="142.0" mnemonicParsing="false" onAction="#accountAction" prefHeight="60.0" prefWidth="130.0" text="Account information" />
-                        <Button fx:id="playlist_btn" layoutX="321.0" layoutY="142.0" mnemonicParsing="false" onAction="#playlistAction" prefHeight="60.0" prefWidth="130.0" text="My playlists" />
-                        <Button fx:id="newPlaylist_btn" layoutX="547.0" layoutY="142.0" mnemonicParsing="false" onAction="#newPlaylistAction" prefHeight="60.0" prefWidth="130.0" text="Create new playlist" />
-                        <Button fx:id="followings_btn" layoutX="98.0" layoutY="275.0" mnemonicParsing="false" onAction="#followingsAction" prefHeight="60.0" prefWidth="130.0" text="My followings" />
-                        <Button fx:id="premium_btn" layoutX="321.0" layoutY="275.0" mnemonicParsing="false" onAction="#premiumAction" prefHeight="60.0" prefWidth="130.0" text="Get premium" />
-                        <Label fx:id="panel_lbl" alignment="CENTER" layoutX="158.0" layoutY="36.0" prefHeight="66.0" prefWidth="455.0" text="My panel" textFill="#1524cc">
+                        <Button fx:id="account_btn" layoutX="98.0" layoutY="142.0" mnemonicParsing="false" onAction="#accountAction" prefHeight="60.0" prefWidth="140.0" text="Account information">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="playlist_btn" layoutX="321.0" layoutY="142.0" mnemonicParsing="false" onAction="#playlistAction" prefHeight="60.0" prefWidth="140.0" text="My playlists">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="newPlaylist_btn" layoutX="547.0" layoutY="142.0" mnemonicParsing="false" onAction="#newPlaylistAction" prefHeight="60.0" prefWidth="140.0" text="Create new playlist">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="followings_btn" layoutX="98.0" layoutY="275.0" mnemonicParsing="false" onAction="#followingsAction" prefHeight="60.0" prefWidth="140.0" text="My followings">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="premium_btn" layoutX="321.0" layoutY="275.0" mnemonicParsing="false" onAction="#premiumAction" prefHeight="60.0" prefWidth="140.0" text="Get premium">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Button>
+                        <Label fx:id="panel_lbl" alignment="CENTER" layoutX="158.0" layoutY="7.0" prefHeight="66.0" prefWidth="455.0" text="My panel" textFill="#1524cc">
+                           <font>
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </Label>
                      </children>
@@ -32,12 +46,30 @@
             </VBox>
             <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="75.0">
                <children>
-                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home" />
-                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search" />
-                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library" />
-                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="All Artists" />
-                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios" />
-                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back" />
+                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="All Artists">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
                </children>
             </VBox>
          </children>

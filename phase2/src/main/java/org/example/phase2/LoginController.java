@@ -116,9 +116,11 @@ public class LoginController {
     }
 
     @FXML
-    void loginAction(ActionEvent event) {
+    void loginAction(ActionEvent event) throws IOException {
+        boolean loginCheck=false;
         try {
             UserController.getUserController().loginUser(usernameTextField.getText(),passField.getText());
+            loginCheck=true;
         } catch (UserNotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -131,6 +133,15 @@ public class LoginController {
             alert.setHeaderText(null);
             alert.setContentText("Password is wrong");
             alert.showAndWait();
+        }
+        if(loginCheck){
+            Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
+            Database.getDatabase().getTitles().add("Login");
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            stage.setTitle("Listener Panel");
+            stage.setScene(scene);
+            stage.show();
         }
     }
 

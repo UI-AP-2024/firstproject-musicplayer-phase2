@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.AccountInfoController">
    <children>
       <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
@@ -18,12 +17,12 @@
                      <children>
                         <Label fx:id="account_blb" alignment="CENTER" layoutX="163.0" layoutY="14.0" prefHeight="70.0" prefWidth="400.0" text="Account information">
                            <font>
-                              <Font size="36.0" />
+                              <Font name="System Italic" size="36.0" />
                            </font>
                         </Label>
                         <Label fx:id="name1" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="134.0" prefHeight="40.0" prefWidth="120.0" text="Name:" textFill="#1524cc">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="name2" layoutX="350.0" layoutY="134.0" prefHeight="40.0" prefWidth="150.0" text="name">
@@ -33,7 +32,7 @@
                         </Label>
                         <Label fx:id="username1" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="174.0" prefHeight="40.0" prefWidth="120.0" text="Username:" textFill="#1524cc">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="username2" layoutX="350.0" layoutY="174.0" prefHeight="40.0" prefWidth="150.0" text="username">
@@ -41,9 +40,9 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="emailAddress1" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="214.0" prefHeight="40.0" prefWidth="120.0" text="Email Address:" textFill="#1524cc">
+                        <Label fx:id="emailAddress1" alignment="CENTER_RIGHT" layoutX="215.0" layoutY="214.0" prefHeight="40.0" prefWidth="127.0" text="Email Address:" textFill="#1524cc">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="emailAddress2" layoutX="350.0" layoutY="214.0" prefHeight="40.0" prefWidth="150.0" text="email address">
@@ -53,7 +52,7 @@
                         </Label>
                         <Label fx:id="phoneNumber1" alignment="CENTER_RIGHT" layoutX="192.0" layoutY="254.0" prefHeight="40.0" prefWidth="150.0" text="Phone Number:" textFill="#1524cc">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="phoneNumber2" layoutX="350.0" layoutY="254.0" prefHeight="40.0" prefWidth="150.0" text="phone number">
@@ -63,7 +62,7 @@
                         </Label>
                         <Label fx:id="birthDate1" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="294.0" prefHeight="40.0" prefWidth="120.0" text="Birth Date:" textFill="#1524cc">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="birthDate2" layoutX="350.0" layoutY="294.0" prefHeight="40.0" prefWidth="150.0" text="birth date">
@@ -73,7 +72,7 @@
                         </Label>
                         <Label fx:id="credit1" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="334.0" prefHeight="40.0" prefWidth="120.0" text="Credit:" textFill="#1524cc">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="credit2" layoutX="350.0" layoutY="334.0" prefHeight="40.0" prefWidth="120.0" text="credit">
@@ -81,9 +80,9 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="leftDays1" alignment="CENTER_RIGHT" layoutX="72.0" layoutY="374.0" prefHeight="40.0" prefWidth="270.0" text="Left Days Of Premium Account:" textFill="#1524cc">
+                        <Label fx:id="leftDays1" alignment="CENTER_RIGHT" layoutX="47.0" layoutY="374.0" prefHeight="40.0" prefWidth="295.0" text="Left Days Of Premium Account:" textFill="#1524cc">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="leftDays2" layoutX="350.0" layoutY="374.0" prefHeight="40.0" prefWidth="150.0" text="leftDays">
@@ -97,12 +96,30 @@
             </VBox>
             <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="75.0">
                <children>
-                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home" />
-                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search" />
-                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library" />
-                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="All Artists" />
-                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios" />
-                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back" />
+                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="All Artists">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
                </children>
             </VBox>
          </children>

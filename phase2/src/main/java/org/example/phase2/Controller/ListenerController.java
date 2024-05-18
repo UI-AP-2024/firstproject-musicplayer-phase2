@@ -672,7 +672,7 @@ public class ListenerController{
         listener.setCredit(listener.getCredit()+value);
         return "Your credit increased successfully.";
     }
-    public String getPremium(String pickedPackage) throws ParseException, NotEnoughMoney {
+    public int getPremium(String pickedPackage) throws ParseException, NotEnoughMoney {
         PremiumTypes pickedType=PremiumTypes.valueOf(pickedPackage);
         ArrayList<UserAccount> users = Database.getDatabase().getUsers();
         if(pickedType.getPrice()<=listener.getCredit())
@@ -698,7 +698,7 @@ public class ListenerController{
             users.remove(listener);
             users.add(newPremiumListener);
             ListenerController.getListenerController().setListener(newPremiumListener);
-            return "Your account is premium now. Enjoy new parts of your music player:).";
+            return 1;
         }
         if(listener instanceof PremiumListener)
         {
@@ -715,9 +715,11 @@ public class ListenerController{
             {
                 premiumListener.setLeftDays(premiumListener.getLeftDays()+181);
             }
-            return "Your account is extended successfully.";
+            //return "Your account is extended successfully.";
+            return 2;
         }
-        return "Something was wrong. Please try again.";
+        //return "Something was wrong. Please try again.";
+        return -1;
     }
     public String help()
     {

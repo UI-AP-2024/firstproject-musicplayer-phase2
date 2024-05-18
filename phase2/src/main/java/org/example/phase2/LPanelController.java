@@ -131,8 +131,14 @@ public class LPanelController implements Initializable {
     }
 
     @FXML
-    void followingsAction(ActionEvent event) {
-
+    void followingsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("MyFollowings.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("My Followings");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

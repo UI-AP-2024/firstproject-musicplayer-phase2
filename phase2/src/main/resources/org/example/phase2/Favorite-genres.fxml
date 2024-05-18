@@ -18,36 +18,84 @@
                      <children>
                         <Label fx:id="genreLabel" alignment="CENTER" layoutX="67.0" layoutY="38.0" prefHeight="50.0" prefWidth="381.0" text="What are your favorite genres?" textFill="#1524cc">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="System Italic" size="24.0" />
                            </font>
                         </Label>
-                        <CheckBox fx:id="rockCheck" layoutX="146.0" layoutY="185.0" mnemonicParsing="false" text="Rock" />
-                        <CheckBox fx:id="popCheck" layoutX="148.0" layoutY="111.0" mnemonicParsing="false" text="Pop" />
-                        <CheckBox fx:id="hipHopCheck" layoutX="284.0" layoutY="185.0" mnemonicParsing="false" text="HipHop" />
-                        <CheckBox fx:id="countryCheck" layoutX="283.0" layoutY="111.0" mnemonicParsing="false" text="Country" />
-                        <CheckBox fx:id="trueCrimeCheck" layoutX="446.0" layoutY="104.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" text="True Crime" />
-                        <CheckBox fx:id="societyCheck" layoutX="446.0" layoutY="185.0" mnemonicParsing="false" text="Sosiety" />
-                        <CheckBox fx:id="interviewCheck" layoutX="284.0" layoutY="258.0" mnemonicParsing="false" text="Interview" />
-                        <CheckBox fx:id="historyCheck" layoutX="146.0" layoutY="258.0" mnemonicParsing="false" text="History" />
+                        <CheckBox fx:id="rockCheck" layoutX="146.0" layoutY="185.0" mnemonicParsing="false" text="Rock">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="popCheck" layoutX="148.0" layoutY="111.0" mnemonicParsing="false" text="Pop">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="hipHopCheck" layoutX="284.0" layoutY="185.0" mnemonicParsing="false" text="HipHop">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="countryCheck" layoutX="283.0" layoutY="111.0" mnemonicParsing="false" text="Country">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="trueCrimeCheck" layoutX="446.0" layoutY="104.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" text="True Crime">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="societyCheck" layoutX="446.0" layoutY="185.0" mnemonicParsing="false" text="Sosiety">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="interviewCheck" layoutX="284.0" layoutY="258.0" mnemonicParsing="false" text="Interview">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
+                        <CheckBox fx:id="historyCheck" layoutX="146.0" layoutY="258.0" mnemonicParsing="false" text="History">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
                         <Label fx:id="noticeLabel" layoutX="45.0" layoutY="359.0" prefHeight="30.0" prefWidth="294.0" text="*You can choose at most 4 genres." textFill="#e70e0e">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="add_btn" layoutX="461.0" layoutY="313.0" mnemonicParsing="false" onAction="#addAction" prefHeight="26.0" prefWidth="60.0" text="Add" />
-                        <CheckBox fx:id="jazzCheck" layoutX="446.0" layoutY="258.0" mnemonicParsing="false" text="Jazz" />
+                        <Button fx:id="add_btn" layoutX="461.0" layoutY="313.0" mnemonicParsing="false" onAction="#addAction" prefHeight="26.0" prefWidth="60.0" text="Add">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Button>
+                        <CheckBox fx:id="jazzCheck" layoutX="446.0" layoutY="258.0" mnemonicParsing="false" text="Jazz">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></CheckBox>
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
             <VBox fx:id="vbox2" prefHeight="200.0" prefWidth="75.0">
                <children>
-                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home" />
-                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search" />
-                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library" />
-                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="All Artists" />
-                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios" />
-                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back" />
+                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="All Artists">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
+                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font></Button>
                </children>
             </VBox>
          </children>

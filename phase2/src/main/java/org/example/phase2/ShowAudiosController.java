@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -59,7 +60,8 @@ public class ShowAudiosController implements Initializable {
     private VBox vBox2;
 
     @FXML
-    private VBox vBox3;
+    private ListView<Label> listView;
+
 
     private static Stage stage;
 
@@ -125,8 +127,9 @@ public class ShowAudiosController implements Initializable {
             Label label=new Label("Name: "+audio.getName()+"\t\t\t\t"+"ID: "+audio.getId());
             label.setOnMouseClicked(mouseEvent -> {
                 //play music
+                System.out.println("Clicked");
             });
-            vBox3.getChildren().add(label);
+            listView.getItems().add(label);
         }
 
     }

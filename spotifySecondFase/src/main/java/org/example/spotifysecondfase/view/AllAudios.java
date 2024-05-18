@@ -14,6 +14,7 @@ import javafx.scene.text.FontWeight;
 import org.example.spotifysecondfase.model.Audio.Audio;
 import org.example.spotifysecondfase.model.Database;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -99,5 +100,12 @@ public class AllAudios implements Initializable {
                 }
             }
         }
+        allAudios.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.allAudios();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

@@ -160,6 +160,13 @@ public class ListenerPanel implements Initializable
                 throw new RuntimeException(e);
             }
         });
+        allAudios.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.allAudios();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 }

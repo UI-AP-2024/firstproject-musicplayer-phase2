@@ -128,6 +128,13 @@ public class ChooseGenres implements Initializable
                 throw new RuntimeException(e);
             }
         });
+        getAllAudios().setOnMouseClicked(event -> {
+            try {
+                ChangeScene.allAudios();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
 
     }

@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import org.example.spotifysecondfase.controller.ListenerController;
 import org.example.spotifysecondfase.model.Audio.Audio;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -63,5 +64,12 @@ public class PlayListAudios implements Initializable {
         //action on listview items
         listView.getSelectionModel().getSelectedItems();
         //move to play music scene
+        allAudios.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.allAudios();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

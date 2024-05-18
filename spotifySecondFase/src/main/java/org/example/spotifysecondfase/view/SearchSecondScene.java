@@ -75,6 +75,13 @@ public class SearchSecondScene implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+        allArtists.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.allArtists();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         int counter = 0;
         for (int i=0 ;i< gridPane.getRowCount(); i++) {
             for (int j = 0; j < gridPane.getColumnCount(); j++) {
@@ -89,5 +96,6 @@ public class SearchSecondScene implements Initializable {
                 }
             }
         }
+
     }
 }

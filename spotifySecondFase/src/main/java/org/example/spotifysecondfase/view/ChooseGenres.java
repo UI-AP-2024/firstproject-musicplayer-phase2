@@ -142,6 +142,13 @@ public class ChooseGenres implements Initializable
                 throw new RuntimeException(e);
             }
         });
+        getAllArtists().setOnMouseClicked(event -> {
+            try {
+                ChangeScene.allArtists();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 }

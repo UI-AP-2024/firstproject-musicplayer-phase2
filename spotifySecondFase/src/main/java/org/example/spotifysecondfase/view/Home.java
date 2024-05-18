@@ -198,5 +198,12 @@ public class Home implements Initializable
                 throw new RuntimeException(e);
             }
         });
+        allArtists.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.allArtists();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

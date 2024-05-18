@@ -50,5 +50,11 @@ public class ChangeScene {
         stage.setScene(scene);
         stage.show();
     }
-
+    public static void allAudios() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("allAudios.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -10,8 +10,8 @@ import java.util.Date;
 public class Podcaster extends Artist {
 
     private ArrayList<Podcast> podcasts = new ArrayList<Podcast>();
-    public Podcaster(String userName, String passWord, String name, String email, String phoneNumber, Date dateOfBirth, String biography) {
-        super(userName, passWord, name, email, phoneNumber, dateOfBirth, biography);
+    public Podcaster(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day, String biography) {
+        super(userName, passWord, name, email, phoneNumber, year,month,day, biography);
     }
     public ArrayList<Podcast> getPodcasts() {
         return podcasts;

@@ -2,11 +2,9 @@ package org.example.spotifysecondfase.model.Audio;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import org.example.spotifysecondfase.HelloApplication;
+import org.example.spotifysecondfase.view.HelloApplication;
 import org.example.spotifysecondfase.model.Genre;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Audio

@@ -11,8 +11,8 @@ import static java.lang.Character.getName;
 public class Premium extends Listener
 {
     private int remainingDays;
-    public Premium(String userName, String passWord, String name, String email, String phoneNumber, Date dateOfBirth, Genre[] genres) {
-        super(userName,passWord,name,email,phoneNumber,dateOfBirth,genres);
+    public Premium(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day, Genre[] genres) {
+        super(userName,passWord,name,email,phoneNumber,year,month,day,genres);
     }
     public int getRemainingDays() {return remainingDays;}
     public void setRemainingDays(int remainingDays) {

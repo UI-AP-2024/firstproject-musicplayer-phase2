@@ -9,8 +9,8 @@ import java.util.Date;
 
 public class Singer extends Artist {
     private ArrayList<Album> albums = new ArrayList<Album>();
-    public Singer(String userName, String passWord, String name, String email, String phoneNumber, Date dateOfBirth, String biography) {
-        super(userName, passWord, name, email, phoneNumber, dateOfBirth, biography);
+    public Singer(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day, String biography) {
+        super(userName, passWord, name, email, phoneNumber, year,month,day, biography);
     }
     public ArrayList<Album> getAlbums() {
         return albums;

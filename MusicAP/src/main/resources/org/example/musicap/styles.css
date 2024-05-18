@@ -218,3 +218,71 @@ ComboBox {
     -fx-text-fill: #fff;
     -fx-border-color: #5c0000;
 }
+
+.user-name-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.premium-button {
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-color: #a40000;
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+}
+
+.premium-button:hover{
+    -fx-background-color: #710000;
+}
+
+.section-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.add-playlist-button {
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-color: #a40000;
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+}
+
+.add-playlist-button:hover {
+    -fx-background-color: #710000;
+}
+
+.plan-box {
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);
+}
+
+.plan-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+.plan-price {
+    -fx-font-size: 20px;
+    -fx-text-fill: #777;
+}
+
+.select-button {
+    -fx-font-size: 16px;
+    -fx-background-color: #950000;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.select-button:hover {
+    -fx-background-color: #770000;
+}

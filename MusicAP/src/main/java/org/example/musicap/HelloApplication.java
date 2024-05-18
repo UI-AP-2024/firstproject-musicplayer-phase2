@@ -22,9 +22,11 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         Database database = Database.getInstance();
         Singer singer = new Singer("s", "SFDG#45XFfdfg2", "s", "si@si.cim", "09131063421", LocalDate.now(), 234.24, "sdfg");
-        Listener listener = new NormalListener("dry", "sdf", "sdf", "sdf", "0098765", LocalDate.now(), 12, LocalDate.now(), new ArrayList<>());
+        Listener listener = new NormalListener("dry", "sdf", "sdf", "sdf", "0098765", LocalDate.now(), 3, LocalDate.now(), new ArrayList<>());
+        Listener listener1 = new NormalListener("2ry", "sdf", "sdf", "sdf", "0098765", LocalDate.now(), 12, LocalDate.now(), new ArrayList<>());
         database.getUsers().add(singer);
         database.getUsers().add(listener);
+        database.getUsers().add(listener1);
         Song song1 = new Song("hi 2", "hub", 23, 21, LocalDate.now(), Genre.COUNTRY, "11111", "svs", "sdfdsgfb");
         Song song2 = new Song("Melody Maker", "Jingle Jams", 195, 42, LocalDate.of(2022, 3, 15), Genre.POP, "22222", "Tune Town", "xyzabc123");
         Song song3 = new Song("Rhythmic Rhapsody", "Beat Street", 211, 31, LocalDate.of(2021, 9, 28), Genre.ROCK, "33333", "Groove Grooves", "qwerty456");

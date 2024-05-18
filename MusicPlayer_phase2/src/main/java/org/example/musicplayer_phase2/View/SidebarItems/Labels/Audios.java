@@ -17,6 +17,9 @@ import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAllMedias;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAudio;
+
 public class Audios extends Application {
     @Override
     public void start(Stage stage) throws Exception {
@@ -55,8 +58,8 @@ public class Audios extends Application {
             nameLabel.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
-                    PlayMusicPage.setAllMedias(listenerController.sortAudios());
-                    PlayMusicPage.setAudio(a);
+                    setAllMedias(listenerController.sortAudios());
+                    setAudio(a);
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

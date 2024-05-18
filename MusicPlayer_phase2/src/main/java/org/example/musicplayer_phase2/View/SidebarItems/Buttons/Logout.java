@@ -11,9 +11,13 @@ import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.Start;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 
 import java.io.IOException;
+
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.getMediaPlayer;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.stopPlaying;
 
 public class Logout extends Application {
     @Override
@@ -27,10 +31,10 @@ public class Logout extends Application {
         UserAccountController.singer = null;
         UserAccountController.podcaster = null;
         HelloApplication.lastScenes.removeAll(HelloApplication.lastScenes);
-        if (PlayMusicPage.getMediaPlayer() != null) {
-            if (PlayMusicPage.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
-                PlayMusicPage.stopPlaying();
-                PlayMusicPage.audio = null;
+        if (getMediaPlayer() != null) {
+            if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING) {
+                stopPlaying();
+                PlayMusic.audio = null;
             }
         }
 

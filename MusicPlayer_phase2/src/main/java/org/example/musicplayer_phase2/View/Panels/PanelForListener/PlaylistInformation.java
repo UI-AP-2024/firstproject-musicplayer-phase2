@@ -20,6 +20,7 @@ import org.example.musicplayer_phase2.View.SidebarItems.SidebarMake;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.AboutMusic.Playlist;
@@ -105,8 +106,8 @@ public class PlaylistInformation extends Application implements Initializable {
             audioLabel.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
-                    PlayMusicPage.setAllMedias(playlist.getAudioFiles());
-                    PlayMusicPage.setAudio(a);
+                    PlayMusic.setAllMedias(playlist.getAudioFiles());
+                    PlayMusic.setAudio(a);
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

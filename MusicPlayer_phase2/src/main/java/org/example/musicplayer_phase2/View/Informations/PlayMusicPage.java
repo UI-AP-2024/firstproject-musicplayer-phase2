@@ -34,39 +34,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.audio;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.startPlaying;
+
 
 public class PlayMusicPage extends Application implements Initializable {
-    public static Audio audio;
-    private static Media media;
-
-    public static MediaPlayer getMediaPlayer() {
-        return mediaPlayer;
-    }
-
-    private static ArrayList<Audio> allMedias = new ArrayList<>();
-
-    public static void setAllMedias(ArrayList<Audio> allMedias1) {
-        allMedias = allMedias1;
-    }
-
-    private static int musicNumber;
-    private static MediaPlayer mediaPlayer;
 
     public static Audio getAudio() {
         return audio;
-    }
-
-    public static void setAudio(Audio audio) {
-        if (mediaPlayer != null){
-            if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
-                mediaPlayer.stop();
-            }
-        }
-
-        PlayMusicPage.audio = audio;
-        media = new Media(audio.getAudioLink());
-        musicNumber = allMedias.indexOf(audio);
-        mediaPlayer = new MediaPlayer(media);
     }
 
     @Override
@@ -144,14 +119,13 @@ public class PlayMusicPage extends Application implements Initializable {
     @FXML
     void likeClicked(MouseEvent event) {
         if (UserAccountController.listener != null) {
-            if (!UserAccountController.listener.getLikedAudios().contains(audio)) {
-                UserAccountController.listener.setOneLikedAudios(audio);
+            ListenerController listenerController = new ListenerController();
+            if (listenerController.likeAudio(audio , UserAccountController.listener))
                 likeLabel.setTextFill(Color.RED);
-            } else {
-                UserAccountController.listener.getLikedAudios().remove(audio);
+            else
                 likeLabel.setTextFill(AboutStyleSheet.getLabelExitColor());
-            }
-        } else {
+        }
+        else {
             Alerts.nullListener();
         }
     }
@@ -189,56 +163,4 @@ public class PlayMusicPage extends Application implements Initializable {
         }
     }
 
-    public static void startPlaying(){
-        if (media != null) {
-            try {
-                mediaPlayer.play();
-                mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-                    PutSlider.getSlider().setValue(newValue.toSeconds());
-                });
-
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("fail in playing");
-                alert.setContentText("audio not found");
-                alert.showAndWait();
-            }
-        }
-
-        mediaPlayer.setOnEndOfMedia( () -> {
-            nextMusic();
-        });
-    }
-
-    public static void stopPlaying(){
-        mediaPlayer.pause();
-    }
-
-    public static void nextMusic(){
-        musicNumber++;
-        if (allMedias.size() <= musicNumber){
-            musicNumber %= allMedias.size();
-        }
-
-        else if (musicNumber < 0){
-            musicNumber = allMedias.size() + musicNumber % allMedias.size();
-        }
-
-        setAudio(allMedias.get(musicNumber));
-        startPlaying();
-    }
-
-    public static void lastMusic (){
-        musicNumber--;
-        if (allMedias.size() <= musicNumber){
-            musicNumber %= allMedias.size();
-        }
-
-        else if (musicNumber < 0){
-            musicNumber = allMedias.size() + musicNumber % allMedias.size();
-        }
-
-        setAudio(allMedias.get(musicNumber));
-        startPlaying();
-    }
 }

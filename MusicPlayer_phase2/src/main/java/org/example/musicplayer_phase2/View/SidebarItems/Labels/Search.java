@@ -29,6 +29,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAllMedias;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAudio;
+
 
 public class Search extends Application implements Initializable {
     @Override
@@ -73,8 +76,8 @@ public class Search extends Application implements Initializable {
                         NecessaryMethods.saveLastScene(e);
                         ArrayList<Audio> hereAudio= new ArrayList<Audio>();
                         hereAudio.add(a);
-                        PlayMusicPage.setAllMedias(hereAudio);
-                        PlayMusicPage.setAudio(a);
+                        setAllMedias(hereAudio);
+                        setAudio(a);
                         new PlayMusicPage().start(NecessaryMethods.getStage(e));
                     } catch (Exception ex) {
                         Alerts.errorAlert();

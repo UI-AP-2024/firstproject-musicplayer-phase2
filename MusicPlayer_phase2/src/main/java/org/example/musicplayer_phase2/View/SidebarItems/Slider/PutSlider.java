@@ -14,12 +14,14 @@ import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 import org.example.musicplayer_phase2.model.Database;
 
 import java.util.ArrayList;
 
 import static org.example.musicplayer_phase2.View.Informations.PlayMusicPage.*;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.*;
 
 public class PutSlider{
     public static Slider getSlider() {
@@ -83,7 +85,7 @@ public class PutSlider{
 
     private void nextLabelActions(){
         nextLabel.setOnMouseClicked(e -> {
-            PlayMusicPage.nextMusic();
+            PlayMusic.nextMusic();
         });
         nextLabel.setOnMouseEntered(e -> {
             nextLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());
@@ -95,7 +97,7 @@ public class PutSlider{
 
     private void lastLabelActions(){
         lastLabel.setOnMouseClicked(e -> {
-            PlayMusicPage.lastMusic();
+            PlayMusic.lastMusic();
         });
         lastLabel.setOnMouseEntered(e -> {
             lastLabel.setTextFill(AboutStyleSheet.getLabelEnterColor());

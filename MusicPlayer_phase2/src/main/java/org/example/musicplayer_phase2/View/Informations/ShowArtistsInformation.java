@@ -174,7 +174,7 @@ public class ShowArtistsInformation extends Application implements Initializable
                         label.setOnMouseClicked(e -> {
                             try {
                                 NecessaryMethods.saveLastScene(e);
-                                ArrayList<Audio> music = new ArrayList<>();
+                                ArrayList<Audio> music = new ArrayList<>(a.getAllMusics());
                                 music.add(audio);
                                 setAudio(audio);
                                 new PlayMusicPage().start(NecessaryMethods.getStage(e));
@@ -194,7 +194,7 @@ public class ShowArtistsInformation extends Application implements Initializable
                     Label label = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
                     label.setOnMouseClicked(e -> {
                         try {
-                            ArrayList<Audio> podcasts = new ArrayList<>();
+                            ArrayList<Audio> podcasts = new ArrayList<>(((Podcaster) artist).getAllPodcasts());
                             podcasts.add(a);
                             NecessaryMethods.saveLastScene(e);
                             setAllMedias(podcasts);

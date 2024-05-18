@@ -21,6 +21,9 @@ import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
 import java.util.ArrayList;
 
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAllMedias;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAudio;
+
 public class Home extends Application {
     @Override
     public void start(Stage stage) throws Exception {
@@ -67,8 +70,8 @@ public class Home extends Application {
             nameLabel.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
-                    PlayMusicPage.setAudio(a);
-                    PlayMusicPage.setAllMedias(listenerController.suggestMusic(100, UserAccountController.listener));
+                    setAudio(a);
+                    setAllMedias(listenerController.suggestMusic(100, UserAccountController.listener));
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();
@@ -111,8 +114,8 @@ public class Home extends Application {
             label.setOnMouseClicked(e -> {
                 try {
                     NecessaryMethods.saveLastScene(e);
-                    PlayMusicPage.setAllMedias(favoriteAudios);
-                    PlayMusicPage.setAudio(a);
+                    setAllMedias(favoriteAudios);
+                    setAudio(a);
                     new PlayMusicPage().start(NecessaryMethods.getStage(e));
                 } catch (Exception ex) {
                     Alerts.errorAlert();

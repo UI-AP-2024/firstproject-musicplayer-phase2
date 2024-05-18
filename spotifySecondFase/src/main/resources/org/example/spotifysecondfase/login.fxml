@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.view.Login">
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.Login">
    <children>
       <VBox layoutX="213.0" layoutY="51.0" prefHeight="498.0" prefWidth="358.0">
          <children>

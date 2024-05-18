@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.view.Singup">
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.Singup">
    <children>
       <Label fx:id="lable" layoutX="178.0" layoutY="3.0" prefHeight="78.0" prefWidth="443.0" text="Sign up to start listening" textFill="WHITE">
          <font>

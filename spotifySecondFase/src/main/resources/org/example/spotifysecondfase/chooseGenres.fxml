@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.view.ChooseGenres">
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.ChooseGenres">
    <children>
       <GridPane fx:id="gridPane" hgap="5.0" layoutX="184.0" layoutY="136.0" prefHeight="358.0" prefWidth="551.0" vgap="5.0" AnchorPane.bottomAnchor="106.39999999999998" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="65.60000000000002" AnchorPane.topAnchor="136.0">
         <columnConstraints>

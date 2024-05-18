@@ -5,14 +5,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.AllAudios">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.Subscription">
    <children>
       <VBox fx:id="homeVbox" layoutX="14.0" layoutY="14.0" prefHeight="354.0" prefWidth="155.0" spacing="10.0">
          <children>
@@ -48,24 +45,16 @@
             </Button>
          </children>
       </VBox>
-      <GridPane fx:id="gridPane" layoutX="219.0" layoutY="109.0" prefHeight="419.0" prefWidth="452.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="168.59996643066407" minHeight="10.0" prefHeight="110.39999389648438" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="227.80003967285157" minHeight="10.0" prefHeight="106.4" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="161.60000610351562" minHeight="10.0" prefHeight="105.60003662109375" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="101.5999755859375" minHeight="10.0" prefHeight="98.39996337890625" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-      <Label fx:id="allAudiosLbl" layoutX="219.0" layoutY="41.0" prefHeight="43.0" prefWidth="155.0" text="All audios" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
+      <VBox layoutX="221.0" layoutY="91.0" prefHeight="232.0" prefWidth="222.0">
+         <children>
+            <Label prefHeight="55.0" prefWidth="137.0" text="One month" textFill="#cfa3a3">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="473.0" layoutY="91.0" prefHeight="232.0" prefWidth="222.0" />
+      <VBox layoutX="332.0" layoutY="342.0" prefHeight="232.0" prefWidth="222.0" />
    </children>
 </AnchorPane>

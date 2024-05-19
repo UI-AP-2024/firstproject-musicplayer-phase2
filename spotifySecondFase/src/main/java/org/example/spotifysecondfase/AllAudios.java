@@ -240,9 +240,14 @@ public class AllAudios implements Initializable {
                 if (Database.getDatabase().getAudio().size() > counter)
                 {
                     VBox vBox = vBox(Database.getDatabase().getAudio().get(counter));
+                    PlayMusic.audio = Database.getDatabase().getAudio().get(counter);
                     getGridPane().add(vBox,i,j);
                     vBox.setOnMouseClicked(event -> {
-                        //ChangeScene.playMusic
+                        try {
+                            ChangeScene.playMusic();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
                     });
                     counter++;
                 }

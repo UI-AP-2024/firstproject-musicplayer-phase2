@@ -2,10 +2,7 @@ package org.example.musicap.GUIs;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -305,9 +302,15 @@ public class LayoutViewController implements GeneralOperation {
         AnchorPane newPane = loader.load();
         mainBody.getChildren().add(newPane);
     }
-    public void libraryLabelClick()
-    {
-
+    public void libraryLabelClick() throws IOException {
+        if(database.getLogedInUser() == null) showAlert("You should Login first!");
+        else
+        {
+            mainBody.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("listener-view.fxml"));
+            AnchorPane newPane = loader.load();
+            mainBody.getChildren().add(newPane);
+        }
     }
     public void artistsLabelClick() throws IOException {
         mainBody.getChildren().clear();
@@ -320,5 +323,13 @@ public class LayoutViewController implements GeneralOperation {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("audios-view.fxml"));
         AnchorPane newPane = loader.load();
         mainBody.getChildren().add(newPane);
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Library");
+        alert.setHeaderText("Listener Panel");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

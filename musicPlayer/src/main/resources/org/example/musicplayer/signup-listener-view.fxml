@@ -80,5 +80,6 @@
       <RowConstraints maxHeight="67.19999999999999" minHeight="67.19999999999999" prefHeight="67.19999999999999" />
       <RowConstraints />
       <RowConstraints />
+      <RowConstraints />
    </rowConstraints>
 </GridPane>

@@ -39,11 +39,13 @@ public class ArtistViewController {
     private ListView<String> songsListView;
     @FXML
     private Label followedLabel;
+    @FXML
+    private AnchorPane reportPane;
     private Database database;
     private Artist artistModel;
     private ArtistController artistController;
     private Listener listenerModel;
-    public void customIntialize(Artist artistModel)
+    public void customInitialize(Artist artistModel)
     {
         database = Database.getInstance();
         this.artistModel = artistModel;
@@ -62,6 +64,7 @@ public class ArtistViewController {
         }
     }
 
+
     public void addToFollowers() throws IOException {
         // for both following and unfollowing
         artistController.followArtist(listenerModel);
@@ -70,12 +73,16 @@ public class ArtistViewController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("artist-view.fxml"));
         AnchorPane newPane = loader.load();
         ArtistViewController artistViewController = loader.getController();
-        artistViewController.customIntialize(artistModel);
+        artistViewController.customInitialize(artistModel);
         mainBody.getChildren().add(newPane);
     }
 
-    public void addReport()
-    {
-
+    public void addReport() throws IOException {
+        reportPane.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("report-view.fxml"));
+        AnchorPane newPane = loader.load();
+        ReportViewController reportViewController = loader.getController();
+        reportViewController.customInitialize(listenerModel, artistModel);
+        reportPane.getChildren().add(newPane);
     }
 }

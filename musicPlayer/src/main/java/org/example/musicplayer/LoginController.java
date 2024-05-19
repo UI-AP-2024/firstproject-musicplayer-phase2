@@ -31,7 +31,7 @@ public class LoginController implements Initializable {
     private Button btn_login;
 
     @FXML
-    private Button btn_signIn;
+    private Button btn_signUp;
     @FXML
     private AnchorPane anchor;
 

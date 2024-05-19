@@ -14,7 +14,7 @@ public class LoginAndSinInBarController implements Initializable {
     private Button btn_login;
 
     @FXML
-    private Button btn_signIn;
+    private Button btn_signUp;
 
     @FXML
     void login_action(ActionEvent event) throws IOException {
@@ -22,7 +22,7 @@ public class LoginAndSinInBarController implements Initializable {
     }
 
     @FXML
-    void signIn_action(ActionEvent event) {
+    void signUp_action(ActionEvent event) {
 
     }
     @Override

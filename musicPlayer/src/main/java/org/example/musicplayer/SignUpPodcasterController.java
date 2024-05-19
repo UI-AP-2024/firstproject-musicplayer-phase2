@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignInSingerController implements Initializable {
+public class SignUpPodcasterController implements Initializable {
 
     @FXML
     private DatePicker birthDatePicker;

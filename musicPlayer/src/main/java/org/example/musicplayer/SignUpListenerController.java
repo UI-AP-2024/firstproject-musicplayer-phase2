@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignInPodcasterController implements Initializable {
+public class SignUpListenerController implements Initializable {
 
     @FXML
     private DatePicker birthDatePicker;
@@ -42,9 +42,6 @@ public class SignInPodcasterController implements Initializable {
 
     @FXML
     private TextField usernameField;
-
-    @FXML
-    private TextField usernameField1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

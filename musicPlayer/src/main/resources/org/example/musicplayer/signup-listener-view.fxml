@@ -15,12 +15,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" prefHeight="500.0" prefWidth="700.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.SignInSingerController">
+<GridPane alignment="center" hgap="10" prefHeight="500.0" prefWidth="700.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.SignInListenerController">
     <padding>
         <Insets bottom="25" left="25" right="25" top="25" />
     </padding>
 
-    <Text style="-fx-font-size: 24px; -fx-font-weight: bold;" text="    Register as a singer" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+    <Text style="-fx-font-size: 24px; -fx-font-weight: bold;" text="      Register as a listener" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
     <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
     <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -30,9 +30,9 @@
         <PasswordField fx:id="passwordField" promptText="Password" />
         <TextField fx:id="passwordTextField" managed="false" promptText="Password" visible="false" />
         <CheckBox fx:id="showPasswordCheckBox" text="Show">
-            <HBox.margin>
-                <Insets top="3.0" />
-            </HBox.margin></CheckBox>
+         <HBox.margin>
+            <Insets top="3.0" />
+         </HBox.margin></CheckBox>
     </HBox>
 
     <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
@@ -47,36 +47,33 @@
     <Label text="Birth Date:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
     <DatePicker fx:id="birthDatePicker" prefHeight="26.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
-    <HBox alignment="center" prefHeight="35.0" prefWidth="306.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="8">
+    <HBox alignment="center" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="7">
         <Button fx:id="registerButton" text="Register" />
     </HBox>
 
-    <VBox alignment="center" prefHeight="76.0" prefWidth="306.0" spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="11">
-        <Separator prefHeight="9.0" prefWidth="306.0" />
+    <VBox alignment="center" spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="10">
+      <Separator prefWidth="200.0" />
         <Label style="-fx-alignment: center;" text="Already on music player?" />
-        <Button fx:id="loginButton" text="Login" />
+        <Button fx:id="loginButton" text="Log in" />
     </VBox>
-    <HBox alignment="center" prefHeight="35.0" prefWidth="306.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="12">
-        <Button fx:id="btn_back" text="Back" />
-    </HBox>
-    <Label text="Bio:" GridPane.rowIndex="7" />
-    <TextField fx:id="usernameField1" prefHeight="58.0" prefWidth="212.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-    <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
-        <RowConstraints maxHeight="67.19999999999999" minHeight="67.19999999999999" prefHeight="67.19999999999999" />
-    </rowConstraints>
+    <HBox alignment="center" prefHeight="35.0" prefWidth="306.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="67.19999999999999" minHeight="67.19999999999999" prefHeight="67.19999999999999" />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>

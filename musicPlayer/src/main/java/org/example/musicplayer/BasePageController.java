@@ -100,7 +100,11 @@ public class BasePageController implements Initializable {
 
     @FXML
     void btn_signIn_action(ActionEvent event) {
-
+        try {
+        mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("choose-userType-view.fxml")).load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

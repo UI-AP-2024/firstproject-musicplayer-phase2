@@ -10,6 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import controller.ListenerController;
 import model.UserAccount.Artist.Artist;
+import model.Audio.*;
+import model.Database;
 
 import java.io.IOException;
 import java.net.URL;
@@ -259,8 +261,34 @@ public class ArtistInfo implements Initializable {
     }
     String artistName;
     public static Artist artist;
+    public static HBox artisrInfoHBox;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        getNameLbl().setText(artist.getName());
+        getBiography().setText(artist.getBiography());
+        PlayMusic.playlists.addAll(Singup.artistController.artistAudios(artist));
+        for (Audio audio : Database.getDatabase().getAudio())
+        {
+            if(audio.getArtistName().equals(artist.getName()))
+            {
+                HBox hBox = new HBox();
+                hBox.setSpacing(10);
+                Label audioName = new Label(audio.getName());
+                ImageView imageView = audio.getCoverImageView();
+                imageView.setFitWidth(50);
+                imageView.setFitHeight(50);
+                hBox.getChildren().addAll(imageView,audioName);
+                PlayMusic.audio = audio;
+                artistAudios.getChildren().add(hBox);
+                hBox.setOnMouseClicked(event -> {
+                    try {
+                        ChangeScene.playMusic();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+        }
         homeImage.setOnMouseClicked(event -> {
             try {
                 ChangeScene.home();

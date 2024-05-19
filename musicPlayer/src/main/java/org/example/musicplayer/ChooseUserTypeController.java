@@ -2,7 +2,7 @@ package org.example.musicplayer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChooseUserTypeController implements Initializable {
+
 
     @FXML
     private Button btn_l;
@@ -23,18 +24,18 @@ public class ChooseUserTypeController implements Initializable {
 
     @FXML
     void btn_l_action(ActionEvent event) throws IOException {
-        BasePageController.getMian_pane().setCenter(new FXMLLoader(HelloApplication.class.getResource("")).load());
+        HelloApplication.setBasePageController("signup-listener-view.fxml");    }
+
+    @FXML
+    void btn_p_action(ActionEvent event) throws IOException {
+        HelloApplication.setBasePageController("signup-podcaster-view.fxml");
     }
 
     @FXML
-    void btn_p_action(ActionEvent event) {
-
+    void btn_s_action(ActionEvent event) throws IOException {
+        HelloApplication.setBasePageController("signup-singer-view.fxml");
     }
-
-    @FXML
-    void btn_s_action(ActionEvent event) {
-
-    }    @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }

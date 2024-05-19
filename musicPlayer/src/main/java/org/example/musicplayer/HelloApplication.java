@@ -10,6 +10,10 @@ import java.util.Stack;
 
 public class HelloApplication extends Application {
     public static Stage currentstage;
+    public static BasePageController basePageController;
+    public static void setBasePageController(String path) throws IOException {
+        BasePageController.getBaseController().setBaseCenter(path);
+    }
     public static Stack<String> sceneList = new Stack<>();
 
     @Override

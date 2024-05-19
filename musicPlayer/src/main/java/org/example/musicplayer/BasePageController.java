@@ -4,18 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import org.example.musicplayer.controller.ListenerController;
-import org.example.musicplayer.controller.SignInOutController;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BasePageController implements Initializable {
+    private static final BasePageController basePageController = new BasePageController();
+    public static BasePageController getBaseController() {
+        return basePageController;
+    }
 
     @FXML
     private Button btn_artists;
@@ -42,11 +42,7 @@ public class BasePageController implements Initializable {
     private Button btn_signUp;
 
     @FXML
-    private BorderPane mian_pane;
-
-    public static BorderPane getMian_pane() {
-        return getMian_pane();
-    }
+    private BorderPane mian_pane = new BorderPane();
 
     @FXML
     private TextField tf_search;
@@ -106,13 +102,19 @@ public class BasePageController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void setBaseCenter(String path) {
         try {
-            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("")).load());
+            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource(path)).load());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        try {
+//            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("")).load());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }

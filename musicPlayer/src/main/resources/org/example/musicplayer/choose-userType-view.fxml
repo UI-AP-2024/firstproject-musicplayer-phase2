@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="79.0" prefWidth="233.0" style="-fx-background-color: #FFE6E8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" prefHeight="79.0" prefWidth="233.0" style="-fx-background-color: #FFE6E8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.ChooseUserTypeController">
    <children>
       <Label contentDisplay="CENTER" style="-fx-background-color: black; -fx-background-radius: 20;" text="Select your user type :" textFill="WHITE">
          <font>

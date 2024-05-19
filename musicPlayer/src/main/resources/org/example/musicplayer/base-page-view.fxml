@@ -12,8 +12,16 @@
 
 <BorderPane fx:id="mian_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.BasePageController">
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="700.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="700.0" spacing="10.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="btn_back" mnemonicParsing="false" onAction="#btn_back_action" prefHeight="20.0" prefWidth="16.0" style="-fx-background-color: silver; -fx-text-fill: black;" text="&lt;">
+               <font>
+                  <Font name="System Bold" size="9.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="70.0" />
+               </HBox.margin>
+            </Button>
             <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="85.0" text="mohsenify" textFill="#a4a4a4">
                <padding>
                   <Insets bottom="3.0" left="3.0" right="5.0" top="3.0" />
@@ -60,7 +68,7 @@
       </HBox>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="434.0" prefWidth="82.0" spacing="20.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="352.0" prefWidth="69.0" spacing="20.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btn_home" mnemonicParsing="false" onAction="#btn_home_action" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Home">
                <font>

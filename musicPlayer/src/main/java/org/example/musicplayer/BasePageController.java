@@ -52,6 +52,14 @@ public class BasePageController implements Initializable {
     private TextField tf_search;
 
     @FXML
+    private Button btn_back;
+
+    @FXML
+    void btn_back_action(ActionEvent event) {
+
+    }
+
+    @FXML
     void btn_artists_action(ActionEvent event) {
 
     }
@@ -98,7 +106,7 @@ public class BasePageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("pick-genres-view.fxml")).load());
+            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("")).load());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

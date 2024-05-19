@@ -10,11 +10,8 @@ import java.util.Stack;
 
 public class HelloApplication extends Application {
     public static Stage currentstage;
-    public static BasePageController basePageController;
-    public static void setBasePageController(String path) throws IOException {
-        BasePageController.getBaseController().setBaseCenter(path);
-    }
-    public static Stack<String> sceneList = new Stack<>();
+   public static BorderPane mainPane = new BorderPane();
+//    public static Stack<String> sceneList = new Stack<>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,21 +24,21 @@ public class HelloApplication extends Application {
 //        Scene scene = new Scene(mainScene, 700, 500);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("base-page-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);
-        stage.setTitle("mohsenify");
-        stage.setScene(scene);
-        stage.show();
+        currentstage = stage;
+        currentstage.setTitle("mohsenify");
+        currentstage.setScene(scene);
+        currentstage.show();
     }
 
     public static void setMainScene(String path) throws IOException {
-        BorderPane borderPane = new BorderPane();
-//        FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("login-and-signIn-bar-view.fxml"));
-//        FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("sidebar-view.fxml"));
-//        borderPane.setTop(fxmlLoader1.load());
-//        borderPane.setLeft(fxmlLoader2.load());
-        //borderPane.setBottom();
-        borderPane.setCenter(new FXMLLoader(HelloApplication.class.getResource(path)).load());
+        FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("login-and-signIn-bar-view.fxml"));
+        FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("sidebar-view.fxml"));
+        mainPane.setTop(fxmlLoader1.load());
+        mainPane.setLeft(fxmlLoader2.load());
+//        mainPane.setBottom();
+        mainPane.setCenter(new FXMLLoader(HelloApplication.class.getResource(path)).load());
 //        borderPane.setCenter(new FXMLLoader(HelloApplication.class.getResource(path)).load());
-        Scene scene = new Scene(borderPane, 700, 500);
+        Scene scene = new Scene(mainPane, 700, 500);
         currentstage.setTitle("mohsenify");
         currentstage.setScene(scene);
         currentstage.show();

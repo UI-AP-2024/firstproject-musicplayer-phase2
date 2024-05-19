@@ -1,5 +1,6 @@
 package org.example.musicplayer;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,7 +13,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignUpListenerController implements Initializable {
+    @FXML
+    private Button btn_back;
 
+    @FXML
+    private Button btn_home;
     @FXML
     private DatePicker birthDatePicker;
 
@@ -43,6 +48,14 @@ public class SignUpListenerController implements Initializable {
     @FXML
     private TextField usernameField;
 
+    @FXML
+    void back_action(ActionEvent event) {
+
+    }
+    @FXML
+    void home_action(ActionEvent event) {
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         passwordTextField.managedProperty().bind(showPasswordCheckBox.selectedProperty());

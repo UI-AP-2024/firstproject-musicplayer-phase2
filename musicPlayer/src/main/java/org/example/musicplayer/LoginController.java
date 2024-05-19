@@ -38,7 +38,21 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField tf_pass;
+    @FXML
+    private Button btn_back;
 
+    @FXML
+    private Button btn_home;
+
+    @FXML
+    void back_action(ActionEvent event) {
+
+    }
+
+    @FXML
+    void home_action(ActionEvent event) {
+
+    }
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tf_pass_visible.textProperty().bindBidirectional(pf_pass.textProperty());

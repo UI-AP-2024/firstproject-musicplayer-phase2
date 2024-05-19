@@ -4,18 +4,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BasePageController implements Initializable {
-    private static final BasePageController basePageController = new BasePageController();
-    public static BasePageController getBaseController() {
-        return basePageController;
-    }
+    public static boolean loggedIn = false;
 
     @FXML
     private Button btn_artists;
@@ -42,7 +44,7 @@ public class BasePageController implements Initializable {
     private Button btn_signUp;
 
     @FXML
-    private BorderPane mian_pane = new BorderPane();
+    private BorderPane mianPane;
 
     @FXML
     private TextField tf_search;
@@ -76,12 +78,11 @@ public class BasePageController implements Initializable {
     }
 
     @FXML
-    void btn_login_action(ActionEvent event) {
-        try {
-            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("login-view.fxml")).load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void btn_login_action(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        HelloApplication.currentstage.setScene(scene);
+        HelloApplication.currentstage.show();
     }
 
     @FXML
@@ -97,24 +98,18 @@ public class BasePageController implements Initializable {
     @FXML
     void btn_signUp_action(ActionEvent event) {
         try {
-        mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("choose-userType-view.fxml")).load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public void setBaseCenter(String path) {
-        try {
-            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource(path)).load());
+        mianPane.setCenter(new FXMLLoader(HelloApplication.class.getResource("choose-userType-view.fxml")).load());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        try {
-//            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("")).load());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        if (loggedIn) {
+
+        }
+        else {
+
+        }
     }
 }

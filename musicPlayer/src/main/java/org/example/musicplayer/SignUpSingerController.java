@@ -1,5 +1,6 @@
 package org.example.musicplayer;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -42,10 +43,22 @@ public class SignUpSingerController implements Initializable {
 
     @FXML
     private TextField usernameField;
+    @FXML
+    private Button btn_back;
 
     @FXML
+    private Button btn_home;
+    @FXML
     private TextField usernameField1;
+    @FXML
+    void back_action(ActionEvent event) {
 
+    }
+
+    @FXML
+    void home_action(ActionEvent event) {
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         passwordTextField.managedProperty().bind(showPasswordCheckBox.selectedProperty());

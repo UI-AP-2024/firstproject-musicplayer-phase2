@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.example.musicap.Controllers.ListenerController;
+import org.example.musicap.Controllers.NormalListenerController;
 import org.example.musicap.HelloApplication;
 import org.example.musicap.Models.Data.Database;
 
@@ -274,8 +276,13 @@ public class LayoutViewController implements GeneralOperation {
     }
 
     @Override
-    public void search() {
-
+    public void search() throws IOException {
+        mainBody.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("search-view.fxml"));
+        AnchorPane newPane = loader.load();
+        SearchViewController searchViewController = loader.getController();
+        searchViewController.customInitialize(searchField.getText());
+        mainBody.getChildren().add(newPane);
     }
 
     @Override

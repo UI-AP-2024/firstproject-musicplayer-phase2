@@ -24,12 +24,6 @@ import java.util.ArrayList;
 
 public class HomeViewController {
     @FXML
-    private AnchorPane rootPane;
-    @FXML
-    private VBox leftVBox;
-    @FXML
-    private VBox rightVBox;
-    @FXML
     private ListView listViewPane;
     @FXML
     private Label titleLabel;

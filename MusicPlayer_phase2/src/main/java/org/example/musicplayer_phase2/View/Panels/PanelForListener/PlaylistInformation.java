@@ -28,6 +28,8 @@ import org.example.musicplayer_phase2.model.AboutMusic.Playlist;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.makeReadyToPlay;
+
 public class PlaylistInformation extends Application implements Initializable {
     private static Playlist playlist;
 
@@ -105,10 +107,7 @@ public class PlaylistInformation extends Application implements Initializable {
             Label audioLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
             audioLabel.setOnMouseClicked(e -> {
                 try {
-                    NecessaryMethods.saveLastScene(e);
-                    PlayMusic.setAllMedias(playlist.getAudioFiles());
-                    PlayMusic.setAudio(a);
-                    new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                    makeReadyToPlay(a , playlist.getAudioFiles() , e);
                 } catch (Exception ex) {
                     Alerts.errorAlert();
                 }

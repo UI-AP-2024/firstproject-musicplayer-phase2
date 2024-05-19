@@ -1,10 +1,14 @@
 package org.example.musicplayer_phase2.controller.PlayingAudios;
 
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Informations.PlayMusicPage;
 import org.example.musicplayer_phase2.View.SidebarItems.Slider.PutSlider;
+import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
+import org.example.musicplayer_phase2.controller.UserAccountController;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
 import java.util.ArrayList;
@@ -22,11 +26,11 @@ public class PlayMusic {
 
     private static ArrayList<Audio> allMedias = new ArrayList<>();
 
-    public static void setAllMedias(ArrayList<Audio> allMedias1) {
+    private static void setAllMedias(ArrayList<Audio> allMedias1) {
         allMedias = allMedias1;
     }
 
-    public static void setAudio(Audio getAudio) {
+    private static void setAudio(Audio getAudio) {
         if (mediaPlayer != null){
             if (getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
                 mediaPlayer.stop();
@@ -39,6 +43,16 @@ public class PlayMusic {
         mediaPlayer = new MediaPlayer(media);
     }
 
+    public static void makeReadyToPlay(Audio getAudio , ArrayList<Audio> allMedias , MouseEvent event){
+        NecessaryMethods.saveLastScene(event);
+        setAllMedias(allMedias);
+        setAudio(getAudio);
+        try {
+            new PlayMusicPage().start(NecessaryMethods.getStage(event));
+        } catch (Exception e) {
+            Alerts.errorAlert();
+        }
+    }
     public static void startPlaying(){
         if (media != null) {
             try {

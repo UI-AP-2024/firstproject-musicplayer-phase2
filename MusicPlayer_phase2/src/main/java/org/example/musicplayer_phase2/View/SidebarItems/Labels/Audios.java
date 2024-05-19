@@ -17,8 +17,7 @@ import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
 
-import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAllMedias;
-import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAudio;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.*;
 
 public class Audios extends Application {
     @Override
@@ -57,10 +56,7 @@ public class Audios extends Application {
             Label nameLabel = new Label("name: " + a.getAudioName() + "\nidentifier: " + a.getIdentifier());
             nameLabel.setOnMouseClicked(e -> {
                 try {
-                    NecessaryMethods.saveLastScene(e);
-                    setAllMedias(listenerController.sortAudios());
-                    setAudio(a);
-                    new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                    makeReadyToPlay(a , listenerController.sortAudios() , e);
                 } catch (Exception ex) {
                     Alerts.errorAlert();
                 }

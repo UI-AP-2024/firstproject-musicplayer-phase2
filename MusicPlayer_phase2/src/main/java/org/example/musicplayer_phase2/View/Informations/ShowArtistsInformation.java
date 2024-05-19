@@ -31,8 +31,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAllMedias;
-import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAudio;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.*;
 
 public class ShowArtistsInformation extends Application implements Initializable {
     private static Artist artist = null;
@@ -173,11 +172,8 @@ public class ShowArtistsInformation extends Application implements Initializable
                         Label label = new Label("name: " + audio.getAudioName() + "\nidentifier: " + audio.getIdentifier());
                         label.setOnMouseClicked(e -> {
                             try {
-                                NecessaryMethods.saveLastScene(e);
                                 ArrayList<Audio> music = new ArrayList<>(a.getAllMusics());
-                                setAllMedias(music);
-                                setAudio(audio);
-                                new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                                makeReadyToPlay(audio , music , e);
                             } catch (Exception ex) {
                                 Alerts.errorAlert();
                             }
@@ -195,10 +191,7 @@ public class ShowArtistsInformation extends Application implements Initializable
                     label.setOnMouseClicked(e -> {
                         try {
                             ArrayList<Audio> podcasts = new ArrayList<>(((Podcaster) artist).getAllPodcasts());
-                            NecessaryMethods.saveLastScene(e);
-                            setAllMedias(podcasts);
-                            setAudio(a);
-                            new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                            makeReadyToPlay(a , podcasts , e);
                         } catch (Exception ex) {
                             Alerts.errorAlert();
                         }

@@ -29,8 +29,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAllMedias;
-import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.setAudio;
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.*;
 
 
 public class Search extends Application implements Initializable {
@@ -73,12 +72,9 @@ public class Search extends Application implements Initializable {
                 Label audioLabel = new Label("audio name: "+ a.getAudioName() + "\nlikes: " + a.getLikesNum());
                 audioLabel.setOnMouseClicked(e -> {
                     try {
-                        NecessaryMethods.saveLastScene(e);
-                        ArrayList<Audio> hereAudio= new ArrayList<Audio>();
+                        ArrayList<Audio> hereAudio= new ArrayList<>();
                         hereAudio.add(a);
-                        setAllMedias(hereAudio);
-                        setAudio(a);
-                        new PlayMusicPage().start(NecessaryMethods.getStage(e));
+                        makeReadyToPlay(a , hereAudio , e);
                     } catch (Exception ex) {
                         Alerts.errorAlert();
                     }

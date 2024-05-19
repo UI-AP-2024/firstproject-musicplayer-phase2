@@ -105,11 +105,16 @@ public class BasePageController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (loggedIn) {
-
-        }
-        else {
-
+//        if (loggedIn) {
+//
+//        }
+//        else {
+//
+//        }
+        try {
+            mianPane.setCenter(new FXMLLoader(HelloApplication.class.getResource("login-or-not-view.fxml")).load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

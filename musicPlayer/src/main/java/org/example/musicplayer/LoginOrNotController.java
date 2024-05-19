@@ -10,7 +10,8 @@ import java.util.ResourceBundle;
 public class LoginOrNotController implements Initializable {
 
     @FXML
-    private GridPane main_grid;
+    private GridPane grid;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

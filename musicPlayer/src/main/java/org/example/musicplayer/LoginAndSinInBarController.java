@@ -18,7 +18,7 @@ public class LoginAndSinInBarController implements Initializable {
 
     @FXML
     void login_action(ActionEvent event) throws IOException {
-        HelloApplication.setMainScene("login-view.fxml");
+
     }
 
     @FXML

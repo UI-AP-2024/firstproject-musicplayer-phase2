@@ -46,7 +46,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox fx:id="oneMonthVbox" layoutX="221.0" layoutY="91.0" prefHeight="232.0" prefWidth="222.0" style="-fx-background-color: #0d0d0d; -fx-background-radius: 5px;">
+      <VBox fx:id="oneMonthVbox" layoutX="220.0" layoutY="29.0" prefHeight="232.0" prefWidth="222.0" style="-fx-background-color: #0d0d0d; -fx-background-radius: 5px;">
          <children>
             <HBox fx:id="oneMonthHbox" prefHeight="45.0" prefWidth="222.0">
                <children>
@@ -88,7 +88,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox fx:id="twoMonthVbox" layoutX="473.0" layoutY="91.0" prefHeight="232.0" prefWidth="222.0" style="-fx-background-color: #0d0d0d; -fx-background-radius: 5px;">
+      <VBox fx:id="twoMonthVbox" layoutX="469.0" layoutY="29.0" prefHeight="232.0" prefWidth="222.0" style="-fx-background-color: #0d0d0d; -fx-background-radius: 5px;">
          <children>
             <HBox fx:id="twoMonthHbox" prefHeight="45.0" prefWidth="222.0">
                <children>
@@ -129,7 +129,7 @@
                </VBox.margin>
             </Button>
          </children></VBox>
-      <VBox fx:id="threeMonthVbox" layoutX="347.0" layoutY="341.0" prefHeight="232.0" prefWidth="222.0" style="-fx-background-color: #0d0d0d; -fx-background-radius: 5px;">
+      <VBox fx:id="threeMonthVbox" layoutX="347.0" layoutY="274.0" prefHeight="232.0" prefWidth="222.0" style="-fx-background-color: #0d0d0d; -fx-background-radius: 5px;">
          <children>
             <HBox fx:id="threeMonthHbox" prefHeight="45.0" prefWidth="222.0">
                <children>
@@ -170,5 +170,57 @@
                </VBox.margin>
             </Button>
          </children></VBox>
+      <HBox fx:id="hbox" layoutX="26.0" layoutY="525.0" prefHeight="78.0" prefWidth="748.0" spacing="20.0">
+         <children>
+            <ImageView fx:id="likeImage" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="26.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@image/like.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="addToPlaylistImage" fitHeight="50.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/addToPlaylist.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="25.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="previousIcon" fitHeight="57.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/previos.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="130.0" top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="pauseIcon" fitHeight="64.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/pause.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="18.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="nextIcon" fitHeight="64.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="22.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@image/next.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="lyrics" fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/lyrics.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="170.0" top="25.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

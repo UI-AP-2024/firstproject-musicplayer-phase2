@@ -21,81 +21,205 @@ import java.util.ResourceBundle;
 
 public class Home implements Initializable
 {
-    private ListenerController listenerController;
-    public ListenerController getListenerController() {return listenerController;}
-    public void setListenerController(ListenerController listenerController) {this.listenerController = listenerController;}
+    @FXML
+    private ImageView addToPlaylistImage;
+
     @FXML
     private Button allArtists;
-    public Button getAllArtists() {return allArtists;}
-    public void setAllArtists(Button allArtists) {this.allArtists = allArtists;}
+
     @FXML
     private Button allAudios;
-    public void setAllAudios(Button allAudios) {this.allAudios = allAudios;}
-    public Button getAllAudios() {return allAudios;}
+
     @FXML
-    private AnchorPane homeAnchorPane;
-    public AnchorPane getHomeAnchorPane() {return homeAnchorPane;}
-    public void setHomeAnchorPane(AnchorPane homeAnchorPane) {this.homeAnchorPane = homeAnchorPane;}
-    @FXML
-    private GridPane homeGridPane;
-    public GridPane getHomeGridPane() {return homeGridPane;}
-    public void setHomeGridPane(GridPane homeGridPane) {this.homeGridPane = homeGridPane;}
-    @FXML
-    private HBox homeHbox;
-    public HBox getHomeHbox() {return homeHbox;}
-    public void setHomeHbox(HBox homeHbox) {this.homeHbox = homeHbox;}
-    @FXML
-    private ImageView homeImage;
-    public ImageView getHomeImage() {return homeImage;}
-    public void setHomeImage(ImageView homeImage) {this.homeImage = homeImage;}
-    @FXML
-    private ImageView homeLibrary;
-    public ImageView getHomeLibrary() {return homeLibrary;}
-    public void setHomeLibrary(ImageView homeLibrary) {this.homeLibrary = homeLibrary;}
-    @FXML
-    private VBox homeVbox;
-    public VBox getHomeVbox() {return homeVbox;}
-    public void setHomeVbox(VBox homeVbox) {this.homeVbox = homeVbox;}
-    @FXML
-    private ImageView musicCover;
-    public ImageView getMusicCover() {return musicCover;}
-    public void setMusicCover(ImageView musicCover) {this.musicCover = musicCover;}
-    @FXML
-    private ImageView nextIcon;
-    public ImageView getNextIcon() {return nextIcon;}
-    public void setNextIcon(ImageView nextIcon) {this.nextIcon = nextIcon;}
-    @FXML
-    private ImageView pauseIcon;
-    public ImageView getPauseIcon() {return pauseIcon;}
-    public void setPauseIcon(ImageView pauseIcon) {this.pauseIcon = pauseIcon;}
-    @FXML
-    private ImageView previosIcon;
-    public ImageView getPreviosIcon() {return previosIcon;}
-    public void setPreviosIcon(ImageView previosIcon) {this.previosIcon = previosIcon;}
-    @FXML
-    private ImageView searchImage;
-    public ImageView getSearchImage() {return searchImage;}
-    public void setSearchImage(ImageView searchImage) {this.searchImage = searchImage;}
-    @FXML
-    private Label lable;
-    public Label getLable() {return lable;}
-    public void setLable(Label lable) {this.lable = lable;}
+    private HBox hbox;
+
     @FXML
     private HBox hboxForSingOrLog;
-    public HBox getHboxForSingOrLog() {return hboxForSingOrLog;}
-    public void setHboxForSingOrLog(HBox hboxForSingOrLog) {this.hboxForSingOrLog = hboxForSingOrLog;}
+
+    @FXML
+    private AnchorPane homeAnchorPane;
+
+    @FXML
+    private GridPane homeGridPane;
+
+    @FXML
+    private ImageView homeImage;
+
+    @FXML
+    private ImageView homeLibrary;
+
+    @FXML
+    private VBox homeVbox;
+
+    @FXML
+    private Label lable;
+
+    @FXML
+    private ImageView likeImage;
+
     @FXML
     private Button logInOrLogOut;
-    public Button getLogInOrLogOut() {return logInOrLogOut;}
-    public void setLogInOrLogOut(Button logInOrLogOut) {this.logInOrLogOut = logInOrLogOut;}
+
+    @FXML
+    private ImageView lyrics;
+
+    @FXML
+    private ImageView nextIcon;
+
+    @FXML
+    private ImageView pauseIcon;
+
+    @FXML
+    private ImageView previousIcon;
+
+    @FXML
+    private ImageView searchImage;
+
     @FXML
     private Button singUp;
-    public Button getSingUp() {return singUp;}
-    public void setSingUp(Button singUp) {this.singUp = singUp;}
+
     @FXML
     private ImageView spotify;
+
+    public ImageView getAddToPlaylistImage() {
+        return addToPlaylistImage;
+    }
+
+    public void setAddToPlaylistImage(ImageView addToPlaylistImage) {
+        this.addToPlaylistImage = addToPlaylistImage;
+    }
+
+    public Button getAllArtists() {
+        return allArtists;
+    }
+
+    public void setAllArtists(Button allArtists) {
+        this.allArtists = allArtists;
+    }
+
+    public Button getAllAudios() {
+        return allAudios;
+    }
+
+    public void setAllAudios(Button allAudios) {
+        this.allAudios = allAudios;
+    }
+
+    public HBox getHbox() {
+        return hbox;
+    }
+
+    public void setHbox(HBox hbox) {
+        this.hbox = hbox;
+    }
+
+    public HBox getHboxForSingOrLog() {
+        return hboxForSingOrLog;
+    }
+
+    public void setHboxForSingOrLog(HBox hboxForSingOrLog) {
+        this.hboxForSingOrLog = hboxForSingOrLog;
+    }
+
+    public AnchorPane getHomeAnchorPane() {
+        return homeAnchorPane;
+    }
+
+    public void setHomeAnchorPane(AnchorPane homeAnchorPane) {
+        this.homeAnchorPane = homeAnchorPane;
+    }
+
+    public GridPane getHomeGridPane() {
+        return homeGridPane;
+    }
+
+    public void setHomeGridPane(GridPane homeGridPane) {
+        this.homeGridPane = homeGridPane;
+    }
+
+    public ImageView getHomeImage() {
+        return homeImage;
+    }
+
+    public void setHomeImage(ImageView homeImage) {
+        this.homeImage = homeImage;
+    }
+
+    public ImageView getHomeLibrary() {
+        return homeLibrary;
+    }
+
+    public void setHomeLibrary(ImageView homeLibrary) {
+        this.homeLibrary = homeLibrary;
+    }
+
+    public VBox getHomeVbox() {
+        return homeVbox;
+    }
+
+    public void setHomeVbox(VBox homeVbox) {
+        this.homeVbox = homeVbox;
+    }
+
+    public Label getLable() {
+        return lable;
+    }
+
+    public void setLable(Label lable) {
+        this.lable = lable;
+    }
+
+    public ImageView getLikeImage() {
+        return likeImage;
+    }
+
+    public void setLikeImage(ImageView likeImage) {
+        this.likeImage = likeImage;
+    }
+
+    public Button getLogInOrLogOut() {
+        return logInOrLogOut;
+    }
+
+    public void setLogInOrLogOut(Button logInOrLogOut) {
+        this.logInOrLogOut = logInOrLogOut;
+    }
+
+    public ImageView getLyrics() {
+        return lyrics;
+    }
+
+    public void setLyrics(ImageView lyrics) {
+        this.lyrics = lyrics;
+    }
+
+    public ImageView getNextIcon() {
+        return nextIcon;
+    }
+
+    public void setNextIcon(ImageView nextIcon) {
+        this.nextIcon = nextIcon;
+    }
+
+    public ImageView getPauseIcon() {
+        return pauseIcon;
+    }
+
+    public void setPauseIcon(ImageView pauseIcon) {
+        this.pauseIcon = pauseIcon;
+    }
+
+    public ImageView getPreviousIcon() {return previousIcon;}
+    public void setPreviousIcon(ImageView previousIcon) {this.previousIcon = previousIcon;}
+    public ImageView getSearchImage() {return searchImage;}
+    public void setSearchImage(ImageView searchImage) {this.searchImage = searchImage;}
+    public Button getSingUp() {return singUp;}
+    public void setSingUp(Button singUp) {this.singUp = singUp;}
     public ImageView getSpotify() {return spotify;}
     public void setSpotify(ImageView spotify) {this.spotify = spotify;}
+    public Login getLogin() {return login;}
+    public void setLogin(Login login) {this.login = login;}
+
     public VBox vBox(Audio audio)
     {
         String fontFamily = "Arial";
@@ -118,16 +242,17 @@ public class Home implements Initializable
         vBox.setSpacing(10);
         return vBox;
     }
-//    Login login = new Login();
+    Login login = new Login();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int counter = 0;
-        if(Login.getBool())
+        if(true)
         {
             singUp.setVisible(false);
             logInOrLogOut.setVisible(false);
 //            logInOrLogOut.setText("Log out");
             Button button = new Button(String.valueOf("a"));
+//            Button button = new Button(String.valueOf(login.getUserNameTextFeild().getText().charAt(0)));
             button.setFont(Font.font("Arial Bold"));
             Circle circle = new Circle(750,30,10);
             circle.setFill(Color.BLUEVIOLET);
@@ -149,7 +274,7 @@ public class Home implements Initializable
             });
         }
         else {
-            listenerController.ordering();
+            Singup.listenerController.ordering();
             lable.setText("Popular audios");
             for (int i=0; i<getHomeGridPane().getRowCount(); i++)
             {

@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -20,45 +21,192 @@ import java.util.ResourceBundle;
 
 public class AllAudios implements Initializable {
     @FXML
+    private ImageView addToPlaylistImage;
+
+    @FXML
     private Button allArtists;
-    public Button getAllArtists() {return allArtists;}
-    public void setAllArtists(Button allArtists) {this.allArtists = allArtists;}
+
     @FXML
     private Button allAudios;
-    public Button getAllAudios() {return allAudios;}
-    public void setAllAudios(Button allAudios) {this.allAudios = allAudios;}
+
     @FXML
     private Label allAudiosLbl;
-    public Label getAllAudiosLbl() {return allAudiosLbl;}
-    public void setAllAudiosLbl(Label allAudiosLbl) {this.allAudiosLbl = allAudiosLbl;}
+
     @FXML
     private AnchorPane anchorPane;
-    public AnchorPane getAnchorPane() {return anchorPane;}
-    public void setAnchorPane(AnchorPane anchorPane) {this.anchorPane = anchorPane;}
+
     @FXML
     private GridPane gridPane;
-    public GridPane getGridPane() {return gridPane;}
-    public void setGridPane(GridPane gridPane) {this.gridPane = gridPane;}
+
+    @FXML
+    private HBox hbox;
+
     @FXML
     private ImageView homeImage;
-    public ImageView getHomeImage() {return homeImage;}
-    public void setHomeImage(ImageView homeImage) {this.homeImage = homeImage;}
+
     @FXML
     private ImageView homeLibrary;
-    public ImageView getHomeLibrary() {return homeLibrary;}
-    public void setHomeLibrary(ImageView homeLibrary) {this.homeLibrary = homeLibrary;}
+
     @FXML
     private VBox homeVbox;
-    public VBox getHomeVbox() {return homeVbox;}
-    public void setHomeVbox(VBox homeVbox) {this.homeVbox = homeVbox;}
+
+    @FXML
+    private ImageView likeImage;
+
+    @FXML
+    private ImageView lyrics;
+
+    @FXML
+    private ImageView nextIcon;
+
+    @FXML
+    private ImageView pauseIcon;
+
+    @FXML
+    private ImageView previousIcon;
+
     @FXML
     private ImageView searchImage;
-    public ImageView getSearchImage() {return searchImage;}
-    public void setSearchImage(ImageView searchImage) {this.searchImage = searchImage;}
+
     @FXML
     private ImageView spotify;
-    public ImageView getSpotify() {return spotify;}
-    public void setSpotify(ImageView spotify) {this.spotify = spotify;}
+
+    public ImageView getAddToPlaylistImage() {
+        return addToPlaylistImage;
+    }
+
+    public void setAddToPlaylistImage(ImageView addToPlaylistImage) {
+        this.addToPlaylistImage = addToPlaylistImage;
+    }
+
+    public Button getAllArtists() {
+        return allArtists;
+    }
+
+    public void setAllArtists(Button allArtists) {
+        this.allArtists = allArtists;
+    }
+
+    public Button getAllAudios() {
+        return allAudios;
+    }
+
+    public void setAllAudios(Button allAudios) {
+        this.allAudios = allAudios;
+    }
+
+    public Label getAllAudiosLbl() {
+        return allAudiosLbl;
+    }
+
+    public void setAllAudiosLbl(Label allAudiosLbl) {
+        this.allAudiosLbl = allAudiosLbl;
+    }
+
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
+    }
+
+    public void setAnchorPane(AnchorPane anchorPane) {
+        this.anchorPane = anchorPane;
+    }
+
+    public GridPane getGridPane() {
+        return gridPane;
+    }
+
+    public void setGridPane(GridPane gridPane) {
+        this.gridPane = gridPane;
+    }
+
+    public HBox getHbox() {
+        return hbox;
+    }
+
+    public void setHbox(HBox hbox) {
+        this.hbox = hbox;
+    }
+
+    public ImageView getHomeImage() {
+        return homeImage;
+    }
+
+    public void setHomeImage(ImageView homeImage) {
+        this.homeImage = homeImage;
+    }
+
+    public ImageView getHomeLibrary() {
+        return homeLibrary;
+    }
+
+    public void setHomeLibrary(ImageView homeLibrary) {
+        this.homeLibrary = homeLibrary;
+    }
+
+    public VBox getHomeVbox() {
+        return homeVbox;
+    }
+
+    public void setHomeVbox(VBox homeVbox) {
+        this.homeVbox = homeVbox;
+    }
+
+    public ImageView getLikeImage() {
+        return likeImage;
+    }
+
+    public void setLikeImage(ImageView likeImage) {
+        this.likeImage = likeImage;
+    }
+
+    public ImageView getLyrics() {
+        return lyrics;
+    }
+
+    public void setLyrics(ImageView lyrics) {
+        this.lyrics = lyrics;
+    }
+
+    public ImageView getNextIcon() {
+        return nextIcon;
+    }
+
+    public void setNextIcon(ImageView nextIcon) {
+        this.nextIcon = nextIcon;
+    }
+
+    public ImageView getPauseIcon() {
+        return pauseIcon;
+    }
+
+    public void setPauseIcon(ImageView pauseIcon) {
+        this.pauseIcon = pauseIcon;
+    }
+
+    public ImageView getPreviousIcon() {
+        return previousIcon;
+    }
+
+    public void setPreviousIcon(ImageView previousIcon) {
+        this.previousIcon = previousIcon;
+    }
+
+    public ImageView getSearchImage() {
+        return searchImage;
+    }
+
+    public void setSearchImage(ImageView searchImage) {
+        this.searchImage = searchImage;
+    }
+
+    public ImageView getSpotify() {
+        return spotify;
+    }
+
+    public void setSpotify(ImageView spotify) {
+        this.spotify = spotify;
+    }
+
     public VBox vBox(Audio audio)
     {
         String fontFamily = "Arial";

@@ -68,39 +68,6 @@
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <HBox fx:id="homeHbox" layoutX="22.0" layoutY="486.0" prefHeight="100.0" prefWidth="756.0" spacing="10.0">
-         <children>
-            <ImageView fx:id="musicCover" fitHeight="86.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="previosIcon" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/previos.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="160.0" top="24.5" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="pauseIcon" fitHeight="52.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/pause.png" />
-               </image>
-               <HBox.margin>
-                  <Insets top="24.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="nextIcon" fitHeight="65.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/next.png" />
-               </image>
-               <HBox.margin>
-                  <Insets top="28.0" />
-               </HBox.margin>
-            </ImageView>
-         </children>
-      </HBox>
       <HBox fx:id="hboxForSingOrLog" layoutX="535.0" layoutY="14.0" prefHeight="54.0" prefWidth="244.0" spacing="30.0">
          <children>
             <Button fx:id="singUp" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" style="-fx-background-radius: 20px; -fx-background-color: black;" text="Sing up " textFill="WHITE">
@@ -119,6 +86,58 @@
                   <Font name="Arial" size="17.0" />
                </font>
             </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="hbox" layoutX="17.0" layoutY="498.0" prefHeight="78.0" prefWidth="748.0" spacing="20.0">
+         <children>
+            <ImageView fx:id="likeImage" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="26.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@image/like.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="addToPlaylistImage" fitHeight="50.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/addToPlaylist.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="25.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="previousIcon" fitHeight="57.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/previos.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="130.0" top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="pauseIcon" fitHeight="64.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/pause.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="18.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="nextIcon" fitHeight="64.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="22.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@image/next.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="lyrics" fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/lyrics.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="170.0" top="25.0" />
+               </HBox.margin>
+            </ImageView>
          </children>
       </HBox>
    </children>

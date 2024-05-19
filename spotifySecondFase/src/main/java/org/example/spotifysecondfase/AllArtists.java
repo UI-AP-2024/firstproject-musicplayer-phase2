@@ -206,22 +206,6 @@ public class AllArtists implements Initializable {
             showArtistVbox.getChildren().add(label);
             label.setOnMouseClicked(event -> {
                 ArtistInfo.artist = a;
-                artistInfo.getNameLbl().setText(a.getName());
-                artistInfo.getBiography().setText(a.getBiography());
-                for (Audio audio : Database.getDatabase().getAudio())
-                {
-                    if(audio.getArtistName().equals(a.getName()))
-                    {
-                        HBox hBox = new HBox();
-                        hBox.setSpacing(10);
-                        Label audioName = new Label(audio.getName());
-                        ImageView imageView = audio.getCoverImageView();
-                        imageView.setFitWidth(50);
-                        imageView.setFitHeight(50);
-                        hBox.getChildren().addAll(imageView,audioName);
-                        artistInfo.getArtistAudios().getChildren().addAll(hBox);
-                    }
-                }
                 try {
                     ChangeScene.artistInfo();
                 } catch (IOException e) {

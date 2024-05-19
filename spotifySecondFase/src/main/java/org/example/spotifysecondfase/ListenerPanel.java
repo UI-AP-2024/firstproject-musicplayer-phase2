@@ -184,5 +184,12 @@ public class ListenerPanel implements Initializable
                 throw new RuntimeException(e);
             }
         });
+        premiumBtn.setOnMouseClicked(event -> {
+            try {
+                ChangeScene.subscription();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }

@@ -39,7 +39,7 @@ public class BasePageController implements Initializable {
     private Button btn_search;
 
     @FXML
-    private Button btn_signIn;
+    private Button btn_signUp;
 
     @FXML
     private BorderPane mian_pane;
@@ -99,7 +99,7 @@ public class BasePageController implements Initializable {
     }
 
     @FXML
-    void btn_signIn_action(ActionEvent event) {
+    void btn_signUp_action(ActionEvent event) {
         try {
         mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("choose-userType-view.fxml")).load());
         } catch (IOException e) {

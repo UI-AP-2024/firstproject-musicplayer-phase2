@@ -4,20 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BasePageController implements Initializable {
-    public static boolean loggedIn = false;
 
     @FXML
     private Button btn_artists;
@@ -87,7 +83,7 @@ public class BasePageController implements Initializable {
 
     @FXML
     void btn_logout_action(ActionEvent event) {
-
+        LoginOrNotController.loggedIn = false;
     }
 
     @FXML
@@ -105,12 +101,6 @@ public class BasePageController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        if (loggedIn) {
-//
-//        }
-//        else {
-//
-//        }
         try {
             mianPane.setCenter(new FXMLLoader(HelloApplication.class.getResource("login-or-not-view.fxml")).load());
         } catch (IOException e) {

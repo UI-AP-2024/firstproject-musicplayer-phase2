@@ -23,9 +23,6 @@ public class LoginController implements Initializable {
     private PasswordField pf_pass;
 
     @FXML
-    private TextField tf_pass_visible;
-
-    @FXML
     private CheckBox cb_showPass;
 
     @FXML
@@ -36,8 +33,6 @@ public class LoginController implements Initializable {
     @FXML
     private AnchorPane anchor;
 
-    @FXML
-    private TextField tf_pass;
     @FXML
     private Button btn_back;
 
@@ -55,21 +50,10 @@ public class LoginController implements Initializable {
     }
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tf_pass_visible.textProperty().bindBidirectional(pf_pass.textProperty());
     }
 
     @FXML
     private void togglePasswordVisibility() {
-        if (cb_showPass.isSelected()) {
-            tf_pass_visible.setVisible(true);
-            tf_pass_visible.setManaged(true);
-            pf_pass.setVisible(false);
-            pf_pass.setManaged(false);
-        } else {
-            tf_pass_visible.setVisible(false);
-            tf_pass_visible.setManaged(false);
-            pf_pass.setVisible(true);
-            pf_pass.setManaged(true);
-        }
+
     }
 }

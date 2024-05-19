@@ -4,15 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.example.musicplayer.controller.SignInOutController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignUpSingerController implements Initializable {
+
+    @FXML
+    private TextField bioField;
 
     @FXML
     private DatePicker birthDatePicker;
@@ -21,16 +24,10 @@ public class SignUpSingerController implements Initializable {
     private TextField emailField;
 
     @FXML
-    private Button loginButton;
-
-    @FXML
     private TextField nameField;
 
     @FXML
     private PasswordField passwordField;
-
-    @FXML
-    private TextField passwordTextField;
 
     @FXML
     private TextField phoneNumberField;
@@ -39,32 +36,19 @@ public class SignUpSingerController implements Initializable {
     private Button registerButton;
 
     @FXML
-    private CheckBox showPasswordCheckBox;
-
-    @FXML
     private TextField usernameField;
-    @FXML
-    private Button btn_back;
 
     @FXML
-    private Button btn_home;
-    @FXML
-    private TextField usernameField1;
-    @FXML
-    void back_action(ActionEvent event) {
-
+    void register_action(ActionEvent event) {
+        try {
+            SignInOutController.getUserAccountController().sinUpSinger(usernameField.getText(), passwordField.getText(), nameField.getText(), emailField.getText(), phoneNumberField.getText(), birthDatePicker.toString(), bioField.getText());
+        } catch (RuntimeException e) {
+            System.out.println(e.toString());
+        }
     }
 
-    @FXML
-    void home_action(ActionEvent event) {
-
-    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        passwordTextField.managedProperty().bind(showPasswordCheckBox.selectedProperty());
-        passwordTextField.visibleProperty().bind(showPasswordCheckBox.selectedProperty());
-        passwordField.managedProperty().bind(showPasswordCheckBox.selectedProperty().not());
-        passwordField.visibleProperty().bind(showPasswordCheckBox.selectedProperty().not());
-        passwordTextField.textProperty().bindBidirectional(passwordField.textProperty());
+
     }
 }

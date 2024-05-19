@@ -221,8 +221,8 @@ public class ChooseGenres implements Initializable
         VBox vBox = new VBox();
         Label label = new Label();
         ImageView imageView = genre.getImageView();
-        imageView.setFitHeight(80);
-        imageView.setFitWidth(80);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
         label.setText(genre.name());
         vBox.getChildren().addAll(imageView,label);
         vBox.setAlignment(Pos.CENTER);
@@ -242,21 +242,21 @@ public class ChooseGenres implements Initializable
                 VBox vBox = vBox(genre);
                 gridPane.add(vBox,i,j);
                 vBox.setOnMouseClicked(event -> {
-                    Genre.genres(genre);
+                    Genre.addgenres(genre);
                     vBox.setBorder(Border.stroke(Color.WHITE));
                     chooseGenre.getAndIncrement();
                     vBox.setOnMouseClicked(event1 -> {
                         if (vBox.getBorder().getStrokes().equals(Color.WHITE))
                         {
                             vBox.setBorder(Border.stroke(Color.BLACK));
-                            chooseGenre.getAndIncrement();
-                            Genre.genres(genre);
+                            chooseGenre.getAndDecrement();
+                            Genre.removegenres(genre);
                         }
-                        else {
-                            vBox.setBorder(Border.stroke(Color.WHITE));
-                            chooseGenre.getAndIncrement();
-                            Genre.genres(genre);
-                        }
+//                        else {
+//                            vBox.setBorder(Border.stroke(Color.WHITE));
+//                            chooseGenre.getAndIncrement();
+//                            Genre.addgenres(genre);
+//                        }
                         if (chooseGenre.get() > 4) {
                             try {
                                 throw new Exception("You cant choose genres more than four");

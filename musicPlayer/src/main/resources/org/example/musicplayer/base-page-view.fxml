@@ -30,7 +30,7 @@
                   <Font size="9.0" />
                </font>
             </Button>
-            <TextField prefHeight="26.0" prefWidth="211.0" promptText="search for artists or audios..." style="-fx-background-color: #E5E4E2;">
+            <TextField fx:id="tf_search" prefHeight="26.0" prefWidth="211.0" promptText="search for artists or audios..." style="-fx-background-color: #E5E4E2;">
                <font>
                   <Font name="System Bold Italic" size="11.0" />
                </font>

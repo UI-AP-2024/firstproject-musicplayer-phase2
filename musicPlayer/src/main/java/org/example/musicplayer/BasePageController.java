@@ -4,8 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import org.example.musicplayer.controller.ListenerController;
+import org.example.musicplayer.controller.SignInOutController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +44,13 @@ public class BasePageController implements Initializable {
     @FXML
     private BorderPane mian_pane;
 
+    public static BorderPane getMian_pane() {
+        return getMian_pane();
+    }
+
+    @FXML
+    private TextField tf_search;
+
     @FXML
     void btn_artists_action(ActionEvent event) {
 
@@ -62,7 +73,11 @@ public class BasePageController implements Initializable {
 
     @FXML
     void btn_login_action(ActionEvent event) {
-
+        try {
+            mian_pane.setCenter(new FXMLLoader(HelloApplication.class.getResource("login-view.fxml")).load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

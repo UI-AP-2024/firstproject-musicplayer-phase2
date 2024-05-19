@@ -1,5 +1,7 @@
 package org.example.musicap.GUIs;
 
+import javafx.scene.control.Alert;
+
 import java.io.IOException;
 
 public interface GeneralOperation {

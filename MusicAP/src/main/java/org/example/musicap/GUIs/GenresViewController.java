@@ -13,15 +13,14 @@ import org.example.musicap.Models.User.Listener;
 import java.net.URL;
 import java.util.*;
 
-public class GenresViewController implements Initializable {
+public class GenresViewController implements ShowAlert {
 
     private Database database;
     @FXML
     private GridPane gridPane;
 
     private Set<Label> selectedGenres = new HashSet<>();
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize()
     {
 
         database = Database.getInstance();
@@ -45,7 +44,7 @@ public class GenresViewController implements Initializable {
             clickedLabel.getStyleClass().add("selected");
             selectedGenres.add(clickedLabel);
         } else {
-            showAlert("Limit Reached", "You can select up to 4 genres only.");
+            showAlert("Limit Reached", "You can select up to 4 genres only.", "Genres");
         }
     }
 
@@ -53,7 +52,7 @@ public class GenresViewController implements Initializable {
     private void handleSubmitButtonAction() {
         if (selectedGenres.size() < 4)
         {
-            showAlert("Incomplete Selection", "Please select exactly 4 genres.");
+            showAlert("Incomplete Selection", "Please select exactly 4 genres.", "Genres");
         }
         else
         {
@@ -66,15 +65,8 @@ public class GenresViewController implements Initializable {
             }
             Listener lastRegisteredListener = (Listener) database.getUsers().get(database.getUsers().size()-1);
             lastRegisteredListener.setFavoriteGenres(favoriteGenres);
-            showAlert("Submission Successful", selectedGenresText.toString());
+            showAlert("Submission", selectedGenresText.toString(), "Genres");
         }
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }

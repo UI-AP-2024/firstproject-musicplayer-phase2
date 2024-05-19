@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public abstract class ArtistController extends UserController{
-    public ArtistController()
+    public ArtistController(Artist artistModel)
     {
         database = Database.getInstance();
-        artistModel = (Artist) database.getLogedInUser();
+        this.artistModel = artistModel;
     }
     private Database database;
 
@@ -69,5 +69,31 @@ public abstract class ArtistController extends UserController{
     {
         return this.getArtistModel().toString();
     }
+    public ArrayList<Audio> showAudios()
+    {
+        ArrayList<Audio> result = new ArrayList<>();
+        for(Audio tmpAudio : database.getAudios())
+        {
+            if(tmpAudio.getArtistName().equals(artistModel.getUsername()))
+                result.add(tmpAudio);
+        }
+        return result;
+    }
+    public void followArtist(User followingUser)
+    {
+        // following and unfollowing artist
+        if(isFollowedBy(followingUser)) artistModel.getFollowers().remove(followingUser);
+        else artistModel.getFollowers().add(followingUser);
+    }
+    public boolean isFollowedBy(User followingUser)
+    {
+        boolean flag = false;
+        for(User tmpUser : artistModel.getFollowers())
+        {
+            if(tmpUser.equals(followingUser)) flag = true;
+            break;
+        }
+        return flag;
 
+    }
 }

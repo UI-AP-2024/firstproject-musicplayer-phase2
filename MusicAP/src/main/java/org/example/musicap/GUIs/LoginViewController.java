@@ -13,7 +13,7 @@ import org.example.musicap.Models.Data.Database;
 
 import java.io.IOException;
 
-public class LoginViewController {
+public class LoginViewController implements ShowAlert {
 
     @FXML
     private AnchorPane mainBody;
@@ -35,7 +35,7 @@ public class LoginViewController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String result = accountController.login(username, password);
-        showAlert(result);
+        showAlert(result, "Login result", "Login");
         Thread.sleep(1000);
         if(result.equals("Welcome to your account")) showUserPanel();
     }
@@ -45,12 +45,5 @@ public class LoginViewController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("listener-view.fxml"));
         AnchorPane newPane = loader.load();
         mainBody.getChildren().add(newPane);
-    }
-    private void showAlert(String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Login attempt!");
-        alert.setHeaderText("Login");
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

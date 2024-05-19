@@ -11,7 +11,7 @@ import org.example.musicap.HelloApplication;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class SignupViewController {
+public class SignupViewController implements ShowAlert {
     private AccountController accountController;
 
     @FXML
@@ -56,7 +56,7 @@ public class SignupViewController {
         String bio = bioField.getText();
         String userType = userTypeComboBox.getValue();
         String result = accountController.signUp(userType, username, password, name, email, phone, dob, bio);
-        showAlert(result);
+        showAlert(result, "Signup attempt", "Signup");
         Thread.sleep(1000);
         if(result.equals("User added successfully") && userType.equals("Listener")) getFavoriteGenres();
     }
@@ -66,13 +66,5 @@ public class SignupViewController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("genres-view.fxml"));
         AnchorPane newPane = loader.load();
         mainBody.getChildren().add(newPane);
-    }
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Signup attempt");
-        alert.setHeaderText("Signup");
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

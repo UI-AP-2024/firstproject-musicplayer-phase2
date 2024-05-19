@@ -15,7 +15,7 @@ import org.example.musicap.Models.PremiumPlan;
 import org.example.musicap.Models.User.Listener;
 import org.example.musicap.Models.User.NormalListener;
 
-public class PremiumViewController {
+public class PremiumViewController implements ShowAlert {
 
     @FXML
     private Label plan1Name;
@@ -47,7 +47,7 @@ public class PremiumViewController {
     }
     @FXML
     private void getPlan1(MouseEvent event) {
-        showAlert(listenerController.purchasePremium(PremiumPlan.values()[0]));
+        showAlert(listenerController.purchasePremium(PremiumPlan.values()[0]), "Premium access", "Purchase");
         listenerModel = (Listener) database.getLogedInUser();
         if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
         else listenerController = new PremiumListenerController();
@@ -55,7 +55,7 @@ public class PremiumViewController {
 
     @FXML
     private void getPlan2(MouseEvent event) {
-        showAlert(listenerController.purchasePremium(PremiumPlan.values()[1]));
+        showAlert(listenerController.purchasePremium(PremiumPlan.values()[1]), "Premium access", "Purchase");
         listenerModel = (Listener) database.getLogedInUser();
         if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
         else listenerController = new PremiumListenerController();
@@ -63,17 +63,9 @@ public class PremiumViewController {
 
     @FXML
     private void getPlan3(MouseEvent event) {
-        showAlert(listenerController.purchasePremium(PremiumPlan.values()[2]));
+        showAlert(listenerController.purchasePremium(PremiumPlan.values()[2]), "Premium access", "Purchase");
         listenerModel = (Listener) database.getLogedInUser();
         if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
         else listenerController = new PremiumListenerController();
-    }
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Purchase premium!");
-        alert.setHeaderText("Premium Account");
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

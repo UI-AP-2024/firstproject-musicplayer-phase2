@@ -1,5 +1,6 @@
 package org.example.musicap.Controllers;
 
+import javafx.geometry.Pos;
 import org.example.musicap.Models.Audio.Podcast;
 import org.example.musicap.Models.Genre;
 import org.example.musicap.Models.User.Podcaster;
@@ -9,6 +10,10 @@ import java.util.ArrayList;
 
 public class PodcasterController extends ArtistController{
 
+    public PodcasterController(Podcaster podcasterModel)
+    {
+        super(podcasterModel);
+    }
     public void publishPodcast(String title, Genre genre, String caption, String link, String cover)
     {
         Podcaster podcasterModel = (Podcaster) this.getArtistModel();

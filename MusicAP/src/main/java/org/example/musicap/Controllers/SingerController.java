@@ -12,6 +12,10 @@ import java.util.ArrayList;
 
 public class SingerController extends ArtistController {
 
+    public SingerController(Singer singerModel)
+    {
+        super(singerModel);
+    }
     public void addAlbum(String albumName)
     {
         Singer singerModel = (Singer)this.getArtistModel();

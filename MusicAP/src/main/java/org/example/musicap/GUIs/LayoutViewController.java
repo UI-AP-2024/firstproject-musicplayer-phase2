@@ -14,7 +14,7 @@ import org.example.musicap.Models.Data.Database;
 
 import java.io.IOException;
 
-public class LayoutViewController implements GeneralOperation {
+public class LayoutViewController implements GeneralOperation, ShowAlert {
 
     Database database = Database.getInstance();
     @FXML
@@ -310,7 +310,7 @@ public class LayoutViewController implements GeneralOperation {
         mainBody.getChildren().add(newPane);
     }
     public void libraryLabelClick() throws IOException {
-        if(database.getLogedInUser() == null) showAlert("You should Login first!");
+        if(database.getLogedInUser() == null) showAlert("You should Login first!", "Login required", "Library");
         else
         {
             mainBody.getChildren().clear();
@@ -332,11 +332,4 @@ public class LayoutViewController implements GeneralOperation {
         mainBody.getChildren().add(newPane);
     }
 
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Library");
-        alert.setHeaderText("Listener Panel");
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }

@@ -291,3 +291,38 @@ ComboBox {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
+
+.audio-name-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.artist-name-label {
+    -fx-font-size: 20px;
+    -fx-text-fill: #777;
+}
+
+.likes-count-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555;
+}
+
+.caption-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #666;
+    -fx-padding: 10 0;
+}
+
+.action-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #a40000;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.action-button:hover {
+    -fx-background-color: #770000;
+}

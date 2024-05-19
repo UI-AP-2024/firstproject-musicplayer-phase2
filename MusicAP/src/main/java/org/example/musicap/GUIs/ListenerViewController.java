@@ -17,7 +17,7 @@ import org.example.musicap.Models.User.User;
 
 import java.io.IOException;
 
-public class ListenerViewController {
+public class ListenerViewController implements ShowAlert {
 
     @FXML
     private Label userNameLabel;
@@ -75,10 +75,10 @@ public class ListenerViewController {
 
     public void addNewPlaylist() throws IOException {
         String playListName = newPlayListNameLabel.getText();
-        if(playListName.equals("")) showAlert("Playlist name cannot be empty!");
+        if(playListName.equals("")) showAlert("Playlist name cannot be empty!", "Playlist Name", "New Playlist");
         else
         {
-            listenerModel.getPlaylists().add(new Playlist(playListName, listenerModel.getUsername()));
+            listenerController.makeNewPlaylist(playListName);
             mainBody.getChildren().clear();
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("listener-view.fxml"));
             AnchorPane newPane = loader.load();
@@ -86,11 +86,4 @@ public class ListenerViewController {
         }
     }
 
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("New playlist attempt");
-        alert.setHeaderText("Playlist");
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }

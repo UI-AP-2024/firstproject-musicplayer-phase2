@@ -1,0 +1,257 @@
+package org.example.phase2;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.example.phase2.Controller.ListenerController;
+import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LPanelController implements Initializable, GeneralOperation {
+
+    @FXML
+    private Button account_btn;
+
+    @FXML
+    private Button artists_btn;
+
+    @FXML
+    private Button audios_btn;
+
+    @FXML
+    private Button home_btn;
+
+    @FXML
+    private Button library_btn;
+
+    @FXML
+    private Button logout_btn;
+
+    @FXML
+    private ImageView search_img;
+
+    @FXML
+    private TextField search_tF;
+
+    @FXML
+    private Button back_btn;
+
+    @FXML
+    private Button followings_btn;
+
+    @FXML
+    private HBox hBox;
+
+    @FXML
+    private AnchorPane initialAnchor;
+
+    @FXML
+    private Button newPlaylist_btn;
+
+    @FXML
+    private Label panel_lbl;
+
+    @FXML
+    private Button premium_btn;
+
+    @FXML
+    private Button playlist_btn;
+
+    @FXML
+    private AnchorPane secondaryAnchor;
+
+    @FXML
+    private VBox vBox;
+    @FXML
+    private VBox vBox2;
+
+    private static Stage stage;
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        LPanelController.stage = stage;
+    }
+    @FXML
+    void artistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void audiosAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Audios");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void homeAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void libraryAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void logoutAction(ActionEvent event) throws IOException {
+        logout();
+    }
+
+    @FXML
+    void searchAction(MouseEvent event) throws IOException {
+        search();
+    }
+
+
+    @FXML
+    void accountAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AccountInfo.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Account Information");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void backAction(ActionEvent event) throws IOException {
+        backTo();
+    }
+
+    @FXML
+    void followingsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("MyFollowings.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("My Followings");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void newPlaylistAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CreateNewPlaylist.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Create New Playlist");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void playlistAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("MyPlaylists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("My Playlists");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void premiumAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GetPremium.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Get Premium");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        try {
+//            hBox.getChildren().add(new FXMLLoader(HelloApplication.class.getResource("side-bar.fxml")).load());
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        try {
+            vBox.getChildren().add(new FXMLLoader(HelloApplication.class.getResource("Play-bar.fxml")).load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+        ListenerController.getListenerController().logout();
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void login() throws IOException {
+
+    }
+
+    @Override
+    public void signup() throws IOException {
+
+    }
+
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
+    }
+}

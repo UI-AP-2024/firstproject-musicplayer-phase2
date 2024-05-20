@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<?import java.net.URL?>
+<AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.HomeLoggedinController">
+   <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
+   <children>
+      <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <VBox fx:id="vBox1" prefHeight="600.0" prefWidth="725.0">
+               <children>
+                  <AnchorPane fx:id="secondaryAnchor" prefHeight="480.0" prefWidth="725.0">
+                     <children>
+                        <Label fx:id="favorite_lbl" alignment="CENTER" layoutX="251.0" prefHeight="50.0" prefWidth="222.0" text="Your Favorite Audios">
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <ListView fx:id="listView" layoutX="17.0" layoutY="58.0" prefHeight="424.0" prefWidth="710.0" />
+                        <ImageView fx:id="magnifier_img" fitHeight="30.0" fitWidth="30.0" layoutX="17.0" layoutY="25.0" onMouseClicked="#searchAction" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@photos/magnifier.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="search_tF" layoutX="47.0" layoutY="27.0" prefHeight="30.0" promptText="Search" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="75.0">
+               <children>
+                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="Artists">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="Audios">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutAction" prefHeight="60.0" prefWidth="75.0" text="Logout">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

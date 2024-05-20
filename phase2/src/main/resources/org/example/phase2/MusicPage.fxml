@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.MusicPageController">
+   <children>
+      <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <VBox fx:id="vBox1" prefHeight="600.0" prefWidth="725.0">
+               <children>
+                  <AnchorPane fx:id="secondaryAnchor" prefHeight="480.0" prefWidth="725.0" style="-fx-background-color: #1c1c1c;">
+                     <children>
+                        <ImageView fx:id="musicImage" fitHeight="440.0" fitWidth="440.0" layoutX="272.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="text_lbl" alignment="CENTER" layoutX="14.0" layoutY="56.0" prefHeight="43.0" prefWidth="250.0" text="Text" textFill="#469ec7">
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="likeImage" fitHeight="60.0" fitWidth="60.0" layoutX="40.0" layoutY="420.0" onMouseClicked="#likeAction" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@photos/unliked.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="add_btn" layoutX="116.0" layoutY="428.0" mnemonicParsing="false" onAction="#addAction" prefHeight="43.0" prefWidth="133.0" style="-fx-background-color: #696969; -fx-background-radius: 17px;" text="Add To Playlist" />
+                        <ImageView fx:id="search_img" fitHeight="30.0" fitWidth="30.0" layoutX="25.0" layoutY="26.0" onMouseClicked="#searchAction" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@photos/magnifier.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="search_tF" layoutX="55.0" layoutY="25.0" prefHeight="30.0" promptText="Search" style="-fx-background-color: #696969;" />
+                        <TextFlow fx:id="textFlow" layoutX="39.0" layoutY="92.0" prefHeight="316.0" prefWidth="200.0" style="-fx-background-color: #696969; -fx-background-radius: 17px;" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vBox2" prefHeight="200.0" prefWidth="75.0">
+               <children>
+                  <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Home">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Library">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Artists">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Audios">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Back">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Logout">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="signup_btn" mnemonicParsing="false" onAction="#signupAction" prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #696969; -fx-background-radius: 17px; -fx-border-color: #1c1c1c; -fx-border-radius: 10px; -fx-border-width: 4px;" text="Signup">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

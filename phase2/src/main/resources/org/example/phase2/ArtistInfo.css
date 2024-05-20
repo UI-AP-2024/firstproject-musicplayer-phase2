@@ -1,0 +1,72 @@
+/* General styles for the entire application */
+.root {
+    -fx-font-family: 'Arial';
+    -fx-background-color: #1c1c1c;
+}
+
+/* Styling for the HBox */
+.hbox {
+    -fx-background-color: #1c1c1c;
+}
+
+/* Styling for the VBox */
+.vbox {
+    -fx-background-color: #1c1c1c;
+}
+
+/* Styling for the ListView */
+#listView {
+    -fx-background-color: #696969;
+    -fx-background-radius: 27px;
+    -fx-border-color: #1c1c1c;
+    -fx-border-radius: 20px;
+}
+
+/* Styling for the label */
+#FollowingsLabel {
+    -fx-text-fill: #469ec7;
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-alignment: center;
+}
+
+/* General button styles */
+.button {
+    -fx-background-color: #696969;
+    -fx-background-radius: 17px;
+    -fx-border-color: #1c1c1c;
+    -fx-border-radius: 10px;
+    -fx-border-width: 4px;
+
+}
+
+.label{
+    -fx-text-fill: #469ec7;
+}
+
+#name_lbl2, #biography_lbl2{
+    -fx-text-fill: #ffffff;
+}
+
+#artist_lbl{
+    -fx-text-fill: #ff7100;
+}
+
+.button:hover {
+    -fx-background-color: #777777;
+}
+
+/* Specific styling for each button if needed */
+#home_btn, #search_btn, #library_btn, #artists_btn, #audios_btn, #back_btn, #logout_btn {
+    -fx-pref-height: 60px;
+    -fx-pref-width: 75px;
+}
+
+/* Styling for the secondary anchor pane */
+#secondaryAnchor {
+    -fx-background-color: #1c1c1c;
+}
+
+#initialAnchor{
+    -fx-background-color: #1c1c1c;
+}

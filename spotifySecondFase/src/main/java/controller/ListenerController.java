@@ -1,15 +1,14 @@
 package controller;
 import javafx.scene.control.Alert;
+import model.*;
 import model.Audio.Audio;
-import model.Database;
-import model.Playlist;
-import model.Report;
 import model.UserAccount.Artist.Artist;
 import model.UserAccount.Listener.Free;
 import model.UserAccount.Listener.Listener;
+import model.UserAccount.Listener.Premium;
 import model.UserAccount.UserAccount;
-import org.example.spotifysecondfase.Exception.InvalidFormat;
-import org.example.spotifysecondfase.Exception.NotEnoughCredit;
+import org.example.spotifysecondfase.view.Exception.FreeAccountLimit;
+import org.example.spotifysecondfase.view.Exception.NotEnoughCredit;
 
 import java.util.*;
 
@@ -53,12 +52,11 @@ public class ListenerController extends UserAccountController
     public void setPlaylist(Playlist playlist) {
         this.playlist = playlist;
     }
-    public void makePlaylist(String name)
-    {
+    public void makePlaylist(String name) throws FreeAccountLimit {
         boolean b = listener instanceof Free;
         if (b)
         {
-            //freeLimit
+            throw new FreeAccountLimit("Free account limit");
         }
         playlist = new Playlist(name);
         getListener().getPlaylists().add(getPlaylist());
@@ -312,4 +310,60 @@ public class ListenerController extends UserAccountController
         }
         return String.valueOf(audios);
     }
+    public void suggestion()
+    {
+        ArrayList<Audio> suggestAudio = new ArrayList<>();
+        for (Audio a : Database.getDatabase().getAudio())
+        {
+            for (Genre genre : Genre.getFavoriteGenres())
+            {
+                if (a.getGenre() == genre)
+                {
+                    suggestAudio.add(a);
+                }
+            }
+        }
+        for (UserAccount userAccount : Database.getDatabase().getUserAccounts())
+        {
+            if (userAccount instanceof Artist)
+            {
+                for (UserAccount listener : ((Artist) userAccount).getFollowers())
+                {
+                    if (Objects.equals(listener.getUserName(),this.listener.getUserName()))
+                    {
+                        for (Audio audio : Database.getDatabase().getAudio())
+                        {
+                            if (Objects.equals(audio.getArtistName(),((Artist)userAccount).getUserName()))
+                            {
+//                                for (Audio repeat : suggestAudio)
+//                                {
+//                                    if (repeat != )
+//                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+//    public Listener buyOrRenew(String listenerType)
+//    {
+//        Premium premium = null;
+//        PremiumPrice premiumPrice = null;
+//        for (PremiumPrice p : PremiumPrice.values())
+//        {
+//            if (p.name().equals(listenerType))
+//            {
+//                premiumPrice = p;
+//            }
+//        }
+//        double credit = getListener().getAccountCredit();
+//        if (getListener().getAccountCredit() >= premiumPrice.getPrice())
+//        {
+//            if (premiumPrice.getPrice() == 5)
+//            {
+//                Premium premiumListener = new Premium()
+//            }
+//        }
+//    }
 }

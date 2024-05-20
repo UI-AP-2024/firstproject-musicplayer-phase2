@@ -3,8 +3,11 @@ import model.Audio.Audio;
 import model.UserAccount.UserAccount;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
-public class Playlist
+public class Playlist implements Iterable
 {
     private StringBuilder id;
     public StringBuilder getId() {
@@ -57,5 +60,22 @@ public class Playlist
     public String toString()
     {
         return "PlayList ID: "+getId()+"\t"+"PlayList name: "+getPlayListName();
+    }
+
+
+    @Override
+    public Iterator iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer action) {
+        Iterable.super.forEach(action);
+//        for ()
+    }
+
+    @Override
+    public Spliterator spliterator() {
+        return Iterable.super.spliterator();
     }
 }

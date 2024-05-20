@@ -7,10 +7,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import controller.ArtistController;
 import controller.ListenerController;
-import model.Database;
 import model.UserAccount.Artist.Artist;
-import model.UserAccount.Listener.Listener;
-import org.example.spotifysecondfase.Exception.InvalidFormat;
+import org.example.spotifysecondfase.ChangeScene;
+import org.example.spotifysecondfase.view.Exception.InvalidFormat;
+import org.example.spotifysecondfase.view.Exception.UserNotFound;
+import org.example.spotifysecondfase.view.Exception.WrongPassword;
 
 import java.io.IOException;
 import java.net.URL;
@@ -199,32 +200,44 @@ public class Singup implements Initializable
                     alert.showAndWait();
                 }
             }
-            if(!listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
-            {
-                try {
-                    throw new Exception("This account in already exist");
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                }
-            }
-            if (listenerController.checkEmail(emailTextField.getText()) & listenerController.checkPhoneNumber(phoneTextField.getText()) & listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
-            {
-                try {
-                    throw new Exception("Sign up was successful");
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.NONE);
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                }
-                getSignUp().setOnMouseClicked(event1 -> {
+            try {
+                if(!listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                {
                     try {
-                        ChangeScene.chooseGenres();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        throw new Exception("This account in already exist");
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
                     }
-                });
+                }
+            } catch (WrongPassword | UserNotFound e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
+            try {
+                if (listenerController.checkEmail(emailTextField.getText()) & listenerController.checkPhoneNumber(phoneTextField.getText()) & listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                {
+                    try {
+                        throw new Exception("Sign up was successful");
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
+                    }
+                    getSignUp().setOnMouseClicked(event1 -> {
+                        try {
+                            ChangeScene.chooseGenres();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+            } catch (WrongPassword | UserNotFound e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
 
         });
@@ -241,40 +254,50 @@ public class Singup implements Initializable
             if(!artistController.checkEmail(emailTextField.getText()) | !artistController.checkPhoneNumber(phoneTextField.getText()))
             {
                 try {
-                    throw new Exception("Email or Phone number format isn't correct");
-                } catch (Exception e) {
+                    throw new InvalidFormat("Email or Phone number format isn't correct");
+                } catch (InvalidFormat e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();
                 }
             }
-            if(!artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
-            {
-                try {
-                    throw new Exception("This account in already exist");
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                }
-            }
-            if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
-            {
-                listenerController.artistsList(artist);
-                try {
-                    throw new Exception("Sign up was successful");
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.NONE);
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                }
-                getSignUp().setOnMouseClicked(event1 -> {
+            try {
+                if(!artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                {
                     try {
-                        ChangeScene.home();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        throw new Exception("This account in already exist");
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
                     }
-                });
+                }
+            } catch (WrongPassword | UserNotFound e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
+            try {
+                if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                {
+                    listenerController.artistsList(artist);
+                    try {
+                        throw new Exception("Sign up was successful");
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
+                    }
+                    getSignUp().setOnMouseClicked(event1 -> {
+                        try {
+                            ChangeScene.home();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+            } catch (WrongPassword | UserNotFound e) {
+                System.out.println(e.getMessage());
             }
         });
         podcaster.setOnAction(event -> {
@@ -297,34 +320,42 @@ public class Singup implements Initializable
                     alert.showAndWait();
                 }
             }
-            if(!artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
-            {
-                try {
-                    throw new Exception("This account in already exist");
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                }
-            }
-            if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
-            {
-                listenerController.artistsList(artist);
-                try {
-                    throw new Exception("Sign up was successful");
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.NONE);
-                    alert.setContentText(e.getMessage());
-                    alert.showAndWait();
-                }
-                getSignUp().setOnMouseClicked(event1 -> {
+            try {
+                if(!artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                {
                     try {
-                        ChangeScene.home();
-
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        throw new Exception("This account in already exist");
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
                     }
-                });
+                }
+            } catch (WrongPassword | UserNotFound e) {
+                System.out.println(e.getMessage());
+            }
+            try {
+                if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                {
+                    listenerController.artistsList(artist);
+                    try {
+                        throw new Exception("Sign up was successful");
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.NONE);
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
+                    }
+                    getSignUp().setOnMouseClicked(event1 -> {
+                        try {
+                            ChangeScene.home();
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+            } catch (WrongPassword | UserNotFound e) {
+                System.out.println(e.getMessage());
             }
         });
     }

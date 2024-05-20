@@ -23,7 +23,7 @@ public enum Genre {
 
     private static ArrayList<Genre> favoriteGenres = new ArrayList<Genre>(4);
 
-    public ArrayList<Genre> getFavoriteGenres() {
+    public static ArrayList<Genre> getFavoriteGenres() {
         return favoriteGenres;
     }
     public void setFavoriteGenres(ArrayList<Genre> favoriteGenres) {

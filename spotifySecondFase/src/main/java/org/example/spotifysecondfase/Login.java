@@ -8,8 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import controller.UserAccountController;
-import org.example.spotifysecondfase.Exception.InvalidFormat;
-import org.example.spotifysecondfase.Exception.UserNotFound;
+import org.example.spotifysecondfase.view.Exception.UserNotFound;
+import org.example.spotifysecondfase.view.Exception.WrongPassword;
 
 import java.io.IOException;
 import java.net.URL;
@@ -66,7 +66,11 @@ public class Login implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        bool = userAccountController.findUser(userNameTextFeild.getText(),passWordTextField.getText());
+        try {
+            bool = userAccountController.findUser(userNameTextFeild.getText(),passWordTextField.getText());
+        } catch (WrongPassword | UserNotFound e) {
+            System.out.println(e.getMessage());
+        }
         logIn.setOnMouseClicked(event -> {
             if(bool)
             {

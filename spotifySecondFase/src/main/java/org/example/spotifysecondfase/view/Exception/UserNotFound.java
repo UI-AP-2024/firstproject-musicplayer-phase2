@@ -1,4 +1,4 @@
-package org.example.spotifysecondfase.Exception;
+package org.example.spotifysecondfase.view.Exception;
 
 public class UserNotFound extends FailedLoginException{
     public UserNotFound()

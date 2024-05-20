@@ -5,6 +5,8 @@ import model.UserAccount.Admin;
 import model.UserAccount.Artist.Artist;
 import model.UserAccount.Listener.Listener;
 import model.UserAccount.UserAccount;
+import org.example.spotifysecondfase.view.Exception.UserNotFound;
+import org.example.spotifysecondfase.view.Exception.WrongPassword;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,8 +48,7 @@ public class UserAccountController
     {
         accounts.add(userAccount);
     }
-    public boolean findUser(String userName,String passWord)
-    {
+    public boolean findUser(String userName,String passWord) throws WrongPassword, UserNotFound {
         for (UserAccount userAccount : Database.getDatabase().getUserAccounts())
         {
             if(userName.equals(userAccount.getUserName()))
@@ -56,6 +57,14 @@ public class UserAccountController
                 {
                     return true;
                 }
+                else {
+                    throw new WrongPassword();
+                }
+            }
+            try {
+                throw new UserNotFound();
+            } catch (UserNotFound e) {
+                throw new UserNotFound();
             }
         }
         return false;

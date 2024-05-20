@@ -15,10 +15,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import controller.ListenerController;
 import model.Audio.Audio;
 import model.Playlist;
 import model.UserAccount.Artist.Artist;
+import org.example.spotifysecondfase.view.Exception.FreeAccountLimit;
 
 import java.io.IOException;
 import java.net.URL;
@@ -631,7 +631,11 @@ public class ListenerPanel implements Initializable
             }
         });
         newPlayListBtn.setOnMouseClicked(event -> {
-            Singup.listenerController.makePlaylist(newPlayList.getText());
+            try {
+                Singup.listenerController.makePlaylist(newPlayList.getText());
+            } catch (FreeAccountLimit e) {
+                throw new RuntimeException(e);
+            }
         });
         for (Artist a : Singup.listenerController.showFollowing())
         {

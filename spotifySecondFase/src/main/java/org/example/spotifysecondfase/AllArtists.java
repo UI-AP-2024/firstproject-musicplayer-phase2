@@ -13,9 +13,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import controller.ListenerController;
 import model.Audio.Audio;
-import model.Database;
 import model.UserAccount.Artist.Artist;
 
 import java.io.IOException;

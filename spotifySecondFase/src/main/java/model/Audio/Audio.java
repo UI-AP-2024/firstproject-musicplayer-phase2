@@ -7,7 +7,7 @@ import model.Genre;
 
 import java.util.Date;
 
-public abstract class Audio
+public abstract class Audio implements Comparable
 {
     private static int i=0;
     private String name;
@@ -90,5 +90,9 @@ public abstract class Audio
     {
         return "Audio name : "+getName() + "Audio genre : "+getGenre()+"Audio artist name : "+getArtistName();
     }
+//    public int CompareTo(Audio audio1,Audio audio2)
+//    {
+//        audio1.name.compareTo(audio2.name);
+//    }
 
 }

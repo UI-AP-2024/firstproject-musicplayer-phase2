@@ -5,6 +5,7 @@ import model.Database;
 import model.Playlist;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class PlaylistController
 {
@@ -34,4 +35,5 @@ public class PlaylistController
     {
         return playLists;
     }
+
 }

@@ -1,4 +1,4 @@
-package org.example.spotifysecondfase.Exception;
+package org.example.spotifysecondfase.view.Exception;
 
 public class InvalidFormat extends Exception
 {

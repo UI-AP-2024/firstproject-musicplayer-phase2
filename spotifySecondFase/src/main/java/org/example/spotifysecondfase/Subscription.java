@@ -1,17 +1,16 @@
 package org.example.spotifysecondfase;
 
-import controller.ListenerController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.UserAccount.Listener.Listener;
-import org.example.spotifysecondfase.Exception.NotEnoughCredit;
+import org.example.spotifysecondfase.ChangeScene;
+import org.example.spotifysecondfase.Singup;
+import org.example.spotifysecondfase.view.Exception.NotEnoughCredit;
 
 import java.io.IOException;
 import java.net.URL;

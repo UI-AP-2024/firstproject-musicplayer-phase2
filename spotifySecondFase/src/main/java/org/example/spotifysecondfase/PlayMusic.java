@@ -1,6 +1,5 @@
 package org.example.spotifysecondfase;
 
-import controller.ListenerController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import model.Playlist;
 
 public class PlayMusic implements Initializable {
     public static ArrayList<Audio> playlists = new ArrayList<>();

@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="426.0" prefWidth="435.0" spacing="20" style="-fx-padding: 20px; -fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.GenresSelectionController">
    <children>
@@ -34,6 +35,11 @@
             <ToggleButton fx:id="historyButton" prefHeight="37.0" prefWidth="102.0" style="-fx-background-color: #2e2e2e; -fx-text-fill: white; -fx-font-size: 16px;" text="HISTORY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <Label fx:id="error" alignment="CENTER" prefHeight="18.0" prefWidth="395.0" textFill="#e5ff00">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
       <Button onAction="#btn_confirm_action" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-size: 16px;" text="Confirm" />
    </children>
 </VBox>

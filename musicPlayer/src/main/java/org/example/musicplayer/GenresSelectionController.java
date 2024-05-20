@@ -1,11 +1,18 @@
 package org.example.musicplayer;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
+import org.example.musicplayer.model.GenreModel;
+import org.example.musicplayer.model.UserAccount.Listener.ListenerModel;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -32,6 +39,8 @@ public class GenresSelectionController implements Initializable {
     private ToggleButton historyButton;
     @FXML
     private GridPane genreGrid;
+    @FXML
+    private Label error;
 
     private final Set<ToggleButton> selectedGenres = new HashSet<>();
     private static final int MAX_SELECTION = 4;
@@ -64,7 +73,20 @@ public class GenresSelectionController implements Initializable {
     }
 
     @FXML
-    private void btn_confirm_action() {
-        selectedGenres.forEach(button -> System.out.println(button.getText()));
+    private void btn_confirm_action() throws IOException {
+        if (selectedGenres.isEmpty()) {
+            error.setText("Your have to choose at least one genre!");
+        }
+        else if (HelloApplication.currentUser instanceof ListenerModel)
+        {
+            ArrayList<GenreModel> genreModels = new ArrayList<>();
+            for (ToggleButton t : selectedGenres)
+                genreModels.add(GenreModel.valueOf(t.getText()));
+            ((ListenerModel) HelloApplication.currentUser).setFavoriteGenres(genreModels);
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("base-page-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+            HelloApplication.currentstage.setScene(scene);
+            HelloApplication.currentstage.show();
+        }
     }
 }

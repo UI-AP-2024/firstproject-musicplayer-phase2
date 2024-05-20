@@ -66,7 +66,7 @@ public abstract class ListenerModel extends UserAccountModel {
     }
 
     public void setFavoriteGenres(ArrayList<GenreModel> favoriteGenres) {
-        this.favoriteGenres = favoriteGenres;
+        this.favoriteGenres.addAll(favoriteGenres);
     }
 
     public void setPlaylists(ArrayList<PlaylistModel> playlists) {

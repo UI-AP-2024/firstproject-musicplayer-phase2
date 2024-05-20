@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.example.musicplayer.controller.ListenerController;
 import org.example.musicplayer.controller.SignInOutController;
 
 import java.io.IOException;
@@ -56,8 +57,10 @@ public class SignUpListenerController implements Initializable {
 
     @FXML
     void register_action(ActionEvent event) throws IOException {
+        error.setText("");
         String result = SignInOutController.getUserAccountController().sinUpListener(usernameField.getText(), passwordField.getText(), nameField.getText(), emailField.getText(), phoneNumberField.getText(), birthDatePicker.getText());
         if (Objects.equals(result, "Now you can choose 4 favorite genres that you like!")) {
+            HelloApplication.currentUser = ListenerController.getListenerController().getListener();
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("pick-genres-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 700, 500);
             HelloApplication.currentstage.setScene(scene);

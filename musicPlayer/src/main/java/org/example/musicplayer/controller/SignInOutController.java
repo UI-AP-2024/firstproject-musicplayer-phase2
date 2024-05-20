@@ -1,5 +1,6 @@
 package org.example.musicplayer.controller;
 
+import org.example.musicplayer.HelloApplication;
 import org.example.musicplayer.model.DataBase.DataBaseModel;
 import org.example.musicplayer.model.UserAccount.AdminModel;
 import org.example.musicplayer.model.UserAccount.Artist.ArtistModel;
@@ -96,6 +97,7 @@ public class SignInOutController {
                         AdminController.getAdminController().setAdmin((AdminModel) userAccount);
                         user = (AdminModel)userAccount;
                     }
+                    HelloApplication.currentUser = userAccount;
                     return "You are logged in now";
                 }
                 return "Password is incorrect";

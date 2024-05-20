@@ -13,12 +13,12 @@ import javafx.scene.layout.HBox;
 import org.example.musicplayer.controller.ListenerController;
 import org.example.musicplayer.model.Audio.AudioModel;
 import org.example.musicplayer.model.DataBase.DataBaseModel;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BasePageController implements Initializable {
+    public static boolean searched = false;
     @FXML
     private GridPane grid;
     @FXML
@@ -70,8 +70,11 @@ public class BasePageController implements Initializable {
     }
 
     @FXML
-    void btn_home_action(ActionEvent event) {
-
+    void btn_home_action(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("base-page-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        HelloApplication.currentstage.setScene(scene);
+        HelloApplication.currentstage.show();
     }
 
     @FXML
@@ -97,7 +100,8 @@ public class BasePageController implements Initializable {
     }
     @FXML
     void btn_search_action(ActionEvent event) {
-        ListenerController.getListenerController().searchAudioOrArtist(tf_search.getText());
+        searched = true;
+        //add audios to grid;
     }
 
     @FXML
@@ -110,17 +114,19 @@ public class BasePageController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (HelloApplication.loggedIn)
-        {
-            for (AudioModel audioModel : DataBaseModel.getDataBase().getAudios()) {
-                HBox hBox = new HBox(3);
+        if (!searched) {
+            if (HelloApplication.loggedIn)
+            {
+                for (AudioModel audioModel : DataBaseModel.getDataBase().getAudios()) {
+                    HBox hBox = new HBox(3);
 
-                //add cover, title
-                //add vbox to grid
+                    //add cover, title
+                    //add vbox to grid
+                }
             }
-        }
-        else {
-            //add suggestions
+            else {
+                //add suggestions
+            }
         }
     }
 }

@@ -1,4 +1,14 @@
 package org.example.musicplayer;
 
-public class MusicController {
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MusicController implements Initializable
+{
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

@@ -5,24 +5,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.phase2.Controller.AdminController;
+import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Model.Audios.Audio;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class HomeLoggedOut implements Initializable {
+public class HomeLoggedOut implements Initializable, GeneralOperation {
 
     @FXML
     private AnchorPane anchor;
@@ -52,7 +53,10 @@ public class HomeLoggedOut implements Initializable {
     private Button login_btn;
 
     @FXML
-    private Button search_btn;
+    private ImageView search_img;
+
+    @FXML
+    private TextField search_tF;
 
     @FXML
     private VBox sideVBox;
@@ -111,38 +115,22 @@ public class HomeLoggedOut implements Initializable {
 
     @FXML
     void loginAction(ActionEvent event) throws IOException {
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
-        Database.getDatabase().getTitles().add("Home");
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Login");
-        stage.setScene(scene);
-        stage.show();
+        login();
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
-
+    void searchAction(MouseEvent event) throws IOException {
+        search();
     }
 
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle(Database.getDatabase().getTitles().pop());
-        stage.setScene(scene);
-        stage.show();
+        backTo();
     }
 
     @FXML
     void signUpAction(ActionEvent event) throws IOException {
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
-        Database.getDatabase().getTitles().add("Home");
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Signup.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Signup");
-        stage.setScene(scene);
-        stage.show();
+        signup();
     }
 
     @Override
@@ -152,7 +140,7 @@ public class HomeLoggedOut implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ArrayList<Audio> audios= AdminController.getAdminController().showPopularAudios();
+        ArrayList<Audio> audios= ListenerController.getListenerController().sort();
         int i=0;
         for(Audio audio : audios){
             Label label = new Label("Name: "+audio.getName()+"\t\t\t"+"Likes: "+audio.getLikes());
@@ -175,5 +163,53 @@ public class HomeLoggedOut implements Initializable {
                 stage.show();
             });
         }
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+
+    }
+
+    @Override
+    public void login() throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
+        Database.getDatabase().getTitles().add("Home");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void signup() throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
+        Database.getDatabase().getTitles().add("Home");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Signup.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Signup");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
+        Database.getDatabase().getTitles().add("Home");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
     }
 }

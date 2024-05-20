@@ -7,18 +7,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LPanelController implements Initializable {
+public class LPanelController implements Initializable, GeneralOperation {
 
     @FXML
     private Button account_btn;
@@ -36,7 +40,13 @@ public class LPanelController implements Initializable {
     private Button library_btn;
 
     @FXML
-    private Button search_btn;
+    private Button logout_btn;
+
+    @FXML
+    private ImageView search_img;
+
+    @FXML
+    private TextField search_tF;
 
     @FXML
     private Button back_btn;
@@ -118,9 +128,15 @@ public class LPanelController implements Initializable {
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
-
+    void logoutAction(ActionEvent event) throws IOException {
+        logout();
     }
+
+    @FXML
+    void searchAction(MouseEvent event) throws IOException {
+        search();
+    }
+
 
     @FXML
     void accountAction(ActionEvent event) throws IOException {
@@ -135,11 +151,7 @@ public class LPanelController implements Initializable {
 
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle(Database.getDatabase().getTitles().pop());
-        stage.setScene(scene);
-        stage.show();
+        backTo();
     }
 
     @FXML
@@ -176,8 +188,14 @@ public class LPanelController implements Initializable {
     }
 
     @FXML
-    void premiumAction(ActionEvent event) {
-
+    void premiumAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("GetPremium.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Get Premium");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
@@ -192,5 +210,48 @@ public class LPanelController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+        ListenerController.getListenerController().logout();
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void login() throws IOException {
+
+    }
+
+    @Override
+    public void signup() throws IOException {
+
+    }
+
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
     }
 }

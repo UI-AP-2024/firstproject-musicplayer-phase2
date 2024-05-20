@@ -10,8 +10,13 @@ import org.example.phase2.Model.Audios.Audio;
 import org.example.phase2.Model.Audios.Genre;
 import org.example.phase2.Model.Audios.Music;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Users.Singer;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class HelloApplication extends Application {
     @Override
@@ -31,6 +36,9 @@ public class HelloApplication extends Application {
         AddToPlaylistController.setStage(stage);
         AllArtistsController.setStage(stage);
         HomeLoggedinController.setStage(stage);
+        SearchController.setStage(stage);
+        ArtistInfoController.setStage(stage);
+        GetPremiumController.setStage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         scene.widthProperty().isEqualTo(stage.widthProperty());
@@ -40,7 +48,7 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         String path1="https://www.appahang5.com/cdn/tracks-mp3/1402/10/4081170458694280041704586942399617045869427678.mp3";
         String path2="https://www.appahang5.com/cdn/tracks-mp3/1395/12/1496164767068821031647670688129016476706885981.mp3";
         String path3="https://www.appahang5.com/cdn/tracks-mp3/1391/11/3453164728080326951647280803927416472808031775.mp3";
@@ -55,6 +63,11 @@ public class HelloApplication extends Application {
         Database.getDatabase().getAudios().add(music2);
         Database.getDatabase().getAudios().add(music3);
         Database.getDatabase().getAudios().add(music4);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+        Date birthDate1=sdf.parse("05/27/1995");
+        Singer singer1=new Singer("Sh21","A2b3D4#abcd","Shadmehr Aghili","sh@gmail.com","09134561234",birthDate1,"A good singer");
+        Database.getDatabase().getUsers().add(singer1);
 
         PlayBar.setAudios(Database.getDatabase().getAudios());
         launch();

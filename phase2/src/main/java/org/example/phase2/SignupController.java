@@ -19,13 +19,14 @@ import org.example.phase2.Exceptions.EasyPassword;
 import org.example.phase2.Exceptions.InvalidFormatException;
 import org.example.phase2.Exceptions.UsernameExist;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
 
-public class SignupController implements Initializable {
+public class SignupController implements Initializable, GeneralOperation {
     @FXML
     private Button back_btn;
 
@@ -109,10 +110,10 @@ public class SignupController implements Initializable {
 
     @FXML
     private TextField usernameTextField;
+
     @FXML
     private ImageView magnifier_img;
-    @FXML
-    private Button logout_btn;
+
     private static Stage stage;
     public static void setStage(Stage stage){
         SignupController.stage =stage;
@@ -162,30 +163,17 @@ public class SignupController implements Initializable {
 
     @FXML
     void loginAction(ActionEvent event) throws IOException {
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Signup.fxml")));
-        Database.getDatabase().getTitles().add("Signup");
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Login");
-        stage.setScene(scene);
-        stage.show();
+        login();
     }
 
     @FXML
-    void SearchAction(MouseEvent event) {
-
+    void SearchAction(MouseEvent event) throws IOException {
+        search();
     }
-    @FXML
-    void logoutAction(ActionEvent event) {
 
-    }
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader=Database.getDatabase().getScenes().pop();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle(Database.getDatabase().getTitles().pop());
-        stage.setScene(scene);
-        stage.show();
+        backTo();
     }
 
     @FXML
@@ -310,5 +298,48 @@ public class SignupController implements Initializable {
                 bioLabel.setVisible(false);
             }
         }));
+
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader=Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+
+    }
+
+    @Override
+    public void login() throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Signup.fxml")));
+        Database.getDatabase().getTitles().add("Signup");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void signup() throws IOException {
+
+    }
+
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Signup.fxml")));
+        Database.getDatabase().getTitles().add("Signup");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
     }
 }

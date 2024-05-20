@@ -6,10 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,6 +16,8 @@ import javafx.stage.Stage;
 import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Exceptions.NotEnoughMoney;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
+import org.example.phase2.Model.Users.PremiumListener;
 import org.example.phase2.Model.Users.PremiumTypes;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
 
-public class GetPremiumController implements Initializable {
+public class GetPremiumController implements Initializable, GeneralOperation {
 
     @FXML
     private Button artists_btn;
@@ -80,8 +81,6 @@ public class GetPremiumController implements Initializable {
     @FXML
     private Label premium_lbl;
 
-    @FXML
-    private Button search_btn;
 
     @FXML
     private AnchorPane secondaryAnchor;
@@ -91,6 +90,12 @@ public class GetPremiumController implements Initializable {
 
     @FXML
     private VBox vBox2;
+
+    @FXML
+    private ImageView search_img;
+
+    @FXML
+    private TextField search_tF;
     private static Stage stage;
 
     public static Stage getStage() {
@@ -124,8 +129,8 @@ public class GetPremiumController implements Initializable {
     }
 
     @FXML
-    void backAction(ActionEvent event) {
-
+    void backAction(ActionEvent event) throws IOException {
+        backTo();
     }
 
     @FXML
@@ -170,6 +175,11 @@ public class GetPremiumController implements Initializable {
                 alert.showAndWait();
             }
         }
+        PremiumListener premiumListener = (PremiumListener) ListenerController.getListenerController().getListener();
+        long leftDays=premiumListener.getLeftDays()+1;
+        leftDays2_lbl.setText(String.valueOf(leftDays));
+        premiumListener.setLeftDays(premiumListener.getLeftDays()+2);
+        currentCredit2_lbl.setText(String.valueOf(ListenerController.getListenerController().getListener().getCredit()));
     }
 
     @FXML
@@ -185,7 +195,8 @@ public class GetPremiumController implements Initializable {
 
     @FXML
     void increaseAction(ActionEvent event) {
-
+        ListenerController.getListenerController().getListener().setCredit(ListenerController.getListenerController().getListener().getCredit()+50);
+        currentCredit2_lbl.setText(String.valueOf(ListenerController.getListenerController().getListener().getCredit()));
     }
 
     @FXML
@@ -200,17 +211,74 @@ public class GetPremiumController implements Initializable {
     }
 
     @FXML
-    void logoutAction(ActionEvent event) {
-
+    void logoutAction(ActionEvent event) throws IOException {
+        logout();
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
-
+    void searchAction(MouseEvent event) throws IOException {
+        search();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         comboBox.setItems(FXCollections.observableArrayList("One month","Two months","Six months"));
+        currentCredit2_lbl.setText(String.valueOf(ListenerController.getListenerController().getListener().getCredit()));
+        if(ListenerController.getListenerController().getListener() instanceof PremiumListener){
+            PremiumListener premiumListener = (PremiumListener) ListenerController.getListenerController().getListener();
+            long leftDays=premiumListener.getLeftDays()+1;
+            leftDays2_lbl.setText(String.valueOf(leftDays));
+            premiumListener.setLeftDays(premiumListener.getLeftDays()+2);
+        }else{
+            leftDays2_lbl.setText("0");
+        }
+        try {
+            vBox1.getChildren().add(new FXMLLoader(HelloApplication.class.getResource("Play-bar.fxml")).load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+        ListenerController.getListenerController().logout();
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("GetPremium.fxml")));
+        Database.getDatabase().getTitles().add("Get Premium");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void login() throws IOException {
+
+    }
+
+    @Override
+    public void signup() throws IOException {
+
+    }
+
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("GetPremium.fxml")));
+        Database.getDatabase().getTitles().add("Get Premium");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
     }
 }

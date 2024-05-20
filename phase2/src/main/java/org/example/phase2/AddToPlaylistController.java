@@ -72,6 +72,12 @@ public class AddToPlaylistController {
                 alert.setContentText("There was a problem. Please try again.");
                 alert.showAndWait();
             }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("INFORMATION");
+            alert.setHeaderText(null);
+            alert.setContentText("You should first login.");
+            alert.showAndWait();
         }
     }
 

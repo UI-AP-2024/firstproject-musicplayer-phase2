@@ -17,6 +17,7 @@ import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Exceptions.InterestedGenreLimit;
 import org.example.phase2.Model.Audios.Genre;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
 import org.example.phase2.Model.Users.Listener;
 import org.example.phase2.Model.Users.UserAccount;
 
@@ -25,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class favoriteGenresController implements Initializable {
+public class favoriteGenresController implements Initializable , GeneralOperation {
 
     @FXML
     private Button add_btn;
@@ -44,9 +45,6 @@ public class favoriteGenresController implements Initializable {
 
     @FXML
     private Button library_btn;
-
-    @FXML
-    private Button search_btn;
 
     @FXML
     private VBox vbox2;
@@ -247,11 +245,7 @@ public class favoriteGenresController implements Initializable {
 
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle(Database.getDatabase().getTitles().pop());
-        stage.setScene(scene);
-        stage.show();
+        backTo();
     }
 
     @FXML
@@ -276,11 +270,6 @@ public class favoriteGenresController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    void searchAction(ActionEvent event) {
-
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -294,6 +283,35 @@ public class favoriteGenresController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+
+    }
+
+    @Override
+    public void login() throws IOException {
+
+    }
+
+    @Override
+    public void signup() throws IOException {
+
+    }
+
+    @Override
+    public void search() throws IOException {
 
     }
 }

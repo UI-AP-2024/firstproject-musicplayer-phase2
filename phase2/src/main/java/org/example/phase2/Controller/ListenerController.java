@@ -277,6 +277,11 @@ public class ListenerController{
         }
         return audios;
     }
+    public ArrayList<Audio> sort(){
+        ArrayList<Audio> audios=Database.getDatabase().getAudios();
+        Collections.sort(audios,Audio::compareTo);
+        return audios;
+    }
     public String sort(String sortType)
     {
         //ArrayList<Audio> audios = Database.getDatabase().getAudios();

@@ -43,7 +43,7 @@ public class Artist extends UserAccount{
     {
         StringBuilder info=new StringBuilder();
         info.append(super.toString());
-        info.append("Income: "+income+"\t");
+        info.append("Income: "+income+"\n");
         info.append("Biography: "+biography+"\n");
         return info.toString();
     }

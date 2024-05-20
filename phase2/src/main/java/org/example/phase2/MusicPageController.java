@@ -17,18 +17,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Model.Audios.Audio;
 import org.example.phase2.Model.Audios.Music;
 import org.example.phase2.Model.Audios.Podcast;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MusicPageController implements Initializable {
+public class MusicPageController implements Initializable, GeneralOperation {
 
     @FXML
     private Button add_btn;
@@ -61,16 +64,25 @@ public class MusicPageController implements Initializable {
     private Button library_btn;
 
     @FXML
-    private Button search_btn;
+    private Button logout_btn;
+
+    @FXML
+    private ImageView search_img;
+
+    @FXML
+    private TextField search_tF;
 
     @FXML
     private AnchorPane secondaryAnchor;
 
     @FXML
+    private Button signup_btn;
+
+    @FXML
     private Label text_lbl;
 
     @FXML
-    private TextField text_tF;
+    private TextFlow textFlow;
 
     @FXML
     private VBox vBox1;
@@ -132,12 +144,7 @@ public class MusicPageController implements Initializable {
 
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
-        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle(Database.getDatabase().getTitles().pop());
-        stage.setScene(scene);
-        stage.show();
+        backTo();
     }
 
     @FXML
@@ -182,8 +189,22 @@ public class MusicPageController implements Initializable {
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
+    void logoutAction(ActionEvent event) throws IOException {
+        if(ListenerController.getListenerController().getListener()==null){
+            login();
+        }else{
+            logout();
+        }
+    }
 
+    @FXML
+    void searchAction(MouseEvent event) throws IOException {
+        search();
+    }
+
+    @FXML
+    void signupAction(ActionEvent event) throws IOException {
+        signup();
     }
 
     @FXML
@@ -212,7 +233,6 @@ public class MusicPageController implements Initializable {
             alert.showAndWait();
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -244,11 +264,76 @@ public class MusicPageController implements Initializable {
         }
         if(audio instanceof Music){
             Music music=(Music)audio;
-            text_tF.setText(music.getLyric());
+            Text text=new Text("\n"+music.getLyric());
+            textFlow.getChildren().add(text);
         }
         if(audio instanceof Podcast){
             Podcast podcast=(Podcast) audio;
-            text_tF.setText(podcast.getCaption());
+            Text text=new Text("\n"+podcast.getCaption());
+            textFlow.getChildren().add(text);
         }
+        if(ListenerController.getListenerController().getListener()==null){
+            logout_btn.setText("Login");
+            signup_btn.setVisible(true);
+        }else{
+            logout_btn.setText("Logout");
+            signup_btn.setVisible(false);
+        }
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        PlayBar.setAudios(Database.getDatabase().getAudios());
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+        ListenerController.getListenerController().logout();
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicPage.fxml")));
+        Database.getDatabase().getTitles().add("Music Page");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void login() throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicPage.fxml")));
+        Database.getDatabase().getTitles().add("Music Page");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void signup() throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicPage.fxml")));
+        Database.getDatabase().getTitles().add("Music Page");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Signup.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Signup");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicPage.fxml")));
+        Database.getDatabase().getTitles().add("Music Page");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
     }
 }

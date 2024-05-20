@@ -76,10 +76,10 @@ abstract public class UserAccount {
     public String toString()
     {
         StringBuilder info=new StringBuilder();
-        info.append("Name: "+firstAndLastName+"\t");
-        info.append("Username: "+username+"\t");
-        info.append("Email address: "+emailAddress+"\t");
-        info.append("Phone number: "+phoneNumber+"\t");
+        info.append("Name: "+firstAndLastName+"\n");
+        info.append("Username: "+username+"\n");
+        info.append("Email address: "+emailAddress+"\n");
+        info.append("Phone number: "+phoneNumber+"\n");
         info.append("Birth date: "+getBirthDate()+"\n");
         return info.toString();
     }

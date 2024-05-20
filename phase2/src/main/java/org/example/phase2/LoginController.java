@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -13,11 +15,12 @@ import org.example.phase2.Controller.UserController;
 import org.example.phase2.Exceptions.UserNotFoundException;
 import org.example.phase2.Exceptions.WrongPasswordException;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
 import org.example.phase2.Model.Users.UserAccount;
 
 import java.io.IOException;
 
-public class LoginController {
+public class LoginController implements GeneralOperation {
 
     @FXML
     private Button artists_btn;
@@ -56,7 +59,10 @@ public class LoginController {
     private Label registerLabel;
 
     @FXML
-    private Button search_btn;
+    private ImageView search_img;
+
+    @FXML
+    private TextField search_tF;
 
     @FXML
     private AnchorPane secondaryAnchor;
@@ -107,11 +113,7 @@ public class LoginController {
 
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle(Database.getDatabase().getTitles().pop());
-        stage.setScene(scene);
-        stage.show();
+        backTo();
     }
 
     @FXML
@@ -156,6 +158,38 @@ public class LoginController {
 
     @FXML
     void loginAction(ActionEvent event) throws IOException {
+        login();
+    }
+
+    @FXML
+    void registerAction(ActionEvent event) throws IOException {
+        signup();
+    }
+
+    @FXML
+    void searchAction(MouseEvent event) throws IOException {
+        search();
+    }
+    public static void setStage(Stage stage){
+        LoginController.stage =stage;
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+
+    }
+
+    @Override
+    public void login() throws IOException {
         try {
             UserController.getUserController().loginUser(usernameTextField.getText(),passField.getText());
             loginCheck=true;
@@ -183,8 +217,8 @@ public class LoginController {
         }
     }
 
-    @FXML
-    void registerAction(ActionEvent event) throws IOException {
+    @Override
+    public void signup() throws IOException {
         Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
         Database.getDatabase().getTitles().add("Login");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Signup.fxml"));
@@ -194,12 +228,15 @@ public class LoginController {
         stage.show();
     }
 
-    @FXML
-    void searchAction(ActionEvent event) {
-
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
+        Database.getDatabase().getTitles().add("Login");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
     }
-    public static void setStage(Stage stage){
-        LoginController.stage =stage;
-    }
-
 }

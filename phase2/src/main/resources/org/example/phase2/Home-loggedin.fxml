@@ -12,7 +12,11 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import java.net.URL?>
 <AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.HomeLoggedinController">
+   <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
    <children>
       <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
          <children>

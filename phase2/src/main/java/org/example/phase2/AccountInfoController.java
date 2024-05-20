@@ -7,12 +7,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Model.Database.Database;
+import org.example.phase2.Model.Database.GeneralOperation;
 import org.example.phase2.Model.Users.FreeListener;
 import org.example.phase2.Model.Users.PremiumListener;
 
@@ -21,7 +25,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
 
-public class AccountInfoController implements Initializable {
+public class AccountInfoController implements Initializable, GeneralOperation {
 
     @FXML
     private Label account_blb;
@@ -84,7 +88,13 @@ public class AccountInfoController implements Initializable {
     private Label phoneNumber2;
 
     @FXML
-    private Button search_btn;
+    private Button logout_btn;
+
+    @FXML
+    private ImageView search_img;
+
+    @FXML
+    private TextField search_tF;
 
     @FXML
     private AnchorPane secondaryAnchor;
@@ -134,11 +144,7 @@ public class AccountInfoController implements Initializable {
 
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle(Database.getDatabase().getTitles().pop());
-        stage.setScene(scene);
-        stage.show();
+        backTo();
     }
 
     @FXML
@@ -164,8 +170,13 @@ public class AccountInfoController implements Initializable {
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
+    void logoutAction(ActionEvent event) throws IOException {
+        logout();
+    }
 
+    @FXML
+    void searchAction(MouseEvent event) throws IOException {
+        search();
     }
 
     @Override
@@ -218,5 +229,48 @@ public class AccountInfoController implements Initializable {
         else{
             leftDays2.setText(String.valueOf(0));
         }
+    }
+
+    @Override
+    public void backTo() throws IOException {
+        FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle(Database.getDatabase().getTitles().pop());
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void logout() throws IOException {
+        ListenerController.getListenerController().logout();
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("AccountInfo.fxml")));
+        Database.getDatabase().getTitles().add("Account Information");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @Override
+    public void login() throws IOException {
+
+    }
+
+    @Override
+    public void signup() throws IOException {
+
+    }
+
+    @Override
+    public void search() throws IOException {
+        SearchController.setSearchedPhrase(search_tF.getText());
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("AccountInfo.fxml")));
+        Database.getDatabase().getTitles().add("Account Information");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SearchController.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Search");
+        stage.setScene(scene);
+        stage.show();
     }
 }

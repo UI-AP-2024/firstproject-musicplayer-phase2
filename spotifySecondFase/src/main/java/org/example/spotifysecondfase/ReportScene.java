@@ -28,7 +28,7 @@ public class ReportScene implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Singup.listenerController.description(reportLable.getText(),artistInfo.artistName);
+        Singup.listenerController.description(reportLable.getText(),artistInfo.nameOfArtist);
         doneBtn.setOnMouseClicked(event -> {
             try {
                 ChangeScene.artistInfo();

@@ -198,7 +198,7 @@ public class ListenerController {
                     str.append(userAccount.toString()).append("\n");
         return str;
     }
-    public StringBuilder sortAudios(String sortBy) {
+    public ArrayList<AudioModel> sortAudios(String sortBy) {
         StringBuilder str = new StringBuilder();
         ArrayList<AudioModel> audios = DataBaseModel.getDataBase().getAudios();
         if (Objects.equals(sortBy, "L")) {
@@ -223,9 +223,9 @@ public class ListenerController {
                 }
             }
         }
-        for (AudioModel audio : audios)
-            str.append(audio.toString());
-        return str;
+//        for (AudioModel audio : audios)
+//            str.append(audio.toString());
+        return audios;
     }
     public String getPremiumPackage(int days) {
         PremiumPackagesModel premiumPackage;
@@ -307,5 +307,29 @@ public class ListenerController {
                             .append(", id : ").append(audio.getId());
         }
         return str;
+    }
+
+    public ArrayList<AudioModel> suggestions() {
+        ArrayList<AudioModel> audios = new ArrayList<>();
+        ArrayList<AudioModel> data = sortAudios("L");
+        int count = 0;
+        for (AudioModel audioModel : data) {
+            lable1:
+            for (GenreModel genreModel : listener.getFavoriteGenres()) {
+                for (UserAccountModel userAccountModel : listener.getFollowings()) {
+                    if ((Objects.equals(audioModel.getArtistName(), userAccountModel.getName())) || (audioModel.getGenre() == genreModel)) {
+                        if (count < 10) {
+                            audios.add(audioModel);
+                            count++;
+                            break lable1;
+                        }
+                        else {
+                            return audios;
+                        }
+                    }
+                }
+            }
+        }
+        return audios;
     }
 }

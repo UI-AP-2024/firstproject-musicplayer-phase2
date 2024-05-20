@@ -8,13 +8,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import org.example.musicplayer.model.Audio.AudioModel;
+import org.example.musicplayer.model.DataBase.DataBaseModel;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BasePageController implements Initializable {
-
+    @FXML
+    private GridPane grid;
     @FXML
     private Button btn_artists;
 
@@ -101,10 +106,17 @@ public class BasePageController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            mianPane.setCenter(new FXMLLoader(HelloApplication.class.getResource("login-or-not-view.fxml")).load());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (HelloApplication.loggedIn)
+        {
+            for (AudioModel audioModel : DataBaseModel.getDataBase().getAudios()) {
+                HBox hBox = new HBox(3);
+
+                //add cover, title
+                //add vbox to grid
+            }
+        }
+        else {
+            //add suggestions
         }
     }
 }

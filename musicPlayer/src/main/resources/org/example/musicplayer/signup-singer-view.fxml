@@ -63,7 +63,7 @@
         </HBox>
         <PasswordField fx:id="passwordField" prefHeight="26.0" prefWidth="212.0" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="birthDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label text="Birth Date (yyy/mm/dd) :" GridPane.rowIndex="6" />
+      <Label text="Birth Date (yyy-mm-dd) :" GridPane.rowIndex="6" />
       <Label fx:id="error" textFill="#df0000" GridPane.columnIndex="1" GridPane.rowIndex="8" />
     </children>
 </GridPane>

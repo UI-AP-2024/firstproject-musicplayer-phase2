@@ -1,59 +1,51 @@
 package org.example.musicplayer;
 
-
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import org.example.musicplayer.controller.SignInOutController;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
     @FXML
-    private TextField tf_username;
-
-    @FXML
-    private PasswordField pf_pass;
-
-    @FXML
-    private CheckBox cb_showPass;
+    private Button back;
 
     @FXML
     private Button btn_login;
 
     @FXML
-    private Button btn_signUp;
-    @FXML
-    private AnchorPane anchor;
+    private PasswordField pf_pass;
 
     @FXML
-    private Button btn_back;
+    private TextField tf_username;
 
     @FXML
-    private Button btn_home;
+    private VBox vBox;
 
     @FXML
-    void back_action(ActionEvent event) {
-
+    void back_action(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("base-page-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        HelloApplication.currentstage.setScene(scene);
+        HelloApplication.currentstage.show();
     }
 
     @FXML
-    void home_action(ActionEvent event) {
+    void login_action(ActionEvent event) {
 
     }
-    @FXML
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
-
-    @FXML
-    private void togglePasswordVisibility() {
 
     }
 }

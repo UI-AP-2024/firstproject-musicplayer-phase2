@@ -1,5 +1,4 @@
 package org.example.musicplayer;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,6 +8,7 @@ import java.io.IOException;
 
 
 public class HelloApplication extends Application {
+    public static boolean loggedIn = false;
     public static Stage currentstage;
    public static BorderPane mianPane = new BorderPane();
 

@@ -1,0 +1,64 @@
+/* General styles for the entire application */
+.root {
+    -fx-font-family: 'Arial';
+}
+#initialAnchor {
+    -fx-background-color: #1c1c1c;
+}
+
+/* Styling for the HBox */
+.hbox {
+    -fx-background-color: #1c1c1c;
+}
+
+/* Styling for the VBox containing the ListView */
+.vbox {
+    -fx-background-color: #1c1c1c;
+}
+
+/* Styling for the ListView */
+#listView {
+    -fx-background-color: #696969;
+    -fx-background-radius: 17px;
+    -fx-border-color: #1c1c1c;
+}
+
+/* Styling for the label */
+#FollowingsLabel {
+    -fx-text-fill: #469ec7;
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-alignment: center;
+}
+
+/* General button styles */
+.button {
+    -fx-background-color: #696969;
+    -fx-background-radius: 17px;
+    -fx-border-color: #1c1c1c;
+    -fx-border-radius: 10px;
+    -fx-border-width: 4px;
+}
+
+.button:hover {
+    -fx-background-color: #777777;
+}
+
+/* Specific styling for each button if needed */
+#home_btn, #search_btn, #library_btn, #artists_btn, #audios_btn, #back_btn {
+    -fx-pref-height: 60px;
+    -fx-pref-width: 75px;
+}
+.text-field{
+    -fx-background-color: #696969;
+}
+.label{
+    -fx-text-fill: #469ec7;
+}
+
+#audios_lbl, #playlist_lbl, #FollowingsLabel, #music_lbl, #panel_lbl, #popularLabel,#favorite_lbl,#create_lbl,#allArtists_lbl,#account_blb{
+    -fx-text-fill: #ff7100;
+}
+#name2,#username2,#emailAddress2,#phoneNumber2,#birthDate2,#credit2,#leftDays2{
+    -fx-text-fill: #ffffff;
+}

@@ -24,12 +24,11 @@ public class ReportScene implements Initializable {
     private Label reportLable;
     public Label getReportLable() {return reportLable;}
     public void setReportLable(Label reportLable) {this.reportLable = reportLable;}
-    ListenerController listenerController;
     ArtistInfo artistInfo;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listenerController.description(reportLable.getText(),artistInfo.artistName);
+        Singup.listenerController.description(reportLable.getText(),artistInfo.artistName);
         doneBtn.setOnMouseClicked(event -> {
             try {
                 ChangeScene.artistInfo();

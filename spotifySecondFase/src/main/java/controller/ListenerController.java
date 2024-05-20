@@ -1,4 +1,5 @@
 package controller;
+import javafx.scene.control.Alert;
 import model.Audio.Audio;
 import model.Database;
 import model.Playlist;
@@ -7,18 +8,20 @@ import model.UserAccount.Artist.Artist;
 import model.UserAccount.Listener.Free;
 import model.UserAccount.Listener.Listener;
 import model.UserAccount.UserAccount;
+import org.example.spotifysecondfase.Exception.InvalidFormat;
+import org.example.spotifysecondfase.Exception.NotEnoughCredit;
 
 import java.util.*;
 
-public abstract class ListenerController extends UserAccountController
+public class ListenerController extends UserAccountController
 {
-    UserAccountController userAccountController;
     private Listener listener;
     public Listener getListener() {return listener;}
     public void setListener(Listener listener) {this.listener = listener;}
     public Listener newListener(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day)
     {
             listener = newListener(userName,passWord,name,email,phoneNumber,year,month,day);
+//            Database.getDatabase().getUserAccounts().add(listener);
             Database.getDatabase().getUserAccounts().add(listener);
             return listener;
     }
@@ -52,6 +55,11 @@ public abstract class ListenerController extends UserAccountController
     }
     public void makePlaylist(String name)
     {
+        boolean b = listener instanceof Free;
+        if (b)
+        {
+            //freeLimit
+        }
         playlist = new Playlist(name);
         getListener().getPlaylists().add(getPlaylist());
     }
@@ -178,7 +186,42 @@ public abstract class ListenerController extends UserAccountController
     {
         return listener.toString();
     }
-    public abstract void buyOrRenew(int money);
+    public void buyOrRenew(int money) throws NotEnoughCredit
+    {
+        boolean b = listener instanceof Free;
+        if (b)
+        {
+            if (listener.getAccountCredit() >= money)
+            {
+                listener.setAccountCredit(listener.getAccountCredit() - money);
+                b = false;
+            }
+            else {
+                try {
+                    throw new NotEnoughCredit("Credit is not enough");
+                } catch (NotEnoughCredit e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
+            }
+        }
+        else {
+            if (listener.getAccountCredit() >= money)
+            {
+                listener.setAccountCredit(listener.getAccountCredit() - money);
+            }
+            else {
+                try {
+                    throw new NotEnoughCredit("Credit is not enough");
+                } catch (NotEnoughCredit e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }            }
+        }
+
+    }
 //    private ArrayList<String> search = new ArrayList<String>();
 //    public ArrayList<String> getSearch() {return search;}
 //    public void setSearch(ArrayList<String> search) {this.search = search;}

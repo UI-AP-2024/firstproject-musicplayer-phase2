@@ -36,6 +36,7 @@ public class Artist extends UserAccount
     public void setBiography(String biography) {
         this.biography = biography;
     }
+
     @Override
     public String toString()
     {

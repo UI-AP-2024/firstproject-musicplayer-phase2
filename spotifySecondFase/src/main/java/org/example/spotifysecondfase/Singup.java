@@ -7,7 +7,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import controller.ArtistController;
 import controller.ListenerController;
+import model.Database;
 import model.UserAccount.Artist.Artist;
+import model.UserAccount.Listener.Listener;
+import org.example.spotifysecondfase.Exception.InvalidFormat;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,8 +18,8 @@ import java.util.ResourceBundle;
 
 public class Singup implements Initializable
 {
-    ListenerController listenerController;
-    ArtistController artistController;
+    public static ListenerController listenerController = new ListenerController();
+    public static ArtistController artistController;
     @FXML
     private AnchorPane anchorPane;
     public AnchorPane getAnchorPane() {return anchorPane;}
@@ -176,11 +179,21 @@ public class Singup implements Initializable
         listener.setOnAction(event -> {
             monthMenuButton();
             listenerController.newListener(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText());
-            if(!listenerController.checkEmail(emailTextField.getText()) | !listenerController.checkPhoneNumber(phoneTextField.getText()))
+            if(!listenerController.checkEmail(emailTextField.getText()))
             {
                 try {
-                    throw new Exception("Email or Phone number format isn't correct");
-                } catch (Exception e) {
+                    throw new InvalidFormat("Email format is not correct");
+                } catch (InvalidFormat e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
+                }
+            }
+            if (!listenerController.checkPhoneNumber(phoneTextField.getText()))
+            {
+                try {
+                    throw new InvalidFormat("Phone number format is not correct");
+                } catch (InvalidFormat e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText(e.getMessage());
                     alert.showAndWait();

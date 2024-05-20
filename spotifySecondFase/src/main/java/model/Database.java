@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Database
 {
+    private static Database database;
     private ArrayList<UserAccount> userAccounts = new ArrayList<UserAccount>();
     private ArrayList<Audio> audio = new ArrayList<Audio>();
     private ArrayList<Report> reports = new ArrayList<Report>();
@@ -33,8 +34,7 @@ public class Database
     public static void setDatabase(Database database) {
         Database.database = database;
     }
-    private static Database database;
-    private Database(ArrayList<UserAccount> userAccounts, ArrayList<Audio> audio, ArrayList<Report> reports)
+    public Database(ArrayList<UserAccount> userAccounts, ArrayList<Audio> audio, ArrayList<Report> reports)
     {
         this.userAccounts = userAccounts;
         this.audio = audio;

@@ -29,10 +29,15 @@ public enum Genre {
     public void setFavoriteGenres(ArrayList<Genre> favoriteGenres) {
         Genre.favoriteGenres = favoriteGenres;
     }
-    public static void genres(Genre genre)
+    public static void addgenres(Genre genre)
     {
         favoriteGenres.add(genre);
     }
+    public static void removegenres(Genre genre)
+    {
+        favoriteGenres.remove(genre);
+    }
+
     public static ArrayList<Genre> genresArray()
     {
        getGenres().add(0,ROCK);

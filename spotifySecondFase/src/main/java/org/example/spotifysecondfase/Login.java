@@ -2,11 +2,14 @@ package org.example.spotifysecondfase;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import controller.UserAccountController;
+import org.example.spotifysecondfase.Exception.InvalidFormat;
+import org.example.spotifysecondfase.Exception.UserNotFound;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,9 +17,6 @@ import java.util.ResourceBundle;
 
 public class Login implements Initializable
 {
-    private UserAccountController userAccountController;
-    public UserAccountController getUserAccountController() {return userAccountController;}
-    public void setUserAccountController(UserAccountController userAccountController) {this.userAccountController = userAccountController;}
     @FXML
     private AnchorPane anchorPane;
 
@@ -44,16 +44,29 @@ public class Login implements Initializable
     public Label getUserNameLable() {return userNameLable;}
     public void setUserNameLable(Label userNameLable) {this.userNameLable = userNameLable;}
     @FXML
-    private TextField userNameTextFeild;
-    public TextField getUserNameTextFeild() {return userNameTextFeild;}
-    public void setUserNameTextFeild(TextField userNameTextFeild) {this.userNameTextFeild = userNameTextFeild;}
+    private Button backButton;
+
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    public void setBackButton(Button backButton) {
+        this.backButton = backButton;
+    }
+
+    @FXML
+    private static TextField userNameTextFeild;
+    public static TextField getUserNameTextFeild() {return userNameTextFeild;}
+    public static void setUserNameTextFeild(TextField userNameTextFeild) {
+        Login.userNameTextFeild = userNameTextFeild;}
     private static Boolean bool = false;
     public static Boolean getBool() {return bool;}
     public static void setBool(Boolean bool) {Login.bool = bool;}
+    public static UserAccountController userAccountController;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        bool = getUserAccountController().findUser(userNameTextFeild.getText(),passWordTextField.getText());
+        bool = userAccountController.findUser(userNameTextFeild.getText(),passWordTextField.getText());
         logIn.setOnMouseClicked(event -> {
             if(bool)
             {
@@ -61,6 +74,16 @@ public class Login implements Initializable
                     ChangeScene.home();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
+                }
+            }
+            if (!bool)
+            {
+                try {
+                    throw new UserNotFound();
+                } catch (UserNotFound e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                    alert.showAndWait();
                 }
             }
         });

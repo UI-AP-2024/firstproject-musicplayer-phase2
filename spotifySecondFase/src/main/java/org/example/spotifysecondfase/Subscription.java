@@ -31,7 +31,19 @@ public class Subscription implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
-    private HBox hbox;
+    private Label artistName;
+
+    @FXML
+    private Label audioName;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private ImageView coverImage;
+
+    @FXML
+    private VBox hboxVbox;
 
     @FXML
     private ImageView homeImage;
@@ -41,6 +53,9 @@ public class Subscription implements Initializable {
 
     @FXML
     private VBox homeVbox;
+
+    @FXML
+    private HBox iconsHbox;
 
     @FXML
     private ImageView likeImage;
@@ -74,6 +89,9 @@ public class Subscription implements Initializable {
 
     @FXML
     private ImageView pauseIcon;
+
+    @FXML
+    private HBox playHbox;
 
     @FXML
     private ImageView previousIcon;
@@ -158,12 +176,44 @@ public class Subscription implements Initializable {
         this.anchorPane = anchorPane;
     }
 
-    public HBox getHbox() {
-        return hbox;
+    public Label getArtistName() {
+        return artistName;
     }
 
-    public void setHbox(HBox hbox) {
-        this.hbox = hbox;
+    public void setArtistName(Label artistName) {
+        this.artistName = artistName;
+    }
+
+    public Label getAudioName() {
+        return audioName;
+    }
+
+    public void setAudioName(Label audioName) {
+        this.audioName = audioName;
+    }
+
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    public void setBackButton(Button backButton) {
+        this.backButton = backButton;
+    }
+
+    public ImageView getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(ImageView coverImage) {
+        this.coverImage = coverImage;
+    }
+
+    public VBox getHboxVbox() {
+        return hboxVbox;
+    }
+
+    public void setHboxVbox(VBox hboxVbox) {
+        this.hboxVbox = hboxVbox;
     }
 
     public ImageView getHomeImage() {
@@ -188,6 +238,14 @@ public class Subscription implements Initializable {
 
     public void setHomeVbox(VBox homeVbox) {
         this.homeVbox = homeVbox;
+    }
+
+    public HBox getIconsHbox() {
+        return iconsHbox;
+    }
+
+    public void setIconsHbox(HBox iconsHbox) {
+        this.iconsHbox = iconsHbox;
     }
 
     public ImageView getLikeImage() {
@@ -276,6 +334,14 @@ public class Subscription implements Initializable {
 
     public void setPauseIcon(ImageView pauseIcon) {
         this.pauseIcon = pauseIcon;
+    }
+
+    public HBox getPlayHbox() {
+        return playHbox;
+    }
+
+    public void setPlayHbox(HBox playHbox) {
+        this.playHbox = playHbox;
     }
 
     public ImageView getPreviousIcon() {
@@ -413,6 +479,7 @@ public class Subscription implements Initializable {
     public void setTwoPremiumLbl(Label twoPremiumLbl) {
         this.twoPremiumLbl = twoPremiumLbl;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         homeImage.setOnMouseClicked(event -> {

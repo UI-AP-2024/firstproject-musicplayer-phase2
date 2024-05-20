@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.ListenerPanel">
    <children>
-      <VBox fx:id="homeVbox" layoutX="20.0" layoutY="20.0" prefHeight="354.0" prefWidth="155.0" spacing="10.0">
+      <VBox fx:id="homeVbox" layoutX="20.0" layoutY="20.0" prefHeight="466.0" prefWidth="155.0" spacing="10.0">
          <children>
             <ImageView fx:id="spotify" fitHeight="58.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -46,6 +46,11 @@
                   <Font name="Arial" size="17.0" />
                </font>
             </Button>
+            <Button fx:id="logOutBtn" mnemonicParsing="false" prefHeight="46.0" prefWidth="124.0" style="-fx-background-color: #1a1a1a; -fx-background-radius: 20px;" text="Log out" textFill="#b4b3b3">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <VBox fx:id="playListVbox" layoutX="188.0" layoutY="230.0" prefHeight="200.0" prefWidth="150.0" spacing="10.0">
@@ -71,7 +76,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <VBox fx:id="titleVbox" layoutX="196.0" layoutY="14.0" prefHeight="200.0" prefWidth="135.0" spacing="15.0">
+      <VBox fx:id="titleVbox" layoutX="212.0" layoutY="14.0" prefHeight="200.0" prefWidth="135.0" spacing="15.0">
          <children>
             <Label fx:id="usernameLbl" prefHeight="46.0" prefWidth="88.0" text="Username :" textFill="WHITE">
                <font>
@@ -104,7 +109,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox fx:id="textVbox" layoutX="339.0" layoutY="20.0" prefHeight="209.0" prefWidth="196.0" spacing="15.0">
+      <VBox fx:id="textVbox" layoutX="364.0" layoutY="20.0" prefHeight="209.0" prefWidth="196.0" spacing="15.0">
          <children>
             <Text fx:id="usernameTxt" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="133.33673095703125">
                <VBox.margin>
@@ -146,57 +151,81 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <HBox fx:id="hbox" layoutX="26.0" layoutY="521.0" prefHeight="78.0" prefWidth="748.0" spacing="20.0">
+      <HBox fx:id="playHbox" layoutX="54.0" layoutY="516.0" prefHeight="88.0" prefWidth="492.0">
          <children>
-            <ImageView fx:id="likeImage" fitHeight="42.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="coverImage" fitHeight="76.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets top="26.0" />
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <VBox fx:id="hboxVbox" prefHeight="88.0" prefWidth="143.0">
+               <children>
+                  <Label fx:id="audioName" prefHeight="45.0" prefWidth="142.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="artistName" prefHeight="42.0" prefWidth="143.0" text="Label" textFill="WHITE" />
+               </children>
+            </VBox>
+            <ImageView fx:id="previousIcon" fitHeight="63.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/previos.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="pauseIcon" fitHeight="63.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/pause.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="nextIcon" fitHeight="65.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/next.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="22.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox fx:id="iconsHbox" layoutX="547.0" layoutY="516.0" prefHeight="88.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <ImageView fx:id="lyrics" fitHeight="52.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@image/lyrics.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="addToPlaylistImage" fitHeight="49.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/addToPlaylist.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="likeImage" fitHeight="52.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="15.0" />
                </HBox.margin>
                <image>
                   <Image url="@image/like.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="addToPlaylistImage" fitHeight="50.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/addToPlaylist.png" />
-               </image>
-               <HBox.margin>
-                  <Insets top="25.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="previousIcon" fitHeight="57.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/previos.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="130.0" top="20.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="pauseIcon" fitHeight="64.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/pause.png" />
-               </image>
-               <HBox.margin>
-                  <Insets top="18.0" />
-               </HBox.margin>
-            </ImageView>
-            <ImageView fx:id="nextIcon" fitHeight="64.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets top="22.0" />
-               </HBox.margin>
-               <image>
-                  <Image url="@image/next.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="lyrics" fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@image/lyrics.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="170.0" top="25.0" />
-               </HBox.margin>
-            </ImageView>
          </children>
       </HBox>
+      <Button fx:id="backButton" layoutX="144.0" layoutY="4.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="81.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="Back" textFill="#b4b3b3">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

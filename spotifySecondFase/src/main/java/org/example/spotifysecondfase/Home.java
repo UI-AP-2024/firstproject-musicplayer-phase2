@@ -5,8 +5,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
@@ -31,10 +34,22 @@ public class Home implements Initializable
     private Button allAudios;
 
     @FXML
-    private HBox hbox;
+    private Label artistName;
+
+    @FXML
+    private Label audioName;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private ImageView coverImage;
 
     @FXML
     private HBox hboxForSingOrLog;
+
+    @FXML
+    private VBox hboxVbox;
 
     @FXML
     private AnchorPane homeAnchorPane;
@@ -50,6 +65,9 @@ public class Home implements Initializable
 
     @FXML
     private VBox homeVbox;
+
+    @FXML
+    private HBox iconsHbox;
 
     @FXML
     private Label lable;
@@ -68,6 +86,9 @@ public class Home implements Initializable
 
     @FXML
     private ImageView pauseIcon;
+
+    @FXML
+    private HBox playHbox;
 
     @FXML
     private ImageView previousIcon;
@@ -105,12 +126,36 @@ public class Home implements Initializable
         this.allAudios = allAudios;
     }
 
-    public HBox getHbox() {
-        return hbox;
+    public Label getArtistName() {
+        return artistName;
     }
 
-    public void setHbox(HBox hbox) {
-        this.hbox = hbox;
+    public void setArtistName(Label artistName) {
+        this.artistName = artistName;
+    }
+
+    public Label getAudioName() {
+        return audioName;
+    }
+
+    public void setAudioName(Label audioName) {
+        this.audioName = audioName;
+    }
+
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    public void setBackButton(Button backButton) {
+        this.backButton = backButton;
+    }
+
+    public ImageView getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(ImageView coverImage) {
+        this.coverImage = coverImage;
     }
 
     public HBox getHboxForSingOrLog() {
@@ -119,6 +164,14 @@ public class Home implements Initializable
 
     public void setHboxForSingOrLog(HBox hboxForSingOrLog) {
         this.hboxForSingOrLog = hboxForSingOrLog;
+    }
+
+    public VBox getHboxVbox() {
+        return hboxVbox;
+    }
+
+    public void setHboxVbox(VBox hboxVbox) {
+        this.hboxVbox = hboxVbox;
     }
 
     public AnchorPane getHomeAnchorPane() {
@@ -159,6 +212,14 @@ public class Home implements Initializable
 
     public void setHomeVbox(VBox homeVbox) {
         this.homeVbox = homeVbox;
+    }
+
+    public HBox getIconsHbox() {
+        return iconsHbox;
+    }
+
+    public void setIconsHbox(HBox iconsHbox) {
+        this.iconsHbox = iconsHbox;
     }
 
     public Label getLable() {
@@ -209,17 +270,202 @@ public class Home implements Initializable
         this.pauseIcon = pauseIcon;
     }
 
-    public ImageView getPreviousIcon() {return previousIcon;}
-    public void setPreviousIcon(ImageView previousIcon) {this.previousIcon = previousIcon;}
-    public ImageView getSearchImage() {return searchImage;}
-    public void setSearchImage(ImageView searchImage) {this.searchImage = searchImage;}
-    public Button getSingUp() {return singUp;}
-    public void setSingUp(Button singUp) {this.singUp = singUp;}
-    public ImageView getSpotify() {return spotify;}
-    public void setSpotify(ImageView spotify) {this.spotify = spotify;}
-    public Login getLogin() {return login;}
-    public void setLogin(Login login) {this.login = login;}
+    public HBox getPlayHbox() {
+        return playHbox;
+    }
 
+    public void setPlayHbox(HBox playHbox) {
+        this.playHbox = playHbox;
+    }
+
+    public ImageView getPreviousIcon() {
+        return previousIcon;
+    }
+
+    public void setPreviousIcon(ImageView previousIcon) {
+        this.previousIcon = previousIcon;
+    }
+
+    public ImageView getSearchImage() {
+        return searchImage;
+    }
+
+    public void setSearchImage(ImageView searchImage) {
+        this.searchImage = searchImage;
+    }
+
+    public Button getSingUp() {
+        return singUp;
+    }
+
+    public void setSingUp(Button singUp) {
+        this.singUp = singUp;
+    }
+
+    public ImageView getSpotify() {
+        return spotify;
+    }
+
+    public void setSpotify(ImageView spotify) {
+        this.spotify = spotify;
+    }
+    Media media;
+    MediaPlayer mediaPlayer;
+    String playPath = HelloApplication.class.getResource("play.png").toExternalForm();
+    Image play = new Image(playPath);
+    String pausePath = HelloApplication.class.getResource("play.png").toExternalForm();
+    Image pause = new Image(pausePath);
+    int i;
+    public void music(Audio audio)
+    {
+        i = PlayMusic.playlists.indexOf(audio);
+        media = new Media(audio.getAudioLink());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+        pauseIcon.setOnMouseClicked(event -> {
+            if (pauseIcon.getImage() == play)
+            {
+                pauseIcon.setImage(pause);
+                mediaPlayer.play();
+            }
+            if (pauseIcon.getImage() == pause)
+            {
+                pauseIcon.setImage(play);
+                mediaPlayer.pause();
+            }
+        });
+        nextIcon.setOnMouseClicked(event -> {
+            if (i < PlayMusic.playlists.size()-1)
+            {
+                media = new Media(PlayMusic.playlists.get(i+1).getAudioLink());
+                mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+                i++;
+                audioName.setText(PlayMusic.playlists.get(i).getName());
+                artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                nextIcon.setOnMouseClicked(event1 -> {
+                    if (i < PlayMusic.playlists.size()-1)
+                    {
+                        media = new Media(PlayMusic.playlists.get(i+1).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i++;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                    }
+                    else if (i == PlayMusic.playlists.size()-1)
+                    {
+                        media = new Media(PlayMusic.playlists.get(0).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i = 0;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                    }
+                });
+            }
+            else if (i == PlayMusic.playlists.size()-1)
+            {
+                media = new Media(PlayMusic.playlists.get(0).getAudioLink());
+                mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+                i = 0;
+                audioName.setText(PlayMusic.playlists.get(i).getName());
+                artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                nextIcon.setOnMouseClicked(event1 -> {
+                    if (i<PlayMusic.playlists.size()-1)
+                    {
+                        media = new Media(PlayMusic.playlists.get(i+1).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i++;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                    }
+                    else if (i==PlayMusic.playlists.size()-1)
+                    {
+                        media = new Media(PlayMusic.playlists.get(0).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i = 0;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                    }
+                });
+            }
+        });
+        previousIcon.setOnMouseClicked(event -> {
+            if (i>0)
+            {
+                media = new Media(PlayMusic.playlists.get(i-1).getAudioLink());
+                mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+                i--;
+                audioName.setText(PlayMusic.playlists.get(i).getName());
+                artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                previousIcon.setOnMouseClicked(event1 -> {
+                    if(i>0)
+                    {
+                        media = new Media(PlayMusic.playlists.get(i-1).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i--;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                    }
+                    else {
+                        media = new Media(PlayMusic.playlists.get(PlayMusic.playlists.size()-1).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i = PlayMusic.playlists.size()-1;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+
+                    }
+                });
+            }
+            else {
+                media = new Media(PlayMusic.playlists.get(PlayMusic.playlists.size()-1).getAudioLink());
+                mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+                i = PlayMusic.playlists.size()-1;
+                audioName.setText(PlayMusic.playlists.get(i).getName());
+                artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                previousIcon.setOnMouseClicked(event1 -> {
+                    if(i>0)
+                    {
+                        media = new Media(PlayMusic.playlists.get(i-1).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i--;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+                    }
+                    else {
+                        media = new Media(PlayMusic.playlists.get(PlayMusic.playlists.size()-1).getAudioLink());
+                        mediaPlayer = new MediaPlayer(media);
+                        mediaPlayer.play();
+                        i = PlayMusic.playlists.size()-1;
+                        audioName.setText(PlayMusic.playlists.get(i).getName());
+                        artistName.setText(PlayMusic.playlists.get(i).getArtistName());
+                        coverImage.setImage(PlayMusic.playlists.get(i).getImage());
+
+                    }
+                });
+            }
+        });
+    }
     public VBox vBox(Audio audio)
     {
         String fontFamily = "Arial";
@@ -242,17 +488,17 @@ public class Home implements Initializable
         vBox.setSpacing(10);
         return vBox;
     }
-    Login login = new Login();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        music(PlayMusic.audio);
         int counter = 0;
-        if(true)
+        if(Login.getBool())
         {
             singUp.setVisible(false);
             logInOrLogOut.setVisible(false);
 //            logInOrLogOut.setText("Log out");
-            Button button = new Button(String.valueOf("a"));
-//            Button button = new Button(String.valueOf(login.getUserNameTextFeild().getText().charAt(0)));
+//            Button button = new Button(String.valueOf("a"));
+            Button button = new Button(String.valueOf(Login.getUserNameTextFeild().getText().charAt(0)));
             button.setFont(Font.font("Arial Bold"));
             Circle circle = new Circle(750,30,10);
             circle.setFill(Color.BLUEVIOLET);
@@ -283,8 +529,18 @@ public class Home implements Initializable
                     if (Database.getDatabase().getAudio().size() > counter)
                     {
                         VBox vBox = vBox(Database.getDatabase().getAudio().get(counter));
+                        Audio audio = Database.getDatabase().getAudio().get(counter);
                         getHomeGridPane().add(vBox,i,j);
+                        vBox.setOnMouseClicked(event -> {
+                            PlayMusic.audio = audio;
+                            try {
+                                ChangeScene.playMusic();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
                     }
+                    counter++;
                 }
             }
         }

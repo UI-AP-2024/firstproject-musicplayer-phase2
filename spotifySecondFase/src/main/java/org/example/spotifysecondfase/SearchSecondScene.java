@@ -3,6 +3,7 @@ package org.example.spotifysecondfase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -26,10 +27,22 @@ public class SearchSecondScene implements Initializable {
     private AnchorPane anchorPane;
 
     @FXML
+    private Label artistName;
+
+    @FXML
+    private Label audioName;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private ImageView coverImage;
+
+    @FXML
     private GridPane gridPane;
 
     @FXML
-    private HBox hbox;
+    private VBox hboxVbox;
 
     @FXML
     private ImageView homeImage;
@@ -39,6 +52,9 @@ public class SearchSecondScene implements Initializable {
 
     @FXML
     private VBox homeVbox;
+
+    @FXML
+    private HBox iconsHbox;
 
     @FXML
     private ImageView likeImage;
@@ -51,6 +67,9 @@ public class SearchSecondScene implements Initializable {
 
     @FXML
     private ImageView pauseIcon;
+
+    @FXML
+    private HBox playHbox;
 
     @FXML
     private ImageView previousIcon;
@@ -93,6 +112,38 @@ public class SearchSecondScene implements Initializable {
         this.anchorPane = anchorPane;
     }
 
+    public Label getArtistName() {
+        return artistName;
+    }
+
+    public void setArtistName(Label artistName) {
+        this.artistName = artistName;
+    }
+
+    public Label getAudioName() {
+        return audioName;
+    }
+
+    public void setAudioName(Label audioName) {
+        this.audioName = audioName;
+    }
+
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    public void setBackButton(Button backButton) {
+        this.backButton = backButton;
+    }
+
+    public ImageView getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(ImageView coverImage) {
+        this.coverImage = coverImage;
+    }
+
     public GridPane getGridPane() {
         return gridPane;
     }
@@ -101,12 +152,12 @@ public class SearchSecondScene implements Initializable {
         this.gridPane = gridPane;
     }
 
-    public HBox getHbox() {
-        return hbox;
+    public VBox getHboxVbox() {
+        return hboxVbox;
     }
 
-    public void setHbox(HBox hbox) {
-        this.hbox = hbox;
+    public void setHboxVbox(VBox hboxVbox) {
+        this.hboxVbox = hboxVbox;
     }
 
     public ImageView getHomeImage() {
@@ -131,6 +182,14 @@ public class SearchSecondScene implements Initializable {
 
     public void setHomeVbox(VBox homeVbox) {
         this.homeVbox = homeVbox;
+    }
+
+    public HBox getIconsHbox() {
+        return iconsHbox;
+    }
+
+    public void setIconsHbox(HBox iconsHbox) {
+        this.iconsHbox = iconsHbox;
     }
 
     public ImageView getLikeImage() {
@@ -163,6 +222,14 @@ public class SearchSecondScene implements Initializable {
 
     public void setPauseIcon(ImageView pauseIcon) {
         this.pauseIcon = pauseIcon;
+    }
+
+    public HBox getPlayHbox() {
+        return playHbox;
+    }
+
+    public void setPlayHbox(HBox playHbox) {
+        this.playHbox = playHbox;
     }
 
     public ImageView getPreviousIcon() {

@@ -7,8 +7,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginOrNotController implements Initializable {
-    public static boolean loggedIn = false;
-
     @FXML
     private GridPane grid;
 

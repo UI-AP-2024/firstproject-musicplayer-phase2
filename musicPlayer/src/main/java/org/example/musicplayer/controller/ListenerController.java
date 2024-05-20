@@ -188,6 +188,7 @@ public class ListenerController {
         return listener.toString();
     }
     public StringBuilder searchAudioOrArtist(String name) {
+
         StringBuilder str = new StringBuilder();
         for (AudioModel audio : DataBaseModel.getDataBase().getAudios())
             if (Objects.equals(audio.getAudioTitle(), name))

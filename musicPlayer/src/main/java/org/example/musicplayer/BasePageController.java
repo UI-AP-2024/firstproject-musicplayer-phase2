@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import org.example.musicplayer.controller.ListenerController;
 import org.example.musicplayer.model.Audio.AudioModel;
 import org.example.musicplayer.model.DataBase.DataBaseModel;
 
@@ -87,13 +88,16 @@ public class BasePageController implements Initializable {
     }
 
     @FXML
-    void btn_logout_action(ActionEvent event) {
-        LoginOrNotController.loggedIn = false;
+    void btn_logout_action(ActionEvent event) throws IOException {
+        HelloApplication.loggedIn = false;
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("base-page-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        HelloApplication.currentstage.setScene(scene);
+        HelloApplication.currentstage.show();
     }
-
     @FXML
     void btn_search_action(ActionEvent event) {
-
+        ListenerController.getListenerController().searchAudioOrArtist(tf_search.getText());
     }
 
     @FXML

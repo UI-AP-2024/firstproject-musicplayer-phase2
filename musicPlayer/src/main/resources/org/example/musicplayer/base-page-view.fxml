@@ -92,7 +92,7 @@
       <AnchorPane prefHeight="81.0" prefWidth="700.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="215.0" prefWidth="539.0" BorderPane.alignment="CENTER">
+      <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="215.0" prefWidth="539.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
          <content>
             <GridPane fx:id="grid" prefHeight="505.0" prefWidth="524.0" style="-fx-background-color: silver;">
               <columnConstraints>

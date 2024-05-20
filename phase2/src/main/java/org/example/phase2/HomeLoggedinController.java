@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -15,15 +16,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.phase2.Controller.ListenerController;
 import org.example.phase2.Model.Audios.Audio;
-import org.example.phase2.Model.Audios.Playlist;
 import org.example.phase2.Model.Database.Database;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class MusicsOfPlaylistController implements Initializable {
+public class HomeLoggedinController implements Initializable {
 
     @FXML
     private Button artists_btn;
@@ -33,6 +36,9 @@ public class MusicsOfPlaylistController implements Initializable {
 
     @FXML
     private Button back_btn;
+
+    @FXML
+    private Label favorite_lbl;
 
     @FXML
     private HBox hBox;
@@ -50,16 +56,13 @@ public class MusicsOfPlaylistController implements Initializable {
     private ListView<Label> listView;
 
     @FXML
-    private Label music_lbl;
+    private Button logout_btn;
 
     @FXML
-    private ImageView search_img;
+    private ImageView magnifier_img;
 
     @FXML
     private TextField search_tF;
-
-    @FXML
-    private Button logout_btn;
 
     @FXML
     private AnchorPane secondaryAnchor;
@@ -69,33 +72,15 @@ public class MusicsOfPlaylistController implements Initializable {
 
     @FXML
     private VBox vBox2;
-
-    @FXML
-    private VBox vBox3;
-    private static Playlist playlist;
     private static Stage stage;
-
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static Playlist getPlaylist() {
-        return playlist;
-    }
-
-    public static void setStage(Stage stage) {
-        MusicsOfPlaylistController.stage = stage;
-    }
-
-    public static void setPlaylist(Playlist playlist) {
-        MusicsOfPlaylistController.playlist = playlist;
+    public static void setStage(Stage stage){
+        HomeLoggedinController.stage =stage;
     }
 
     @FXML
     void artistsAction(ActionEvent event) throws IOException {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicsOfPlaylist.fxml")));
-        Database.getDatabase().getTitles().add("Musics Of Playlist");
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml")));
+        Database.getDatabase().getTitles().add("Home");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Artists");
@@ -105,9 +90,8 @@ public class MusicsOfPlaylistController implements Initializable {
 
     @FXML
     void audiosAction(ActionEvent event) throws IOException {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicsOfPlaylist.fxml")));
-        Database.getDatabase().getTitles().add("Musics Of Playlist");
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml")));
+        Database.getDatabase().getTitles().add("Home");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Audios");
@@ -117,7 +101,6 @@ public class MusicsOfPlaylistController implements Initializable {
 
     @FXML
     void backAction(ActionEvent event) throws IOException {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
         FXMLLoader fxmlLoader= Database.getDatabase().getScenes().pop();
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle(Database.getDatabase().getTitles().pop());
@@ -126,22 +109,14 @@ public class MusicsOfPlaylistController implements Initializable {
     }
 
     @FXML
-    void homeAction(ActionEvent event) throws IOException {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicsOfPlaylist.fxml")));
-        Database.getDatabase().getTitles().add("Musics Of Playlist");
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Home");
-        stage.setScene(scene);
-        stage.show();
+    void homeAction(ActionEvent event) {
+
     }
 
     @FXML
     void libraryAction(ActionEvent event) throws IOException {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MusicsOfPlaylist.fxml")));
-        Database.getDatabase().getTitles().add("Musics Of Playlist");
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml")));
+        Database.getDatabase().getTitles().add("Home");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Listener Panel");
@@ -151,25 +126,37 @@ public class MusicsOfPlaylistController implements Initializable {
 
     @FXML
     void logoutAction(ActionEvent event) {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
+
     }
 
     @FXML
     void searchAction(MouseEvent event) {
-        PlayBar.setAudios(Database.getDatabase().getAudios());
-    }
 
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PlayBar.setAudios(playlist.getAudioList());
+        ArrayList<Audio> suggestedAudios= ListenerController.getListenerController().showSuggestions(8);
         int i=0;
-        for(Audio audio : playlist.getAudioList()){
-            Label label=new Label("Name: "+audio.getName()+"\t\t\t"+"ID: "+audio.getId());
+        for(Audio audio : suggestedAudios){
+            Label label=new Label("Name: "+audio.getName()+"ID: "+audio.getId());
             listView.getItems().add(label);
-            int finalI = i;
             listView.getItems().get(i++).setOnMouseClicked(mouseEvent -> {
-                PlayBar.setIndex(finalI);
+                int index=Database.getDatabase().getAudios().indexOf(audio);
+                PlayBar.setIndex(index);
+                MusicPageController.setAudio(audio);
+                Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml")));
+                Database.getDatabase().getTitles().add("Home");
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("MusicPage.fxml"));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 800, 600);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                stage.setTitle("Music Page");
+                stage.setScene(scene);
+                stage.show();
             });
         }
     }

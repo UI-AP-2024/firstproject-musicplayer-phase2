@@ -13,10 +13,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.phase2.Controller.AdminController;
+import org.example.phase2.Model.Audios.Audio;
 import org.example.phase2.Model.Database.Database;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HomeLoggedOut implements Initializable {
@@ -40,7 +43,7 @@ public class HomeLoggedOut implements Initializable {
     private Button back_btn;
 
     @FXML
-    private ListView<?> lView;
+    private ListView<Label> lView;
 
     @FXML
     private Button library_btn;
@@ -71,13 +74,25 @@ public class HomeLoggedOut implements Initializable {
     }
 
     @FXML
-    void allArtistsAction(ActionEvent event) {
-
+    void allArtistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
+        Database.getDatabase().getTitles().add("Home");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void allAudiosAction(ActionEvent event) {
-
+    void allAudiosAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
+        Database.getDatabase().getTitles().add("Home");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Audios");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -136,6 +151,29 @@ public class HomeLoggedOut implements Initializable {
             vBox.getChildren().add(new FXMLLoader(HelloApplication.class.getResource("Play-bar.fxml")).load());
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+        ArrayList<Audio> audios= AdminController.getAdminController().showPopularAudios();
+        int i=0;
+        for(Audio audio : audios){
+            Label label = new Label("Name: "+audio.getName()+"\t\t\t"+"Likes: "+audio.getLikes());
+            lView.getItems().add(label);
+            lView.getItems().get(i++).setOnMouseClicked(mouseEvent -> {
+                int index=Database.getDatabase().getAudios().indexOf(audio);
+                PlayBar.setIndex(index);
+                MusicPageController.setAudio(audio);
+                Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml")));
+                Database.getDatabase().getTitles().add("Home");
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("MusicPage.fxml"));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 800, 600);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                stage.setTitle("Music Page");
+                stage.setScene(scene);
+                stage.show();
+            });
         }
     }
 }

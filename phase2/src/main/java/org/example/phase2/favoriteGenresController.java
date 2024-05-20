@@ -106,7 +106,7 @@ public class favoriteGenresController implements Initializable {
     }
 
     @FXML
-    void addAction(ActionEvent event) {
+    void addAction(ActionEvent event) throws IOException {
         if(countryCheck.isSelected()) {
             try {
                 ListenerController.getListenerController().chooseFavouriteGenres("COUNTRY");
@@ -214,16 +214,35 @@ public class favoriteGenresController implements Initializable {
             }
         }
         ListenerController.getListenerController().logout();
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Favorite-genre.fxml")));
+        Database.getDatabase().getTitles().add("Favorite Genre");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void artistsAction(ActionEvent event) {
-
+    void artistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Favorite-genres.fxml")));
+        Database.getDatabase().getTitles().add("Favorite Genres");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void audiosAction(ActionEvent event) {
-
+    void audiosAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Favorite-genres.fxml")));
+        Database.getDatabase().getTitles().add("Favorite Genres");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Audios");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -247,8 +266,14 @@ public class favoriteGenresController implements Initializable {
     }
 
     @FXML
-    void libraryAction(ActionEvent event) {
-
+    void libraryAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Favorite_genres.fxml")));
+        Database.getDatabase().getTitles().add("Favorite Genres");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Listener Panel");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

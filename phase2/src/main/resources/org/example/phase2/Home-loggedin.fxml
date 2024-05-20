@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.ShowAudiosController">
+
+<AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.HomeLoggedinController">
    <children>
       <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -19,18 +20,18 @@
                <children>
                   <AnchorPane fx:id="secondaryAnchor" prefHeight="480.0" prefWidth="725.0">
                      <children>
-                        <Label fx:id="audios_lbl" alignment="CENTER" layoutX="297.0" layoutY="7.0" prefHeight="60.0" prefWidth="130.0" text="All Audios">
+                        <Label fx:id="favorite_lbl" alignment="CENTER" layoutX="251.0" prefHeight="50.0" prefWidth="222.0" text="Your Favorite Audios">
                            <font>
-                              <Font name="System Italic" size="24.0" />
+                              <Font name="System Italic" size="18.0" />
                            </font>
                         </Label>
-                        <ListView fx:id="listView" layoutX="-1.0" layoutY="67.0" prefHeight="414.0" prefWidth="725.0" />
-                        <ImageView fx:id="magnifier_img" fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="22.0" onMouseClicked="#searchAction" pickOnBounds="true" preserveRatio="true">
+                        <ListView fx:id="listView" layoutX="17.0" layoutY="58.0" prefHeight="424.0" prefWidth="710.0" />
+                        <ImageView fx:id="magnifier_img" fitHeight="30.0" fitWidth="30.0" layoutX="17.0" layoutY="25.0" onMouseClicked="#searchAction" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@photos/magnifier.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="search_tF" layoutX="44.0" layoutY="22.0" prefHeight="30.0" promptText="Search" />
+                        <TextField fx:id="search_tF" layoutX="47.0" layoutY="27.0" prefHeight="30.0" promptText="Search" />
                      </children>
                   </AnchorPane>
                </children>
@@ -40,23 +41,28 @@
                   <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <Button fx:id="library_btn" mnemonicParsing="false" onAction="#libraryAction" prefHeight="60.0" prefWidth="75.0" text="Library">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
-                     </font></Button>
-                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="76.0" text="All Artists">
+                     </font>
+                  </Button>
+                  <Button fx:id="artists_btn" mnemonicParsing="false" onAction="#artistsAction" prefHeight="60.0" prefWidth="75.0" text="Artists">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
-                     </font></Button>
-                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="All Audios">
+                     </font>
+                  </Button>
+                  <Button fx:id="audios_btn" mnemonicParsing="false" onAction="#audiosAction" prefHeight="60.0" prefWidth="75.0" text="Audios">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <Button fx:id="back_btn" mnemonicParsing="false" onAction="#backAction" prefHeight="60.0" prefWidth="75.0" text="Back">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutAction" prefHeight="60.0" prefWidth="75.0" text="Logout">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />

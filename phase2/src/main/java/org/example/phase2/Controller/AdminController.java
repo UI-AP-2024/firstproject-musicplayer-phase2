@@ -29,7 +29,7 @@ public class AdminController{
     public void logout(){
         admin=null;
     }
-    public String showPopularAudios()
+    public ArrayList<Audio> showPopularAudios()
     {
         Audio temp;
         ArrayList<Audio> audios= Database.getDatabase().getAudios();
@@ -45,7 +45,7 @@ public class AdminController{
                 }
             }
         }
-        StringBuilder info=new StringBuilder("Popular audios: \n");
+        //StringBuilder info=new StringBuilder();
         for(int i=0;i< audios.size();i++)
         {
 //            info.append("Name: "+audios.get(i).getName()+"\t");
@@ -53,9 +53,9 @@ public class AdminController{
 //            info.append("Genre: "+audios.get(i).getGenre()+"\t");
 //            info.append("Likes: "+audios.get(i).getLikes()+"\t");
 //            info.append("ID: "+audios.get(i).getId()+"\n");
-            info.append(audios.get(i).toString());
+            //info.append(audios.get(i).toString());
         }
-        return info.toString();
+        return audios;
     }
     public String showListOfArtists(){
         ArrayList<UserAccount> users = Database.getDatabase().getUsers();

@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -28,7 +30,7 @@ public class SignupController implements Initializable {
     private Button back_btn;
 
     @FXML
-    private Button Search_btn;
+    private TextField search_tF;
 
     @FXML
     private Label accountLabel;
@@ -107,19 +109,35 @@ public class SignupController implements Initializable {
 
     @FXML
     private TextField usernameTextField;
+    @FXML
+    private ImageView magnifier_img;
+    @FXML
+    private Button logout_btn;
     private static Stage stage;
     public static void setStage(Stage stage){
         SignupController.stage =stage;
     }
 
     @FXML
-    void artistsAction(ActionEvent event) {
-
+    void artistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Signup.fxml")));
+        Database.getDatabase().getTitles().add("Signup");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void audiosAction(ActionEvent event) {
-
+    void audiosAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Signup.fxml")));
+        Database.getDatabase().getTitles().add("Signup");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Audios");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -154,7 +172,11 @@ public class SignupController implements Initializable {
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
+    void SearchAction(MouseEvent event) {
+
+    }
+    @FXML
+    void logoutAction(ActionEvent event) {
 
     }
     @FXML

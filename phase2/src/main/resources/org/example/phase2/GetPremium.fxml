@@ -48,7 +48,7 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="comboBox" layoutX="305.0" layoutY="174.0" prefWidth="150.0" style="-fx-background-color: #696969;" />
-                        <Label fx:id="increase_lbl" alignment="CENTER_RIGHT" layoutX="107.0" layoutY="339.0" prefHeight="40.0" prefWidth="282.0" text="You can increase your credit first" textFill="#f200d1f7">
+                        <Label fx:id="increase_lbl" alignment="CENTER_RIGHT" layoutX="107.0" layoutY="339.0" prefHeight="40.0" prefWidth="282.0" text="You can increase your credit first" textFill="#0071f0f7">
                            <font>
                               <Font size="14.0" />
                            </font>

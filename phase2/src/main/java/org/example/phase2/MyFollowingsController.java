@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -50,7 +53,13 @@ public class MyFollowingsController implements Initializable {
     private ListView<Label> listView;
 
     @FXML
-    private Button search_btn;
+    private Button logout_btn;
+
+    @FXML
+    private ImageView magnifier_img;
+
+    @FXML
+    private TextField search_tF;
 
     @FXML
     private AnchorPane secondaryAnchor;
@@ -73,8 +82,14 @@ public class MyFollowingsController implements Initializable {
 
 
     @FXML
-    void artistsAction(ActionEvent event) {
-
+    void artistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MyFollowings.fxml")));
+        Database.getDatabase().getTitles().add("My Followings");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -98,8 +113,14 @@ public class MyFollowingsController implements Initializable {
     }
 
     @FXML
-    void homeAction(ActionEvent event) {
-
+    void homeAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("MyFollowings.fxml")));
+        Database.getDatabase().getTitles().add("My Followings");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -114,9 +135,15 @@ public class MyFollowingsController implements Initializable {
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
+    void logoutAction(ActionEvent event) {
 
     }
+
+    @FXML
+    void searchAction(MouseEvent event) {
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

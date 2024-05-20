@@ -24,9 +24,13 @@ public class HelloApplication extends Application {
         ShowAudiosController.setStage(stage);
         CreateNewPlaylistController.setStage(stage);
         LPanelController.setStage(stage);
+        MyPlaylistsController.setStage(stage);
         MyFollowingsController.setStage(stage);
         MusicsOfPlaylistController.setStage(stage);
         MusicPageController.setStage(stage);
+        AddToPlaylistController.setStage(stage);
+        AllArtistsController.setStage(stage);
+        HomeLoggedinController.setStage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         scene.widthProperty().isEqualTo(stage.widthProperty());
@@ -45,7 +49,7 @@ public class HelloApplication extends Application {
         Music music1=new Music("Bi Ehsas","Shadmehr", Genre.POP,path1,"photos/Bi Ehsas-picture.png","Bi Ehsas,\ndidi goftam tah in rabete bonbaste");
         Music music2=new Music("Rooze sard","Shadmehr", Genre.COUNTRY,path2,"photos/RoozeSard-picture.png","Shayad ye rooze sard \nShayad ye nimeh dhab \nDelet bekhad beshe bargardi pisham");
         Music music3=new Music("Taghdir","Shadmehr", Genre.POP,path3,"photos/Taghdir-picture.png","To sade del kandi vali taghdir bi taghsir nist");
-        Music music4=new Music("Gomet Kardam","Shadmehr", Genre.POP,path4,"photos/GometKardam-picture.jpg","Man az vaghti gomet kardam tamame royaham gom shod");
+        Music music4=new Music("Gomet Kardam","Shadmehr", Genre.POP,path4,"photos/GometKardam-picture.png","Man az vaghti gomet kardam tamame royaham gom shod");
 
         Database.getDatabase().getAudios().add(music1);
         Database.getDatabase().getAudios().add(music2);

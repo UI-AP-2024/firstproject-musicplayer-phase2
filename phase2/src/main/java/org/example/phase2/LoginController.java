@@ -69,6 +69,13 @@ public class LoginController {
 
     @FXML
     private VBox vBox;
+
+    private static boolean loginCheck=false;
+
+    public static boolean isLoginCheck() {
+        return loginCheck;
+    }
+
     private static Stage stage;
 
     public static Stage getStage() {
@@ -77,13 +84,25 @@ public class LoginController {
 
 
     @FXML
-    void artistsAction(ActionEvent event) {
-
+    void artistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
+        Database.getDatabase().getTitles().add("Login");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void audiosAction(ActionEvent event) {
-
+    void audiosAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
+        Database.getDatabase().getTitles().add("Login");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Audios");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -97,27 +116,46 @@ public class LoginController {
 
     @FXML
     void homeAction(ActionEvent event) throws IOException {
-        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
-        Database.getDatabase().getTitles().add("Login");
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Home");
-        stage.setScene(scene);
-        stage.show();
+        if(!loginCheck){
+            Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
+            Database.getDatabase().getTitles().add("Login");
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedout.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            stage.setTitle("Home");
+            stage.setScene(scene);
+            stage.show();
+        }else{
+            Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
+            Database.getDatabase().getTitles().add("Login");
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            stage.setTitle("Home");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
-    void libraryAction(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("INFORMATION");
-        alert.setHeaderText(null);
-        alert.setContentText("You should first login.");
-        alert.showAndWait();
+    void libraryAction(ActionEvent event) throws IOException {
+        if(!loginCheck){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("INFORMATION");
+            alert.setHeaderText(null);
+            alert.setContentText("You should first login.");
+            alert.showAndWait();
+        }else{
+            Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Login.fxml")));
+            Database.getDatabase().getTitles().add("Login");
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+            stage.setTitle("Listener Panel");
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
     void loginAction(ActionEvent event) throws IOException {
-        boolean loginCheck=false;
         try {
             UserController.getUserController().loginUser(usernameTextField.getText(),passField.getText());
             loginCheck=true;

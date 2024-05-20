@@ -66,7 +66,7 @@ public class ListenerController{
             }
         }
     }
-    public String addMusicToPlaylist(String playlistName,String audioId2) throws FreeAccountLimitException {
+    public int addMusicToPlaylist(String playlistName,String audioId2) throws FreeAccountLimitException {
         long audioId=Long.parseLong(audioId2);
         ArrayList<Audio> audios = Database.getDatabase().getAudios();
         Audio selectedAudio = null;
@@ -89,7 +89,8 @@ public class ListenerController{
                 newPlaylist.getAudioList().add(selectedAudio);
                 listener.getPlaylists().add(newPlaylist);
             }
-            return "Audio is added to the playlist successfully.";
+            //return "Audio is added to the playlist successfully.";
+            return 1;
         }
         if(listener instanceof FreeListener)
         {
@@ -101,7 +102,8 @@ public class ListenerController{
                     if(playlist.getAudioList().size()<freeListener.getNumberOfPlaylistAudios()) {
                         playlist.getAudioList().add(selectedAudio);
                         count++;
-                        return "Audio is added to the playlist successfully.";
+                        //return "Audio is added to the playlist successfully.";
+                        return 1;
                     }
                     throw new FreeAccountLimitException();
                     //`return "To add music to the playlist make your account Premium and try again.";
@@ -113,12 +115,15 @@ public class ListenerController{
                     Playlist newPlaylist = new Playlist(playlistName, listener.getFirstAndLastName());
                     newPlaylist.getAudioList().add(selectedAudio);
                     listener.getPlaylists().add(newPlaylist);
-                    return "Audio is added to the playlist successfully.";
+                    //return "Audio is added to the playlist successfully.";
+                    return 1;
                 }
-                return "To create a new playlist make your account Premium and try again.";
+                //return "To create a new playlist make your account Premium and try again.";
+                throw new FreeAccountLimitException();
             }
         }
-        return "There was a problem in creating or finding the playlist. Please try again.";
+        //return "There was a problem in creating or finding the playlist. Please try again.";
+        return -1;
     }
     public int createPlaylist(String playlistName) throws FreeAccountLimitException {
         if(listener instanceof PremiumListener)
@@ -521,7 +526,7 @@ public class ListenerController{
         }
         return info.toString();
     }
-    public String showSuggestions(long number)
+    public ArrayList<Audio> showSuggestions(long number)
     {
         ArrayList<Audio> audios=Database.getDatabase().getAudios();
         ArrayList<Audio> suggestedAudios=new ArrayList<Audio>();
@@ -587,7 +592,7 @@ public class ListenerController{
             }
         }
         int count=0;
-        StringBuilder info = new StringBuilder("Suggested audios: \n");
+        //StringBuilder info = new StringBuilder("Suggested audios: \n");
         for(Audio audio : suggestedAudios)
         {
             if(count<number)
@@ -596,7 +601,7 @@ public class ListenerController{
 //                info.append("Artist: "+audio.getArtist()+"\t\t");
 //                info.append("Genre: "+audio.getGenre()+"\t\t");
 //                info.append("ID: "+audio.getId()+"\n");
-                info.append(audio.toString());
+                //info.append(audio.toString());
                 count++;
             }
         }
@@ -621,7 +626,10 @@ public class ListenerController{
 //                info.append("Artist: "+popularAudio.getArtist()+"\t\t");
 //                info.append("Genre: "+popularAudio.getGenre()+"\t\t");
 //                info.append("ID: "+popularAudio.getId()+"\n");
-                info.append(popularAudio.toString());
+                //info.append(popularAudio.toString());
+                if(!suggestedAudios.contains(popularAudio)){
+                    suggestedAudios.add(popularAudio);
+                }
                 count++;
                 if(count==number)
                 {
@@ -629,7 +637,8 @@ public class ListenerController{
                 }
             }
         }
-        return info.toString();
+        //return info.toString();
+        return suggestedAudios;
     }
     public String showListenerInformation() throws ParseException {
         StringBuilder info = new StringBuilder();

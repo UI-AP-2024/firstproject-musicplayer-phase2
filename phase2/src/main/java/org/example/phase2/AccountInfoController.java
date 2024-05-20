@@ -111,13 +111,25 @@ public class AccountInfoController implements Initializable {
     }
 
     @FXML
-    void artistsAction(ActionEvent event) {
-
+    void artistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("AccountInfo.fxml")));
+        Database.getDatabase().getTitles().add("Account Information");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void audiosAction(ActionEvent event) {
-
+    void audiosAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("AccountInfo.fxml")));
+        Database.getDatabase().getTitles().add("Account Information");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("ShowAudios.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Audios");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -130,8 +142,14 @@ public class AccountInfoController implements Initializable {
     }
 
     @FXML
-    void homeAction(ActionEvent event) {
-
+    void homeAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("AccountInfo.fxml")));
+        Database.getDatabase().getTitles().add("Account Information");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

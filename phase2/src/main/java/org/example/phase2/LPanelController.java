@@ -80,8 +80,14 @@ public class LPanelController implements Initializable {
         LPanelController.stage = stage;
     }
     @FXML
-    void artistsAction(ActionEvent event) {
-
+    void artistsAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AllArtists.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Artists");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -96,8 +102,14 @@ public class LPanelController implements Initializable {
     }
 
     @FXML
-    void homeAction(ActionEvent event) {
-
+    void homeAction(ActionEvent event) throws IOException {
+        Database.getDatabase().getScenes().add(new FXMLLoader(HelloApplication.class.getResource("Listener-panel.fxml")));
+        Database.getDatabase().getTitles().add("Listener Panel");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Home-loggedin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        stage.setTitle("Home");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

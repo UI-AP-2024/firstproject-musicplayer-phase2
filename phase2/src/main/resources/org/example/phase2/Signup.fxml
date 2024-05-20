@@ -5,12 +5,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane fx:id="initialAnchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.phase2.SignupController">
+   <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
    <children>
       <HBox fx:id="hBox" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -60,15 +66,17 @@
                         <Font name="System Bold Italic" size="12.0" />
                      </font></Button>
                   <PasswordField fx:id="passField" layoutX="289.0" layoutY="197.0" promptText="Password" />
+                  <ImageView fx:id="magnifier_img" fitHeight="30.0" fitWidth="30.0" layoutX="37.0" layoutY="24.0" onMouseClicked="#SearchAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@photos/magnifier.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="search_tF" layoutX="67.0" layoutY="23.0" prefHeight="30.0" promptText="Search" />
                </children>
             </AnchorPane>
             <VBox fx:id="side_vBox" prefHeight="200.0" prefWidth="75.0">
                <children>
                   <Button fx:id="home_btn" mnemonicParsing="false" onAction="#homeAction" prefHeight="60.0" prefWidth="75.0" text="Home">
-                     <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                     </font></Button>
-                  <Button fx:id="Search_btn" mnemonicParsing="false" onAction="#searchAction" prefHeight="60.0" prefWidth="75.0" text="Search">
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font></Button>
@@ -92,6 +100,11 @@
                      <font>
                         <Font name="System Bold Italic" size="12.0" />
                      </font></Button>
+                  <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logoutAction" prefHeight="60.0" prefWidth="75.0" text="Logout">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </children>

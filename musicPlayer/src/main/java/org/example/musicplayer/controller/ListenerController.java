@@ -187,17 +187,21 @@ public class ListenerController {
         }
         return listener.toString();
     }
-    public StringBuilder searchAudioOrArtist(String name) {
-
-        StringBuilder str = new StringBuilder();
+    public ArrayList<AudioModel> searchAudioOrArtist(String name) {
+        ArrayList<AudioModel> audios = new ArrayList<>();
+        //StringBuilder str = new StringBuilder();
         for (AudioModel audio : DataBaseModel.getDataBase().getAudios())
-            if (Objects.equals(audio.getAudioTitle(), name))
-                str.append(audio.toString()).append("\n");
-        for (UserAccountModel userAccount : DataBaseModel.getDataBase().getUsers())
-            if (userAccount instanceof ArtistModel)
-                if (Objects.equals(userAccount.getName(), name))
-                    str.append(userAccount.toString()).append("\n");
-        return str;
+            if (Objects.equals(audio.getAudioTitle(), name) || Objects.equals(audio.getArtistName(), name))
+            {
+                audios.add(audio);
+            }
+                //str.append(audio.toString()).append("\n");
+//        for (UserAccountModel userAccount : DataBaseModel.getDataBase().getUsers())
+//            if (userAccount instanceof ArtistModel)
+//                if (Objects.equals(userAccount.getName(), name))
+//                    str.append(userAccount.toString()).append("\n");
+        //return str;
+        return audios;
     }
     public ArrayList<AudioModel> sortAudios(String sortBy) {
         StringBuilder str = new StringBuilder();

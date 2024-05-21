@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #006868;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.prj.view.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #006868;" stylesheets="@home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.prj.view.HomeController">
    <children>
       <Button fx:id="back_button" alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="4.0" mnemonicParsing="false" onAction="#back_Action" style="-fx-background-color: #012c2c;" text="&lt;" textAlignment="CENTER" textFill="WHITE">
          <font>
@@ -60,7 +61,7 @@
       </Button>
       <TextField fx:id="search_Text" layoutX="210.0" layoutY="7.0" prefHeight="25.0" prefWidth="272.0" style="-fx-background-color: #012c2c;" />
       <Button fx:id="search_button" layoutX="489.0" layoutY="7.0" mnemonicParsing="false" onAction="#search_Action" style="-fx-background-color: #012c2c;" text="search" textFill="WHITE" />
-      <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="155.0" layoutY="36.0" prefHeight="247.0" prefWidth="445.0" style="-fx-background-color: #006868;" vbarPolicy="ALWAYS">
+      <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="155.0" layoutY="36.0" prefHeight="247.0" prefWidth="445.0" style="-fx-background-color: #006868;" stylesheets="@home.css" vbarPolicy="ALWAYS">
          <content>
             <GridPane fx:id="gridPain" prefHeight="424.0" prefWidth="431.0" style="-fx-background-color: #006868; -fx-background-color: #006868;" vgap="1.0">
                <columnConstraints>
@@ -88,7 +89,6 @@
       <Circle fx:id="playPause_button" fill="#005656" layoutX="486.0" layoutY="360.0" onMouseClicked="#playPause_Action" radius="16.0" stroke="#005656" strokeType="INSIDE" />
       <Circle fx:id="next_button" fill="#005656" layoutX="553.0" layoutY="360.0" onMouseClicked="#next_Action" radius="16.0" stroke="#005656" strokeType="INSIDE" />
       <Circle fx:id="previous_button" fill="#005656" layoutX="419.0" layoutY="360.0" onMouseClicked="#previous_Action" radius="16.0" stroke="#005656" strokeType="INSIDE" />
-      <Rectangle fx:id="imageArea" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="8.0" layoutY="328.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
       <Text fx:id="NameMusic_text" fill="WHITE" layoutX="109.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font size="20.0" />
@@ -99,5 +99,6 @@
             <Font size="20.0" />
          </font>
       </Text>
+      <ImageView fx:id="image" fitHeight="65.0" fitWidth="79.0" layoutX="8.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

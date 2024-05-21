@@ -50,5 +50,6 @@ public class HelloApplication extends Application {
         ArtistController.getArtistController().registration("P","ala","pass","alireza","alirezaharandi@Gmail.com","09140405053","2004","12","29","bio");
         PodcasterController.getPodcasterController().publishPodcast("name","POP","kjkvsv","https://dl.instamusic.ir/02/11/%20Maneskin%20-%20I%20Wanna%20Be%20Your%20Slave%20(128).mp3","file:src/main/resources/picture/images.jpg");
         launch();
+
     }
 }

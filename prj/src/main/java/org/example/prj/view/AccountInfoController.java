@@ -2,16 +2,26 @@ package org.example.prj.view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import org.example.prj.HelloApplication;
+import org.example.prj.controller.ArtistController;
 import org.example.prj.controller.ListenerController;
+import org.example.prj.model.Audio;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -61,7 +71,7 @@ public class AccountInfoController implements Initializable {
     private Button home_button;
 
     @FXML
-    private Rectangle imageArea;
+    private ImageView image;
 
     @FXML
     private Button library_button;
@@ -108,84 +118,158 @@ public class AccountInfoController implements Initializable {
     @FXML
     private Text userName_text;
 
-    @FXML
-    void addPlayList_Action(ActionEvent event) {
 
+    @FXML
+    void artists_Action(ActionEvent event) throws IOException {
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("artistsList-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
     }
 
     @FXML
-    void artists_Action(ActionEvent event) {
-
-    }
-
-    @FXML
-    void audios_Action(ActionEvent event) {
-
+    void audios_Action(ActionEvent event) throws IOException {
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("audiosList-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
     }
 
     @FXML
     void back_Action(ActionEvent event) {
-
+        if(!Detail.lastScene.empty())
+            HelloApplication.getStage().setScene(Detail.lastScene.pop());
     }
 
     @FXML
-    void following_Action(ActionEvent event) {
-
+    void home_Action(ActionEvent event) throws IOException {
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
     }
 
     @FXML
-    void home_Action(ActionEvent event) {
-
+    void library_Action(ActionEvent event) throws IOException {
+        if(Detail.login) {
+            Detail.lastScene.push(HelloApplication.getStage().getScene());
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accountInfo-view.fxml"));
+            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        }
+        else{
+            //exception
+        }
     }
 
     @FXML
-    void library_Action(ActionEvent event) {
-
+    void login_Action(ActionEvent event) throws IOException {
+        if(Detail.login) {
+            //exception
+        }
+        else{
+            Detail.lastScene.push(HelloApplication.getStage().getScene());
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        }
     }
 
     @FXML
-    void login_Action(ActionEvent event) {
-
-    }
-
-    @FXML
-    void logout_Action(ActionEvent event) {
-
+    void logout_Action(ActionEvent event) throws IOException {
+        if(Detail.login) {
+            Detail.lastScene.removeAllElements();
+            Detail.login = false;
+            if (Detail.listener){
+                Detail.listener=false;
+                ListenerController.getListenerController().setUserAccount(null);
+            }
+            else if (Detail.podcaster){
+                Detail.podcaster=false;
+                ArtistController.getArtistController().setUserAccount(null);
+            }
+            else if (Detail.singer){
+                Detail.singer=false;
+                ArtistController.getArtistController().setUserAccount(null);
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        }
+        else {
+            //exception
+        }
     }
 
     @FXML
     void next_Action(MouseEvent event) {
-
-    }
-
-    @FXML
-    void playLIsts_Action(ActionEvent event) {
-
+        Audio audio = ListenerController.getListenerController().nextAudioFile();
+        playPause_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/pause.png")));
+        NameMusic_text.setText(audio.getName());
+        NameArtist_text.setText(audio.getNameArtist());
+        image.setImage(new Image("file:"+audio.getCover()));
     }
 
     @FXML
     void playPause_Action(MouseEvent event) {
-
-    }
-
-    @FXML
-    void premium_Action(ActionEvent event) {
-
+        if (Detail.getDetail().pause)
+            playPause_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/pause.png")));
+        else
+            playPause_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/play.png")));
+        Audio audio = ListenerController.getListenerController().playPauseAudioFile();
+        NameMusic_text.setText(audio.getName());
+        NameArtist_text.setText(audio.getNameArtist());
+        image.setImage(new Image("file:"+audio.getCover()));
     }
 
     @FXML
     void previous_Action(MouseEvent event) {
-
+        Audio audio = ListenerController.getListenerController().previousAudioFile();
+        playPause_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/pause.png")));
+        NameMusic_text.setText(audio.getName());
+        NameArtist_text.setText(audio.getNameArtist());
+        image.setImage(new Image("file:"+audio.getCover()));
     }
 
     @FXML
-    void register_Action(ActionEvent event) {
-
+    void register_Action(ActionEvent event) throws IOException {
+        if(Detail.login){
+            //exception
+        }else {
+            Detail.lastScene.push(HelloApplication.getStage().getScene());
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registerType-view.fxml"));
+            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        }
     }
 
     @FXML
-    void search_Action(ActionEvent event) {
+    void search_Action(ActionEvent event) throws IOException {
+        Detail.getDetail().search = ListenerController.getListenerController().searchAudioFile(search_Text.getText());
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+    }
 
+    @FXML
+    void addPlayList_Action(ActionEvent event) throws IOException {
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("addPlayList-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+    }
+
+    @FXML
+    void following_Action(ActionEvent event) throws IOException {
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("following-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+    }
+
+    @FXML
+    void playLists_Action(ActionEvent event) throws IOException {
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("playLists-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+    }
+
+    @FXML
+    void premium_Action(ActionEvent event) throws IOException {
+        Detail.lastScene.push(HelloApplication.getStage().getScene());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("buyPremium-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
     }
 
     @Override
@@ -198,5 +282,13 @@ public class AccountInfoController implements Initializable {
         daySub_text.setText(ListenerController.getListenerController().getDaySubView());
         credit_text.setText(ListenerController.getListenerController().getCreditView());
         genre_text.setText(ListenerController.getListenerController().getFavoriteGenreView());
+        if(Detail.lastScene.empty())
+            back_button.setTextFill(Paint.valueOf("ffffff81"));
+        if(Detail.getDetail().play)
+            playPause_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/pause.png")));
+        else
+            playPause_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/play.png")));
+        next_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/next.png")));
+        previous_button.setFill(new ImagePattern(new Image("file:src/main/resources/picture/previous.png")));
     }
 }

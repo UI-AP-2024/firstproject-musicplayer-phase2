@@ -41,7 +41,7 @@ public class ArtistController {
     }
 
     public String getdateView(){
-        return getUserAccount().getDateOfBirth().toString();
+        return getUserAccount().getDateOfBirth().getYear()+1900 + "/" + getUserAccount().getDateOfBirth().getMonth() + "/" + getUserAccount().getDateOfBirth().getDay();
     }
 
     public String getBioView(){
@@ -129,11 +129,15 @@ public class ArtistController {
         for (UserAccount tmp : Database.getDataBase().getUserAccounts()) {
             if (tmp.getUserName().equals(userName) && tmp.getPassword().equals(password)) {
                 setUserAccount((Artist) tmp);
-                if ( tmp instanceof Singer)
+                if ( tmp instanceof Singer) {
                     SingerController.getSingerController().setUserAccount((Singer) tmp);
-                else if ( tmp instanceof Podcaster)
+                    return "Login successfully singer";
+                }
+                else if ( tmp instanceof Podcaster) {
                     PodcasterController.getPodcasterController().setUserAccount((Podcaster) tmp);
-                return "Login successfully";
+                    return "Login successfully podcaster";
+                }
+
             }
         }
         return "The username does not exist or the password is incorrect";

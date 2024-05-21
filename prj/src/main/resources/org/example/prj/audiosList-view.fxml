@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -83,7 +84,6 @@
       <Circle fx:id="playPause_button" fill="#005656" layoutX="486.0" layoutY="360.0" onMouseClicked="#playPause_Action" radius="16.0" stroke="#005656" strokeType="INSIDE" />
       <Circle fx:id="next_button" fill="#005656" layoutX="553.0" layoutY="360.0" onMouseClicked="#next_Action" radius="16.0" stroke="#005656" strokeType="INSIDE" />
       <Circle fx:id="previous_button" fill="#005656" layoutX="419.0" layoutY="360.0" onMouseClicked="#previous_Action" radius="16.0" stroke="#005656" strokeType="INSIDE" />
-      <Rectangle fx:id="imageArea" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="8.0" layoutY="328.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
       <Text fx:id="NameMusic_text" fill="WHITE" layoutX="109.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font size="20.0" />
@@ -94,5 +94,6 @@
             <Font size="20.0" />
          </font>
       </Text>
+      <ImageView fx:id="image" fitHeight="65.0" fitWidth="79.0" layoutX="8.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

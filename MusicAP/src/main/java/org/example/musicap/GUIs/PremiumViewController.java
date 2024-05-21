@@ -48,25 +48,43 @@ public class PremiumViewController implements ShowAlert {
     }
     @FXML
     private void getPlan1(MouseEvent event) {
-        showAlert(listenerController.purchasePremium(PremiumPlan.values()[0]), "Premium access", "Purchase");
-        listenerModel = (Listener) database.getLogedInUser();
-        if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
-        else listenerController = new PremiumListenerController();
+        try {
+            showAlert(listenerController.purchasePremium(PremiumPlan.values()[0]), "Premium access", "Purchase");
+            listenerModel = (Listener) database.getLogedInUser();
+            if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
+            else listenerController = new PremiumListenerController();
+        }
+        catch (Exception e)
+        {
+            showAlert(e.getMessage(), "Premium access", "Purchase");
+        }
     }
 
     @FXML
     private void getPlan2(MouseEvent event) {
-        showAlert(listenerController.purchasePremium(PremiumPlan.values()[1]), "Premium access", "Purchase");
-        listenerModel = (Listener) database.getLogedInUser();
-        if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
-        else listenerController = new PremiumListenerController();
+        try {
+            showAlert(listenerController.purchasePremium(PremiumPlan.values()[1]), "Premium access", "Purchase");
+            listenerModel = (Listener) database.getLogedInUser();
+            if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
+            else listenerController = new PremiumListenerController();
+        }
+        catch (Exception e)
+        {
+            showAlert(e.getMessage(), "Premium access", "Purchase");
+        }
     }
 
     @FXML
     private void getPlan3(MouseEvent event) {
-        showAlert(listenerController.purchasePremium(PremiumPlan.values()[2]), "Premium access", "Purchase");
-        listenerModel = (Listener) database.getLogedInUser();
-        if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
-        else listenerController = new PremiumListenerController();
+        try {
+            showAlert(listenerController.purchasePremium(PremiumPlan.values()[2]), "Premium access", "Purchase");
+            listenerModel = (Listener) database.getLogedInUser();
+            if (listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
+            else listenerController = new PremiumListenerController();
+        }
+        catch (Exception e)
+        {
+            showAlert(e.getMessage(), "Premium access", "Purchase");
+        }
     }
 }

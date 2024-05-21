@@ -1,20 +1,26 @@
 package org.example.musicap.GUIs;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import org.example.musicap.HelloApplication;
 import org.example.musicap.Models.Data.Database;
 import org.example.musicap.Models.Genre;
 import org.example.musicap.Models.User.Listener;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 public class GenresViewController implements ShowAlert {
 
+    @FXML
+    private AnchorPane rootPane;
     private Database database;
     @FXML
     private GridPane gridPane;
@@ -49,7 +55,7 @@ public class GenresViewController implements ShowAlert {
     }
 
     @FXML
-    private void handleSubmitButtonAction() {
+    private void handleSubmitButtonAction() throws IOException {
         if (selectedGenres.size() < 4)
         {
             showAlert("Incomplete Selection", "Please select exactly 4 genres.", "Genres");
@@ -65,7 +71,12 @@ public class GenresViewController implements ShowAlert {
             }
             Listener lastRegisteredListener = (Listener) database.getUsers().get(database.getUsers().size()-1);
             lastRegisteredListener.setFavoriteGenres(favoriteGenres);
-            showAlert("Submission", selectedGenresText.toString(), "Genres");
+            showAlert("Submitted successfully", selectedGenresText.toString(), "Genres");
+
+            rootPane.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+            AnchorPane newPane = loader.load();
+            rootPane.getChildren().add(newPane);
         }
     }
 

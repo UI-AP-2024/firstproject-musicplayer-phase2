@@ -1,4 +1,8 @@
 package org.example.musicap.Controllers;
+import org.example.musicap.Exceptions.FailedLoginException;
+import org.example.musicap.Exceptions.InvalidFormatException;
+import org.example.musicap.Exceptions.PasswordStrengthException;
+import org.example.musicap.Exceptions.WrongPaswordException;
 import org.example.musicap.Extra.RegexValidator;
 import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Data.Database;
@@ -36,8 +40,7 @@ public class AccountController {
         return false;
     }
 
-    public String signUp(String userType, String userName, String password, String name, String email, String phoneNumber, LocalDate dateOfBirth, String bio)
-    {
+    public String signUp(String userType, String userName, String password, String name, String email, String phoneNumber, LocalDate dateOfBirth, String bio) throws PasswordStrengthException {
         if(database.getLogedInUser() != null) return "You are already in your account!";
         for(User tmpUser : database.getUsers())
         {
@@ -46,9 +49,9 @@ public class AccountController {
                 return "Username already taken";
             }
         }
-        if(!RegexValidator.emailValidator(email)) return "Invalid email format";
-        if(!RegexValidator.phoneValidator(phoneNumber)) return "Invalid phone number format";
-        if(!RegexValidator.passwordValidator(password)) return "weak password pattern";
+        if(!RegexValidator.emailValidator(email)) throw new InvalidFormatException("email format invalid");
+        if(!RegexValidator.phoneValidator(phoneNumber)) throw new InvalidFormatException("Invalid phone number format");
+        if(!RegexValidator.passwordValidator(password)) throw new PasswordStrengthException("weak password pattern");
         String switchResult = "User added successfully";
         switch (userType)
         {
@@ -84,7 +87,7 @@ public class AccountController {
 
     public String login(String userName, String password)
     {
-        if(database.getLogedInUser() != null) return "You are already in your account!";
+        if(database.getLogedInUser() != null) throw new FailedLoginException("You are already in your account!");
         boolean flg = false;
 
         for(User tmpUser : database.getUsers())
@@ -97,10 +100,10 @@ public class AccountController {
                     database.setLogedInUser(tmpUser);
                     return  "Welcome to your account";
                 }
-                else return "Wrong password";
+                throw new WrongPaswordException("Wrong password");
             }
         }
-        if(!flg) return "Wrong username";
+        if(!flg) throw new FailedLoginException("Wrong username");
         return "";
     }
     public ArrayList<Audio> showMostLiked()

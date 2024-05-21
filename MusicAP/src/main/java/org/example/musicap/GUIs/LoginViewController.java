@@ -35,10 +35,16 @@ public class LoginViewController implements ShowAlert {
     private void handleSubmitButtonAction() throws InterruptedException, IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String result = accountController.login(username, password);
-        showAlert(result, "Login result", "Login");
-        Thread.sleep(1000);
-        if(result.equals("Welcome to your account")) showUserPanel();
+        try{
+            String result = accountController.login(username, password);
+            showAlert(result, "Login result", "Login");
+            Thread.sleep(1000);
+            if(result.equals("Welcome to your account")) showUserPanel();
+        }
+        catch (Exception e)
+        {
+            showAlert(e.getMessage(), "Login Result", "Login");
+        }
     }
 
     private void showUserPanel() throws IOException {

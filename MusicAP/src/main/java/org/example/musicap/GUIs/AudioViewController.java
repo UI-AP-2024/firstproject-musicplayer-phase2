@@ -68,12 +68,7 @@ public class AudioViewController implements ShowAlert {
         if(audioModel instanceof Song) captionLabel.setText(((Song)audioModel).getLyrics());
         else captionLabel.setText(((Podcast)audioModel).getCaption());
 
-        if(listenerModel == null)
-        {
-            playListOption.setVisible(false);
-            addToPlaylistButton.setVisible(false);
-        }
-        else for(Playlist tmpPlayList : listenerModel.getPlaylists())
+        if(listenerModel!= null) for(Playlist tmpPlayList : listenerModel.getPlaylists())
         {
             playListOption.getItems().add(tmpPlayList.getPlaylistName());
         }
@@ -98,7 +93,13 @@ public class AudioViewController implements ShowAlert {
         {
             if(tmpPlayList.getPlaylistName().equals(playListName))
             {
-                showAlert(listenerController.addToPlaylist(playListName, audioModel), "Playlist", "Add to playlist");
+                try {
+                    showAlert(listenerController.addToPlaylist(playListName, audioModel), "Playlist", "Add to playlist");
+                }
+                catch (Exception e)
+                {
+                    showAlert(e.getMessage(), "Playlist", "Add to playlist");
+                }
                 break;
             }
         }

@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import org.example.musicap.Controllers.AccountController;
+import org.example.musicap.Exceptions.PasswordStrengthException;
 import org.example.musicap.HelloApplication;
 
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class SignupViewController implements ShowAlert {
     }
 
     @FXML
-    private void handleSubmitButtonAction() throws InterruptedException, IOException {
+    private void handleSubmitButtonAction() throws InterruptedException, IOException, PasswordStrengthException {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String name = nameField.getText();
@@ -56,10 +57,16 @@ public class SignupViewController implements ShowAlert {
         LocalDate dob = dobField.getValue();
         String bio = bioField.getText();
         String userType = userTypeComboBox.getValue();
-        String result = accountController.signUp(userType, username, password, name, email, phone, dob, bio);
-        showAlert(result, "Signup attempt", "Signup");
-        Thread.sleep(1000);
-        if(result.equals("User added successfully") && userType.equals("Listener")) getFavoriteGenres();
+        try {
+            String result = accountController.signUp(userType, username, password, name, email, phone, dob, bio);
+            showAlert(result, "Signup attempt", "Signup");
+            Thread.sleep(1000);
+            if (result.equals("User added successfully") && userType.equals("Listener")) getFavoriteGenres();
+        }
+        catch (Exception e)
+        {
+            showAlert(e.getMessage(), "Signup", "Signup attempt");
+        }
     }
 
     private void getFavoriteGenres() throws IOException {

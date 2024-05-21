@@ -1,5 +1,8 @@
 package org.example.musicap.Controllers;
 
+import org.example.musicap.Exceptions.FreeAccountLimitException;
+import org.example.musicap.Exceptions.NotFoundExeption;
+import org.example.musicap.Exceptions.UserNotFoundException;
 import org.example.musicap.Extra.AIRecommender;
 import org.example.musicap.Models.*;
 import org.example.musicap.Models.Audio.Audio;
@@ -90,8 +93,7 @@ public abstract class ListenerController extends UserController{
         return aIrecommender.recommender(n, this.getListenerModel());
     }
 
-    public String playAudio(String audioName)
-    {
+    public String playAudio(String audioName) throws NotFoundExeption {
         for(Audio tmpAudio : database.getAudios())
         {
             if(tmpAudio.getFileName().equals(audioName))
@@ -111,11 +113,10 @@ public abstract class ListenerController extends UserController{
                 return tmpAudio.getAudioLink();
             }
         }
-        return "Audio file not found";
+        throw new NotFoundExeption("Audio file not found");
     }
 
-    public String likeAudio(String audioName)
-    {
+    public String likeAudio(String audioName) throws NotFoundExeption {
         for(Audio audio : database.getAudios())
         {
             if(audio.getFileName().equals(audioName))
@@ -125,7 +126,7 @@ public abstract class ListenerController extends UserController{
                 return "Audio liked";
             }
         }
-        return "Audio file not found";
+        throw new NotFoundExeption("Audio file not found");
     }
 
     public ArrayList<Artist> getFollowings()
@@ -161,7 +162,7 @@ public abstract class ListenerController extends UserController{
     public String reportArtist(String artistUserName, String description)
     {
         Artist reportedArtist = findArtistByUserName(artistUserName);
-        if(reportedArtist == null) return "No Artist found";
+        if(reportedArtist == null) throw new UserNotFoundException("No Artist found");
         database.addReport(new Report(this.getListenerModel(), reportedArtist,  description));
         return "Report Added successfully";
     }
@@ -183,7 +184,7 @@ public abstract class ListenerController extends UserController{
     public String getArtistInfo(String userName)
     {
         Artist selectedArtist = findArtistByUserName(userName);
-        if(selectedArtist == null) return "No artist found";
+        if(selectedArtist == null)  throw new UserNotFoundException("No Artist found");
         return selectedArtist.toString();
     }
 
@@ -199,10 +200,9 @@ public abstract class ListenerController extends UserController{
         return artistAudios;
     }
 
-    public String getLyric(int audioId)
-    {
+    public String getLyric(int audioId) throws NotFoundExeption {
         Audio tmpAudio = findAudioById(audioId);
-        if(tmpAudio == null) return "No audio found\n";
+        if(tmpAudio == null) throw new NotFoundExeption("Audio not found");
         if(tmpAudio instanceof Song) {
             Song tmpSong = (Song) tmpAudio;
             return tmpSong.getLyrics();
@@ -217,7 +217,7 @@ public abstract class ListenerController extends UserController{
     public String followArtist(String userName)
     {
         Artist selectedArtist = findArtistByUserName(userName);
-        if(selectedArtist == null) return "No Artist found";
+        if(selectedArtist == null) throw new UserNotFoundException("No Artist found");
         ArrayList<User> followers = selectedArtist.getFollowers();
         followers.add(this.getListenerModel());
         return "Artist followed by you";
@@ -240,8 +240,8 @@ public abstract class ListenerController extends UserController{
     {
         return this.getListenerModel().toString();
     }
-    public abstract String makeNewPlaylist(String name);
-    public abstract String addToPlaylist(String playistName, Audio audio);
+    public abstract String makeNewPlaylist(String name) throws FreeAccountLimitException;
+    public abstract String addToPlaylist(String playistName, Audio audio) throws NotFoundExeption;
     public abstract String purchasePremium(PremiumPlan plan);
 
     public Audio findAudioById(int audioId)

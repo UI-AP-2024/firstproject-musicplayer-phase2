@@ -1,5 +1,6 @@
 package org.example.musicap.Controllers;
 
+import org.example.musicap.Exceptions.NotFoundExeption;
 import org.example.musicap.Models.Album;
 import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Audio.Song;
@@ -23,8 +24,7 @@ public class SingerController extends ArtistController {
         ArrayList<Album> singerModelAlbums = singerModel.getAlbums();
         singerModelAlbums.add(album);
     }
-    public String addSong(String title, Genre genre, String lyrics, String link, String cover, int albumId)
-    {
+    public String addSong(String title, Genre genre, String lyrics, String link, String cover, int albumId) throws NotFoundExeption {
         Singer singerModel = (Singer)this.getArtistModel();
         ArrayList<Album> singerModelAlbums = singerModel.getAlbums();
         int tmpIndx = 0;
@@ -33,7 +33,7 @@ public class SingerController extends ArtistController {
             if(tmpAlbum.getId() == albumId) break;
             tmpIndx++;
         }
-        if(tmpIndx == singerModelAlbums.size()) return "No such album found";
+        if(tmpIndx == singerModelAlbums.size()) throw new NotFoundExeption("No such album found");
 
         Album selectedAlbum = singerModelAlbums.get(tmpIndx);
         ArrayList<Song> selectedAlbumSongs = selectedAlbum.getSongs();

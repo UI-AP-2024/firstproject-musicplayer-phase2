@@ -3,6 +3,7 @@ package org.example.musicap.GUIs;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -96,7 +97,6 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     public void initialize() throws IOException {
         pagesStack = new Stack<>();
         pagesStack.add("home-view.fxml");
-        if(database.getLogedInUser() == null) logoutButton.setVisible(false);
         homeLabelClick();
     }
     @Override
@@ -111,9 +111,6 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     public void logout() throws IOException {
         showAlert("have a good time!", "Logout attempt", "Logout");
         database.setLogedInUser(null);
-        logoutButton.setVisible(false);
-        signUpButton.setVisible(true);
-        loginButton.setVisible(true);
         homeLabelClick();
     }
 
@@ -149,18 +146,7 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     }
 
     public void homeLabelClick() throws IOException {
-        if(database.getLogedInUser() == null)
-        {
-            logoutButton.setVisible(false);
-            loginButton.setVisible(true);
-            signUpButton.setVisible(true);
-        }
-        else
-        {
-            logoutButton.setVisible(true);
-            loginButton.setVisible(false);
-            signUpButton.setVisible(false);
-        }
+
         mainBody.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
         AnchorPane newPane = loader.load();
@@ -191,6 +177,8 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
 
     public void playPlayList(Playlist playingPlaylist, Audio playingAudio)
     {
+        Image image = new Image(playingAudio.getCover());
+        audioImage.setImage(image);
         musicList = playingPlaylist;
         currentIndex = playingPlaylist.getAudioFiles().indexOf(playingAudio);
         mediaPlayer = new MediaPlayer(new Media(playingAudio.getAudioLink()));
@@ -213,6 +201,8 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     @FXML
     private void previousMusic() {
         currentIndex = (currentIndex+(musicList.getAudioFiles().size())-1)%(musicList.getAudioFiles().size());
+        Image image = new Image(musicList.getAudioFiles().get(currentIndex).getCover());
+        audioImage.setImage(image);
         mediaPlayer.stop();
         mediaPlayer = new MediaPlayer(new Media(musicList.getAudioFiles().get(currentIndex).getAudioLink()));
         initMusic(mediaPlayer);
@@ -222,6 +212,8 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     @FXML
     private void nextMusic() {
         currentIndex = (currentIndex+1)%(musicList.getAudioFiles().size());
+        Image image = new Image(musicList.getAudioFiles().get(currentIndex).getCover());
+        audioImage.setImage(image);
         mediaPlayer.stop();
         mediaPlayer = new MediaPlayer(new Media(musicList.getAudioFiles().get(currentIndex).getAudioLink()));
         initMusic(mediaPlayer);

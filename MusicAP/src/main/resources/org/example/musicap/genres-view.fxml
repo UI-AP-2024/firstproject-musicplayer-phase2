@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.musicap.GUIs.GenresViewController">
+<AnchorPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.musicap.GUIs.GenresViewController">
     <VBox alignment="CENTER" spacing="20.0" styleClass="root-pane">
         <Label text="Select Your Favorite Genres" styleClass="header-label" />
         <GridPane fx:id="gridPane" hgap="10" vgap="10" styleClass="genres-grid">

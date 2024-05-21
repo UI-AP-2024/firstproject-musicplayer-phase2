@@ -35,8 +35,13 @@ public class ReportViewController implements ShowAlert {
     }
     @FXML
     private void addReport(MouseEvent event) {
-        String report = reportTextArea.getText();
-        showAlert(listenerController.reportArtist(artistModel.getUsername(), report), "Report", "Submission");
-        mainBody.getChildren().clear();
+        try {
+            String report = reportTextArea.getText();
+            showAlert(listenerController.reportArtist(artistModel.getUsername(), report), "Report", "Submission");
+            mainBody.getChildren().clear();
+        } catch (Exception e)
+        {
+            showAlert(e.getMessage(), "Report", "Submission");
+        }
     }
 }

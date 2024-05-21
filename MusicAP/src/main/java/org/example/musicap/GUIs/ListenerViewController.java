@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import org.example.musicap.Controllers.ListenerController;
 import org.example.musicap.Controllers.NormalListenerController;
 import org.example.musicap.Controllers.PremiumListenerController;
+import org.example.musicap.Exceptions.FreeAccountLimitException;
 import org.example.musicap.HelloApplication;
 import org.example.musicap.Models.Data.Database;
 import org.example.musicap.Models.Playlist;
@@ -75,7 +76,7 @@ public class ListenerViewController implements ShowAlert {
         mainBody.getChildren().add(newPane);
     }
 
-    public void addNewPlaylist() throws IOException {
+    public void addNewPlaylist() throws IOException, FreeAccountLimitException {
         String playListName = newPlayListNameLabel.getText();
         if(playListName.equals("")) showAlert("Playlist name cannot be empty!", "Playlist Name", "New Playlist");
         else

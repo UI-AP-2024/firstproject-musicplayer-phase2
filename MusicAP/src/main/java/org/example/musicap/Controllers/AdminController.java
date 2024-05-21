@@ -1,5 +1,7 @@
 package org.example.musicap.Controllers;
 
+import org.example.musicap.Exceptions.NotFoundExeption;
+import org.example.musicap.Exceptions.UserNotFoundException;
 import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Data.Database;
 import org.example.musicap.Models.Report;
@@ -45,7 +47,7 @@ public class AdminController extends UserController{
     public String showArtistInfo(String artistUserName)
     {
         Artist selectedArtist = findArtistByUserName(artistUserName);
-        if(selectedArtist == null) return "No artist found";
+        if(selectedArtist == null) throw new UserNotFoundException("No artist found");
         return selectedArtist.toString();
     }
 
@@ -59,10 +61,9 @@ public class AdminController extends UserController{
         }
         return selectedAudio;
     }
-    public String showAudioInfo(int audioId)
-    {
+    public String showAudioInfo(int audioId) throws NotFoundExeption {
         Audio selectedAudio = findAudioById(audioId);
-        if(selectedAudio == null) return "No audio found";
+        if(selectedAudio == null) throw new NotFoundExeption("No audio found");
         return selectedAudio.toString();
     }
     public ArrayList<Artist> showArtists()

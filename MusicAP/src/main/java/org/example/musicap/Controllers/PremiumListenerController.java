@@ -1,5 +1,7 @@
 package org.example.musicap.Controllers;
 
+import org.example.musicap.Exceptions.NotEnoughCredit;
+import org.example.musicap.Exceptions.NotFoundExeption;
 import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Playlist;
 import org.example.musicap.Models.PremiumPlan;
@@ -29,8 +31,7 @@ public class PremiumListenerController extends ListenerController{
     }
 
 
-    public String addToPlaylist(String playlistName, Audio audio)
-    {
+    public String addToPlaylist(String playlistName, Audio audio) throws NotFoundExeption {
         ArrayList<Playlist> playlists = this.getListenerModel().getPlaylists();
         for(Playlist tmpPlaylist : playlists)
         {
@@ -42,7 +43,8 @@ public class PremiumListenerController extends ListenerController{
                 return "Audio added successfully";
             }
         }
-        return "No such playlist found";
+        throw new NotFoundExeption("No such playlist found");
+
     }
 
 
@@ -61,7 +63,7 @@ public class PremiumListenerController extends ListenerController{
             this.getDatabase().updateUser(premiumModel);
             return "Premium Account updated successfully";
         }
-        return "Your account credit is not enough";
+        throw new NotEnoughCredit("Your account credit is not enough");
     }
 
     public void repurchasePremium()

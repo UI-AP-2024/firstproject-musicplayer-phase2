@@ -1,5 +1,9 @@
 package org.example.musicap.Controllers;
 
+import org.example.musicap.Exceptions.FailedLoginException;
+import org.example.musicap.Exceptions.FreeAccountLimitException;
+import org.example.musicap.Exceptions.NotEnoughCredit;
+import org.example.musicap.Exceptions.NotFoundExeption;
 import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Audio.Podcast;
 import org.example.musicap.Models.Audio.Song;
@@ -16,8 +20,7 @@ import java.util.ArrayList;
 
 public class NormalListenerController extends ListenerController {
 
-    public String makeNewPlaylist(String name)
-    {
+    public String makeNewPlaylist(String name) throws FreeAccountLimitException {
         ArrayList<Playlist> playlists = this.getListenerModel().getPlaylists();
         if(playlists.size() < 3)
         {
@@ -26,11 +29,10 @@ public class NormalListenerController extends ListenerController {
             this.getDatabase().updateUser(this.getListenerModel());
             return "Playlist added successfully";
         }
-        return "You should upgrade your account to premium in order to add more than 3 Playlists";
+        throw new FreeAccountLimitException("You should upgrade your account to premium in order to add more than 3 Playlists");
     }
 
-    public String addToPlaylist(String playlistName, Audio audio)
-    {
+    public String addToPlaylist(String playlistName, Audio audio) throws NotFoundExeption {
         ArrayList<Playlist> playlists = this.getListenerModel().getPlaylists();
         for(Playlist tmpPlaylist : playlists)
         {
@@ -39,14 +41,14 @@ public class NormalListenerController extends ListenerController {
                 if(tmpPlaylist.getAudioFiles().contains(audio))
                     return "Audio already in playlist!";
                 if(tmpPlaylist.getAudioFiles().size() > 10)
-                    return "You must upgrade your account in order to add more than 10 Audios in a playlist";
+                    throw new FailedLoginException("You must upgrade your account in order to add more than 10 Audios in a playlist");
                 tmpPlaylist.addAudioFiles(audio);
                 this.getListenerModel().setPlaylists(playlists);
                 this.getDatabase().updateUser(this.getListenerModel());
                 return "Audio added successfully";
             }
         }
-        return "No such playlist found";
+        throw new NotFoundExeption("No such playlist found");
     }
 
     public String purchasePremium(PremiumPlan plan)
@@ -67,6 +69,6 @@ public class NormalListenerController extends ListenerController {
             this.getDatabase().setLogedInUser(tmpPremium);
             return "Premium Account purchased successfully";
         }
-        return "Your account credit is not enough";
+        throw new NotEnoughCredit("Your account credit is not enough");
     }
 }

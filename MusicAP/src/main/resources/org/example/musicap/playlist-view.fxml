@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="428.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicap.GUIs.PlaylistViewController">
+    <Label fx:id="titleLabel" text="Playlist" styleClass="title-lable" />
+    <ListView onMouseClicked="#showAudio" fx:id="listViewPane" layoutX="182.0" layoutY="83.0" prefHeight="349.0" prefWidth="237.0">
+
+    </ListView>
+</AnchorPane>

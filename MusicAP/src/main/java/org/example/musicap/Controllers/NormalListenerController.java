@@ -1,0 +1,74 @@
+package org.example.musicap.Controllers;
+
+import org.example.musicap.Exceptions.FailedLoginException;
+import org.example.musicap.Exceptions.FreeAccountLimitException;
+import org.example.musicap.Exceptions.NotEnoughCredit;
+import org.example.musicap.Exceptions.NotFoundExeption;
+import org.example.musicap.Models.Audio.Audio;
+import org.example.musicap.Models.Audio.Podcast;
+import org.example.musicap.Models.Audio.Song;
+import org.example.musicap.Models.Playlist;
+import org.example.musicap.Models.PremiumPlan;
+import org.example.musicap.Models.User.NormalListener;
+import org.example.musicap.Models.User.Podcaster;
+import org.example.musicap.Models.User.PremiumListener;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
+
+public class NormalListenerController extends ListenerController {
+
+    public String makeNewPlaylist(String name) throws FreeAccountLimitException {
+        ArrayList<Playlist> playlists = this.getListenerModel().getPlaylists();
+        if(playlists.size() < 3)
+        {
+            playlists.add(new Playlist(name, this.getListenerModel().getUsername()));
+            this.getListenerModel().setPlaylists(playlists);
+            this.getDatabase().updateUser(this.getListenerModel());
+            return "Playlist added successfully";
+        }
+        throw new FreeAccountLimitException("You should upgrade your account to premium in order to add more than 3 Playlists");
+    }
+
+    public String addToPlaylist(String playlistName, Audio audio) throws NotFoundExeption {
+        ArrayList<Playlist> playlists = this.getListenerModel().getPlaylists();
+        for(Playlist tmpPlaylist : playlists)
+        {
+            if(tmpPlaylist.getPlaylistName().equals(playlistName))
+            {
+                if(tmpPlaylist.getAudioFiles().contains(audio))
+                    return "Audio already in playlist!";
+                if(tmpPlaylist.getAudioFiles().size() > 10)
+                    throw new FailedLoginException("You must upgrade your account in order to add more than 10 Audios in a playlist");
+                tmpPlaylist.addAudioFiles(audio);
+                this.getListenerModel().setPlaylists(playlists);
+                this.getDatabase().updateUser(this.getListenerModel());
+                return "Audio added successfully";
+            }
+        }
+        throw new NotFoundExeption("No such playlist found");
+    }
+
+    public String purchasePremium(PremiumPlan plan)
+    {
+        if(this.getListenerModel().getCredit() >= plan.getPrice())
+        {
+            this.getListenerModel().setCredit(this.getListenerModel().getCredit() - plan.getPrice()); // subtract credit
+            LocalDate subscriptionEndDate = LocalDate.now();
+            subscriptionEndDate = subscriptionEndDate.plusDays(plan.getDays()); // end date of subscription
+            NormalListener tmpListener = (NormalListener) this.getListenerModel(); // assign the model listener to a new variable so we can use it after deletion
+            this.getDatabase().removeUser(this.getListenerModel());
+
+            PremiumListener tmpPremium = new PremiumListener(tmpListener.getUsername(), tmpListener.getPassword(),
+                    tmpListener.getName(), tmpListener.getEmail(), tmpListener.getPhoneNumber(), tmpListener.getDateOfBirth(),
+                    tmpListener.getCredit(), subscriptionEndDate, plan.getDays(), tmpListener.getFavoriteGenres());
+            this.setListenerModel(tmpPremium);
+            this.getDatabase().addUser(tmpPremium);
+            this.getDatabase().setLogedInUser(tmpPremium);
+            return "Premium Account purchased successfully";
+        }
+        throw new NotEnoughCredit("Your account credit is not enough");
+    }
+}

@@ -1,0 +1,394 @@
+#top-container {
+    -fx-background-color: linear-gradient(to bottom, #580000, #320000);
+}
+
+#top-container Label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+#left-container {
+    -fx-background-color: linear-gradient(to bottom, #000000, #1A1A1A);
+}
+#left-container Label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+Button {
+    -fx-background-color: linear-gradient(to bottom, #000000, #4B0000);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+Label {
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+}
+
+Button:hover {
+    -fx-background-color: linear-gradient(to bottom, #6B0000, #2B0000);
+}
+
+Label:hover {
+    -fx-background-color: linear-gradient(to bottom, #6B0000, #2B0000);
+}
+
+#musicPane {
+    -fx-background-color: linear-gradient(to bottom, #580000, #320000);
+}
+
+AnchorPane Button{
+    -fx-background-radius: 50;
+}
+
+#timeSlider {
+    -fx-background-color: transparent;
+}
+#timeSlider .track {
+    -fx-background-color: #1e0000;
+}
+#timeSlider .thumb {
+    -fx-background-color: #8b0000;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 0.5px;
+}
+
+#timeSlider .thumb:hover .track {
+    -fx-background-color: #8b0000;
+}
+
+#timeSlider .thumb:focused {
+    -fx-border-color: #8b0000;
+}
+
+#timeSlider .thumb:pressed {
+    -fx-background-color: #660000;
+}
+
+#timeSlider .thumb:disabled {
+    -fx-background-color: #595959;
+}
+
+#timeSlider .thumb:disabled .track {
+    -fx-background-color: #6b6b6b;
+}
+
+.audio-item-pane {
+    -fx-background-color: #444;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.5, 0.0, 0.0);
+    -fx-cursor: hand;
+}
+
+.audio-title {
+    -fx-font-size: 18px;
+    -fx-fill: #fff;
+}
+
+.audio-artist {
+    -fx-font-size: 14px;
+    -fx-fill: #ccc;
+}
+
+.play-button {
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
+    -fx-font-size: 12px;
+    -fx-shape: "M100,50A50,50,0,1,0,150,100L100,150A50,50,0,1,0,50,100L100,50Z";
+    -fx-background-radius: 50%;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 40px;
+    -fx-opacity: 0.0;
+    -fx-transition: opacity 0.3s ease;
+}
+
+.root-pane {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 20;
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+GridPane {
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #fff;
+}
+
+Label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555;
+}
+
+TextField, PasswordField {
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.submit-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #a30000;
+    -fx-text-fill: #fff;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.submit-button:hover {
+    -fx-background-color: #5b0000;
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+GridPane {
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #fff;
+}
+
+Label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555;
+}
+
+TextField, PasswordField, TextArea {
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+ComboBox {
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.genres-grid {
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #fff;
+}
+
+.genre-label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #555;
+    -fx-padding: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-background-color: #e0e0e0;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+
+.genre-label:hover {
+    -fx-background-color: #d0d0d0;
+}
+
+.genre-label.selected {
+    -fx-background-color: #bc0000;
+    -fx-text-fill: #fff;
+    -fx-border-color: #5c0000;
+}
+
+.user-name-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.premium-button {
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-color: #a40000;
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+}
+
+.premium-button:hover{
+    -fx-background-color: #710000;
+}
+
+.section-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.add-playlist-button {
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-background-color: #a40000;
+    -fx-text-fill: white;
+    -fx-border-radius: 5;
+}
+
+.add-playlist-button:hover {
+    -fx-background-color: #710000;
+}
+
+.plan-box {
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.5, 0, 0);
+}
+
+.plan-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+.plan-price {
+    -fx-font-size: 20px;
+    -fx-text-fill: #777;
+}
+
+.select-button {
+    -fx-font-size: 16px;
+    -fx-background-color: #950000;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.select-button:hover {
+    -fx-background-color: #770000;
+}
+
+.title-lable {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.audio-name-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.artist-name-label {
+    -fx-font-size: 20px;
+    -fx-text-fill: #777;
+}
+
+.likes-count-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #555;
+}
+
+.caption-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #666;
+    -fx-padding: 10 0;
+}
+
+.action-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #a40000;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.action-button:hover {
+    -fx-background-color: #770000;
+}
+
+
+.artist-name-label {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+.action-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #a10000;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.action-button:hover {
+    -fx-background-color: #5f0000;
+}
+
+.content-box {
+    -fx-background-color: #fff;
+    -fx-border-color: #ddd;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.section-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555;
+}
+
+.info-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #777;
+    -fx-padding: 5 0;
+}
+
+.report-text-area {
+    -fx-font-size: 14px;
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-pref-height: 200px;
+    -fx-pref-width: 400px;
+}
+
+.submit-button {
+    -fx-font-size: 16px;
+    -fx-background-color: #aa0000;
+    -fx-text-fill: white;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.submit-button:hover {
+    -fx-background-color: #710000;
+}

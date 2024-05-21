@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="mainBody" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.musicap.GUIs.ListenerViewController">
+    <VBox alignment="CENTER" spacing="20.0" styleClass="root-pane">
+        <HBox alignment="CENTER" spacing="10">
+            <Label fx:id="userNameLabel" styleClass="user-name-label" />
+            <Button text="Get Premium" styleClass="premium-button" onMouseClicked="#getPremium" />
+        </HBox>
+        <VBox alignment="TOP_LEFT" spacing="10">
+            <Label fx:id="emailLabel"  />
+            <Label fx:id="phoneLabel"  />
+            <Label fx:id="creditLabel"  />
+            <Label fx:id="dobLabel" />
+        </VBox>
+        <HBox spacing="20">
+            <VBox>
+                <Label text="Followings" styleClass="section-label" />
+                <ListView fx:id="followingsListView" onMouseClicked="#followingsClick" prefWidth="200" />
+            </VBox>
+            <VBox>
+                <Label text="Playlists" styleClass="section-label" />
+                <ListView fx:id="playlistsListView" onMouseClicked="#playlistsClick" prefWidth="200" />
+            </VBox>
+        </HBox>
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="newPlayListNameLabel" promptText="Playlist's Name" />
+            <Button fx:id="newPlaylistButton" text="Add New Playlist" styleClass="add-playlist-button" onMouseClicked="#addNewPlaylist" />
+        </HBox>
+    </VBox>
+</AnchorPane>

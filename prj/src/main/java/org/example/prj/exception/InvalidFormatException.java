@@ -1,6 +1,6 @@
 package org.example.prj.exception;
 
-public class InvalidFormatException extends Exception{
+public class InvalidFormatException extends RuntimeException{
     public InvalidFormatException(String msg){
         super(msg);
     }

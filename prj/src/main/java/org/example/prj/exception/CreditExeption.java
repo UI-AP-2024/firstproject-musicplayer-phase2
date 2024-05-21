@@ -1,6 +1,6 @@
 package org.example.prj.exception;
 
-public class CreditExeption extends Exception{
+public class CreditExeption extends RuntimeException{
     public CreditExeption(String msg){
         super(msg);
     }

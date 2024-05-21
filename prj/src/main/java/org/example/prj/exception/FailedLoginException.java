@@ -1,6 +1,6 @@
 package org.example.prj.exception;
 
-public class FailedLoginException extends Exception{
+public class FailedLoginException extends RuntimeException{
     public FailedLoginException(){
         super("login faild");
     }

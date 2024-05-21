@@ -22,6 +22,7 @@ public class ArtistsViewController {
     private AdminController adminController;
     public void initialize()
     {
+        LayoutViewController.pagesStack.add("home-view.fxml");
         adminController = AdminController.getAdminController();
         for(Artist tmpArtist : adminController.showArtists())
         {

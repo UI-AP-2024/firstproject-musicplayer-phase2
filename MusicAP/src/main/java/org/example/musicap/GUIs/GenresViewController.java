@@ -22,7 +22,7 @@ public class GenresViewController implements ShowAlert {
     private Set<Label> selectedGenres = new HashSet<>();
     public void initialize()
     {
-
+        LayoutViewController.pagesStack.add("genres-view.fxml");
         database = Database.getInstance();
         int index = 0;
         for (Genre genre : Genre.values()) {

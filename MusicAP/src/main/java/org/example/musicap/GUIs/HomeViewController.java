@@ -37,6 +37,7 @@ public class HomeViewController {
     private Database database;
     ArrayList<Audio> audiosToShow;
     public void initialize() throws IOException {
+        LayoutViewController.pagesStack.add("home-view.fxml");
         database = Database.getInstance();
         adminController = AdminController.getAdminController();
         normalListenerController = new NormalListenerController();

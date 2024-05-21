@@ -27,6 +27,7 @@ public class LoginViewController implements ShowAlert {
     private Database database;
     public void initialize()
     {
+        LayoutViewController.pagesStack.add("home-view.fxml");
         accountController = AccountController.getAccountController();
         database = Database.getInstance();
     }

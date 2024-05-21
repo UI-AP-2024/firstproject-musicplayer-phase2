@@ -25,6 +25,7 @@ public class PlaylistViewController {
 
     public void customInitialize(Playlist playlistModel)
     {
+        LayoutViewController.pagesStack.add("listener-view.fxml");
         this.playlistModel = playlistModel;
         titleLabel.setText("Playlist : " + playlistModel.toString());
         for(Audio tmpAudio : playlistModel.getAudioFiles())

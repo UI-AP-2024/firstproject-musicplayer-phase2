@@ -34,6 +34,7 @@ public class PremiumViewController implements ShowAlert {
     private ListenerController listenerController;
     public void initialize()
     {
+        LayoutViewController.pagesStack.add("premium-view.fxml");
         database = Database.getInstance();
         listenerModel = (Listener) database.getLogedInUser();
         if(listenerModel instanceof NormalListener) listenerController = new NormalListenerController();

@@ -27,6 +27,7 @@ public class ReportViewController implements ShowAlert {
 
     public void customInitialize(Listener listenerModel, Artist artistModel)
     {
+        LayoutViewController.pagesStack.add("home-view.fxml");
         this.artistModel = artistModel;
         this.listenerModel = listenerModel;
         if(listenerModel instanceof NormalListener) listenerController = new NormalListenerController();

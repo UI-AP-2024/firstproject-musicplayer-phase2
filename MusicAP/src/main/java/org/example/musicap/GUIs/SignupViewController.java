@@ -42,6 +42,7 @@ public class SignupViewController implements ShowAlert {
     private ComboBox<String> userTypeComboBox;
     public void initialize()
     {
+        LayoutViewController.pagesStack.add("home-view.fxml");
         accountController = AccountController.getAccountController();
     }
 

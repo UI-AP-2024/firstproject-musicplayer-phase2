@@ -25,6 +25,7 @@ public class SearchViewController {
 
     public void customInitialize(String searchQuery)
     {
+        LayoutViewController.pagesStack.add("home-view.fxml");
         this.searchQuery = searchQuery;
         listenerController = new NormalListenerController();
         titleLabel.setText("Search results for : " + searchQuery);

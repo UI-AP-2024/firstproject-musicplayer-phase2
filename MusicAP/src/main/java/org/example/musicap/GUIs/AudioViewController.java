@@ -54,6 +54,7 @@ public class AudioViewController implements ShowAlert {
 
     public void customInitialize(Audio audioModel)
     {
+        LayoutViewController.pagesStack.add("audios-view.fxml");
         database = Database.getInstance();
         listenerModel = (Listener) database.getLogedInUser();
         if(listenerModel instanceof NormalListener) listenerController = new NormalListenerController();

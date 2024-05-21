@@ -47,6 +47,7 @@ public class ArtistViewController implements ShowAlert {
     private Listener listenerModel;
     public void customInitialize(Artist artistModel)
     {
+        LayoutViewController.pagesStack.add("artists-view.fxml");
         database = Database.getInstance();
         this.artistModel = artistModel;
         if(artistModel instanceof Singer) artistController = new SingerController((Singer)artistModel);

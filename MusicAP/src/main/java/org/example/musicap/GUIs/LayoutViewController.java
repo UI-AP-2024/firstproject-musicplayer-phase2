@@ -16,8 +16,8 @@ import org.example.musicap.Models.Data.Database;
 import org.example.musicap.Models.Playlist;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,6 +31,7 @@ import java.util.List;
 
 public class LayoutViewController implements GeneralOperation, ShowAlert {
 
+    public static Stack<String> pagesStack;
     @FXML
     private Button playButton;
     @FXML
@@ -93,11 +94,17 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     }
 
     public void initialize() throws IOException {
+        pagesStack = new Stack<>();
+        pagesStack.add("home-view.fxml");
         if(database.getLogedInUser() == null) logoutButton.setVisible(false);
         homeLabelClick();
     }
     @Override
-    public void backTo() {
+    public void backTo() throws IOException {
+        mainBody.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(pagesStack.pop()));
+        AnchorPane newPane = loader.load();
+        mainBody.getChildren().add(newPane);
     }
 
     @Override

@@ -1,9 +1,14 @@
 package org.example.musicplayer;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaPlayer;
@@ -15,21 +20,47 @@ import java.util.ResourceBundle;
 public class MusicController implements Initializable {
 
     //MediaPlayer mediaPlayer = new MediaPlayer(HelloApplication.currentMusic = HelloApplication.musics.get(0));
+    @FXML
+    private Label artist;
 
     @FXML
-    private Label lbl_name;
+    private Button btn_addTo;
 
     @FXML
-    private AnchorPane main_anchor;
+    private ToggleButton btn_like;
 
     @FXML
-    private Circle next_circle;
+    private Circle btn_next;
 
     @FXML
-    private Circle play_cicrle;
+    private Circle btn_pp;
 
     @FXML
-    private Circle pre_circle;
+    private Circle btn_pre;
+
+    @FXML
+    private ImageView cover;
+
+    @FXML
+    private Slider slider;
+
+    @FXML
+    private Label text;
+
+    @FXML
+    private Label title;
+
+    @FXML
+    void addTo_action(ActionEvent event) {
+
+    }
+
+    @FXML
+    void like_action(ActionEvent event) {
+
+    }
+
+
 
     @FXML
     void next_event(MouseEvent event) {
@@ -113,17 +144,17 @@ public class MusicController implements Initializable {
         String path1 = HelloApplication.class.getResource("images/play.jpg").toExternalForm();
         Image image1 = new Image(path1);
         ImagePattern imagePattern1 = new ImagePattern(image1);
-        play_cicrle.setFill(imagePattern1);
+        btn_pp.setFill(imagePattern1);
         String path2 = HelloApplication.class.getResource("images/next.png").toExternalForm();
         Image image2 = new Image(path2);
         ImagePattern imagePattern2 = new ImagePattern(image2);
-        next_circle.setFill(imagePattern2);
+        btn_next.setFill(imagePattern2);
         String path3 = HelloApplication.class.getResource("images/pre.png").toExternalForm();
         Image image3 = new Image(path3);
         ImagePattern imagePattern3 = new ImagePattern(image3);
-        pre_circle.setFill(imagePattern3);
+        btn_pre.setFill(imagePattern3);
         //----------------------------------------
-        lbl_name.setText("MUSIC 1");
+        title.setText("");
         //--------------------------------------
     }
 }

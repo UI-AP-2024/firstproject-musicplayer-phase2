@@ -27,6 +27,9 @@ public class HelloApplication extends Application {
         currentstage.show();
     }
     public static void main(String[] args) {
+        String path1 = "https://dl.violinmusics.ir/Music/Instrumental/2021/08.%20Nino%20Rota%20-%20Romeo%20and%20Juliet.mp3";
+        Media music1 = new Media(path1);
+        currentMusic = music1;
         launch();
     }
 }

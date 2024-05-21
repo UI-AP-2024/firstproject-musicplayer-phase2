@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -35,7 +36,8 @@ public class BasePageController implements Initializable {
 
     @FXML
     private Button btn_login;
-
+    @FXML
+    private Label info = new Label();
     @FXML
     private Button btn_logout;
 
@@ -117,6 +119,7 @@ public class BasePageController implements Initializable {
         if (!searched) {
             if (HelloApplication.loggedIn)
             {
+                info.setText("logged in : " + HelloApplication.currentUser.getUsername() + ", email : " + HelloApplication.currentUser.getEmail());
                 for (AudioModel audioModel : DataBaseModel.getDataBase().getAudios()) {
                     HBox hBox = new HBox(3);
 

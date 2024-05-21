@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,18 +13,17 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer.MusicController">
    <children>
       <ImageView fx:id="cover" fitHeight="198.0" fitWidth="210.0" layoutX="50.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <AnchorPane layoutX="4.0" layoutY="306.0" prefHeight="90.0" prefWidth="593.0" style="-fx-border-color: silver;">
          <children>
-            <Circle fx:id="btn_next" fill="DODGERBLUE" layoutX="322.0" layoutY="74.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="btn_pre" fill="DODGERBLUE" layoutX="252.0" layoutY="74.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="btn_pp" fill="DODGERBLUE" layoutX="288.0" layoutY="74.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
-            <ToggleButton fx:id="btn_like" layoutX="375.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" style="-fx-background-radius: 200;" />
+            <Circle fx:id="btn_next" fill="DODGERBLUE" layoutX="322.0" layoutY="74.0" onMouseClicked="#next_event" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="btn_pre" fill="DODGERBLUE" layoutX="252.0" layoutY="74.0" onMouseClicked="#pre_event" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="btn_pp" fill="DODGERBLUE" layoutX="288.0" layoutY="74.0" onMouseClicked="#play_event" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+            <ToggleButton fx:id="btn_like" layoutX="375.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#like_action" prefHeight="18.0" prefWidth="18.0" style="-fx-background-radius: 200;" />
             <Slider fx:id="slider" layoutX="5.0" layoutY="20.0" prefHeight="14.0" prefWidth="582.0" />
-            <Button fx:id="btn_addTo" layoutX="401.0" layoutY="64.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="18.0" style="-fx-background-radius: 200;" text="Button" />
+            <Button fx:id="btn_addTo" layoutX="401.0" layoutY="64.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addTo_action" prefHeight="18.0" prefWidth="18.0" style="-fx-background-radius: 200;" text="Button" />
          </children>
       </AnchorPane>
       <VBox layoutX="4.0" layoutY="220.0" prefHeight="79.0" prefWidth="305.0" style="-fx-border-color: gray;">
@@ -37,7 +35,11 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="title" prefHeight="26.0" prefWidth="139.0" />
+                  <Label fx:id="title" prefHeight="18.0" prefWidth="39.0" text="???">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="38.0" prefWidth="229.0">
@@ -47,7 +49,11 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="artist" prefHeight="26.0" prefWidth="182.0" />
+                  <Label fx:id="artist" prefHeight="18.0" prefWidth="39.0" text="???">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
          </children>

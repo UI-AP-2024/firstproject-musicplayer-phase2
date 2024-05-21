@@ -48,6 +48,7 @@ public class LoginController implements Initializable {
     void login_action(ActionEvent event) throws IOException {
         String result = SignInOutController.getUserAccountController().login(tf_username.getText(), pf_pass.getText());
         if (Objects.equals(result, "You are logged in now")) {
+            System.out.println("LLLLL");
             HelloApplication.loggedIn = true;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("base-page-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 700, 500);

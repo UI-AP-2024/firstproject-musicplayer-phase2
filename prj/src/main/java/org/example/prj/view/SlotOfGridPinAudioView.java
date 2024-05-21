@@ -13,13 +13,13 @@ public class SlotOfGridPinAudioView {
     private Text NameArtist_text;
 
     @FXML
-    private Rectangle image_rectangle;
+    private ImageView image;
 
     @FXML
     private Text nameMusic_text;
 
-    public void setData(String artisName, String musicName, Image cover){
-        image_rectangle.setFill(new ImagePattern(cover));
+    public void setData(String artisName, String musicName, String cover){
+        image.setImage(new Image(cover));
         NameArtist_text.setText(artisName);
         nameMusic_text.setText(musicName);
     }

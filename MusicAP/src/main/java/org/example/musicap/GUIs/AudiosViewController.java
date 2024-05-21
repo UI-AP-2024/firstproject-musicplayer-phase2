@@ -9,14 +9,14 @@ import org.example.musicap.Models.User.Artist;
 public class AudiosViewController {
 
     @FXML
-    private ListView listViewPane;
+    private ListView<Audio> listViewPane;
     private AdminController adminController;
     public void initialize()
     {
         adminController = AdminController.getAdminController();
         for(Audio tmpAudio : adminController.showAudios(2, 1))
         {
-            listViewPane.getItems().add(tmpAudio.getFileName() + " | " + tmpAudio.getArtistName());
+            listViewPane.getItems().add(tmpAudio);
         }
     }
 

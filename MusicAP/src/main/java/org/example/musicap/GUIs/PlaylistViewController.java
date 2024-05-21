@@ -11,12 +11,15 @@ import org.example.musicap.Models.Playlist;
 public class PlaylistViewController {
     @FXML
     private ListView<Audio> listViewPane;
+    @FXML
+    private Label titleLabel;
     private Playlist playlistModel;
 
 
     public void customInitialize(Playlist playlistModel)
     {
         this.playlistModel = playlistModel;
+        titleLabel.setText("Playlist : " + playlistModel.toString());
         for(Audio tmpAudio : playlistModel.getAudioFiles())
         {
             listViewPane.getItems().add(tmpAudio);

@@ -11,14 +11,14 @@ import java.util.ArrayList;
 
 public class ArtistsViewController {
     @FXML
-    private ListView listViewPane;
+    private ListView<Artist> listViewPane;
     private AdminController adminController;
     public void initialize()
     {
         adminController = AdminController.getAdminController();
         for(Artist tmpArtist : adminController.showArtists())
         {
-            listViewPane.getItems().add(tmpArtist.getName() + " | " + tmpArtist.getFollowers().size());
+            listViewPane.getItems().add(tmpArtist);
         }
     }
 

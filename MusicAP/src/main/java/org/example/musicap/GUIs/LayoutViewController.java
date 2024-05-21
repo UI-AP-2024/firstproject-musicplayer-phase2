@@ -7,14 +7,47 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import org.example.musicap.Controllers.ListenerController;
 import org.example.musicap.Controllers.NormalListenerController;
 import org.example.musicap.HelloApplication;
+import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Data.Database;
+import org.example.musicap.Models.Playlist;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LayoutViewController implements GeneralOperation, ShowAlert {
+
+    @FXML
+    private Button playButton;
+    @FXML
+    private Button previousButton;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Slider timeSlider;
+    private Playlist musicList;
+    private MediaPlayer mediaPlayer;
+    private int currentIndex;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label timeLabel;
+    @FXML
+    private Label leftTimeLabel;
 
     Database database = Database.getInstance();
     @FXML
@@ -24,22 +57,6 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     private Label signUpButton;
     @FXML
     private Label logoutButton;
-
-    public Label getLogoutButton() {
-        return logoutButton;
-    }
-
-    public void setLogoutButton(Label logoutButton) {
-        this.logoutButton = logoutButton;
-    }
-
-    public Label getBackToButton() {
-        return backToButton;
-    }
-
-    public void setBackToButton(Label backToButton) {
-        this.backToButton = backToButton;
-    }
 
     @FXML
     private Label backToButton;
@@ -61,28 +78,6 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     @FXML
     private Label audiosLabel;
 
-
-    @FXML
-    private Button playButton;
-
-    @FXML
-    private Button previousButton;
-
-    @FXML
-    private Button nextButton;
-
-    @FXML
-    private Slider timeSlider;
-
-    @FXML
-    private Label nameLabel;
-
-    @FXML
-    private Label timeLabel;
-
-    @FXML
-    private Label leftTimeLabel;
-
     @FXML
     private ImageView audioImage;
 
@@ -97,154 +92,10 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
         this.mainBody = mainBody;
     }
 
-    public Label getLoginButton() {
-        return loginButton;
-    }
-
-    public void setLoginButton(Label loginButton) {
-        this.loginButton = loginButton;
-    }
-
-    public Label getSignUpButton() {
-        return signUpButton;
-    }
-
-    public void setSignUpButton(Label signUpButton) {
-        this.signUpButton = signUpButton;
-    }
-
-    public Label getHomeLabel() {
-        return homeLabel;
-    }
-
-    public void setHomeLabel(Label homeLabel) {
-        this.homeLabel = homeLabel;
-    }
-
-    public Label getLibraryLabel() {
-        return libraryLabel;
-    }
-
-    public void setLibraryLabel(Label libraryLabel) {
-        this.libraryLabel = libraryLabel;
-    }
-
-    public Label getArtistsLabel() {
-        return artistsLabel;
-    }
-
-    public void setArtistsLabel(Label artistsLabel) {
-        this.artistsLabel = artistsLabel;
-    }
-
-    public Label getAudiosLabel() {
-        return audiosLabel;
-    }
-
-    public void setAudiosLabel(Label audiosLabel) {
-        this.audiosLabel = audiosLabel;
-    }
-
-    public TextField getSearchField() {
-        return searchField;
-    }
-
-    public void setSearchField(TextField searchField) {
-        this.searchField = searchField;
-    }
-
-    public Button getSearchButton() {
-        return searchButton;
-    }
-
-    public void setSearchButton(Button searchButton) {
-        this.searchButton = searchButton;
-    }
-
-    public Button getPlayButton() {
-        return playButton;
-    }
-
-    public void setPlayButton(Button playButton) {
-        this.playButton = playButton;
-    }
-
-    public Button getPreviousButton() {
-        return previousButton;
-    }
-
-    public void setPreviousButton(Button previousButton) {
-        this.previousButton = previousButton;
-    }
-
-    public Button getNextButton() {
-        return nextButton;
-    }
-
-    public void setNextButton(Button nextButton) {
-        this.nextButton = nextButton;
-    }
-
-    public Slider getTimeSlider() {
-        return timeSlider;
-    }
-
-    public void setTimeSlider(Slider timeSlider) {
-        this.timeSlider = timeSlider;
-    }
-
-    public Label getNameLabel() {
-        return nameLabel;
-    }
-
-    public void setNameLabel(Label nameLabel) {
-        this.nameLabel = nameLabel;
-    }
-
-    public Label getTimeLabel() {
-        return timeLabel;
-    }
-
-    public void setTimeLabel(Label timeLabel) {
-        this.timeLabel = timeLabel;
-    }
-
-    public Label getLeftTimeLabel() {
-        return leftTimeLabel;
-    }
-
-    public void setLeftTimeLabel(Label leftTimeLabel) {
-        this.leftTimeLabel = leftTimeLabel;
-    }
-
-    public ImageView getAudioImage() {
-        return audioImage;
-    }
-
-    public void setAudioImage(ImageView audioImage) {
-        this.audioImage = audioImage;
-    }
-
     public void initialize() throws IOException {
-        backToButton.setVisible(false);
         if(database.getLogedInUser() == null) logoutButton.setVisible(false);
         homeLabelClick();
     }
-    public void playMusic()
-    {
-
-    }
-    public void nextMusic()
-    {
-
-    }
-
-    public void previousMusic()
-    {
-
-    }
-
-
     @Override
     public void backTo() {
     }
@@ -259,7 +110,6 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
 
     @Override
     public void login() throws IOException {
-        backToButton.setVisible(true);
         mainBody.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         AnchorPane newPane = loader.load();
@@ -268,7 +118,6 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
 
     @Override
     public void signup() throws IOException {
-        backToButton.setVisible(true);
         mainBody.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("signup-view.fxml"));
         AnchorPane newPane = loader.load();
@@ -291,7 +140,6 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     }
 
     public void homeLabelClick() throws IOException {
-        backToButton.setVisible(false);
         if(database.getLogedInUser() == null)
         {
             logoutButton.setVisible(false);
@@ -332,4 +180,64 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
         mainBody.getChildren().add(newPane);
     }
 
+    public void playPlayList(Playlist playingPlaylist, Audio playingAudio)
+    {
+        musicList = playingPlaylist;
+        currentIndex = playingPlaylist.getAudioFiles().indexOf(playingAudio);
+        mediaPlayer = new MediaPlayer(new Media(playingAudio.getAudioLink()));
+        initMusic(mediaPlayer);
+    }
+
+    @FXML
+    private void playMusic() {
+
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING)
+        {
+            mediaPlayer.pause();
+        }
+        else
+        {
+            mediaPlayer.play();
+        }
+    }
+
+    @FXML
+    private void previousMusic() {
+        currentIndex = (currentIndex+(musicList.getAudioFiles().size())-1)%(musicList.getAudioFiles().size());
+        mediaPlayer.stop();
+        mediaPlayer = new MediaPlayer(new Media(musicList.getAudioFiles().get(currentIndex).getAudioLink()));
+        initMusic(mediaPlayer);
+        mediaPlayer.play();
+    }
+
+    @FXML
+    private void nextMusic() {
+        currentIndex = (currentIndex+1)%(musicList.getAudioFiles().size());
+        mediaPlayer.stop();
+        mediaPlayer = new MediaPlayer(new Media(musicList.getAudioFiles().get(currentIndex).getAudioLink()));
+        initMusic(mediaPlayer);
+        mediaPlayer.play();
+    }
+
+    private void initMusic(MediaPlayer mediaPlayer)
+    {
+        mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) ->
+        {
+            timeSlider.setValue(newValue.toSeconds());
+            timeLabel.setText(String.valueOf((int)newValue.toMinutes()) + ":" + String.valueOf(((int)newValue.toSeconds())%60));
+            Duration leftValue = Duration.seconds(mediaPlayer.getTotalDuration().toSeconds() - newValue.toSeconds());
+            leftTimeLabel.setText(String.valueOf((int)leftValue.toMinutes()) + ":" + String.valueOf(((int)leftValue.toSeconds())%60));
+        });
+        timeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (Math.abs(oldValue.doubleValue() - newValue.doubleValue()) > 0.5) {
+                mediaPlayer.seek(Duration.seconds(newValue.doubleValue()));
+            }
+        });
+        mediaPlayer.setOnReady(() ->
+        {
+            timeSlider.setMax(mediaPlayer.getMedia().getDuration().toSeconds());
+            nameLabel.setText(musicList.getAudioFiles().get(currentIndex).getAudioLink());
+        });
+        mediaPlayer.setOnEndOfMedia(this::nextMusic);
+    }
 }

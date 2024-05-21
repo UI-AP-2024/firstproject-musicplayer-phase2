@@ -23,8 +23,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HomeViewController {
+
     @FXML
-    private ListView listViewPane;
+    private ListView<Audio> listViewPane;
     @FXML
     private Label titleLabel;
     private AdminController adminController;
@@ -57,8 +58,7 @@ public class HomeViewController {
         for (int i = 0; i < audiosToShow.size(); i++) {
 
             //rootPane.getChildren().add(audioPane);
-            listViewPane.getItems().add(audiosToShow.get(i).getFileName() + " | " + audiosToShow.get(i).getArtistName());
-
+            listViewPane.getItems().add(audiosToShow.get(i));
         }
     }
 }

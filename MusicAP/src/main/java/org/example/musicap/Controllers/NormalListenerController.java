@@ -36,6 +36,8 @@ public class NormalListenerController extends ListenerController {
         {
             if(tmpPlaylist.getPlaylistName().equals(playlistName))
             {
+                if(tmpPlaylist.getAudioFiles().contains(audio))
+                    return "Audio already in playlist!";
                 if(tmpPlaylist.getAudioFiles().size() > 10)
                     return "You must upgrade your account in order to add more than 10 Audios in a playlist";
                 tmpPlaylist.addAudioFiles(audio);

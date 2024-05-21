@@ -21,7 +21,7 @@ import org.example.musicap.Models.User.Singer;
 
 import java.io.IOException;
 
-public class ArtistViewController {
+public class ArtistViewController implements ShowAlert {
     @FXML
     private AnchorPane mainBody;
     @FXML
@@ -66,6 +66,11 @@ public class ArtistViewController {
 
 
     public void addToFollowers() throws IOException {
+        if(listenerModel == null)
+        {
+            showAlert("Please login first", "Report attempt", "Report");
+            return;
+        }
         // for both following and unfollowing
         artistController.followArtist(listenerModel);
         // Reload tha page
@@ -78,11 +83,30 @@ public class ArtistViewController {
     }
 
     public void addReport() throws IOException {
+        if(listenerModel == null)
+        {
+            showAlert("Please login first", "Report attempt", "Report");
+            return;
+        }
         reportPane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("report-view.fxml"));
         AnchorPane newPane = loader.load();
         ReportViewController reportViewController = loader.getController();
         reportViewController.customInitialize(listenerModel, artistModel);
         reportPane.getChildren().add(newPane);
+    }
+
+    public void showAudio() throws IOException {
+        Audio selectedAudio = songsListView.getSelectionModel().getSelectedItem();
+        if(selectedAudio != null)
+        {
+            mainBody.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("audio-view.fxml"));
+            AnchorPane newPane = loader.load();
+            AudioViewController audioViewController = loader.getController();
+            audioViewController.customInitialize(selectedAudio);
+            mainBody.getChildren().add(newPane);
+        }
+
     }
 }

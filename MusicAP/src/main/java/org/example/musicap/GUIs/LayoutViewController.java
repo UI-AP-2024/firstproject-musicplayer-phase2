@@ -101,11 +101,13 @@ public class LayoutViewController implements GeneralOperation, ShowAlert {
     }
 
     @Override
-    public void logout() {
+    public void logout() throws IOException {
+        showAlert("have a good time!", "Logout attempt", "Logout");
         database.setLogedInUser(null);
         logoutButton.setVisible(false);
         signUpButton.setVisible(true);
         loginButton.setVisible(true);
+        homeLabelClick();
     }
 
     @Override

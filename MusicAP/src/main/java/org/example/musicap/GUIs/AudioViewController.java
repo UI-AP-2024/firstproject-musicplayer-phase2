@@ -45,6 +45,8 @@ public class AudioViewController implements ShowAlert {
     private ComboBox<String> playListOption;
     @FXML
     private AnchorPane mainBody;
+    @FXML
+    private Button addToPlaylistButton;
     private Audio audioModel;
     private Listener listenerModel;
     private Database database;
@@ -57,14 +59,20 @@ public class AudioViewController implements ShowAlert {
         if(listenerModel instanceof NormalListener) listenerController = new NormalListenerController();
         else listenerController = new PremiumListenerController();
         this.audioModel = audioModel;
-        Image image = new Image(getClass().getResourceAsStream(audioModel.getCover()));
+        Image image = new Image(HelloApplication.class.getResourceAsStream(audioModel.getCover()));
         coverImageView.setImage(image);
         audioNameLabel.setText(audioModel.getFileName());
         artistNameLabel.setText(audioModel.getArtistName());
         likesCountLabel.setText(String.valueOf(audioModel.getLikesCount()));
         if(audioModel instanceof Song) captionLabel.setText(((Song)audioModel).getLyrics());
         else captionLabel.setText(((Podcast)audioModel).getCaption());
-        for(Playlist tmpPlayList : listenerModel.getPlaylists())
+
+        if(listenerModel == null)
+        {
+            playListOption.setVisible(false);
+            addToPlaylistButton.setVisible(false);
+        }
+        else for(Playlist tmpPlayList : listenerModel.getPlaylists())
         {
             playListOption.getItems().add(tmpPlayList.getPlaylistName());
         }
@@ -89,7 +97,7 @@ public class AudioViewController implements ShowAlert {
         {
             if(tmpPlayList.getPlaylistName().equals(playListName))
             {
-                listenerController.addToPlaylist(playListName, audioModel);
+                showAlert(listenerController.addToPlaylist(playListName, audioModel), "Playlist", "Add to playlist");
                 break;
             }
         }

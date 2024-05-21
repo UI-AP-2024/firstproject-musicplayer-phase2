@@ -15,6 +15,7 @@ import org.example.musicap.HelloApplication;
 import org.example.musicap.Models.Audio.Audio;
 import org.example.musicap.Models.Data.Database;
 import org.example.musicap.Models.PremiumPlan;
+import org.example.musicap.Models.User.Artist;
 import org.example.musicap.Models.User.Listener;
 import org.example.musicap.Models.User.NormalListener;
 import org.example.musicap.Models.User.PremiumListener;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 
 public class HomeViewController {
 
+    @FXML
+    private AnchorPane rootPane;
     @FXML
     private ListView<Audio> listViewPane;
     @FXML
@@ -60,5 +63,18 @@ public class HomeViewController {
             //rootPane.getChildren().add(audioPane);
             listViewPane.getItems().add(audiosToShow.get(i));
         }
+    }
+    public void showAudio() throws IOException {
+        Audio selectedAudio = listViewPane.getSelectionModel().getSelectedItem();
+        if(selectedAudio != null)
+        {
+            rootPane.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("audio-view.fxml"));
+            AnchorPane newPane = loader.load();
+            AudioViewController audioViewController = loader.getController();
+            audioViewController.customInitialize(selectedAudio);
+            rootPane.getChildren().add(newPane);
+        }
+
     }
 }

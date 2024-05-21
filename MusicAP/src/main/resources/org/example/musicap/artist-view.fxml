@@ -20,7 +20,7 @@
                 <Label styleClass="section-label" text="Plays Count" />
                 <Label fx:id="playsCountLabel" styleClass="info-label" />
             </VBox>
-            <ListView fx:id="songsListView" prefHeight="200.0" prefWidth="200.0" />
+            <ListView onMouseClicked="#showAudio" fx:id="songsListView" prefHeight="200.0" prefWidth="200.0" />
             <AnchorPane fx:id="reportPane">
 
             </AnchorPane>

@@ -17,6 +17,7 @@ public class HelloApplication extends Application {
     public static Stage currentstage;
    public static BorderPane mianPane = new BorderPane();
 
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("base-page-view.fxml"));

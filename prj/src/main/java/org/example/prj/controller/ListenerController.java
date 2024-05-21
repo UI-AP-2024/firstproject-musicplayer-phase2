@@ -1,6 +1,11 @@
 package org.example.prj.controller;
 
+import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.ImagePattern;
 import org.example.prj.model.*;
+import org.example.prj.view.Detail;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +52,7 @@ public class ListenerController {
     }
 
     public String getDateView(){
-        return getUserAccount().getDateOfBirth().toString();
+        return String.valueOf(getUserAccount().getDateOfBirth().getYear()+1900) + "/" + String.valueOf(getUserAccount().getDateOfBirth().getMonth()+1) + "/" +String.valueOf(getUserAccount().getDateOfBirth().getDay());
     }
 
     public String getDaySubView(){
@@ -130,6 +135,15 @@ public class ListenerController {
             return "ERORR create playlist";
     }
 
+    public ArrayList<UserAccount> getArtistFollowers(String userName){
+        for(UserAccount userAccount1 : Database.getDataBase().getUserAccounts()){
+            if (userAccount1.getUserName().equals(userName)){
+                return (((Artist)userAccount1).getListFollowers());
+            }
+        }
+        return new ArrayList<UserAccount>();
+    }
+
     public String addAudioToPlaylist(String nameOfPlaylist, long id) {
         if (getUserAccount() instanceof Free) {
             for (Playlist playlist : ((Free) getUserAccount()).getPlaylists()) {
@@ -175,24 +189,75 @@ public class ListenerController {
         return "ERORR add audio to playlist";
     }
 
-    public String playAudioFile(long id) {
-        for (Audio audio : Database.getDataBase().getAudio()) {
-            if (audio.getId() == id) {
-                audio.setNumberOfPlays(audio.getNumberOfPlays() + 1);
-                if (getUserAccount() instanceof Listener) {
-                    if (((Listener) getUserAccount()).getNumberPlays().containsKey(audio)) {
-                        ((Listener) getUserAccount()).getNumberPlays().replace(audio, ((Listener) getUserAccount()).getNumberPlays().get(audio) + 1);
-                    }
-                    else
-                        ((Listener) getUserAccount()).getNumberPlays().put(audio,1);
-                    return "The audio file(" + audio.getName() + ") is playing";
-                }
-            }
+    public Audio nextAudioFile(){
+        Detail.getDetail().play=true;
+        Detail.getDetail().pause=false;
+        MediaController.getMediaController().mediaPlayer.pause();
+        Audio audio;
+        if(Detail.getDetail().random){
+            if (Detail.getDetail().countRandom==Database.getDataBase().getAudio().size()-1)
+                Detail.getDetail().countRandom=0;
+            else
+                Detail.getDetail().countRandom++;
+            audio = Database.getDataBase().getAudio().get(Detail.getDetail().countRandom);
+            MediaController.getMediaController().mediaPlayer = new MediaPlayer(new Media(audio.getAudioLink()));
+
         }
-        if (getUserAccount() instanceof Listener == false)
-            return "You are not a listening user";
+        else {
+            if (Detail.getDetail().countPlayList==ListenerController.getListenerController().selectPlaylist(Detail.selectPlayList).size()-1)
+                Detail.getDetail().countPlayList=0;
+            else
+                Detail.getDetail().countPlayList++;
+            audio = ListenerController.getListenerController().selectPlaylist(Detail.selectPlayList).get(Detail.getDetail().countPlayList);
+            MediaController.getMediaController().mediaPlayer = new MediaPlayer(new Media(audio.getAudioLink()));
+        }
+        MediaController.getMediaController().mediaPlayer.play();
+        return audio;
+    }
+
+    public Audio previousAudioFile(){
+        Detail.getDetail().play=true;
+        Detail.getDetail().pause=false;
+        MediaController.getMediaController().mediaPlayer.pause();
+        Audio audio;
+        if(Detail.getDetail().random){
+            if (Detail.getDetail().countRandom==0)
+                Detail.getDetail().countRandom=Database.getDataBase().getAudio().size()-1;
+            else
+                Detail.getDetail().countRandom--;
+            audio = Database.getDataBase().getAudio().get(Detail.getDetail().countRandom);
+            MediaController.getMediaController().mediaPlayer = new MediaPlayer(new Media(audio.getAudioLink()));
+
+        }
+        else {
+            if (Detail.getDetail().countPlayList==0)
+                Detail.getDetail().countPlayList=ListenerController.getListenerController().selectPlaylist(Detail.selectPlayList).size()-1;
+            else
+                Detail.getDetail().countPlayList--;
+            audio = ListenerController.getListenerController().selectPlaylist(Detail.selectPlayList).get(Detail.getDetail().countPlayList);
+            MediaController.getMediaController().mediaPlayer = new MediaPlayer(new Media(audio.getAudioLink()));
+        }
+        MediaController.getMediaController().mediaPlayer.play();
+        return audio;
+    }
+
+    public Audio playPauseAudioFile() {
+        if (Detail.getDetail().pause) {
+            MediaController.getMediaController().mediaPlayer.play();
+            Detail.getDetail().pause=false;
+            Detail.getDetail().play=true;
+        }
+        else {
+            MediaController.getMediaController().mediaPlayer.pause();
+            Detail.getDetail().pause=true;
+            Detail.getDetail().play=false;
+        }
+        Audio audio;
+        if(Detail.getDetail().random)
+            audio = Database.getDataBase().getAudio().get(Detail.getDetail().countRandom);
         else
-            return "The desired audio file was not found";
+            audio = ListenerController.getListenerController().selectPlaylist(Detail.selectPlayList).get(Detail.getDetail().countPlayList);
+        return audio;
     }
 
     public String likeAudioFile(long id){
@@ -205,16 +270,14 @@ public class ListenerController {
         return "The desired audio file was not found";
     }
 
-    public String searchAudioFile(String name){
-        String result = "";
+    public ArrayList<Audio> searchAudioFile(String name){
+        ArrayList<Audio> al = new ArrayList<>();
         for ( Audio audio : Database.getDataBase().getAudio()){
             if ( audio.getName().equals(name) || audio.getNameArtist().equals(name)){
-                result += "\n"+audio;
+                al.add(audio);
             }
         }
-        if (result.equals(""))
-            result = "Not found";
-        return result;
+        return al;
     }
 
     public ArrayList<Audio> sortAudioFile(String type){
@@ -273,14 +336,8 @@ public class ListenerController {
         return "The desired filter type or detail is not valid";
     }
 
-    public String viewFollowing(){
-        String result = "";
-        for ( UserAccount userAccount1 : ((Listener) getUserAccount()).getFollowings()){
-            result += "\n"+userAccount1.getName()+"\t"+userAccount1.getUserName();
-        }
-        if ( result.equals(""))
-            result = "empty";
-        return result;
+    public ArrayList<UserAccount> viewFollowing(){
+        return getListenerController().viewFollowing();
     }
 
     public String reportArtist(String userName, String description){
@@ -306,6 +363,18 @@ public class ListenerController {
         if ( result.equals(""))
             result = "empty";
         return result;
+    }
+
+    public ArrayList<Album> AllAlbumSinger(String userName){
+        for( UserAccount userAccount1 : Database.getDataBase().getUserAccounts()){
+            if ( userAccount1.getUserName().equals(userName)) {
+                if (userAccount1 instanceof Artist) {
+                    if ( userAccount1 instanceof Singer)
+                        return ((Singer) userAccount1).getAlbumList();
+                }
+            }
+        }
+        return new ArrayList<Album>();
     }
 
     public String viewInfoArtist(String userName){
@@ -342,6 +411,10 @@ public class ListenerController {
         return "The username entered is not valid";
     }
 
+    public ArrayList<Playlist> showAllPlayList(){
+        return getUserAccount().getPlaylists();
+    }
+
     public String viewPLaylists(){
         String result = "";
         if ( getUserAccount() instanceof Listener){
@@ -357,17 +430,24 @@ public class ListenerController {
         return result;
     }
 
-    public String selectPlaylist(String playlistName){
+    public ArrayList<Audio> selectPlaylist(String playlistName){
         if (getUserAccount() instanceof Listener) {
             for ( Playlist playlist : ((Listener) getUserAccount()).getPlaylists()){
-                if ( playlist.getNameOfPlaylist().equals(playlistName)){
-                    String result = "";
-                    result += playlist;
-                    return result;
-                }
+                if ( playlist.getNameOfPlaylist().equals(playlistName))
+                    return playlist.getListAudio();
             }
         }
-        return "The desired playlist was not found";
+        return new ArrayList<Audio>();
+    }
+
+    public ArrayList<UserAccount> getAllArtists(){
+        ArrayList<UserAccount> al = new ArrayList<>();
+        for(UserAccount userAccount1 : Database.getDataBase().getUserAccounts()){
+            if (userAccount1 instanceof Artist){
+                al.add(userAccount1);
+            }
+        }
+        return al;
     }
 
     public ArrayList<Audio> suggestions(){
@@ -473,6 +553,10 @@ public class ListenerController {
         return result;
     }
 
+    public ArrayList<Audio> getAllAudios(){
+        return Database.getDataBase().getAudio();
+    }
+
     public String increaseCredit(String value){
         ((Listener) getUserAccount()).setAccountCredit( ((Listener) getUserAccount()).getAccountCredit() + Integer.valueOf(value) );
         return "Account balance is $"+String.valueOf(((Listener) getUserAccount()).getAccountCredit());
@@ -561,30 +645,29 @@ public class ListenerController {
             return "The imported package is not valid";
     }
 
-    public String getGener(String type){
-        String[] answers = type.split(",");
-        if ( answers.length>4)
+    public String getGener(ArrayList<String> al){
+        if ( al.size()>4)
             return "You can only choose 4 genres";
-        else if ( answers.length == 0){
+        else if (al.isEmpty()){
             return "Choose at least one genre";
         }
-        else if ( answers.length == 1){
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[0]));
+        else if ( al.size() == 1){
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(0)));
         }
-        else if ( answers.length == 2){
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[0]));
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[1]));
+        else if ( al.size() == 2){
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(0)));
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(1)));
         }
-        else if ( answers.length == 3){
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[0]));
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[1]));
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[2]));
+        else if ( al.size() == 3){
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(0)));
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(1)));
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(2)));
         }
-        else if ( answers.length == 4){
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[0]));
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[1]));
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[2]));
-            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(answers[3]));
+        else if ( al.size() == 4){
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(0)));
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(1)));
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(2)));
+            ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(3)));
         }
         return "done successfully";
     }

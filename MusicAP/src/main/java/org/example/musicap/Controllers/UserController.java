@@ -1,7 +1,6 @@
 package org.example.musicap.Controllers;
 
 import org.example.musicap.Models.Data.Database;
-import Views.AccountView;
 
 public abstract class UserController {
 

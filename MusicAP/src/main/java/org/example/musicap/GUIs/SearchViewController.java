@@ -9,7 +9,7 @@ import org.example.musicap.Models.Audio.Audio;
 
 public class SearchViewController {
     @FXML
-    private ListView<String> listViewPane;
+    private ListView<Audio> listViewPane;
     @FXML
     private Label titleLabel;
     private String searchQuery;
@@ -23,7 +23,7 @@ public class SearchViewController {
         titleLabel.setText("Search results for : " + searchQuery);
         for(Audio tmpAudio : listenerController.searchAudios(searchQuery))
         {
-            listViewPane.getItems().add(tmpAudio.getFileName() + " | " + tmpAudio.getArtistName());
+            listViewPane.getItems().add(tmpAudio);
         }
     }
 }

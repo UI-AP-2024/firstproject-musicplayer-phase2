@@ -54,10 +54,10 @@ public abstract class ListenerController extends UserController{
                 .collect(Collectors.toCollection(ArrayList::new));
         return result;
     }
-    public ArrayList<Audio> sortAudios(int type)
+    public ArrayList<Audio> sortAudios()
     {
         ArrayList<Audio> audios = database.getAudios();
-        Collections.sort(audios);
+        Collections.sort(audios, Audio::compareTo);
         return audios;
     }
 

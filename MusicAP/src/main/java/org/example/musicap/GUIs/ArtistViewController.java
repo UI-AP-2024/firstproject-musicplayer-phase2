@@ -36,7 +36,7 @@ public class ArtistViewController {
     private Label playsCountLabel;
 
     @FXML
-    private ListView<String> songsListView;
+    private ListView<Audio> songsListView;
     @FXML
     private Label followedLabel;
     @FXML
@@ -60,7 +60,7 @@ public class ArtistViewController {
         else followedLabel.setText("Not followed yet");
         for(Audio tmpAudio : artistController.showAudios())
         {
-            songsListView.getItems().add(tmpAudio.getFileName() + " | " + tmpAudio.getArtistName());
+            songsListView.getItems().add(tmpAudio);
         }
     }
 

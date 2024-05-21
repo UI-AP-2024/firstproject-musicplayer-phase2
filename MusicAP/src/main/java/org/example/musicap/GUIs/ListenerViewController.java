@@ -3,6 +3,7 @@ package org.example.musicap.GUIs;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.example.musicap.Controllers.ListenerController;
 import org.example.musicap.Controllers.NormalListenerController;
@@ -34,12 +35,12 @@ public class ListenerViewController implements ShowAlert {
     @FXML
     private Button newPlaylistButton;
     @FXML
-    private ListView<String> followingsListView;
+    private ListView<Artist> followingsListView;
     @FXML
     private AnchorPane mainBody;
 
     @FXML
-    private ListView<String> playlistsListView;
+    private ListView<Playlist> playlistsListView;
 
     private Database database;
 
@@ -58,11 +59,11 @@ public class ListenerViewController implements ShowAlert {
         dobLabel.setText(listenerModel.getDateOfBirth().toString());
         for(Playlist tmpPlaylist : listenerModel.getPlaylists())
         {
-            playlistsListView.getItems().add(tmpPlaylist.getPlaylistName());
+            playlistsListView.getItems().add(tmpPlaylist);
         }
         for(Artist tmpArtist: listenerController.getFollowings())
         {
-            followingsListView.getItems().add(tmpArtist.getName());
+            followingsListView.getItems().add(tmpArtist);
         }
     }
 
@@ -84,6 +85,34 @@ public class ListenerViewController implements ShowAlert {
             AnchorPane newPane = loader.load();
             mainBody.getChildren().add(newPane);
         }
+    }
+
+    public void playlistsClick(MouseEvent event) throws IOException {
+        Playlist selectedPlaylist = playlistsListView.getSelectionModel().getSelectedItem();
+        if (selectedPlaylist != null)
+        {
+            mainBody.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("playlist-view.fxml"));
+            AnchorPane newPane = loader.load();
+            PlaylistViewController playlistViewController = loader.getController();
+            playlistViewController.customInitialize(selectedPlaylist);
+            mainBody.getChildren().add(newPane);
+        }
+    }
+
+    public void followingsClick(MouseEvent event) throws IOException {
+        Artist selectedArtist = followingsListView.getSelectionModel().getSelectedItem();
+        if(selectedArtist != null)
+        {
+            mainBody.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("artist-view.fxml"));
+            AnchorPane newPane = loader.load();
+            ArtistViewController artistViewController = loader.getController();
+            artistViewController.customInitialize(selectedArtist);
+            mainBody.getChildren().add(newPane);
+
+        }
+
     }
 
 }

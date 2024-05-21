@@ -24,11 +24,11 @@
         <HBox spacing="20">
             <VBox>
                 <Label text="Followings" styleClass="section-label" />
-                <ListView fx:id="followingsListView" prefWidth="200" />
+                <ListView fx:id="followingsListView" onMouseClicked="#followingsClick" prefWidth="200" />
             </VBox>
             <VBox>
                 <Label text="Playlists" styleClass="section-label" />
-                <ListView fx:id="playlistsListView" prefWidth="200" />
+                <ListView fx:id="playlistsListView" onMouseClicked="#playlistsClick" prefWidth="200" />
             </VBox>
         </HBox>
         <HBox spacing="10" alignment="CENTER">

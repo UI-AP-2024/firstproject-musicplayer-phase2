@@ -41,7 +41,7 @@
       <Button fx:id="addTo_button" layoutX="528.0" layoutY="278.0" mnemonicParsing="false" onAction="#addTo_Action" style="-fx-background-color: #012c2c;" text="Add to" textFill="WHITE" />
       <ImageView fx:id="likeRed_image" fitHeight="25.0" fitWidth="31.0" layoutX="160.0" layoutY="279.0" onMouseClicked="#likeRed_Action" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@../../../picture/like%20red.png" />
+            <Image url="@../../../picture/likeRed.png" />
          </image>
       </ImageView>
       <Text fx:id="caption_text" fill="#ffffffe7" layoutX="14.0" layoutY="31.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="118.13671875">

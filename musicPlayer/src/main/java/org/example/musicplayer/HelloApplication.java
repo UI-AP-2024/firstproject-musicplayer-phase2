@@ -4,12 +4,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import org.example.musicplayer.model.UserAccount.UserAccountModel;
 import java.io.IOException;
 
 
 public class HelloApplication extends Application {
+    public static Media currentMusic;
     public static UserAccountModel currentUser;
     public static boolean loggedIn = false;
     public static Stage currentstage;

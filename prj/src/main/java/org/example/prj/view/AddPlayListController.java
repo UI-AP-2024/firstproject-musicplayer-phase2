@@ -213,10 +213,11 @@ public class AddPlayListController implements Initializable {
     }
 
     @FXML
-    void done_Action(ActionEvent event) {
+    void done_Action(ActionEvent event) throws IOException {
         Detail.lastScene.push(HelloApplication.getStage().getScene());
-        ListenerController.getListenerController().createPlaylist(name_textField.toString());
-        HelloApplication.getStage().setScene(Detail.lastScene.peek());
+        ListenerController.getListenerController().createPlaylist(name_textField.getText());
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accountInfo-view.fxml"));
+        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
     }
 
     @Override

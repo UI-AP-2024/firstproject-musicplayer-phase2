@@ -337,7 +337,7 @@ public class ListenerController {
     }
 
     public ArrayList<UserAccount> viewFollowing(){
-        return getListenerController().viewFollowing();
+        return getUserAccount().getFollowings();
     }
 
     public String reportArtist(String userName, String description){

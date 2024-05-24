@@ -348,8 +348,9 @@ public class AllArtists implements Initializable {
             label.textFillProperty().setValue(Color.WHITE);
             showArtistVbox.getChildren().add(label);
             label.setOnMouseClicked(event -> {
-                ArtistInfo.artist = a;
                 try {
+                    allArtistsBool = true;
+                    ArtistInfo.artist = a;
                     ChangeScene.artistInfo();
                 } catch (IOException e) {
                     throw new RuntimeException(e);

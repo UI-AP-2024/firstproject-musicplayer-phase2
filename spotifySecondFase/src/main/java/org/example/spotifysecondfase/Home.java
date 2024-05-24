@@ -392,6 +392,7 @@ public class Home implements Initializable
         vBox.setSpacing(10);
         return vBox;
     }
+    static boolean homeBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         music(PlayMusic.audio);

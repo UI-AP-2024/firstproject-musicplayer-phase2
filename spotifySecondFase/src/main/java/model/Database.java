@@ -28,23 +28,27 @@ public class Database
     public void setReports(ArrayList<Report> reports) {
         this.reports = reports;
     }
-    public static Database getDatabase() {
-        return database;
-    }
-    public static void setDatabase(Database database) {
-        Database.database = database;
-    }
-    public Database(ArrayList<UserAccount> userAccounts, ArrayList<Audio> audio, ArrayList<Report> reports)
+//    public static Database getDatabase() {
+//        return database;
+//    }
+//    public static void setDatabase(Database database) {
+//        Database.database = database;
+//    }
+
+    public Database()
     {
-        this.userAccounts = userAccounts;
-        this.audio = audio;
-        this.reports = reports;
+//        this.userAccounts = userAccounts;
+//        this.audio = audio;
+//        this.reports = reports;
+        this.userAccounts = new ArrayList<>();
+        this.audio = new ArrayList<>();
+        this.reports = new ArrayList<>();
     }
-    public static Database getDatabase(ArrayList<UserAccount> userAccounts, ArrayList<Audio> audio, ArrayList<Report> reports)
+    public static Database getDatabase()
     {
         if(database == null)
         {
-            database = new Database(userAccounts,audio,reports);
+            database = new Database();
         }
         return database;
     }

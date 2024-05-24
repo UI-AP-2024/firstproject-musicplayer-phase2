@@ -4,6 +4,6 @@ public class InvalidFormat extends Exception
 {
     public InvalidFormat(String massage)
     {
-        super("Invalid format");
+        super("Invalid format" + massage);
     }
 }

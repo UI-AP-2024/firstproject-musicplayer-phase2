@@ -96,9 +96,9 @@ public class PlayMusic implements Initializable {
 
     Media media;
     MediaPlayer mediaPlayer;
-    String playPath = HelloApplication.class.getResource("play.png").toExternalForm();
+    String playPath = HelloApplication.class.getResource("image/play.png").toExternalForm();
     Image play = new Image(playPath);
-    String pausePath = HelloApplication.class.getResource("play.png").toExternalForm();
+    String pausePath = HelloApplication.class.getResource("image/pause.png").toExternalForm();
     Image pause = new Image(pausePath);
     int i;
     public void music(Audio audio)
@@ -251,6 +251,7 @@ public class PlayMusic implements Initializable {
             }
         });
     }
+    static boolean playMusicBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         coverOfAudio.setImage(audio.getImage());
@@ -298,7 +299,6 @@ public class PlayMusic implements Initializable {
                 throw new RuntimeException(e);
             }
         });
-
 
     }
 }

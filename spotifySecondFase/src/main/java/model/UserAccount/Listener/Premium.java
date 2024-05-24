@@ -12,7 +12,7 @@ public class Premium extends Listener
 {
     private int remainingDays;
     public Premium(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day, Genre[] genres) {
-        super(userName,passWord,name,email,phoneNumber,year,month,day,genres);
+        super(userName,passWord,name,email,phoneNumber,year,month,day);
     }
     public int getRemainingDays() {return remainingDays;}
     public void setRemainingDays(int remainingDays) {

@@ -418,7 +418,7 @@ public class PlayListAudios implements Initializable {
         });
     }
     HBox hBox;
-
+    static boolean playListAudiosBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         music(PlayMusic.audio);
@@ -473,5 +473,6 @@ public class PlayListAudios implements Initializable {
                 throw new RuntimeException(e);
             }
         });
+
     }
 }

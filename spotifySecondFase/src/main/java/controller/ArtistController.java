@@ -13,11 +13,21 @@ import java.util.Date;
 public class ArtistController extends UserAccountController
 {
     public static Artist artist;
+    private static ArtistController artistController;
     public Artist artist(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day, String biography)
     {
         artist = new Artist(userName,passWord,name,email,phoneNumber,year,month,day,biography);
         Database.getDatabase().getUserAccounts().add(artist);
         return artist;
+    }
+
+    public static ArtistController getArtistController()
+    {
+        if (artistController == null)
+        {
+            artistController = new ArtistController();
+        }
+        return artistController;
     }
     public String showFollowers()
     {

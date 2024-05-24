@@ -7,6 +7,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import controller.ArtistController;
 import controller.ListenerController;
+import javafx.scene.paint.Paint;
 import model.UserAccount.Artist.Artist;
 import org.example.spotifysecondfase.ChangeScene;
 import org.example.spotifysecondfase.view.Exception.InvalidFormat;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class Singup implements Initializable
 {
-    public static ListenerController listenerController = new ListenerController();
+    public static ListenerController listenerController ;
     public static ArtistController artistController;
     @FXML
     private AnchorPane anchorPane;
@@ -172,15 +173,19 @@ public class Singup implements Initializable
 //            getVbox().getChildren().addAll(label,textField);
 //        });
 //    }
+static boolean signupBool = true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        listenerController = ListenerController.getListenerCotroller();
+        artistController = ArtistController.getArtistController();
         getAccountType().getItems().addAll(listener,singer,podcaster);
+        getAccountType().getItems().remove(0);
+        getAccountType().getItems().remove(0);
         getMonth().getItems().addAll(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12);
+        monthMenuButton();
         listener.setOnAction(event -> {
-            monthMenuButton();
-            listenerController.newListener(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText());
-            if(!listenerController.checkEmail(emailTextField.getText()))
+            if(listenerController.checkEmail(emailTextField.getText()))
             {
                 try {
                     throw new InvalidFormat("Email format is not correct");
@@ -190,7 +195,7 @@ public class Singup implements Initializable
                     alert.showAndWait();
                 }
             }
-            if (!listenerController.checkPhoneNumber(phoneTextField.getText()))
+            if (listenerController.checkPhoneNumber(phoneTextField.getText()))
             {
                 try {
                     throw new InvalidFormat("Phone number format is not correct");
@@ -201,7 +206,7 @@ public class Singup implements Initializable
                 }
             }
             try {
-                if(!listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                if(listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
                 {
                     try {
                         throw new Exception("This account in already exist");
@@ -216,9 +221,12 @@ public class Singup implements Initializable
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
+
+
             try {
-                if (listenerController.checkEmail(emailTextField.getText()) & listenerController.checkPhoneNumber(phoneTextField.getText()) & listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
-                {
+                if (!listenerController.checkEmail(emailTextField.getText()) & !listenerController.checkPhoneNumber(phoneTextField.getText()) & !listenerController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                { listenerController.newListener(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText());
+
                     try {
                         throw new Exception("Sign up was successful");
                     } catch (Exception e) {
@@ -250,7 +258,6 @@ public class Singup implements Initializable
             biography.setBorder(Border.stroke(Color.WHITE));
             biography.setStyle("-fx-border-radius: 5px");
             getVbox().getChildren().addAll(label,biography);
-            Artist artist = artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
             if(!artistController.checkEmail(emailTextField.getText()) | !artistController.checkPhoneNumber(phoneTextField.getText()))
             {
                 try {
@@ -262,7 +269,7 @@ public class Singup implements Initializable
                 }
             }
             try {
-                if(!artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                if(artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
                 {
                     try {
                         throw new Exception("This account in already exist");
@@ -278,8 +285,9 @@ public class Singup implements Initializable
                 alert.showAndWait();
             }
             try {
-                if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
+                if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & !artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
                 {
+                    Artist artist = artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
                     listenerController.artistsList(artist);
                     try {
                         throw new Exception("Sign up was successful");
@@ -309,7 +317,6 @@ public class Singup implements Initializable
             biography.setBorder(Border.stroke(Color.WHITE));
             biography.setStyle("-fx-border-radius: 5px");
             getVbox().getChildren().addAll(label,biography);
-            Artist artist = artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
             if(!artistController.checkEmail(emailTextField.getText()) | !artistController.checkPhoneNumber(phoneTextField.getText()))
             {
                 try {
@@ -337,6 +344,7 @@ public class Singup implements Initializable
             try {
                 if (artistController.checkEmail(emailTextField.getText()) & artistController.checkPhoneNumber(phoneTextField.getText()) & artistController.findUser(userNameTextField.getText(),passwordTextField.getText()))
                 {
+                    Artist artist = artistController.artist(userNameTextField.getText(),passwordTextField.getText(),nameTextField.getText(),emailTextField.getText(),phoneTextField.getText(),year.getText(),month.getText(),day.getText(),biography.getText());
                     listenerController.artistsList(artist);
                     try {
                         throw new Exception("Sign up was successful");
@@ -358,5 +366,12 @@ public class Singup implements Initializable
                 System.out.println(e.getMessage());
             }
         });
+//        signUp.setOnMouseClicked(event -> {
+//            try {
+//                ChangeScene.chooseGenres();
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
     }
 }

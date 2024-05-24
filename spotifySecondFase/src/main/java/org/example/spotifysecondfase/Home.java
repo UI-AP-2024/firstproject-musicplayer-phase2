@@ -493,7 +493,7 @@ public class Home implements Initializable
             Singup.listenerController.addAudioToPlaylist(PlayMusic.audio.getName());
         });
         likeImage.setOnMouseClicked(event -> {
-            Singup.listenerController.likeAudio(PlayMusic.audio.getName());
+            ListenerController.getListenerCotroller().likeAudio(PlayMusic.audio.getName());
         });
         lyrics.setOnMouseClicked(event -> {
             try {

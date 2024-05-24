@@ -24,7 +24,7 @@ public class ReportScene implements Initializable {
     public Label getReportLable() {return reportLable;}
     public void setReportLable(Label reportLable) {this.reportLable = reportLable;}
     ArtistInfo artistInfo;
-
+    static boolean reportSceneBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Singup.listenerController.description(reportLable.getText(),artistInfo.nameOfArtist);

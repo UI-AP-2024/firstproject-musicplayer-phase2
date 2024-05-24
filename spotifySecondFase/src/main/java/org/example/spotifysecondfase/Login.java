@@ -63,6 +63,7 @@ public class Login implements Initializable
     public static Boolean getBool() {return bool;}
     public static void setBool(Boolean bool) {Login.bool = bool;}
     public static UserAccountController userAccountController;
+    static boolean loginBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

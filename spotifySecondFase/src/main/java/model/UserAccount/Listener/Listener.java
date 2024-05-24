@@ -18,9 +18,9 @@ public class Listener extends UserAccount
     private ArrayList<Playlist> playlists = new ArrayList<Playlist>();
     private Map<String,Integer> map = new HashMap<>();
     private ArrayList<Artist> following = new ArrayList<>();
-    public Listener(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day,Genre[] genres) {
+    public Listener(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day) {
         super(userName,passWord,name,email,phoneNumber,year,month,day);
-        this.genres = genres;
+       // this.genres = genres;
     }
     public int getAccountCredit() {
         return accountCredit;

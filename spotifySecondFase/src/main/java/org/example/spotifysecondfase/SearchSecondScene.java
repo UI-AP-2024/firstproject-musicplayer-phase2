@@ -254,7 +254,7 @@ public class SearchSecondScene implements Initializable {
     public void setSpotify(ImageView spotify) {
         this.spotify = spotify;
     }
-
+    static boolean searchSecondSceneBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gridPane.setBackground(Background.fill(Color.BLACK));

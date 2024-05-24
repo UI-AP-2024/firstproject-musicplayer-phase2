@@ -22,6 +22,7 @@ public class Lyrics implements Initializable {
     private Label lyricsLbl;
     public Label getLyricsLbl() {return lyricsLbl;}
     public void setLyricsLbl(Label lyricsLbl) {this.lyricsLbl = lyricsLbl;}
+    static boolean lyricsBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boolean b = PlayMusic.audio instanceof Music;

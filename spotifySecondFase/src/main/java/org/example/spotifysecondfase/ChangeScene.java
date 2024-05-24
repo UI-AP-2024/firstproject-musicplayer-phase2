@@ -2,12 +2,14 @@ package org.example.spotifysecondfase;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ChangeScene {
     static Stage stage;
+    static AnchorPane playBar;
     public static void home() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);

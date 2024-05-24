@@ -17,12 +17,21 @@ public class ListenerController extends UserAccountController
     private Listener listener;
     public Listener getListener() {return listener;}
     public void setListener(Listener listener) {this.listener = listener;}
+    private static ListenerController listenerController;
     public Listener newListener(String userName, String passWord, String name, String email, String phoneNumber, String year,String month,String day)
     {
-            listener = newListener(userName,passWord,name,email,phoneNumber,year,month,day);
+            listener = new Listener(userName,passWord,name,email,phoneNumber,year,month,day);
 //            Database.getDatabase().getUserAccounts().add(listener);
             Database.getDatabase().getUserAccounts().add(listener);
             return listener;
+    }
+    public static ListenerController getListenerCotroller()
+    {
+        if (listenerController == null)
+        {
+            listenerController = new ListenerController();
+        }
+        return listenerController;
     }
 //    public boolean check()
 //    {
@@ -74,7 +83,14 @@ public class ListenerController extends UserAccountController
         {
             if(i.getName().equals(audioName))
             {
-                getPlaylist().getPlayList().add(getAudio());
+                getPlaylist().getPlayList().add(i);
+//                for (Playlist p : getListener().getPlaylists())
+//                {
+//                    if (playlistName.equals(p.getPlayListName()))
+//                    {
+//                        p.getPlayList().add(i);
+//                    }
+//                }
             }
         }
     }

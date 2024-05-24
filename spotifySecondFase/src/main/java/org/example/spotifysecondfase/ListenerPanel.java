@@ -16,6 +16,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.Audio.Audio;
+import model.Database;
 import model.Playlist;
 import model.UserAccount.Artist.Artist;
 import org.example.spotifysecondfase.view.Exception.FreeAccountLimit;
@@ -614,6 +615,7 @@ public class ListenerPanel implements Initializable
     }
     Singup singup;
     Button button;
+    static boolean listenerPanelBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         for (Playlist p : Singup.listenerController.showPlaylist())
@@ -682,6 +684,9 @@ public class ListenerPanel implements Initializable
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+        logOutBtn.setOnMouseClicked(event -> {
+            Database.getDatabase().getUserAccounts().remove(Singup.listenerController.getUserAccount());
         });
     }
 }

@@ -478,7 +478,7 @@ public class Subscription implements Initializable {
     public void setTwoPremiumLbl(Label twoPremiumLbl) {
         this.twoPremiumLbl = twoPremiumLbl;
     }
-
+    static boolean subscriptionBool = true;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         homeImage.setOnMouseClicked(event -> {

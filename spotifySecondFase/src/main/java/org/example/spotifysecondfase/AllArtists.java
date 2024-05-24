@@ -1,5 +1,6 @@
 package org.example.spotifysecondfase;
 
+import controller.ArtistController;
 import controller.ListenerController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -351,6 +352,7 @@ public class AllArtists implements Initializable {
                 try {
                     allArtistsBool = true;
                     ArtistInfo.artist = a;
+                    ArtistController.artist = a;
                     ChangeScene.artistInfo();
                 } catch (IOException e) {
                     throw new RuntimeException(e);

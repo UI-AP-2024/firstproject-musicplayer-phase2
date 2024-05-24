@@ -1,5 +1,7 @@
 package org.example.spotifysecondfase;
 
+import controller.ArtistController;
+import controller.ListenerController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.example.spotifysecondfase.ChangeScene;
@@ -9,7 +11,10 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-       ChangeScene.stage = stage;
+//        ChangeScene.playBar =
+//        Singup.artistController = ArtistController.getArtistController();
+        Singup.listenerController = ListenerController.getListenerCotroller();
+        ChangeScene.stage = stage;
 //        System.out.println(this.getClass().);
 //        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home.fxml"));
 ////        Home home;
@@ -17,7 +22,7 @@ public class HelloApplication extends Application {
 //        stage.setTitle("Hello!");
 //        stage.setScene(scene);
 //        stage.show();
-        ChangeScene.playMusic();
+        ChangeScene.home();
 
     }
 

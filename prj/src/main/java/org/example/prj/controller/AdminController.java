@@ -1,5 +1,6 @@
 package org.example.prj.controller;
 
+import org.example.prj.exception.WrongPaswordException;
 import org.example.prj.model.*;
 
 public class AdminController {
@@ -31,7 +32,8 @@ public class AdminController {
                 return "Login successfully";
             }
         }
-        return "The username does not exist or the password is incorrect";
+        throw new WrongPaswordException();
+//        return "The username does not exist or the password is incorrect";
     }
 
     public String favoriteAudio(){

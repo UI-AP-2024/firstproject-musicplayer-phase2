@@ -18,14 +18,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.example.prj.HelloApplication;
 import org.example.prj.controller.ArtistController;
+import org.example.prj.controller.GeneralOperations;
 import org.example.prj.controller.ListenerController;
+import org.example.prj.exception.InaccessibilityException;
 import org.example.prj.model.Audio;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RegisterTypeController implements Initializable {
+public class RegisterTypeController implements Initializable , GeneralOperations {
 
     @FXML
     private Text NameArtist_text;
@@ -79,6 +81,9 @@ public class RegisterTypeController implements Initializable {
     private Button search_button;
 
     @FXML
+    private Text error_text;
+
+    @FXML
     void artists_Action(ActionEvent event) throws IOException {
         Detail.lastScene.push(HelloApplication.getStage().getScene());
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("artistsList-view.fxml"));
@@ -94,8 +99,7 @@ public class RegisterTypeController implements Initializable {
 
     @FXML
     void back_Action(ActionEvent event) {
-        if(!Detail.lastScene.empty())
-            HelloApplication.getStage().setScene(Detail.lastScene.pop());
+        backTo();
     }
 
     @FXML
@@ -113,7 +117,11 @@ public class RegisterTypeController implements Initializable {
             HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
         }
         else{
-            //exception
+            try {
+                throw new InaccessibilityException();
+            }catch (InaccessibilityException e){
+                error_text.setText(e.getMessage());
+            }
         }
     }
 
@@ -126,38 +134,19 @@ public class RegisterTypeController implements Initializable {
 
     @FXML
     void login_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            //exception
-        }
-        else{
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            login();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void logout_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            Detail.lastScene.removeAllElements();
-            Detail.login = false;
-            if (Detail.listener){
-                Detail.listener=false;
-                ListenerController.getListenerController().setUserAccount(null);
-            }
-            else if (Detail.podcaster){
-                Detail.podcaster=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            else if (Detail.singer){
-                Detail.singer=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-        }
-        else {
-            //exception
+        try {
+            logout();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
@@ -200,21 +189,16 @@ public class RegisterTypeController implements Initializable {
 
     @FXML
     void register_Action(ActionEvent event) throws IOException {
-        if(Detail.login){
-            //exception
-        }else {
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registerType-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            register();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void search_Action(ActionEvent event) throws IOException {
-        Detail.getDetail().search = ListenerController.getListenerController().searchAudioFile(search_Text.getText());
-        Detail.lastScene.push(HelloApplication.getStage().getScene());
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search-view.fxml"));
-        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        search(search_Text.getText());
     }
 
     @FXML

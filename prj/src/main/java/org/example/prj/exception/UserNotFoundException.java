@@ -5,6 +5,6 @@ public class UserNotFoundException extends FailedLoginException{
         super(msg);
     }
     public UserNotFoundException(){
-        super("user not found!");
+        super("User not found!");
     }
 }

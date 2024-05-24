@@ -1,5 +1,6 @@
 package org.example.prj.controller;
 
+import org.example.prj.exception.UserNotFoundException;
 import org.example.prj.model.*;
 
 public class LoginController {
@@ -26,6 +27,7 @@ public class LoginController {
                 }
             }
         }
-        return "Admin";
+        throw new UserNotFoundException();
+//        return "Admin";
     }
 }

@@ -93,5 +93,10 @@
          </font>
       </Text>
       <ImageView fx:id="image" fitHeight="65.0" fitWidth="79.0" layoutX="6.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="error_text" fill="#e90000" layoutX="220.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

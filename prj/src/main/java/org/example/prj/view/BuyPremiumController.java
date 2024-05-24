@@ -18,7 +18,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.example.prj.HelloApplication;
 import org.example.prj.controller.ArtistController;
+import org.example.prj.controller.GeneralOperations;
 import org.example.prj.controller.ListenerController;
+import org.example.prj.exception.CreditExeption;
+import org.example.prj.exception.InaccessibilityException;
 import org.example.prj.model.Audio;
 
 import java.io.IOException;
@@ -26,7 +29,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class BuyPremiumController implements Initializable {
+public class BuyPremiumController implements Initializable , GeneralOperations {
 
     @FXML
     private Text NameArtist_text;
@@ -128,8 +131,7 @@ public class BuyPremiumController implements Initializable {
 
     @FXML
     void back_Action(ActionEvent event) {
-        if(!Detail.lastScene.empty())
-            HelloApplication.getStage().setScene(Detail.lastScene.pop());
+        backTo();
     }
 
     @FXML
@@ -147,44 +149,29 @@ public class BuyPremiumController implements Initializable {
             HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
         }
         else{
-            //exception
+            try {
+                throw new InaccessibilityException();
+            }catch (InaccessibilityException e){
+                error_text.setText(e.getMessage());
+            }
         }
     }
 
     @FXML
     void login_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            //exception
-        }
-        else{
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            login();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void logout_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            Detail.lastScene.removeAllElements();
-            Detail.login = false;
-            if (Detail.listener){
-                Detail.listener=false;
-                ListenerController.getListenerController().setUserAccount(null);
-            }
-            else if (Detail.podcaster){
-                Detail.podcaster=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            else if (Detail.singer){
-                Detail.singer=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-        }
-        else {
-            //exception
+        try {
+            logout();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
@@ -220,22 +207,16 @@ public class BuyPremiumController implements Initializable {
 
     @FXML
     void register_Action(ActionEvent event) throws IOException {
-        if(Detail.login){
-            //exception
-        }else {
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registerType-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            register();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void search_Action(ActionEvent event) throws IOException {
-        Detail.getDetail().search = ListenerController.getListenerController().searchAudioFile(search_Text.getText());
-        Detail.lastScene.push(HelloApplication.getStage().getScene());
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search-view.fxml"));
-        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-
+        search(search_Text.getText());
     }
 
     private String typeBuy = "";
@@ -243,33 +224,49 @@ public class BuyPremiumController implements Initializable {
     @FXML
     void selectOne_Action(ActionEvent event) {
         typeBuy = "ONE_MONTH";
+        selectOne_button.setStyle("-fx-background-color: #00c4c8");
+        selectTwo_button.setStyle("-fx-background-color: #012c2c");
+        selectThree_button.setStyle("-fx-background-color: #012c2c");
     }
 
     @FXML
     void selectThree_Action(ActionEvent event) {
         typeBuy = "SIX_MONTH";
+        selectThree_button.setStyle("-fx-background-color: #00c4c8");
+        selectTwo_button.setStyle("-fx-background-color: #012c2c");
+        selectOne_button.setStyle("-fx-background-color: #012c2c");
     }
 
     @FXML
     void selectTwo_Action(ActionEvent event) {
         typeBuy = "TWO_MONTH";
+        selectTwo_button.setStyle("-fx-background-color: #00c4c8");
+        selectOne_button.setStyle("-fx-background-color: #012c2c");
+        selectThree_button.setStyle("-fx-background-color: #012c2c");
     }
 
     @FXML
     void buy_Action(ActionEvent event) throws IOException {
-        String result = ListenerController.getListenerController().getPremium(typeBuy);
-        if (result.equals("Your account balance is insufficient")){
-            //exception
-        }
-        else{
+        try {
+            String result = ListenerController.getListenerController().getPremium(typeBuy);
             Detail.lastScene.push(HelloApplication.getStage().getScene());
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("accountInfo-view.fxml"));
             HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        }catch (CreditExeption e){
+            error_text.setText(e.getMessage());
+        }finally {
+            error_text.setText(error_text.getText()+"\nHave a good day");
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        selectOne_button.setStyle("-fx-background-color: #012c2c");
+        selectTwo_button.setStyle("-fx-background-color: #012c2c");
+        selectThree_button.setStyle("-fx-background-color: #012c2c");
+        selectOne_button.setTextFill(Paint.valueOf("white"));
+        selectTwo_button.setTextFill(Paint.valueOf("white"));
+        selectThree_button.setTextFill(Paint.valueOf("white"));
         ArrayList<String> al = ListenerController.getListenerController().showPremium();
         pkgOneName_text.setText(al.get(0));
         priceOne_text.setText(al.get(1)+"$");

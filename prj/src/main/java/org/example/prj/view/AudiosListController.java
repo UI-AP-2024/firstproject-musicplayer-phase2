@@ -21,7 +21,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.example.prj.HelloApplication;
 import org.example.prj.controller.ArtistController;
+import org.example.prj.controller.GeneralOperations;
 import org.example.prj.controller.ListenerController;
+import org.example.prj.exception.InaccessibilityException;
 import org.example.prj.model.Audio;
 import org.example.prj.model.Database;
 
@@ -30,7 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AudiosListController implements Initializable {
+public class AudiosListController implements Initializable , GeneralOperations {
 
     @FXML
     private Text NameArtist_text;
@@ -90,6 +92,9 @@ public class AudiosListController implements Initializable {
     private Button search_button;
 
     @FXML
+    private Text error_text;
+
+    @FXML
     void artists_Action(ActionEvent event) throws IOException {
         Detail.lastScene.push(HelloApplication.getStage().getScene());
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("artistsList-view.fxml"));
@@ -105,8 +110,7 @@ public class AudiosListController implements Initializable {
 
     @FXML
     void back_Action(ActionEvent event) {
-        if(!Detail.lastScene.empty())
-            HelloApplication.getStage().setScene(Detail.lastScene.pop());
+        backTo();
     }
 
     @FXML
@@ -124,44 +128,29 @@ public class AudiosListController implements Initializable {
             HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
         }
         else{
-            //exception
+            try {
+                throw new InaccessibilityException();
+            }catch (InaccessibilityException e){
+                error_text.setText(e.getMessage());
+            }
         }
     }
 
     @FXML
     void login_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            //exception
-        }
-        else{
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            login();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void logout_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            Detail.lastScene.removeAllElements();
-            Detail.login = false;
-            if (Detail.listener){
-                Detail.listener=false;
-                ListenerController.getListenerController().setUserAccount(null);
-            }
-            else if (Detail.podcaster){
-                Detail.podcaster=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            else if (Detail.singer){
-                Detail.singer=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-        }
-        else {
-            //exception
+        try {
+            logout();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
@@ -197,21 +186,16 @@ public class AudiosListController implements Initializable {
 
     @FXML
     void register_Action(ActionEvent event) throws IOException {
-        if(Detail.login){
-            //exception
-        }else {
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registerType-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            register();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void search_Action(ActionEvent event) throws IOException {
-        Detail.getDetail().search = ListenerController.getListenerController().searchAudioFile(search_Text.getText());
-        Detail.lastScene.push(HelloApplication.getStage().getScene());
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search-view.fxml"));
-        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        search(search_Text.getText());
     }
 
     @Override
@@ -220,34 +204,30 @@ public class AudiosListController implements Initializable {
         audios = ListenerController.getListenerController().getAllAudios();
         int j=0;
         for (Audio audio : audios) {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("slotOfGridPinAudio-view.fxml"));
             try {
-                SlotOfGridPinAudioView controller = fxmlLoader.getController();
-                try {
-                    controller.setData(audio.getNameArtist(), audio.getName(),"file:" + audio.getCover());
-                }catch (NullPointerException e){
-
-                }
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("slotOfGridPinAudio-view.fxml"));
                 Node node = fxmlLoader.load();
+                SlotOfGridPinAudioView controller = fxmlLoader.getController();
+                controller.setData(audio.getNameArtist(), audio.getName(), "file:" + audio.getCover());
                 gridPain.add(node, 0, j++);
+                gridPain.getChildren().getLast().setOnMouseClicked(e -> {
+                    Detail.getDetail().play = true;
+                    Detail.getDetail().pause = false;
+                    Detail.getDetail().random = true;
+                    Detail.getDetail().playList = false;
+                    Detail.getDetail().countRandom = Database.getDataBase().getAudio().indexOf(audio);
+                    FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playMusic-view.fxml"));
+                    Detail.selectAudio = audio;
+                    try {
+                        Detail.lastScene.push(HelloApplication.getStage().getScene());
+                        HelloApplication.getStage().setScene(new Scene(fxmlLoader1.load()));
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
-            gridPain.getChildren().getLast().setOnMouseClicked(e ->{
-                Detail.getDetail().play=true;
-                Detail.getDetail().pause=false;
-                Detail.getDetail().random=true;
-                Detail.getDetail().playList=false;
-                Detail.getDetail().countRandom= Database.getDataBase().getAudio().indexOf(audio);
-                FXMLLoader fxmlLoader1 = new FXMLLoader(HelloApplication.class.getResource("playMusic-view.fxml"));
-                Detail.selectAudio = audio;
-                try {
-                    Detail.lastScene.push(HelloApplication.getStage().getScene());
-                    HelloApplication.getStage().setScene(new Scene(fxmlLoader1.load()));
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
         }
         if(Detail.lastScene.empty())
             back_button.setTextFill(Paint.valueOf("ffffff81"));

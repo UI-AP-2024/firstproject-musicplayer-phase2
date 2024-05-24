@@ -4,9 +4,11 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
+import org.example.prj.exception.*;
 import org.example.prj.model.*;
 import org.example.prj.view.Detail;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -76,20 +78,27 @@ public class ListenerController {
     public String registration(String userName, String password, String name, String email, String number/*, Date birth*/,String year,String month,String day) {
         for (UserAccount tmp : Database.getDataBase().getUserAccounts()) {
             if (tmp.getUserName().equals(userName))
-                return "Username is duplicated. Please try again";
+                throw new OtherException("Username is duplicated. Please try again");
+                //return "Username is duplicated. Please try again";
         }
         String regex = "^([\\w-\\.]+[@]{1}[\\w]+[\\.]{1}[\\w]{2,4})$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         if (matcher.matches() == false)
-            return "The email entered is not valid";
+            throw new InvalidFormatException("The email entered is not valid");
+//            return "The email entered is not valid";
         regex = "^([0]{1}[9]{1}[0-9]{9})$";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(number);
         if (matcher.matches() == false)
-            return "The phone number entered is not valid";
-
-        Date birth = new Date(Integer.valueOf(year)-1900,Integer.valueOf(month)-1,Integer.valueOf(day));
+            throw new InvalidFormatException("The phone number entered is not valid");
+//            return "The phone number entered is not valid";
+        Date birth;
+        try {
+            birth = new Date(Integer.valueOf(year)-1900,Integer.valueOf(month)-1,Integer.valueOf(day));
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("The format entered for date of birth is not valid");
+        }
 
         Free free = new Free(userName, password, name, email, number, birth, 50);
         Database.getDataBase().getUserAccounts().add(free);
@@ -111,7 +120,8 @@ public class ListenerController {
                 return "Login successfully";
             }
         }
-        return "The username does not exist or the password is incorrect";
+        throw new WrongPaswordException();
+//        return "The username does not exist or the password is incorrect";
     }
 
     public String createPlaylist(String name) {
@@ -123,7 +133,8 @@ public class ListenerController {
                 return "The playlist was created successfully";
             } else {
                 ((Free) getUserAccount()).setCountNumberPlaylist(((Free) getUserAccount()).getCountNumberPlaylist()-1);
-                return "You are allowed to create 3 playlists";
+                throw new FreeAccountLimitException("You are allowed to create 3 playlists");
+//                return "You are allowed to create 3 playlists";
             }
 
         } else if (getUserAccount() instanceof Premium) {
@@ -152,7 +163,8 @@ public class ListenerController {
                         if (audio.getId() == id ) {
                             for ( Audio audio1 : playlist.getListAudio()){
                                 if ( audio1.getId()==id)
-                                    return "You have this audio file in the playlist";
+                                    throw new OtherException("You have this audio file in the playlist");
+//                                    return "You have this audio file in the playlist";
                             }
                             ((Free) getUserAccount()).setCountAddSong(((Free) getUserAccount()).getCountAddSong()+1);
                             playlist.getListAudio().add(audio);
@@ -164,7 +176,8 @@ public class ListenerController {
                 }
             }
             if (((Free) getUserAccount()).getCountAddSong() >= ((Free) getUserAccount()).getLimitAddSong())
-                return "You are allowed to add only 10 audio files";
+                throw new FreeAccountLimitException("You are allowed to add only 10 audio files");
+//                return "You are allowed to add only 10 audio files";
             else
                 return "The name of the playlist or the ID of the audio file is wrong";
         } else if (getUserAccount() instanceof Premium) {
@@ -174,7 +187,8 @@ public class ListenerController {
                         if (audio.getId() == id) {
                             for ( Audio audio1 : playlist.getListAudio()){
                                 if ( audio1.getId()==id)
-                                    return "You have this audio file in the playlist";
+                                    throw new OtherException("You have this audio file in the playlist");
+//                                    return "You have this audio file in the playlist";
                             }
                             playlist.getListAudio().add(audio);
 //                            ((Premium) getUserAccount()).getPlaylists().remove(playlist);
@@ -280,13 +294,14 @@ public class ListenerController {
         return al;
     }
 
-    public ArrayList<Audio> sortAudioFile(String type){
+    public ArrayList<Audio> sortAudioFile(String type) {
         if (type.equals("L")){
             for (int i = 0; i < Database.getDataBase().getAudio().size()-1 ; i++) {
                 for (int j = 0; j < Database.getDataBase().getAudio().size()-i-1 ; j++) {
-                    if ( Database.getDataBase().getAudio().get(j).getNumberOfLikes() < Database.getDataBase().getAudio().get(j+1).getNumberOfLikes() ){
-                        Collections.swap(Database.getDataBase().getAudio(),j,j+1);
-                    }
+                    Database.getDataBase().getAudio().get(j).compareTo(Database.getDataBase().getAudio().get(j + 1));
+//                    if ( Database.getDataBase().getAudio().get(j).getNumberOfLikes() < Database.getDataBase().getAudio().get(j+1).getNumberOfLikes() ){
+//                        Collections.swap(Database.getDataBase().getAudio(),j,j+1);
+//                    }
                 }
             }
             return new ArrayList<>(Database.getDataBase().getAudio());
@@ -455,22 +470,22 @@ public class ListenerController {
         sortAudioFile("L");
         int count = 0;
         for ( Audio audio : Database.getDataBase().getAudio()){
-            labale1:
+            if (audios.contains(audio))
+                continue;
             for ( Gener gener : getUserAccount().getFavoriteGener() ) {
-                for (UserAccount userAccount1 : getUserAccount().getFollowings()){
-                    if ( audio.getNameArtist().equals(   userAccount1.getName()   ) || audio.getGener()==gener ){
-                        if ( count<10){
-                            audios.add(audio);
-                            count++;
-                            break labale1;
-                        }
-                        else
-                            return audios;
-                    }
+                if ( (count<10) && (audio.getGener()==gener)){
+                    audios.add(audio);
+                    count++;
+                }
+            }
+            for (UserAccount userAccount1 : getUserAccount().getFollowings()) {
+                if ( (count<10) && audio.getNameArtist().equals(   userAccount1.getName()   )){
+                    audios.add(audio);
+                    count++;
                 }
             }
         }
-            return audios;
+        return audios;
 //        Audio[] audioArr = new Audio[10];
 //        int i=0;
 //        int num=0;
@@ -565,7 +580,8 @@ public class ListenerController {
     public String getPremium(String type) {
         if (type.equals(String.valueOf(PremiumPkg.ONE_MONTH))) {
             if (((Listener) getUserAccount()).getAccountCredit() < PremiumPkg.ONE_MONTH.getCount())
-                return "Your account balance is insufficient";
+                throw new CreditExeption("Your account balance is insufficient");
+//                return "Your account balance is insufficient";
             ((Listener) getUserAccount()).setAccountCredit(((Listener) getUserAccount()).getAccountCredit() - PremiumPkg.ONE_MONTH.getCount());
             if (getUserAccount() instanceof Premium) {
                 ((Premium) getUserAccount()).setDaysOfSubs(((Premium) getUserAccount()).getDaysOfSubs() + 30);
@@ -591,7 +607,8 @@ public class ListenerController {
 
         else if (type.equals(String.valueOf(PremiumPkg.TWO_MONTH))) {
             if (((Listener) getUserAccount()).getAccountCredit() < PremiumPkg.TWO_MONTH.getCount())
-                return "Your account balance is insufficient";
+                throw new CreditExeption("Your account balance is insufficient");
+                //return "Your account balance is insufficient";
             ((Listener) getUserAccount()).setAccountCredit(((Listener) getUserAccount()).getAccountCredit() - PremiumPkg.TWO_MONTH.getCount());
             if (getUserAccount() instanceof Premium) {
                 ((Premium) getUserAccount()).setDaysOfSubs(((Premium) getUserAccount()).getDaysOfSubs() + 60);
@@ -617,7 +634,8 @@ public class ListenerController {
 
         else if (type.equals(String.valueOf(PremiumPkg.SIX_MONTH))) {
             if (((Listener) getUserAccount()).getAccountCredit() < PremiumPkg.SIX_MONTH.getCount())
-                return "Your account balance is insufficient";
+                throw new CreditExeption("Your account balance is insufficient");
+//                return "Your account balance is insufficient";
             ((Listener) getUserAccount()).setAccountCredit(((Listener) getUserAccount()).getAccountCredit() - PremiumPkg.SIX_MONTH.getCount());
             if (getUserAccount() instanceof Premium) {
                 ((Premium) getUserAccount()).setDaysOfSubs(((Premium) getUserAccount()).getDaysOfSubs() + 180);
@@ -647,9 +665,11 @@ public class ListenerController {
 
     public String getGener(ArrayList<String> al){
         if ( al.size()>4)
-            return "You can only choose 4 genres";
+            throw new OtherException("You can only choose 4 genres");
+//            return "You can only choose 4 genres";
         else if (al.isEmpty()){
-            return "Choose at least one genre";
+            throw new OtherException("Choose at least one genre");
+//            return "Choose at least one genre";
         }
         else if ( al.size() == 1){
             ((Listener)getUserAccount()).getFavoriteGener().add(Gener.valueOf(al.get(0)));

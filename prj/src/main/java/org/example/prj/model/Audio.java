@@ -2,7 +2,7 @@ package org.example.prj.model;
 
 import java.util.Date;
 
-public abstract class Audio {
+public abstract class Audio implements Comparable<Audio> {
     private long id;
     private String name;
     private String nameArtist;
@@ -22,9 +22,26 @@ public abstract class Audio {
         Audio.countId = countId;
     }
 
+    @Override
     public String toString(){
         String result = "";
         result += "Audio Id: "+getId()+"\tAudio Name: "+getName()+"\tArtist name: "+getNameArtist()+"\tPlays: "+getNumberOfPlays()+"\tLike: "+getNumberOfLikes()+"\tDate of release: "+String.valueOf(getDateOfRelease())+"\tGener: "+String.valueOf(getGener())+"\tLink: "+getAudioLink()+"\tCover: "+getCover();
+        return result;
+    }
+
+    @Override
+    public int compareTo(Audio secAudio){
+//        int result = this.getName().compareTo(secAudio.getName());
+//        if(result!=0)
+//            return result;
+        int result = this.getNumberOfLikes()-secAudio.getNumberOfLikes();
+        if(result!=0)
+            return result;
+        if(this instanceof Music && secAudio instanceof Podcast)
+            return 1;
+        else if(this instanceof Podcast && secAudio instanceof Music)
+            return -1;
+        result = this.getNumberOfPlays() - secAudio.getNumberOfPlays();
         return result;
     }
 

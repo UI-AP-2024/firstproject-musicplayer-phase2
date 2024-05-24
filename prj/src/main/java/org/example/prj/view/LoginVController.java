@@ -17,17 +17,17 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.example.prj.HelloApplication;
-import org.example.prj.controller.AdminController;
-import org.example.prj.controller.ArtistController;
-import org.example.prj.controller.ListenerController;
-import org.example.prj.controller.LoginController;
+import org.example.prj.controller.*;
+import org.example.prj.exception.InaccessibilityException;
+import org.example.prj.exception.UserNotFoundException;
+import org.example.prj.exception.WrongPaswordException;
 import org.example.prj.model.Audio;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginVController implements Initializable {
+public class LoginVController implements Initializable , GeneralOperations {
 
     @FXML
     private Text NameArtist_text;
@@ -108,7 +108,7 @@ public class LoginVController implements Initializable {
 
     @FXML
     void back_Action(ActionEvent event) {
-        HelloApplication.getStage().setScene(Detail.lastScene.pop());
+        backTo();
     }
 
     @FXML
@@ -126,44 +126,29 @@ public class LoginVController implements Initializable {
             HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
         }
         else{
-            //exception
+            try {
+                throw new InaccessibilityException();
+            }catch (InaccessibilityException e){
+                error_text.setText(e.getMessage());
+            }
         }
     }
 
     @FXML
     void login_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            //exception
-        }
-        else{
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            login();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void logout_Action(ActionEvent event) throws IOException {
-        if(Detail.login) {
-            Detail.lastScene.removeAllElements();
-            Detail.login = false;
-            if (Detail.listener){
-                Detail.listener=false;
-                ListenerController.getListenerController().setUserAccount(null);
-            }
-            else if (Detail.podcaster){
-                Detail.podcaster=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            else if (Detail.singer){
-                Detail.singer=false;
-                ArtistController.getArtistController().setUserAccount(null);
-            }
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-        }
-        else {
-            //exception
+        try {
+            logout();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
@@ -199,73 +184,79 @@ public class LoginVController implements Initializable {
 
     @FXML
     void register_Action(ActionEvent event) throws IOException {
-        if(Detail.login){
-            //exception
-        }else {
-            Detail.lastScene.push(HelloApplication.getStage().getScene());
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registerType-view.fxml"));
-            HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            register();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
         }
     }
 
     @FXML
     void search_Action(ActionEvent event) throws IOException {
-        Detail.getDetail().search = ListenerController.getListenerController().searchAudioFile(search_Text.getText());
-        Detail.lastScene.push(HelloApplication.getStage().getScene());
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search-view.fxml"));
-        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        search(search_Text.getText());
     }
 
     @FXML
     void mainLogin_Action() throws IOException {
-        String type = LoginController.getLoginController().typeLog(name_text.getText());
-        String result;
-        if(type.equals("Admin")){
-            result = AdminController.getAdminController().login(name_text.getText(),pass_text.getText());
-            if (result.equals("Login successfully")){
-                Detail.login=true;
-                Detail.admin=true;
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-                Detail.lastScene.push(HelloApplication.getStage().getScene());
-                HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+        try {
+            String type = LoginController.getLoginController().typeLog(name_text.getText());
+            if(type.equals("Admin")){
+                try {
+                    AdminController.getAdminController().login(name_text.getText(),pass_text.getText());
+                    Detail.login=true;
+                    Detail.admin=true;
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+                    Detail.lastScene.push(HelloApplication.getStage().getScene());
+                    HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+                }catch (WrongPaswordException e){
+                    error_text.setText(e.getMessage());
+                }finally {
+                    error_text.setText(error_text.getText()+"\nHave a good day");
+                }
             }
-            else {
-                //exception
+            else if(type.equals("Artist")){
+                try{
+                    String result = ArtistController.getArtistController().login(name_text.getText(),pass_text.getText());
+                    if (result.equals("Login successfully singer")){
+                        Detail.login=true;
+                        Detail.singer=true;
+                        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+                        Detail.lastScene.push(HelloApplication.getStage().getScene());
+                        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+                    }
+                    else if (result.equals("Login successfully podcaster")){
+                        Detail.login=true;
+                        Detail.podcaster=true;
+                        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+                        Detail.lastScene.push(HelloApplication.getStage().getScene());
+                        HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+                    }
+                }catch (WrongPaswordException e){
+                    error_text.setText(e.getMessage());
+                }finally {
+                    error_text.setText(error_text.getText()+"\nHave a good day");
+                }
             }
+            else if(type.equals("Listener")){
+                try {
+                    ListenerController.getListenerController().login(name_text.getText(),pass_text.getText());
+                    Detail.login=true;
+                    Detail.listener=true;
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+                    Detail.lastScene.push(HelloApplication.getStage().getScene());
+                    HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
+                }catch (WrongPaswordException e){
+                    error_text.setText(e.getMessage());
+                }finally {
+                    error_text.setText(error_text.getText()+"\nHave a good day");
+                }
+            }
+        }catch (UserNotFoundException e){
+            error_text.setText(e.getMessage());
+        }finally {
+            error_text.setText(error_text.getText()+"\nHave a good day");
         }
-        else if(type.equals("Artist")){
-            result = ArtistController.getArtistController().login(name_text.getText(),pass_text.getText());
-            if (result.equals("Login successfully singer")){
-                Detail.login=true;
-                Detail.singer=true;
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-                Detail.lastScene.push(HelloApplication.getStage().getScene());
-                HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-            }
-            else if (result.equals("Login successfully podcaster")){
-                Detail.login=true;
-                Detail.podcaster=true;
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-                Detail.lastScene.push(HelloApplication.getStage().getScene());
-                HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-            }
-            else {
-                //exception
-            }
-        }
-        else if(type.equals("Listener")){
-            result = ListenerController.getListenerController().login(name_text.getText(),pass_text.getText());
-            if (result.equals("Login successfully")){
-                Detail.login=true;
-                Detail.listener=true;
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-                Detail.lastScene.push(HelloApplication.getStage().getScene());
-                HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-            }
-            else {
-                //exception
-            }
-        }
+
     }
 
     @Override

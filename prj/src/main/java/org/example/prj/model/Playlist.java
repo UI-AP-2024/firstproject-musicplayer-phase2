@@ -1,13 +1,15 @@
 package org.example.prj.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Playlist {
+public class Playlist implements Iterable<Audio> {
     private long id;
     private String nameOfPlaylist;
     private String nameOfCreator;
     private ArrayList<Audio> listAudio;
 
+    @Override
     public String toString(){
         String result = "";
         result += "Playlist Id: "+getId()+"\tPlaylist Name: "+getNameOfPlaylist()+"\tCreator Name: "+getNameOfCreator();
@@ -20,6 +22,27 @@ public class Playlist {
         else
             result += "\nAudios:\n "+result2;
         return result;
+    }
+
+
+
+    private int current = 0;
+    private int element = 0;
+    @Override
+    public Iterator iterator(){
+        return new Iterator() {
+            @Override
+            public boolean hasNext() {
+                return element < listAudio.size();
+            }
+            @Override
+            public Audio next() {
+                Audio x =listAudio.get(current);
+                current = (current + 1) ;
+                element++;
+                return x;
+            }
+        };
     }
 
     public Playlist(long id, String nameOfPlaylist, String nameOfCreator/*, ArrayList<Audio> listAudio*/) {

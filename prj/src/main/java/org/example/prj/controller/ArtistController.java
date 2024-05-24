@@ -1,5 +1,8 @@
 package org.example.prj.controller;
 
+import org.example.prj.exception.InvalidFormatException;
+import org.example.prj.exception.OtherException;
+import org.example.prj.exception.WrongPaswordException;
 import org.example.prj.model.*;
 
 import java.util.Date;
@@ -95,20 +98,27 @@ public class ArtistController {
     public String registration(String type,String userName, String password, String name, String email, String number/*, Date birth*/,String year,String month,String day,String bio) {
         for (UserAccount tmp : Database.getDataBase().getUserAccounts()) {
             if (tmp.getUserName().equals(userName))
-                return "Username is duplicated. Please try again";
+                throw new OtherException("Username is duplicated. Please try again");
+//                return "Username is duplicated. Please try again";
         }
         String regex = "^([\\w-\\.]+[@]{1}[\\w]+[\\.]{1}[\\w]{2,4})$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         if (matcher.matches() == false)
-            return "The email entered is not valid";
+            throw new InvalidFormatException("The email entered is not valid");
+//            return "The email entered is not valid";
         regex = "^([0]{1}[9]{1}[0-9]{9})$";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(number);
         if (matcher.matches() == false)
-            return "The phone number entered is not valid";
-
-        Date birth = new Date(Integer.valueOf(year)-1900,Integer.valueOf(month)-1,Integer.valueOf(day));
+            throw new InvalidFormatException("The phone number entered is not valid");
+//            return "The phone number entered is not valid";
+        Date birth;
+        try {
+            birth = new Date(Integer.valueOf(year)-1900,Integer.valueOf(month)-1,Integer.valueOf(day));
+        }catch (NumberFormatException e){
+            throw new NumberFormatException("The format entered for date of birth is not valid");
+        }
 
         if ( type.equals("S")){
             Singer singer = new Singer(userName,password,name,email,number,birth,bio);
@@ -140,7 +150,8 @@ public class ArtistController {
 
             }
         }
-        return "The username does not exist or the password is incorrect";
+        throw new WrongPaswordException();
+//        return "The username does not exist or the password is incorrect";
     }
 
     public String viewInfoacc(){

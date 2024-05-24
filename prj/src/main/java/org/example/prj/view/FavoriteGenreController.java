@@ -21,6 +21,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import org.example.prj.HelloApplication;
 import org.example.prj.controller.ListenerController;
+import org.example.prj.exception.InaccessibilityException;
+import org.example.prj.exception.OtherException;
 import org.example.prj.model.Audio;
 
 import java.io.IOException;
@@ -92,37 +94,65 @@ public class FavoriteGenreController implements Initializable {
 
     @FXML
     void artists_Action(ActionEvent event) throws IOException {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
     void audios_Action(ActionEvent event) throws IOException {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
     void back_Action(ActionEvent event) {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
     void home_Action(ActionEvent event) throws IOException {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
     void library_Action(ActionEvent event) {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
     void login_Action(ActionEvent event) {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
     void logout_Action(ActionEvent event) {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
@@ -157,27 +187,36 @@ public class FavoriteGenreController implements Initializable {
 
     @FXML
     void register_Action(ActionEvent event) {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     @FXML
     void search_Action(ActionEvent event) {
-        //exception
+        try {
+            throw new InaccessibilityException();
+        }catch (InaccessibilityException e){
+            error_text.setText(e.getMessage());
+        }
     }
 
     private ArrayList<String> al = new ArrayList<>();
 
     @FXML
     void done_Action(ActionEvent event) throws IOException {
-        String result = ListenerController.getListenerController().getGener(al);
-        if(result.equals("done successfully")){
+        try {
+            ListenerController.getListenerController().getGener(al);
             Detail.login = true;
             Detail.listener = true;
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
             HelloApplication.getStage().setScene(new Scene(fxmlLoader.load()));
-        }
-        else {
-            //exception
+        }catch (OtherException e){
+            error_text.setText(e.getMessage());
+        }finally {
+            error_text.setText(error_text.getText()+"\nHava a good day");
         }
     }
 

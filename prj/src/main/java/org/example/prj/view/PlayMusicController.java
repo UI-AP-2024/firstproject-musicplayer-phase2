@@ -15,6 +15,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.example.prj.HelloApplication;
+import org.example.prj.controller.GeneralOperations;
 import org.example.prj.controller.ListenerController;
 import org.example.prj.model.Audio;
 import org.example.prj.model.Music;
@@ -24,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PlayMusicController implements Initializable {
+public class PlayMusicController implements Initializable , GeneralOperations {
 
     @FXML
     private Button addTo_button;
@@ -64,8 +65,7 @@ public class PlayMusicController implements Initializable {
 
     @FXML
     void back_Action(ActionEvent event) {
-        if(!Detail.lastScene.empty())
-            HelloApplication.getStage().setScene(Detail.lastScene.pop());
+        backTo();
     }
 
     @FXML

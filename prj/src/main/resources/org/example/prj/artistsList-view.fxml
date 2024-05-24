@@ -61,7 +61,7 @@
       </Button>
       <TextField fx:id="search_Text" layoutX="210.0" layoutY="7.0" prefHeight="25.0" prefWidth="272.0" style="-fx-background-color: #012c2c;" />
       <Button fx:id="search_button" layoutX="489.0" layoutY="7.0" mnemonicParsing="false" onAction="#search_Action" style="-fx-background-color: #012c2c;" text="search" textFill="WHITE" />
-      <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="159.0" layoutY="39.0" prefHeight="269.0" prefWidth="445.0" style="-fx-background-color: #006868;" vbarPolicy="ALWAYS">
+      <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="159.0" layoutY="39.0" prefHeight="229.0" prefWidth="445.0" style="-fx-background-color: #006868;" vbarPolicy="ALWAYS">
          <content>
             <GridPane fx:id="gridPain" alignment="CENTER" prefHeight="469.0" prefWidth="431.0" style="-fx-background-color: #006868; -fx-background-color: #006868;" vgap="1.0">
                <columnConstraints>
@@ -97,5 +97,10 @@
          </font>
       </Text>
       <ImageView fx:id="image" fitHeight="65.0" fitWidth="79.0" layoutX="6.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="error_text" fill="#e90000" layoutX="232.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="291.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

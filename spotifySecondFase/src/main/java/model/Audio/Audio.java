@@ -2,6 +2,7 @@ package model.Audio;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.Database;
 import org.example.spotifysecondfase.HelloApplication;
 import model.Genre;
 
@@ -90,9 +91,69 @@ public abstract class Audio implements Comparable
     {
         return "Audio name : "+getName() + "Audio genre : "+getGenre()+"Audio artist name : "+getArtistName();
     }
-//    public int CompareTo(Audio audio1,Audio audio2)
-//    {
-//        audio1.name.compareTo(audio2.name);
-//    }
+    public int CompareTo()
+    {
+        int integer = 0;
+        for (int i=0; i< Database.getDatabase().getAudio().size()-1; i++)
+        {
+            for (int j=0; j<Database.getDatabase().getAudio().size(); j++)
+            {
+                if (Database.getDatabase().getAudio().get(i).compareTo(Database.getDatabase().getAudio().get(j))>0)
+                {
+                    Audio temp = Database.getDatabase().getAudio().get(i);
+                    Database.getDatabase().getAudio().set(i,Database.getDatabase().getAudio().get(j));
+                    Database.getDatabase().getAudio().set(j,temp) ;
+                    integer = 1;
+                }
+                if (Database.getDatabase().getAudio().get(i).compareTo(Database.getDatabase().getAudio().get(j))<0)
+                {
+                    integer = -1;
+                }
+                if (Database.getDatabase().getAudio().get(i).equals(Database.getDatabase().getAudio().get(j)))
+                {
+                    if(Database.getDatabase().getAudio().get(i).getLikesCount() < Database.getDatabase().getAudio().get(j).getLikesCount())
+                    {
+                        Audio temp = Database.getDatabase().getAudio().get(j);
+                        Database.getDatabase().getAudio().set(j,Database.getDatabase().getAudio().get(j+1));
+                        Database.getDatabase().getAudio().set(j+1,temp);
+                        integer = 1;
+                    }
+                    else if(Database.getDatabase().getAudio().get(i).getLikesCount() > Database.getDatabase().getAudio().get(j).getLikesCount())
+                    {
+                        integer = -1;
+                    }
+                    if (Database.getDatabase().getAudio().get(i).getLikesCount() == Database.getDatabase().getAudio().get(j).getLikesCount())
+                    {
+                        if ((Database.getDatabase().getAudio().get(i) instanceof Podcast) &&  Database.getDatabase().getAudio().get(j) instanceof Music )
+                        {
+                            Audio temp = Database.getDatabase().getAudio().get(i);
+                            Database.getDatabase().getAudio().set(i,Database.getDatabase().getAudio().get(j));
+                            Database.getDatabase().getAudio().set(j,temp);
+                            integer = 1;
+                        }
+                        if (Database.getDatabase().getAudio().get(i).equals(Database.getDatabase().getAudio().get(j)))
+                        {
+                            if (Database.getDatabase().getAudio().get(i).playsCount < Database.getDatabase().getAudio().get(j).playsCount)
+                            {
+                                Audio temp = Database.getDatabase().getAudio().get(i);
+                                Database.getDatabase().getAudio().set(i,Database.getDatabase().getAudio().get(j));
+                                Database.getDatabase().getAudio().set(j,temp);
+                                integer = 1;
+                            }
+                            if (Database.getDatabase().getAudio().get(i).playsCount > Database.getDatabase().getAudio().get(j).playsCount)
+                            {
+                                integer = -1;
+                            }
+                            if (Database.getDatabase().getAudio().get(i).playsCount == Database.getDatabase().getAudio().get(j).playsCount)
+                            {
+                                integer = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return integer;
+    }
 
 }

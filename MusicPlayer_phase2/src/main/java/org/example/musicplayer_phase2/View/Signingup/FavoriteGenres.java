@@ -241,8 +241,6 @@ public class FavoriteGenres extends Application {
         }catch (Exception e){
             Alerts.errorAlert();
         }
-
-
     }
 
 }

@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.musicplayer_phase2.View.Alerts;
 import org.example.musicplayer_phase2.View.Start;
+import org.example.musicplayer_phase2.controller.AboutArtist.ArtistController;
+import org.example.musicplayer_phase2.controller.AboutArtist.SingerController;
 import org.example.musicplayer_phase2.controller.AboutLIstener.ListenerController;
 import org.example.musicplayer_phase2.model.AboutHumans.*;
 import org.example.musicplayer_phase2.model.AboutMusic.Audio;
@@ -33,14 +35,22 @@ public class HelloApplication extends Application {
         }
     }
 
-    public static final Admin admin = getAdmin("Fatemeh" , "fatemeh" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
+    public static final Admin admin = getAdmin("Fatemeh" , "fahim" , "1234!@#$" , "fatemefahimpoour1399@gmail.com" , "09131111111" , LocalDate.of(2005 , 12 ,12));
     public static void main(String[] args) throws Exception {
-        Audio audio1 = new Music("1" , "" , LocalDate.now() , Genre.POP , "https://ts7.tarafdari.com/contents/user676439/content-sound/souvenir.mp3" , "" , "");
-        Audio audio2 = new Music("2" , "" , LocalDate.now() , Genre.POP , "https://ts2.tarafdari.com/contents/user6984/content-sound/03_cheri_cheri_lady.mp3" , "" , "");
-        Audio audio3 = new Music("3" , "" , LocalDate.now() , Genre.HIPHOP , "https://www.slac.ir/docs/slacir/fa/music/Cecilia_Krull_My_Life_Is_Going_On_320.mp3" , "" , "");
+        SingerController singerController = new SingerController();
 
-        Artist artist1 = new Singer("fatemeh" , "fahim" , "1234!@#$" , "f@gmail.com" , "09131111111" , LocalDate.now() , "I don't have biography");
-        Artist artist12 = new Podcaster("maryam" , "mary" , "1234!@#$" , "m@gmail.com" , "09131111111" , LocalDate.now() , "");
+        Audio audio = new Music("wedding of love" , "" , LocalDate.now() , Genre.SOCIETY , "https://kk.soonami.ir/Richard%20Clayderman%20-%20Mariage%20D'amor.mp3" ,"" , "");
+
+        Singer singer1 = new Singer("Erfan" , "Erfan" , "1234!@#$" , "f@gmail.com" , "09131111111" , LocalDate.now() , "Erfan Tahmasbi");
+        singerController.musicPublication(singer1 , "khodahafez" , LocalDate.now() , Genre.POP , "https://dl.rozmusic.com/Music/1402/04/18/Erfan%20Tahmasbi%20-%20Khodahafez%20%28128%29.mp3" , "" , "" , "my album 1");
+        singerController.musicPublication(singer1 , "To" , LocalDate.now() , Genre.POP , "https://dl.rozmusic.com/Music/1402/06/11/Erfan%20Tahmasbi%20-%20To%20%28128%29.mp3" , "" , "" , "my album 1");
+
+        Singer singer2 = new Singer("Selena" , "Selena" , "1234!@#$" , "m@gmail.com" , "09131111111" , LocalDate.now() , "");
+        singerController.musicPublication(singer2 , "souvenir" , LocalDate.now() , Genre.ROCK , "https://ts7.tarafdari.com/contents/user676439/content-sound/souvenir.mp3" , "" , "" , "my album 1");
+
+        Singer singer3 = new Singer("Morteza" , "Morteza" , "1234!@#$" , "f@gmai@.com" , "0913111111" , LocalDate.now() , "");
+        singerController.musicPublication(singer3 , "bia bargard" , LocalDate.now() , Genre.POP , "https://hiblog.tv/1000310/file/?Ur=https://irsv.upmusics.com/Downloads/Musics/Morteza%20Pashaei%20-%20Bia%20Bargard%20(320).mp3&hst=irsv.upmusics.com&prt=https&cuid=1000310" , "" , "" ,"my album 1");
+        singerController.musicPublication(singer3 , "nabze ehsas" , LocalDate.now() , Genre.POP , "https://dl.rozmusic.com/Music/1400/04/26/Morteza%20Pashaei%20-%20Nabze%20Ehsas%20%28128%29.mp3" , "" , "" ,"my album 1");
 
         Free listener = new Free("zahra" , "zahra" , "1234!@#$" , "" , "" , LocalDate.now());
 

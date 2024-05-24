@@ -63,6 +63,7 @@ public class BuySubscription extends Application implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("fail in buying");
                 alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
         }
     }

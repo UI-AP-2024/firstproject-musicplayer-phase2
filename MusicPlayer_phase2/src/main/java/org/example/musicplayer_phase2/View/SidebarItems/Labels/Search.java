@@ -59,7 +59,7 @@ public class Search extends Application implements Initializable {
 
     @FXML
     void searchClicked(MouseEvent event) {
-        ArrayList<Audio> audioResult = new ArrayList<>();
+        ArrayList<Audio> audioResult;
         ArrayList<Artist> artistResult = new ArrayList<>();
 
         if (serchTextField != null) {
@@ -72,7 +72,7 @@ public class Search extends Application implements Initializable {
                 Label audioLabel = new Label("audio name: "+ a.getAudioName() + "\nlikes: " + a.getLikesNum());
                 audioLabel.setOnMouseClicked(e -> {
                     try {
-                        ArrayList<Audio> hereAudio= new ArrayList<>();
+                        ArrayList<Audio> hereAudio= audioResult;
                         hereAudio.add(a);
                         makeReadyToPlay(a , hereAudio , e);
                     } catch (Exception ex) {
@@ -99,6 +99,8 @@ public class Search extends Application implements Initializable {
                 resultGridPane.add(artistLabel ,0 , index );
                 index++;
             }
+        } else {
+            audioResult = new ArrayList<>();
         }
     }
 

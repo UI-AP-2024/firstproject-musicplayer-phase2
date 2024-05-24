@@ -19,6 +19,8 @@ import org.example.musicplayer_phase2.controller.AboutView.AboutStyleSheet;
 import org.example.musicplayer_phase2.controller.AboutView.NecessaryMethods;
 import org.example.musicplayer_phase2.controller.UserAccountController;
 
+import static org.example.musicplayer_phase2.controller.PlayingAudios.PlayMusic.makeReadyToPlay;
+
 public class Start extends Application {
 
     @Override

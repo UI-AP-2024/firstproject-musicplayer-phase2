@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.spotifysecondfase.ChooseGenres">
+   <children>
+      <GridPane fx:id="gridPane" hgap="5.0" layoutX="184.0" layoutY="80.0" prefHeight="386.0" prefWidth="550.0" vgap="5.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="80.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.800048828125" minWidth="10.0" prefWidth="184.9999755859375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.39996337890625" minWidth="10.0" prefWidth="186.40001220703127" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.00000000000006" minWidth="10.0" prefWidth="168.79998779296875" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="118.60001220703126" minHeight="10.0" prefHeight="110.60001220703126" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="129.79999389648438" minHeight="10.0" prefHeight="112.8000244140625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="115.99997558593748" minHeight="10.0" prefHeight="115.99997558593748" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox fx:id="jazzVbox" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fx:id="jazzImage" fitHeight="94.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/jazz.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="jazzLbl" prefHeight="25.0" prefWidth="167.0" text="Jazz" textFill="#a49e9e">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="popVbox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <ImageView fx:id="popImage" fitHeight="93.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/pop.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="popLbl" prefHeight="26.0" prefWidth="174.0" text="Pop" textFill="#309422">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="rockVbox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+               <children>
+                  <ImageView fx:id="rockImage" fitHeight="93.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/rock.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="rockLbl" prefHeight="26.0" prefWidth="154.0" text="Rock" textFill="#0b6642">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="countryVbox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="countryImage" fitHeight="94.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/country.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="countryLbl" prefHeight="25.0" prefWidth="167.0" text="Country" textFill="#df5312">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="jazzVbox2" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fx:id="jazzImage2" fitHeight="94.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/jazz.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="jazzLbl2" prefHeight="25.0" prefWidth="167.0" text="Jazz" textFill="#a49e9e">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="jazzVbox3" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="hipHopImage" fitHeight="94.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/hiphop.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="hipHopLbl" prefHeight="25.0" prefWidth="167.0" text="Hip-Hop" textFill="#664e63">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="hustoryVbox" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fx:id="hustoryImage" fitHeight="99.0" fitWidth="255.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/histrory.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="hustoryLbl" prefHeight="25.0" prefWidth="167.0" text="History" textFill="#c1baba">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="SocietyVbox" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="SocietyImage" fitHeight="94.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/society.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="SocietyLbl" prefHeight="25.0" prefWidth="167.0" text="Society" textFill="#eaedf2">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="jazzVbox6" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="InterviewImage" fitHeight="94.0" fitWidth="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/interview.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="InterviewLbl" prefHeight="25.0" prefWidth="167.0" text="Interview" textFill="#73cca1">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="jazzVbox7" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="TrueCrimeImage" fitHeight="94.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/truecrime.jpeg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="TrueCrimeLbl" prefHeight="25.0" prefWidth="167.0" text="True crime" textFill="#a49e9e">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <Label fx:id="lable" layoutX="187.0" layoutY="30.0" prefHeight="49.0" prefWidth="258.0" text="Choose up to four genres" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn" layoutX="663.0" layoutY="474.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #1ed760; -fx-background-radius: 20px;" text="Done">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Button>
+      <VBox fx:id="vbox" layoutX="14.0" layoutY="20.0" prefHeight="418.0" prefWidth="138.0" spacing="10.0">
+         <children>
+            <ImageView fx:id="spotify" fitHeight="55.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/spotify.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="home" fitHeight="57.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Home%20(2).png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="search" fitHeight="56.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/search.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="library" fitHeight="55.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/your%20library.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="allArtists" mnemonicParsing="false" prefHeight="48.0" prefWidth="126.0" style="-fx-background-radius: 20px; -fx-background-color: #1a1a1a;" text="All Artists" textAlignment="CENTER" textFill="#b4b3b3">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="allAudios" mnemonicParsing="false" prefHeight="48.0" prefWidth="127.0" style="-fx-background-radius: 20px; -fx-background-color: #1a1a1a;" text="All Audios" textAlignment="CENTER" textFill="#b4b3b3">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <HBox fx:id="playHbox" layoutX="70.0" layoutY="516.0" prefHeight="88.0" prefWidth="492.0">
+         <children>
+            <ImageView fx:id="coverImage" fitHeight="76.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <VBox fx:id="hboxVbox" prefHeight="88.0" prefWidth="143.0">
+               <children>
+                  <Label fx:id="audioName" prefHeight="45.0" prefWidth="142.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="artistName" prefHeight="42.0" prefWidth="143.0" text="Label" textFill="WHITE" />
+               </children>
+            </VBox>
+            <ImageView fx:id="previousIcon" fitHeight="63.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/previos.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="pauseIcon" fitHeight="63.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/pause.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="nextIcon" fitHeight="65.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/next.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="22.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox fx:id="iconsHbox" layoutX="563.0" layoutY="516.0" prefHeight="88.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <ImageView fx:id="lyrics" fitHeight="52.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@image/lyrics.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="addToPlaylistImage" fitHeight="49.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/addToPlaylist.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="likeImage" fitHeight="52.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@image/like.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Button fx:id="backButton1" layoutX="126.0" layoutY="14.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="81.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="Back" textFill="#b4b3b3">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

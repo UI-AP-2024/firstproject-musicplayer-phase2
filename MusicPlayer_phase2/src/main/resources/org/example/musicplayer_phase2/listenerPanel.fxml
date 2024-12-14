@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Panels.PanelForListener.ListenerPanel">
+   <children>
+      <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="267.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
+      <ScrollPane fx:id="scrollPaneForPlaylists" layoutX="28.0" layoutY="62.0" prefHeight="203.0" prefWidth="170.0" />
+      <Label layoutX="28.0" layoutY="14.0" prefWidth="170.0" text="your playlists:      ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <VBox layoutX="413.0" layoutY="17.0" prefHeight="232.0" prefWidth="170.0" spacing="10.0">
+         <children>
+            <TextField fx:id="usernameTextField" />
+            <TextField fx:id="passwordTextFild" />
+            <TextField fx:id="creditTextfield" />
+            <TextField fx:id="subscriptionTextField" />
+            <VBox prefHeight="50.0" prefWidth="100.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="newPlaylistTextField" promptText="new playlist'sname" />
+                  <Label fx:id="makePlaylistLabel" onMouseClicked="#makePlaylistLabelClicked" onMouseEntered="#makePlaylistLabelEnter" onMouseExited="#makePlaylistLabelExit" text="make play list" />
+               </children>
+            </VBox>
+            <Label fx:id="buyLabel" onMouseClicked="#buyClicked" onMouseEntered="#buyEnter" onMouseExited="#buyExit" prefHeight="25.0" prefWidth="170.0" text="buy subscription" />
+         </children>
+      </VBox>
+      <Label layoutX="225.0" layoutY="14.0" prefWidth="170.0" text="your followings:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="followingScrollPane" layoutX="225.0" layoutY="62.0" prefHeight="203.0" prefWidth="170.0" />
+   </children>
+</AnchorPane>

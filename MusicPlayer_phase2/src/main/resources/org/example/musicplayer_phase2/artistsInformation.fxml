@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Informations.ShowArtistsInformation">
+    <VBox fx:id="sidebareVBox" layoutX="20.0" layoutY="267.0" prefHeight="70.0" prefWidth="560.0" spacing="10.0" />
+   <ScrollPane fx:id="audiosScrollPane" layoutX="29.0" layoutY="43.0" prefHeight="219.0" prefWidth="240.0" />
+   <Label layoutX="29.0" layoutY="6.0" prefHeight="17.0" prefWidth="240.0" text="audios list: " />
+   <VBox layoutX="334.0" layoutY="6.0" prefHeight="241.0" prefWidth="200.0" spacing="10.0">
+      <children>
+         <TextField fx:id="nameTextField" />
+         <TextField fx:id="usernameTextField" />
+         <TextField fx:id="followersNumTextField" />
+         <TextArea fx:id="biographyTextArea" prefHeight="65.0" prefWidth="200.0" />
+         <TextField fx:id="reportTextArea" promptText="your report" />
+         <Label fx:id="reportLabel" onMouseClicked="#reportClicked" onMouseEntered="#reportEnter" onMouseExited="#reportExit" prefHeight="25.0" prefWidth="100.0" text="report" />
+         <Label fx:id="followLabel" onMouseClicked="#followClicked" prefHeight="25.0" prefWidth="100.0" text="follow" />
+      </children>
+   </VBox>
+</AnchorPane>

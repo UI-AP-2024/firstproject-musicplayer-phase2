@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.musicplayer_phase2.View.Start">
+   <children>
+      <VBox layoutX="14.0" layoutY="50.0" prefHeight="300.0" prefWidth="80.0">
+         <children>
+            <Label fx:id="homeButton" alignment="CENTER" onMouseClicked="#homeClicked" onMouseEntered="#homeMouseEnter" onMouseExited="#homeMouseExit" prefHeight="60.0" prefWidth="80.0" text="HOME" textFill="#e30202" />
+            <Label fx:id="searchButton" alignment="CENTER" onMouseClicked="#searchClicked" onMouseEntered="#searchEnter" onMouseExited="#searchExit" prefHeight="60.0" prefWidth="80.0" text="SEARCH" textFill="#e40101" />
+            <Label fx:id="libraryButton" alignment="CENTER" onMouseClicked="#libraryClicked" onMouseEntered="#libraryEnter" onMouseExited="#libraryExit" prefHeight="60.0" prefWidth="80.0" text="LIBRARY" textFill="#e40101" />
+            <Label fx:id="allArtistButton" alignment="CENTER" onMouseClicked="#allArtistClicked" onMouseEntered="#allArtistEnter" onMouseExited="#allArtistExit" prefHeight="60.0" prefWidth="80.0" text="ARTISTS" textFill="#e40101" />
+            <Label fx:id="allAudios" alignment="CENTER" onMouseClicked="#allAudiosClicked" onMouseEntered="#allAudiosEntered" onMouseExited="#allAudiosExite" prefHeight="60.0" prefWidth="80.0" text="AUDIOS" textFill="#e40101" />
+         </children>
+      </VBox>
+      <VBox layoutX="157.0" layoutY="125.0" prefHeight="150.0" prefWidth="300.0">
+         <children>
+            <Label fx:id="loginButton" alignment="CENTER" onMouseClicked="#loginClicked" onMouseEntered="#loginEnter" onMouseExited="#loginExited" prefHeight="75.0" prefWidth="300.0" text="Login">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="signupButton" alignment="CENTER" onMouseClicked="#signupClicked" onMouseEntered="#signupEnter" onMouseExited="#signupExited" prefHeight="75.0" prefWidth="300.0" text="Signup">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
